@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"embed"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io"
 	"io/fs"
@@ -57,7 +58,7 @@ func Parse(data []byte) (*Catalog, error) {
 	c.system = make(map[string]string)
 	for {
 		tok, err := dec.Token()
-		if err == io.EOF {
+		if errors.Is(err, io.EOF) {
 			break
 		}
 		if err != nil {
@@ -76,12 +77,12 @@ func Parse(data []byte) (*Catalog, error) {
 			}
 			c.uris[name] = path.Clean(uri)
 		case "system":
-			systemId := attrValue(se.Attr, "systemId")
+			systemID := attrValue(se.Attr, "systemId")
 			uri := attrValue(se.Attr, "uri")
-			if systemId == "" || uri == "" {
+			if systemID == "" || uri == "" {
 				continue
 			}
-			c.system[systemId] = path.Clean(uri)
+			c.system[systemID] = path.Clean(uri)
 		}
 	}
 	return &c, nil

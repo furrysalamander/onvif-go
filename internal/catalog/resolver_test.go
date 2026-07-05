@@ -42,7 +42,7 @@ func TestLoad_OpenReadsFile(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Open: %v", err)
 	}
-	defer rc.Close()
+	defer func() { _ = rc.Close() }()
 	data, err := io.ReadAll(rc)
 	if err != nil {
 		t.Fatalf("ReadAll: %v", err)
