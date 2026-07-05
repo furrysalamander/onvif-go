@@ -4,9 +4,9 @@ package client
 
 // Device is a discovered ONVIF device endpoint. M0 placeholder.
 type Device struct {
-	Address    string
-	Scopes    []string
-	Types    []string
-	XAddrs    []string
+	Address         string
+	Scopes          []string
+	Types           []string
+	XAddrs          []string
 	MetadataVersion string
 }

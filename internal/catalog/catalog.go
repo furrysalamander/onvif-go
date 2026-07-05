@@ -14,4 +14,5 @@ type Resolver interface {
 // NoopResolver is the M0 placeholder.
 type NoopResolver struct{}
 
+// Resolve implements Resolver. It always reports the import as unknown.
 func (NoopResolver) Resolve(string, string) (string, bool) { return "", false }

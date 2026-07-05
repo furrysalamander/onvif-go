@@ -2,6 +2,8 @@
 // Placeholder during M0.
 package xmlns
 
+// Namespace constants used across the ONVIF stack and the support schemas it
+// builds on (WS-Security, WS-Addressing, WS-Notification, WSRF, SOAP).
 const (
 	ONVIFSchema     = "http://www.onvif.org/ver10/schema"
 	DeviceMgmt      = "http://www.onvif.org/ver10/device/wsdl"
