@@ -1,0 +1,44 @@
+version: "2"
+
+run:
+  timeout: 5m
+  go: "1.26"
+
+linters:
+  default: standard
+  enable:
+    - gofmt
+    - goimports
+    - govet
+    - ineffassign
+    - misspell
+    - revive
+    - unconvert
+    - unused
+    - staticcheck
+    - gocritic
+    - errorlint
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
+        - gosec
+    - path: onvif/schema/
+      linters:
+        - revive
+        - gocritic
+        - lll
+      text: "should have comment"
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/furrysalamander/onvif-go

@@ -1,0 +1,6 @@
+// Package onvif is the public entry point for the onvif-go library.
+//
+// During M0 this is a placeholder so `go build ./...` succeeds.
+package onvif
+
+//go:generate go run ../../cmd/onvifgen ../../internal/catalog onvif/schema
