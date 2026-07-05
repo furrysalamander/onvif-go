@@ -16,6 +16,20 @@ linters:
     - staticcheck
     - gocritic
     - errorlint
+  settings:
+    errcheck:
+      exclude-functions:
+        - fmt.Fprint
+        - fmt.Fprintf
+        - fmt.Fprintln
+        - fmt.Println
+        - fmt.Println
+        - (io.Writer).Write
+        - io.WriteString
+    revive:
+      rules:
+        - name: exported
+          disabled: true
 
 issues:
   max-issues-per-linter: 0

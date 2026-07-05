@@ -53,7 +53,7 @@ check-gen: generate check-git-clean
 
 $(GOLANGCI_LINT_BIN):
 	@mkdir -p $(BINDIR)
-	@GOBIN=$(CURDIR)/$(BINDIR) $(GOCMD) install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+	@GOBIN=$(CURDIR)/$(BINDIR) $(GOCMD) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
 
 .PHONY: tools
 tools: $(GOLANGCI_LINT_BIN)

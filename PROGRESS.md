@@ -25,7 +25,9 @@ every milestone. Last updated: **M0 complete**.
 | ID | Milestone | Status | Notes |
 |---|---|---|---|
 | M0 | Repo bootstrap: go.mod, AGENTS.md, Makefile, golangci-lint, CI, gh repo | done | repo at https://github.com/furrysalamander/onvif-go created; all 3 CI jobs green |
-| M1 | Vendored OASIS/W3C catalog + onvifgen IR parser with golden self-test | pending | |
+| M1a | Vendored Phase 1 schemas + catalog.xml + Resolver + checksum tests | done | 8 ONVIF + 11 OASIS/W3C files vendored; TestChecksums + Resolver pass |
+| M1b | onvifgen IR types + WSDL/XSD parser using catalog | done | parses all Phase-1 WSDLs (incl. OASIS closure) with no errors |
+| M1c | golden self-test for onvifgen IR | done | testdata/ir_dump.txt; counts match raw grep (devicemgmt: 103 ops, 206 msgs) |
 | M2 | Codegen for DeviceMgmt + Core schema (`tt`) package | pending | |
 | M3 | `internal/ws` SOAP envelope + `wssecurity` client + DeviceMgmt client + golden tests + `onvif-cli` | pending | |
 | M4 | WS-Discovery (UDP multicast Probe/ProbeMatch/Hello) with golden tests | pending | |

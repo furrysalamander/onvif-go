@@ -1,0 +1,550 @@
+=== external/oasis/wsn/b-2.xsd ===
+kind: schema
+targetNS: http://docs.oasis-open.org/wsn/b-2
+imports:
+  - ns=http://www.w3.org/2005/08/addressing loc=http://www.w3.org/2005/08/addressing/ws-addr.xsd
+  - ns=http://docs.oasis-open.org/wsrf/bf-2 loc=http://docs.oasis-open.org/wsrf/bf-2.xsd
+  - ns=http://docs.oasis-open.org/wsn/t-1 loc=http://docs.oasis-open.org/wsn/t-1.xsd
+simpleTypes: 1
+complexTypes: 25
+elements: 57
+attributes: 0
+attrGroups: 0
+groups: 0
+enumerations: 0 total
+wildcards: 5 total (xs:any + anyAttribute)
+
+=== external/oasis/wsn/bw-2.wsdl ===
+kind: wsdl
+targetNS: http://docs.oasis-open.org/wsn/bw-2
+imports:
+  - ns=http://docs.oasis-open.org/wsrf/rw-2 loc=http://docs.oasis-open.org/wsrf/rw-2.wsdl
+types: 1 inline schema(s)
+  schema targetNS= simple=0 complex=0 elements=0 attributes=0 attrGroups=0 groups=0
+    import ns=http://docs.oasis-open.org/wsn/b-2 loc=http://docs.oasis-open.org/wsn/b-2.xsd
+messages: 39
+portType "NotificationConsumer" operations=1
+  op "Notify" in={http://docs.oasis-open.org/wsn/bw-2}Notify out=- faults=0 action=http://docs.oasis-open.org/wsn/bw-2/Notify
+portType "NotificationProducer" operations=2
+  op "GetCurrentMessage" in={http://docs.oasis-open.org/wsn/bw-2}GetCurrentMessageRequest out={http://docs.oasis-open.org/wsn/bw-2}GetCurrentMessageResponse faults=6 action=http://docs.oasis-open.org/wsn/bw-2/GetCurrentMessage
+  op "Subscribe" in={http://docs.oasis-open.org/wsn/bw-2}SubscribeRequest out={http://docs.oasis-open.org/wsn/bw-2}SubscribeResponse faults=12 action=http://docs.oasis-open.org/wsn/bw-2/Subscribe
+portType "PullPoint" operations=3
+  op "DestroyPullPoint" in={http://docs.oasis-open.org/wsn/bw-2}DestroyPullPointRequest out={http://docs.oasis-open.org/wsn/bw-2}DestroyPullPointResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/DestroyPullPoint
+  op "GetMessages" in={http://docs.oasis-open.org/wsn/bw-2}GetMessagesRequest out={http://docs.oasis-open.org/wsn/bw-2}GetMessagesResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/GetMessages
+  op "Notify" in={http://docs.oasis-open.org/wsn/bw-2}Notify out=- faults=0 action=http://docs.oasis-open.org/wsn/bw-2/Notify
+portType "CreatePullPoint" operations=1
+  op "CreatePullPoint" in={http://docs.oasis-open.org/wsn/bw-2}CreatePullPointRequest out={http://docs.oasis-open.org/wsn/bw-2}CreatePullPointResponse faults=1 action=http://docs.oasis-open.org/wsn/bw-2/CreatePullPoint
+portType "SubscriptionManager" operations=2
+  op "Renew" in={http://docs.oasis-open.org/wsn/bw-2}RenewRequest out={http://docs.oasis-open.org/wsn/bw-2}RenewResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/Renew
+  op "Unsubscribe" in={http://docs.oasis-open.org/wsn/bw-2}UnsubscribeRequest out={http://docs.oasis-open.org/wsn/bw-2}UnsubscribeResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/Unsubscribe
+portType "PausableSubscriptionManager" operations=4
+  op "PauseSubscription" in={http://docs.oasis-open.org/wsn/bw-2}PauseSubscriptionRequest out={http://docs.oasis-open.org/wsn/bw-2}PauseSubscriptionResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/PauseSubscription
+  op "Renew" in={http://docs.oasis-open.org/wsn/bw-2}RenewRequest out={http://docs.oasis-open.org/wsn/bw-2}RenewResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/Renew
+  op "ResumeSubscription" in={http://docs.oasis-open.org/wsn/bw-2}ResumeSubscriptionRequest out={http://docs.oasis-open.org/wsn/bw-2}ResumeSubscriptionResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/ResumeSubscription
+  op "Unsubscribe" in={http://docs.oasis-open.org/wsn/bw-2}UnsubscribeRequest out={http://docs.oasis-open.org/wsn/bw-2}UnsubscribeResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/Unsubscribe
+
+=== external/oasis/wsn/t-1.xsd ===
+kind: schema
+targetNS: http://docs.oasis-open.org/wsn/t-1
+simpleTypes: 3
+complexTypes: 6
+elements: 2
+attributes: 2
+attrGroups: 0
+groups: 0
+enumerations: 0 total
+wildcards: 6 total (xs:any + anyAttribute)
+
+=== external/oasis/wsrf/bf-2.xsd ===
+kind: schema
+targetNS: http://docs.oasis-open.org/wsrf/bf-2
+imports:
+  - ns=http://www.w3.org/2005/08/addressing loc=http://www.w3.org/2005/08/addressing/ws-addr.xsd
+  - ns=http://www.w3.org/XML/1998/namespace loc=http://www.w3.org/2001/xml.xsd
+simpleTypes: 0
+complexTypes: 1
+elements: 1
+attributes: 0
+attrGroups: 0
+groups: 0
+enumerations: 0 total
+wildcards: 2 total (xs:any + anyAttribute)
+
+=== external/oasis/wsrf/r-2.xsd ===
+kind: schema
+targetNS: http://docs.oasis-open.org/wsrf/r-2
+imports:
+  - ns=http://docs.oasis-open.org/wsrf/bf-2 loc=http://docs.oasis-open.org/wsrf/bf-2.xsd
+simpleTypes: 0
+complexTypes: 2
+elements: 2
+attributes: 0
+attrGroups: 0
+groups: 0
+enumerations: 0 total
+wildcards: 0 total (xs:any + anyAttribute)
+
+=== external/oasis/wsrf/rw-2.wsdl ===
+kind: wsdl
+targetNS: http://docs.oasis-open.org/wsrf/rw-2
+types: 1 inline schema(s)
+  schema targetNS=http://docs.oasis-open.org/wsrf/rw-2 simple=0 complex=0 elements=0 attributes=0 attrGroups=0 groups=0
+    import ns=http://docs.oasis-open.org/wsrf/r-2 loc=http://docs.oasis-open.org/wsrf/r-2.xsd
+messages: 2
+
+=== external/w3c/2001/xml.xsd ===
+kind: schema
+targetNS: http://www.w3.org/XML/1998/namespace
+simpleTypes: 0
+complexTypes: 0
+elements: 0
+attributes: 4
+attrGroups: 1
+groups: 0
+enumerations: 0 total
+wildcards: 0 total (xs:any + anyAttribute)
+
+=== external/w3c/2003/05/soap-envelope/soap-envelope.xsd ===
+kind: schema
+targetNS: http://www.w3.org/2003/05/soap-envelope
+imports:
+  - ns=http://www.w3.org/XML/1998/namespace loc=http://www.w3.org/2001/xml.xsd
+simpleTypes: 1
+complexTypes: 12
+elements: 6
+attributes: 4
+attrGroups: 0
+groups: 0
+enumerations: 5 total
+wildcards: 7 total (xs:any + anyAttribute)
+
+=== external/w3c/2004/08/xop/include/xop-include.xsd ===
+kind: schema
+targetNS: http://www.w3.org/2004/08/xop/include
+simpleTypes: 0
+complexTypes: 1
+elements: 1
+attributes: 0
+attrGroups: 0
+groups: 0
+enumerations: 0 total
+wildcards: 2 total (xs:any + anyAttribute)
+
+=== external/w3c/2005/05/xmlmime/xmlmime.xsd ===
+kind: schema
+targetNS: http://www.w3.org/2005/05/xmlmime
+simpleTypes: 0
+complexTypes: 2
+elements: 0
+attributes: 2
+attrGroups: 0
+groups: 0
+enumerations: 0 total
+wildcards: 0 total (xs:any + anyAttribute)
+
+=== external/w3c/2005/08/addressing/ws-addr.xsd ===
+kind: schema
+targetNS: http://www.w3.org/2005/08/addressing
+simpleTypes: 4
+complexTypes: 9
+elements: 14
+attributes: 1
+attrGroups: 0
+groups: 0
+enumerations: 12 total
+wildcards: 13 total (xs:any + anyAttribute)
+
+=== onvif/ver10/device/wsdl/devicemgmt.wsdl ===
+kind: wsdl
+targetNS: http://www.onvif.org/ver10/device/wsdl
+types: 1 inline schema(s)
+  schema targetNS=http://www.onvif.org/ver10/device/wsdl simple=3 complex=9 elements=207 attributes=0 attrGroups=0 groups=0
+    import ns=http://www.onvif.org/ver10/schema loc=../../../ver10/schema/onvif.xsd
+messages: 206
+portType "Device" operations=103
+  op "AddIPAddressFilter" in={http://www.onvif.org/ver10/device/wsdl}AddIPAddressFilterRequest out={http://www.onvif.org/ver10/device/wsdl}AddIPAddressFilterResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/AddIPAddressFilter
+  op "AddScopes" in={http://www.onvif.org/ver10/device/wsdl}AddScopesRequest out={http://www.onvif.org/ver10/device/wsdl}AddScopesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/AddScopes
+  op "CreateCertificate" in={http://www.onvif.org/ver10/device/wsdl}CreateCertificateRequest out={http://www.onvif.org/ver10/device/wsdl}CreateCertificateResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/CreateCertificate
+  op "CreateDot1XConfiguration" in={http://www.onvif.org/ver10/device/wsdl}CreateDot1XConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}CreateDot1XConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/CreateDot1XConfiguration
+  op "CreateStorageConfiguration" in={http://www.onvif.org/ver10/device/wsdl}CreateStorageConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}CreateStorageConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/CreateStorageConfiguration
+  op "CreateUsers" in={http://www.onvif.org/ver10/device/wsdl}CreateUsersRequest out={http://www.onvif.org/ver10/device/wsdl}CreateUsersResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/CreateUsers
+  op "DeleteCertificates" in={http://www.onvif.org/ver10/device/wsdl}DeleteCertificatesRequest out={http://www.onvif.org/ver10/device/wsdl}DeleteCertificatesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/DeleteCertificates
+  op "DeleteDot1XConfiguration" in={http://www.onvif.org/ver10/device/wsdl}DeleteDot1XConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}DeleteDot1XConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/DeleteDot1XConfiguration
+  op "DeleteGeoLocation" in={http://www.onvif.org/ver10/device/wsdl}DeleteGeoLocationRequest out={http://www.onvif.org/ver10/device/wsdl}DeleteGeoLocationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/DeleteGeoLocation
+  op "DeleteStorageConfiguration" in={http://www.onvif.org/ver10/device/wsdl}DeleteStorageConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}DeleteStorageConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/DeleteStorageConfiguration
+  op "DeleteUserRole" in={http://www.onvif.org/ver10/device/wsdl}DeleteUserRoleRequest out={http://www.onvif.org/ver10/device/wsdl}DeleteUserRoleResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/DeleteUserRole
+  op "DeleteUsers" in={http://www.onvif.org/ver10/device/wsdl}DeleteUsersRequest out={http://www.onvif.org/ver10/device/wsdl}DeleteUsersResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/DeleteUsers
+  op "GetAccessPolicy" in={http://www.onvif.org/ver10/device/wsdl}GetAccessPolicyRequest out={http://www.onvif.org/ver10/device/wsdl}GetAccessPolicyResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetAccessPolicy
+  op "GetAuthFailureWarningConfiguration" in={http://www.onvif.org/ver10/device/wsdl}GetAuthFailureWarningConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}GetAuthFailureWarningConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetAuthFailureWarningConfiguration
+  op "GetAuthFailureWarningOptions" in={http://www.onvif.org/ver10/device/wsdl}GetAuthFailureWarningOptionsRequest out={http://www.onvif.org/ver10/device/wsdl}GetAuthFailureWarningOptionsResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetAuthFailureWarningOptions
+  op "GetCACertificates" in={http://www.onvif.org/ver10/device/wsdl}GetCACertificatesRequest out={http://www.onvif.org/ver10/device/wsdl}GetCACertificatesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetCACertificates
+  op "GetCapabilities" in={http://www.onvif.org/ver10/device/wsdl}GetCapabilitiesRequest out={http://www.onvif.org/ver10/device/wsdl}GetCapabilitiesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetCapabilities
+  op "GetCertificateInformation" in={http://www.onvif.org/ver10/device/wsdl}GetCertificateInformationRequest out={http://www.onvif.org/ver10/device/wsdl}GetCertificateInformationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetCertificateInformation
+  op "GetCertificates" in={http://www.onvif.org/ver10/device/wsdl}GetCertificatesRequest out={http://www.onvif.org/ver10/device/wsdl}GetCertificatesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetCertificates
+  op "GetCertificatesStatus" in={http://www.onvif.org/ver10/device/wsdl}GetCertificatesStatusRequest out={http://www.onvif.org/ver10/device/wsdl}GetCertificatesStatusResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetCertificatesStatus
+  op "GetClientCertificateMode" in={http://www.onvif.org/ver10/device/wsdl}GetClientCertificateModeRequest out={http://www.onvif.org/ver10/device/wsdl}GetClientCertificateModeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetClientCertificateMode
+  op "GetDNS" in={http://www.onvif.org/ver10/device/wsdl}GetDNSRequest out={http://www.onvif.org/ver10/device/wsdl}GetDNSResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDNS
+  op "GetDPAddresses" in={http://www.onvif.org/ver10/device/wsdl}GetDPAddressesRequest out={http://www.onvif.org/ver10/device/wsdl}GetDPAddressesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDPAddresses
+  op "GetDeviceInformation" in={http://www.onvif.org/ver10/device/wsdl}GetDeviceInformationRequest out={http://www.onvif.org/ver10/device/wsdl}GetDeviceInformationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDeviceInformation
+  op "GetDiscoveryMode" in={http://www.onvif.org/ver10/device/wsdl}GetDiscoveryModeRequest out={http://www.onvif.org/ver10/device/wsdl}GetDiscoveryModeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDiscoveryMode
+  op "GetDot11Capabilities" in={http://www.onvif.org/ver10/device/wsdl}GetDot11CapabilitiesRequest out={http://www.onvif.org/ver10/device/wsdl}GetDot11CapabilitiesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDot11Capabilities
+  op "GetDot11Status" in={http://www.onvif.org/ver10/device/wsdl}GetDot11StatusRequest out={http://www.onvif.org/ver10/device/wsdl}GetDot11StatusResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDot11Status
+  op "GetDot1XConfiguration" in={http://www.onvif.org/ver10/device/wsdl}GetDot1XConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}GetDot1XConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDot1XConfiguration
+  op "GetDot1XConfigurations" in={http://www.onvif.org/ver10/device/wsdl}GetDot1XConfigurationsRequest out={http://www.onvif.org/ver10/device/wsdl}GetDot1XConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDot1XConfigurations
+  op "GetDynamicDNS" in={http://www.onvif.org/ver10/device/wsdl}GetDynamicDNSRequest out={http://www.onvif.org/ver10/device/wsdl}GetDynamicDNSResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetDynamicDNS
+  op "GetEndpointReference" in={http://www.onvif.org/ver10/device/wsdl}GetEndpointReferenceRequest out={http://www.onvif.org/ver10/device/wsdl}GetEndpointReferenceResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetEndpointReference
+  op "GetGeoLocation" in={http://www.onvif.org/ver10/device/wsdl}GetGeoLocationRequest out={http://www.onvif.org/ver10/device/wsdl}GetGeoLocationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetGeoLocation
+  op "GetHostname" in={http://www.onvif.org/ver10/device/wsdl}GetHostnameRequest out={http://www.onvif.org/ver10/device/wsdl}GetHostnameResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetHostname
+  op "GetIPAddressFilter" in={http://www.onvif.org/ver10/device/wsdl}GetIPAddressFilterRequest out={http://www.onvif.org/ver10/device/wsdl}GetIPAddressFilterResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetIPAddressFilter
+  op "GetNTP" in={http://www.onvif.org/ver10/device/wsdl}GetNTPRequest out={http://www.onvif.org/ver10/device/wsdl}GetNTPResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetNTP
+  op "GetNetworkDefaultGateway" in={http://www.onvif.org/ver10/device/wsdl}GetNetworkDefaultGatewayRequest out={http://www.onvif.org/ver10/device/wsdl}GetNetworkDefaultGatewayResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetNetworkDefaultGateway
+  op "GetNetworkInterfaces" in={http://www.onvif.org/ver10/device/wsdl}GetNetworkInterfacesRequest out={http://www.onvif.org/ver10/device/wsdl}GetNetworkInterfacesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetNetworkInterfaces
+  op "GetNetworkProtocols" in={http://www.onvif.org/ver10/device/wsdl}GetNetworkProtocolsRequest out={http://www.onvif.org/ver10/device/wsdl}GetNetworkProtocolsResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetNetworkProtocols
+  op "GetPasswordComplexityConfiguration" in={http://www.onvif.org/ver10/device/wsdl}GetPasswordComplexityConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}GetPasswordComplexityConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetPasswordComplexityConfiguration
+  op "GetPasswordComplexityOptions" in={http://www.onvif.org/ver10/device/wsdl}GetPasswordComplexityOptionsRequest out={http://www.onvif.org/ver10/device/wsdl}GetPasswordComplexityOptionsResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetPasswordComplexityOptions
+  op "GetPasswordHistoryConfiguration" in={http://www.onvif.org/ver10/device/wsdl}GetPasswordHistoryConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}GetPasswordHistoryConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetPasswordHistoryConfiguration
+  op "GetPkcs10Request" in={http://www.onvif.org/ver10/device/wsdl}GetPkcs10RequestRequest out={http://www.onvif.org/ver10/device/wsdl}GetPkcs10RequestResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetPkcs10Request
+  op "GetRelayOutputs" in={http://www.onvif.org/ver10/device/wsdl}GetRelayOutputsRequest out={http://www.onvif.org/ver10/device/wsdl}GetRelayOutputsResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetRelayOutputs
+  op "GetRemoteDiscoveryMode" in={http://www.onvif.org/ver10/device/wsdl}GetRemoteDiscoveryModeRequest out={http://www.onvif.org/ver10/device/wsdl}GetRemoteDiscoveryModeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetRemoteDiscoveryMode
+  op "GetRemoteUser" in={http://www.onvif.org/ver10/device/wsdl}GetRemoteUserRequest out={http://www.onvif.org/ver10/device/wsdl}GetRemoteUserResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetRemoteUser
+  op "GetScopes" in={http://www.onvif.org/ver10/device/wsdl}GetScopesRequest out={http://www.onvif.org/ver10/device/wsdl}GetScopesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetScopes
+  op "GetServiceCapabilities" in={http://www.onvif.org/ver10/device/wsdl}GetServiceCapabilitiesRequest out={http://www.onvif.org/ver10/device/wsdl}GetServiceCapabilitiesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetServiceCapabilities
+  op "GetServices" in={http://www.onvif.org/ver10/device/wsdl}GetServicesRequest out={http://www.onvif.org/ver10/device/wsdl}GetServicesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetServices
+  op "GetStorageConfiguration" in={http://www.onvif.org/ver10/device/wsdl}GetStorageConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}GetStorageConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetStorageConfiguration
+  op "GetStorageConfigurations" in={http://www.onvif.org/ver10/device/wsdl}GetStorageConfigurationsRequest out={http://www.onvif.org/ver10/device/wsdl}GetStorageConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetStorageConfigurations
+  op "GetSystemBackup" in={http://www.onvif.org/ver10/device/wsdl}GetSystemBackupRequest out={http://www.onvif.org/ver10/device/wsdl}GetSystemBackupResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetSystemBackup
+  op "GetSystemDateAndTime" in={http://www.onvif.org/ver10/device/wsdl}GetSystemDateAndTimeRequest out={http://www.onvif.org/ver10/device/wsdl}GetSystemDateAndTimeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetSystemDateAndTime
+  op "GetSystemLog" in={http://www.onvif.org/ver10/device/wsdl}GetSystemLogRequest out={http://www.onvif.org/ver10/device/wsdl}GetSystemLogResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetSystemLog
+  op "GetSystemSupportInformation" in={http://www.onvif.org/ver10/device/wsdl}GetSystemSupportInformationRequest out={http://www.onvif.org/ver10/device/wsdl}GetSystemSupportInformationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetSystemSupportInformation
+  op "GetSystemUris" in={http://www.onvif.org/ver10/device/wsdl}GetSystemUrisRequest out={http://www.onvif.org/ver10/device/wsdl}GetSystemUrisResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetSystemUris
+  op "GetUserRoles" in={http://www.onvif.org/ver10/device/wsdl}GetUserRolesRequest out={http://www.onvif.org/ver10/device/wsdl}GetUserRolesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetUserRoles
+  op "GetUsers" in={http://www.onvif.org/ver10/device/wsdl}GetUsersRequest out={http://www.onvif.org/ver10/device/wsdl}GetUsersResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetUsers
+  op "GetWsdlUrl" in={http://www.onvif.org/ver10/device/wsdl}GetWsdlUrlRequest out={http://www.onvif.org/ver10/device/wsdl}GetWsdlUrlResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetWsdlUrl
+  op "GetZeroConfiguration" in={http://www.onvif.org/ver10/device/wsdl}GetZeroConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}GetZeroConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/GetZeroConfiguration
+  op "LoadCACertificates" in={http://www.onvif.org/ver10/device/wsdl}LoadCACertificatesRequest out={http://www.onvif.org/ver10/device/wsdl}LoadCACertificatesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/LoadCACertificates
+  op "LoadCertificateWithPrivateKey" in={http://www.onvif.org/ver10/device/wsdl}LoadCertificateWithPrivateKeyRequest out={http://www.onvif.org/ver10/device/wsdl}LoadCertificateWithPrivateKeyResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/LoadCertificateWithPrivateKey
+  op "LoadCertificates" in={http://www.onvif.org/ver10/device/wsdl}LoadCertificatesRequest out={http://www.onvif.org/ver10/device/wsdl}LoadCertificatesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/LoadCertificates
+  op "RemoveIPAddressFilter" in={http://www.onvif.org/ver10/device/wsdl}RemoveIPAddressFilterRequest out={http://www.onvif.org/ver10/device/wsdl}RemoveIPAddressFilterResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/RemoveIPAddressFilter
+  op "RemoveScopes" in={http://www.onvif.org/ver10/device/wsdl}RemoveScopesRequest out={http://www.onvif.org/ver10/device/wsdl}RemoveScopesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/RemoveScopes
+  op "RestoreSystem" in={http://www.onvif.org/ver10/device/wsdl}RestoreSystemRequest out={http://www.onvif.org/ver10/device/wsdl}RestoreSystemResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/RestoreSystem
+  op "ScanAvailableDot11Networks" in={http://www.onvif.org/ver10/device/wsdl}ScanAvailableDot11NetworksRequest out={http://www.onvif.org/ver10/device/wsdl}ScanAvailableDot11NetworksResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/ScanAvailableDot11Networks
+  op "SendAuxiliaryCommand" in={http://www.onvif.org/ver10/device/wsdl}SendAuxiliaryCommandRequest out={http://www.onvif.org/ver10/device/wsdl}SendAuxiliaryCommandResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SendAuxiliaryCommand
+  op "SetAccessPolicy" in={http://www.onvif.org/ver10/device/wsdl}SetAccessPolicyRequest out={http://www.onvif.org/ver10/device/wsdl}SetAccessPolicyResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetAccessPolicy
+  op "SetAuthFailureWarningConfiguration" in={http://www.onvif.org/ver10/device/wsdl}SetAuthFailureWarningConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}SetAuthFailureWarningConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetAuthFailureWarningConfiguration
+  op "SetCertificatesStatus" in={http://www.onvif.org/ver10/device/wsdl}SetCertificatesStatusRequest out={http://www.onvif.org/ver10/device/wsdl}SetCertificatesStatusResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetCertificatesStatus
+  op "SetClientCertificateMode" in={http://www.onvif.org/ver10/device/wsdl}SetClientCertificateModeRequest out={http://www.onvif.org/ver10/device/wsdl}SetClientCertificateModeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetClientCertificateMode
+  op "SetDNS" in={http://www.onvif.org/ver10/device/wsdl}SetDNSRequest out={http://www.onvif.org/ver10/device/wsdl}SetDNSResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetDNS
+  op "SetDPAddresses" in={http://www.onvif.org/ver10/device/wsdl}SetDPAddressesRequest out={http://www.onvif.org/ver10/device/wsdl}SetDPAddressesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetDPAddresses
+  op "SetDiscoveryMode" in={http://www.onvif.org/ver10/device/wsdl}SetDiscoveryModeRequest out={http://www.onvif.org/ver10/device/wsdl}SetDiscoveryModeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetDiscoveryMode
+  op "SetDot1XConfiguration" in={http://www.onvif.org/ver10/device/wsdl}SetDot1XConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}SetDot1XConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetDot1XConfiguration
+  op "SetDynamicDNS" in={http://www.onvif.org/ver10/device/wsdl}SetDynamicDNSRequest out={http://www.onvif.org/ver10/device/wsdl}SetDynamicDNSResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetDynamicDNS
+  op "SetGeoLocation" in={http://www.onvif.org/ver10/device/wsdl}SetGeoLocationRequest out={http://www.onvif.org/ver10/device/wsdl}SetGeoLocationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetGeoLocation
+  op "SetHashingAlgorithm" in={http://www.onvif.org/ver10/device/wsdl}SetHashingAlgorithmRequest out={http://www.onvif.org/ver10/device/wsdl}SetHashingAlgorithmResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetHashingAlgorithm
+  op "SetHostname" in={http://www.onvif.org/ver10/device/wsdl}SetHostnameRequest out={http://www.onvif.org/ver10/device/wsdl}SetHostnameResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetHostname
+  op "SetHostnameFromDHCP" in={http://www.onvif.org/ver10/device/wsdl}SetHostnameFromDHCPRequest out={http://www.onvif.org/ver10/device/wsdl}SetHostnameFromDHCPResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetHostnameFromDHCP
+  op "SetIPAddressFilter" in={http://www.onvif.org/ver10/device/wsdl}SetIPAddressFilterRequest out={http://www.onvif.org/ver10/device/wsdl}SetIPAddressFilterResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetIPAddressFilter
+  op "SetNTP" in={http://www.onvif.org/ver10/device/wsdl}SetNTPRequest out={http://www.onvif.org/ver10/device/wsdl}SetNTPResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetNTP
+  op "SetNetworkDefaultGateway" in={http://www.onvif.org/ver10/device/wsdl}SetNetworkDefaultGatewayRequest out={http://www.onvif.org/ver10/device/wsdl}SetNetworkDefaultGatewayResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetNetworkDefaultGateway
+  op "SetNetworkInterfaces" in={http://www.onvif.org/ver10/device/wsdl}SetNetworkInterfacesRequest out={http://www.onvif.org/ver10/device/wsdl}SetNetworkInterfacesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetNetworkInterfaces
+  op "SetNetworkProtocols" in={http://www.onvif.org/ver10/device/wsdl}SetNetworkProtocolsRequest out={http://www.onvif.org/ver10/device/wsdl}SetNetworkProtocolsResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetNetworkProtocols
+  op "SetPasswordComplexityConfiguration" in={http://www.onvif.org/ver10/device/wsdl}SetPasswordComplexityConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}SetPasswordComplexityConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetPasswordComplexityConfiguration
+  op "SetPasswordHistoryConfiguration" in={http://www.onvif.org/ver10/device/wsdl}SetPasswordHistoryConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}SetPasswordHistoryConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetPasswordHistoryConfiguration
+  op "SetRelayOutputSettings" in={http://www.onvif.org/ver10/device/wsdl}SetRelayOutputSettingsRequest out={http://www.onvif.org/ver10/device/wsdl}SetRelayOutputSettingsResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetRelayOutputSettings
+  op "SetRelayOutputState" in={http://www.onvif.org/ver10/device/wsdl}SetRelayOutputStateRequest out={http://www.onvif.org/ver10/device/wsdl}SetRelayOutputStateResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetRelayOutputState
+  op "SetRemoteDiscoveryMode" in={http://www.onvif.org/ver10/device/wsdl}SetRemoteDiscoveryModeRequest out={http://www.onvif.org/ver10/device/wsdl}SetRemoteDiscoveryModeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetRemoteDiscoveryMode
+  op "SetRemoteUser" in={http://www.onvif.org/ver10/device/wsdl}SetRemoteUserRequest out={http://www.onvif.org/ver10/device/wsdl}SetRemoteUserResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetRemoteUser
+  op "SetScopes" in={http://www.onvif.org/ver10/device/wsdl}SetScopesRequest out={http://www.onvif.org/ver10/device/wsdl}SetScopesResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetScopes
+  op "SetStorageConfiguration" in={http://www.onvif.org/ver10/device/wsdl}SetStorageConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}SetStorageConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetStorageConfiguration
+  op "SetSystemDateAndTime" in={http://www.onvif.org/ver10/device/wsdl}SetSystemDateAndTimeRequest out={http://www.onvif.org/ver10/device/wsdl}SetSystemDateAndTimeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetSystemDateAndTime
+  op "SetSystemFactoryDefault" in={http://www.onvif.org/ver10/device/wsdl}SetSystemFactoryDefaultRequest out={http://www.onvif.org/ver10/device/wsdl}SetSystemFactoryDefaultResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetSystemFactoryDefault
+  op "SetUser" in={http://www.onvif.org/ver10/device/wsdl}SetUserRequest out={http://www.onvif.org/ver10/device/wsdl}SetUserResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetUser
+  op "SetUserRole" in={http://www.onvif.org/ver10/device/wsdl}SetUserRoleRequest out={http://www.onvif.org/ver10/device/wsdl}SetUserRoleResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetUserRole
+  op "SetZeroConfiguration" in={http://www.onvif.org/ver10/device/wsdl}SetZeroConfigurationRequest out={http://www.onvif.org/ver10/device/wsdl}SetZeroConfigurationResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SetZeroConfiguration
+  op "StartFirmwareUpgrade" in={http://www.onvif.org/ver10/device/wsdl}StartFirmwareUpgradeRequest out={http://www.onvif.org/ver10/device/wsdl}StartFirmwareUpgradeResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/StartFirmwareUpgrade
+  op "StartSystemRestore" in={http://www.onvif.org/ver10/device/wsdl}StartSystemRestoreRequest out={http://www.onvif.org/ver10/device/wsdl}StartSystemRestoreResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/StartSystemRestore
+  op "SystemReboot" in={http://www.onvif.org/ver10/device/wsdl}SystemRebootRequest out={http://www.onvif.org/ver10/device/wsdl}SystemRebootResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/SystemReboot
+  op "UpgradeFirmware" in={http://www.onvif.org/ver10/device/wsdl}UpgradeFirmwareRequest out={http://www.onvif.org/ver10/device/wsdl}UpgradeFirmwareResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/UpgradeFirmware
+  op "UpgradeSystemFirmware" in={http://www.onvif.org/ver10/device/wsdl}UpgradeSystemFirmwareRequest out={http://www.onvif.org/ver10/device/wsdl}UpgradeSystemFirmwareResponse faults=0 action=http://www.onvif.org/ver10/device/wsdl/UpgradeSystemFirmware
+binding "DeviceBinding" portType={http://www.onvif.org/ver10/device/wsdl}Device soap=soap12 style=document ops=103
+
+=== onvif/ver10/events/wsdl/event.wsdl ===
+kind: wsdl
+targetNS: http://www.onvif.org/ver10/events/wsdl
+imports:
+  - ns=http://docs.oasis-open.org/wsn/bw-2 loc=http://docs.oasis-open.org/wsn/bw-2.wsdl
+  - ns=http://docs.oasis-open.org/wsrf/rw-2 loc=http://docs.oasis-open.org/wsrf/rw-2.wsdl
+types: 1 inline schema(s)
+  schema targetNS=http://www.onvif.org/ver10/events/wsdl simple=2 complex=2 elements=21 attributes=0 attrGroups=0 groups=0
+    import ns=http://www.w3.org/2005/08/addressing loc=http://www.w3.org/2005/08/addressing/ws-addr.xsd
+    import ns=http://docs.oasis-open.org/wsn/t-1 loc=http://docs.oasis-open.org/wsn/t-1.xsd
+    import ns=http://docs.oasis-open.org/wsn/b-2 loc=http://docs.oasis-open.org/wsn/b-2.xsd
+messages: 19
+portType "EventPortType" operations=6
+  op "AddEventBroker" in={http://www.onvif.org/ver10/events/wsdl}AddEventBrokerRequest out={http://www.onvif.org/ver10/events/wsdl}AddEventBrokerResponse faults=0 action=http://www.onvif.org/ver10/events/wsdl/EventPortType/AddEventBrokerRequest
+  op "CreatePullPointSubscription" in={http://www.onvif.org/ver10/events/wsdl}CreatePullPointSubscriptionRequest out={http://www.onvif.org/ver10/events/wsdl}CreatePullPointSubscriptionResponse faults=12 action=http://www.onvif.org/ver10/events/wsdl/EventPortType/CreatePullPointSubscriptionRequest
+  op "DeleteEventBroker" in={http://www.onvif.org/ver10/events/wsdl}DeleteEventBrokerRequest out={http://www.onvif.org/ver10/events/wsdl}DeleteEventBrokerResponse faults=0 action=http://www.onvif.org/ver10/events/wsdl/EventPortType/DeleteEventBrokerRequest
+  op "GetEventBrokers" in={http://www.onvif.org/ver10/events/wsdl}GetEventBrokersRequest out={http://www.onvif.org/ver10/events/wsdl}GetEventBrokersResponse faults=0 action=http://www.onvif.org/ver10/events/wsdl/EventPortType/GetEventBrokersRequest
+  op "GetEventProperties" in={http://www.onvif.org/ver10/events/wsdl}GetEventPropertiesRequest out={http://www.onvif.org/ver10/events/wsdl}GetEventPropertiesResponse faults=0 action=http://www.onvif.org/ver10/events/wsdl/EventPortType/GetEventPropertiesRequest
+  op "GetServiceCapabilities" in={http://www.onvif.org/ver10/events/wsdl}GetServiceCapabilitiesRequest out={http://www.onvif.org/ver10/events/wsdl}GetServiceCapabilitiesResponse faults=0 action=http://www.onvif.org/ver10/events/wsdl/EventPortType/GetServiceCapabilitiesRequest
+portType "PullPointSubscription" operations=4
+  op "PullMessages" in={http://www.onvif.org/ver10/events/wsdl}PullMessagesRequest out={http://www.onvif.org/ver10/events/wsdl}PullMessagesResponse faults=1 action=http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/PullMessagesRequest
+  op "Seek" in={http://www.onvif.org/ver10/events/wsdl}SeekRequest out={http://www.onvif.org/ver10/events/wsdl}SeekResponse faults=0 action=http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/SeekRequest
+  op "SetSynchronizationPoint" in={http://www.onvif.org/ver10/events/wsdl}SetSynchronizationPointRequest out={http://www.onvif.org/ver10/events/wsdl}SetSynchronizationPointResponse faults=0 action=http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/SetSynchronizationPointRequest
+  op "Unsubscribe" in={http://docs.oasis-open.org/wsn/bw-2}UnsubscribeRequest out={http://docs.oasis-open.org/wsn/bw-2}UnsubscribeResponse faults=2 action=http://docs.oasis-open.org/wsn/bw-2/SubscriptionManager/UnsubscribeRequest
+binding "PullPointSubscriptionBinding" portType={http://www.onvif.org/ver10/events/wsdl}PullPointSubscription soap=soap12 style=document ops=4
+binding "EventBinding" portType={http://www.onvif.org/ver10/events/wsdl}EventPortType soap=soap12 style=document ops=6
+binding "SubscriptionManagerBinding" portType={http://docs.oasis-open.org/wsn/bw-2}SubscriptionManager soap=soap12 style=document ops=2
+binding "NotificationProducerBinding" portType={http://docs.oasis-open.org/wsn/bw-2}NotificationProducer soap=soap12 style=document ops=2
+binding "NotificationConsumerBinding" portType={http://docs.oasis-open.org/wsn/bw-2}NotificationConsumer soap=soap12 style=document ops=1
+binding "PullPointBinding" portType={http://docs.oasis-open.org/wsn/bw-2}PullPoint soap=soap12 style=document ops=3
+binding "CreatePullPointBinding" portType={http://docs.oasis-open.org/wsn/bw-2}CreatePullPoint soap=soap12 style=document ops=1
+binding "PausableSubscriptionManagerBinding" portType={http://docs.oasis-open.org/wsn/bw-2}PausableSubscriptionManager soap=soap12 style=document ops=4
+
+=== onvif/ver10/media/wsdl/media.wsdl ===
+kind: wsdl
+targetNS: http://www.onvif.org/ver10/media/wsdl
+types: 1 inline schema(s)
+  schema targetNS=http://www.onvif.org/ver10/media/wsdl simple=0 complex=5 elements=159 attributes=0 attrGroups=0 groups=0
+    import ns=http://www.onvif.org/ver10/schema loc=../../../ver10/schema/onvif.xsd
+messages: 158
+portType "Media" operations=79
+  op "AddAudioDecoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddAudioDecoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddAudioDecoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddAudioDecoderConfiguration
+  op "AddAudioEncoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddAudioEncoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddAudioEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddAudioEncoderConfiguration
+  op "AddAudioOutputConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddAudioOutputConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddAudioOutputConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddAudioOutputConfiguration
+  op "AddAudioSourceConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddAudioSourceConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddAudioSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddAudioSourceConfiguration
+  op "AddMetadataConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddMetadataConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddMetadataConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddMetadataConfiguration
+  op "AddPTZConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddPTZConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddPTZConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddPTZConfiguration
+  op "AddVideoAnalyticsConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddVideoAnalyticsConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddVideoAnalyticsConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddVideoAnalyticsConfiguration
+  op "AddVideoEncoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddVideoEncoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddVideoEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddVideoEncoderConfiguration
+  op "AddVideoSourceConfiguration" in={http://www.onvif.org/ver10/media/wsdl}AddVideoSourceConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}AddVideoSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/AddVideoSourceConfiguration
+  op "CreateOSD" in={http://www.onvif.org/ver10/media/wsdl}CreateOSDRequest out={http://www.onvif.org/ver10/media/wsdl}CreateOSDResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/CreateOSD
+  op "CreateProfile" in={http://www.onvif.org/ver10/media/wsdl}CreateProfileRequest out={http://www.onvif.org/ver10/media/wsdl}CreateProfileResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/CreateProfile
+  op "DeleteOSD" in={http://www.onvif.org/ver10/media/wsdl}DeleteOSDRequest out={http://www.onvif.org/ver10/media/wsdl}DeleteOSDResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/DeleteOSD
+  op "DeleteProfile" in={http://www.onvif.org/ver10/media/wsdl}DeleteProfileRequest out={http://www.onvif.org/ver10/media/wsdl}DeleteProfileResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/DeleteProfile
+  op "GetAudioDecoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}GetAudioDecoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioDecoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfiguration
+  op "GetAudioDecoderConfigurationOptions" in={http://www.onvif.org/ver10/media/wsdl}GetAudioDecoderConfigurationOptionsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioDecoderConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfigurationOptions
+  op "GetAudioDecoderConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetAudioDecoderConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioDecoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfigurations
+  op "GetAudioEncoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}GetAudioEncoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfiguration
+  op "GetAudioEncoderConfigurationOptions" in={http://www.onvif.org/ver10/media/wsdl}GetAudioEncoderConfigurationOptionsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioEncoderConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfigurationOptions
+  op "GetAudioEncoderConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetAudioEncoderConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioEncoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfigurations
+  op "GetAudioOutputConfiguration" in={http://www.onvif.org/ver10/media/wsdl}GetAudioOutputConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioOutputConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfiguration
+  op "GetAudioOutputConfigurationOptions" in={http://www.onvif.org/ver10/media/wsdl}GetAudioOutputConfigurationOptionsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioOutputConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfigurationOptions
+  op "GetAudioOutputConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetAudioOutputConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioOutputConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfigurations
+  op "GetAudioOutputs" in={http://www.onvif.org/ver10/media/wsdl}GetAudioOutputsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioOutputsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioOutputs
+  op "GetAudioSourceConfiguration" in={http://www.onvif.org/ver10/media/wsdl}GetAudioSourceConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioSourceConfiguration
+  op "GetAudioSourceConfigurationOptions" in={http://www.onvif.org/ver10/media/wsdl}GetAudioSourceConfigurationOptionsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioSourceConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioSourceConfigurationOptions
+  op "GetAudioSourceConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetAudioSourceConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioSourceConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdlGetAudioSourceConfigurations/
+  op "GetAudioSources" in={http://www.onvif.org/ver10/media/wsdl}GetAudioSourcesRequest out={http://www.onvif.org/ver10/media/wsdl}GetAudioSourcesResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetAudioSources
+  op "GetCompatibleAudioDecoderConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetCompatibleAudioDecoderConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetCompatibleAudioDecoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioDecoderConfigurations
+  op "GetCompatibleAudioEncoderConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetCompatibleAudioEncoderConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetCompatibleAudioEncoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioEncoderConfigurations
+  op "GetCompatibleAudioOutputConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetCompatibleAudioOutputConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetCompatibleAudioOutputConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioOutputConfigurations
+  op "GetCompatibleAudioSourceConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetCompatibleAudioSourceConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetCompatibleAudioSourceConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioSourceConfigurations
+  op "GetCompatibleMetadataConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetCompatibleMetadataConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetCompatibleMetadataConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetCompatibleMetadataConfigurations
+  op "GetCompatibleVideoAnalyticsConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetCompatibleVideoAnalyticsConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetCompatibleVideoAnalyticsConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoAnalyticsConfigurations
+  op "GetCompatibleVideoEncoderConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetCompatibleVideoEncoderConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetCompatibleVideoEncoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoEncoderConfigurations
+  op "GetCompatibleVideoSourceConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetCompatibleVideoSourceConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetCompatibleVideoSourceConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoSourceConfigurations
+  op "GetGuaranteedNumberOfVideoEncoderInstances" in={http://www.onvif.org/ver10/media/wsdl}GetGuaranteedNumberOfVideoEncoderInstancesRequest out={http://www.onvif.org/ver10/media/wsdl}GetGuaranteedNumberOfVideoEncoderInstancesResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetGuaranteedNumberOfVideoEncoderInstances
+  op "GetMetadataConfiguration" in={http://www.onvif.org/ver10/media/wsdl}GetMetadataConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}GetMetadataConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetMetadataConfiguration
+  op "GetMetadataConfigurationOptions" in={http://www.onvif.org/ver10/media/wsdl}GetMetadataConfigurationOptionsRequest out={http://www.onvif.org/ver10/media/wsdl}GetMetadataConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetMetadataConfigurationOptions
+  op "GetMetadataConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetMetadataConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetMetadataConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetMetadataConfigurations
+  op "GetOSD" in={http://www.onvif.org/ver10/media/wsdl}GetOSDRequest out={http://www.onvif.org/ver10/media/wsdl}GetOSDResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetOSD
+  op "GetOSDOptions" in={http://www.onvif.org/ver10/media/wsdl}GetOSDOptionsRequest out={http://www.onvif.org/ver10/media/wsdl}GetOSDOptionsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetOSDOptions
+  op "GetOSDs" in={http://www.onvif.org/ver10/media/wsdl}GetOSDsRequest out={http://www.onvif.org/ver10/media/wsdl}GetOSDsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetOSDs
+  op "GetProfile" in={http://www.onvif.org/ver10/media/wsdl}GetProfileRequest out={http://www.onvif.org/ver10/media/wsdl}GetProfileResponse faults=0 action=http://www.onvif.org/ver10/media/wsdlGetProfile/
+  op "GetProfiles" in={http://www.onvif.org/ver10/media/wsdl}GetProfilesRequest out={http://www.onvif.org/ver10/media/wsdl}GetProfilesResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetProfiles
+  op "GetServiceCapabilities" in={http://www.onvif.org/ver10/media/wsdl}GetServiceCapabilitiesRequest out={http://www.onvif.org/ver10/media/wsdl}GetServiceCapabilitiesResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetServiceCapabilities
+  op "GetSnapshotUri" in={http://www.onvif.org/ver10/media/wsdl}GetSnapshotUriRequest out={http://www.onvif.org/ver10/media/wsdl}GetSnapshotUriResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetSnapshotUri
+  op "GetStreamUri" in={http://www.onvif.org/ver10/media/wsdl}GetStreamUriRequest out={http://www.onvif.org/ver10/media/wsdl}GetStreamUriResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetStreamUri
+  op "GetVideoAnalyticsConfiguration" in={http://www.onvif.org/ver10/media/wsdl}GetVideoAnalyticsConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoAnalyticsConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetVideoAnalyticsConfiguration
+  op "GetVideoAnalyticsConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetVideoAnalyticsConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoAnalyticsConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetVideoAnalyticsConfigurations
+  op "GetVideoEncoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}GetVideoEncoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfiguration
+  op "GetVideoEncoderConfigurationOptions" in={http://www.onvif.org/ver10/media/wsdl}GetVideoEncoderConfigurationOptionsRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoEncoderConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfigurationOptions
+  op "GetVideoEncoderConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetVideoEncoderConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoEncoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfigurations
+  op "GetVideoSourceConfiguration" in={http://www.onvif.org/ver10/media/wsdl}GetVideoSourceConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetVideoSourceConfiguration
+  op "GetVideoSourceConfigurationOptions" in={http://www.onvif.org/ver10/media/wsdl}GetVideoSourceConfigurationOptionsRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoSourceConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdlGetVideoSourceConfigurationOptions/
+  op "GetVideoSourceConfigurations" in={http://www.onvif.org/ver10/media/wsdl}GetVideoSourceConfigurationsRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoSourceConfigurationsResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetVideoSourceConfigurations
+  op "GetVideoSourceModes" in={http://www.onvif.org/ver10/media/wsdl}GetVideoSourceModesRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoSourceModesResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/GetVideoSourceModes
+  op "GetVideoSources" in={http://www.onvif.org/ver10/media/wsdl}GetVideoSourcesRequest out={http://www.onvif.org/ver10/media/wsdl}GetVideoSourcesResponse faults=0 action=http://www.onvif.org/ver10/media/wsdlGetVideoSources/
+  op "RemoveAudioDecoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemoveAudioDecoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemoveAudioDecoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemoveAudioDecoderConfiguration
+  op "RemoveAudioEncoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemoveAudioEncoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemoveAudioEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemoveAudioEncoderConfiguration
+  op "RemoveAudioOutputConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemoveAudioOutputConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemoveAudioOutputConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemoveAudioOutputConfiguration
+  op "RemoveAudioSourceConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemoveAudioSourceConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemoveAudioSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemoveAudioSourceConfiguration
+  op "RemoveMetadataConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemoveMetadataConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemoveMetadataConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemoveMetadataConfiguration
+  op "RemovePTZConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemovePTZConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemovePTZConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemovePTZConfiguration
+  op "RemoveVideoAnalyticsConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemoveVideoAnalyticsConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemoveVideoAnalyticsConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemoveVideoAnalyticsConfiguration
+  op "RemoveVideoEncoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemoveVideoEncoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemoveVideoEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemoveVideoEncoderConfiguration
+  op "RemoveVideoSourceConfiguration" in={http://www.onvif.org/ver10/media/wsdl}RemoveVideoSourceConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}RemoveVideoSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/RemoveVideoSourceConfiguration
+  op "SetAudioDecoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}SetAudioDecoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}SetAudioDecoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetAudioDecoderConfiguration
+  op "SetAudioEncoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}SetAudioEncoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}SetAudioEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetAudioEncoderConfiguration
+  op "SetAudioOutputConfiguration" in={http://www.onvif.org/ver10/media/wsdl}SetAudioOutputConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}SetAudioOutputConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetAudioOutputConfiguration
+  op "SetAudioSourceConfiguration" in={http://www.onvif.org/ver10/media/wsdl}SetAudioSourceConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}SetAudioSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetAudioSourceConfiguration
+  op "SetMetadataConfiguration" in={http://www.onvif.org/ver10/media/wsdl}SetMetadataConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}SetMetadataConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetMetadataConfiguration
+  op "SetOSD" in={http://www.onvif.org/ver10/media/wsdl}SetOSDRequest out={http://www.onvif.org/ver10/media/wsdl}SetOSDResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetOSD
+  op "SetSynchronizationPoint" in={http://www.onvif.org/ver10/media/wsdl}SetSynchronizationPointRequest out={http://www.onvif.org/ver10/media/wsdl}SetSynchronizationPointResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetSynchronizationPoint
+  op "SetVideoAnalyticsConfiguration" in={http://www.onvif.org/ver10/media/wsdl}SetVideoAnalyticsConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}SetVideoAnalyticsConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetVideoAnalyticsConfiguration
+  op "SetVideoEncoderConfiguration" in={http://www.onvif.org/ver10/media/wsdl}SetVideoEncoderConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}SetVideoEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetVideoEncoderConfiguration
+  op "SetVideoSourceConfiguration" in={http://www.onvif.org/ver10/media/wsdl}SetVideoSourceConfigurationRequest out={http://www.onvif.org/ver10/media/wsdl}SetVideoSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetVideoSourceConfiguration
+  op "SetVideoSourceMode" in={http://www.onvif.org/ver10/media/wsdl}SetVideoSourceModeRequest out={http://www.onvif.org/ver10/media/wsdl}SetVideoSourceModeResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/SetVideoSourceMode
+  op "StartMulticastStreaming" in={http://www.onvif.org/ver10/media/wsdl}StartMulticastStreamingRequest out={http://www.onvif.org/ver10/media/wsdl}StartMulticastStreamingResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/StartMulticastStreaming
+  op "StopMulticastStreaming" in={http://www.onvif.org/ver10/media/wsdl}StopMulticastStreamingRequest out={http://www.onvif.org/ver10/media/wsdl}StopMulticastStreamingResponse faults=0 action=http://www.onvif.org/ver10/media/wsdl/StopMulticastStreaming
+binding "MediaBinding" portType={http://www.onvif.org/ver10/media/wsdl}Media soap=soap12 style=document ops=79
+
+=== onvif/ver10/schema/common.xsd ===
+kind: schema
+targetNS: http://www.onvif.org/ver10/schema
+simpleTypes: 3
+complexTypes: 21
+elements: 1
+attributes: 0
+attrGroups: 0
+groups: 0
+enumerations: 6 total
+wildcards: 17 total (xs:any + anyAttribute)
+
+=== onvif/ver10/schema/onvif.xsd ===
+kind: schema
+targetNS: http://www.onvif.org/ver10/schema
+imports:
+  - ns=http://www.w3.org/2005/05/xmlmime loc=https://www.w3.org/2005/05/xmlmime
+  - ns=http://www.w3.org/2003/05/soap-envelope loc=https://www.w3.org/2003/05/soap-envelope
+  - ns=http://docs.oasis-open.org/wsn/b-2 loc=http://docs.oasis-open.org/wsn/b-2.xsd
+  - ns=http://www.w3.org/2004/08/xop/include loc=https://www.w3.org/2004/08/xop/include
+includes:
+  - loc=common.xsd
+simpleTypes: 97
+complexTypes: 453
+elements: 20
+attributes: 0
+attrGroups: 0
+groups: 0
+enumerations: 231 total
+wildcards: 512 total (xs:any + anyAttribute)
+
+=== onvif/ver20/imaging/wsdl/imaging.wsdl ===
+kind: wsdl
+targetNS: http://www.onvif.org/ver20/imaging/wsdl
+types: 1 inline schema(s)
+  schema targetNS=http://www.onvif.org/ver20/imaging/wsdl simple=1 complex=2 elements=23 attributes=0 attrGroups=0 groups=0
+    import ns=http://www.onvif.org/ver10/schema loc=../../../ver10/schema/onvif.xsd
+messages: 22
+portType "ImagingPort" operations=11
+  op "GetCurrentPreset" in={http://www.onvif.org/ver20/imaging/wsdl}GetCurrentPresetRequest out={http://www.onvif.org/ver20/imaging/wsdl}GetCurrentPresetResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/GetCurrentPreset
+  op "GetImagingSettings" in={http://www.onvif.org/ver20/imaging/wsdl}GetImagingSettingsRequest out={http://www.onvif.org/ver20/imaging/wsdl}GetImagingSettingsResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/GetImagingSettings
+  op "GetMoveOptions" in={http://www.onvif.org/ver20/imaging/wsdl}GetMoveOptionsRequest out={http://www.onvif.org/ver20/imaging/wsdl}GetMoveOptionsResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/GetMoveOptions
+  op "GetOptions" in={http://www.onvif.org/ver20/imaging/wsdl}GetOptionsRequest out={http://www.onvif.org/ver20/imaging/wsdl}GetOptionsResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/GetOptions
+  op "GetPresets" in={http://www.onvif.org/ver20/imaging/wsdl}GetPresetsRequest out={http://www.onvif.org/ver20/imaging/wsdl}GetPresetsResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/GetPresets
+  op "GetServiceCapabilities" in={http://www.onvif.org/ver20/imaging/wsdl}GetServiceCapabilitiesRequest out={http://www.onvif.org/ver20/imaging/wsdl}GetServiceCapabilitiesResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/GetServiceCapabilities
+  op "GetStatus" in={http://www.onvif.org/ver20/imaging/wsdl}GetStatusRequest out={http://www.onvif.org/ver20/imaging/wsdl}GetStatusResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/GetStatus
+  op "Move" in={http://www.onvif.org/ver20/imaging/wsdl}MoveRequest out={http://www.onvif.org/ver20/imaging/wsdl}MoveResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/Move
+  op "SetCurrentPreset" in={http://www.onvif.org/ver20/imaging/wsdl}SetCurrentPresetRequest out={http://www.onvif.org/ver20/imaging/wsdl}SetCurrentPresetResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/SetCurrentPreset
+  op "SetImagingSettings" in={http://www.onvif.org/ver20/imaging/wsdl}SetImagingSettingsRequest out={http://www.onvif.org/ver20/imaging/wsdl}SetImagingSettingsResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/SetImagingSettings
+  op "Stop" in={http://www.onvif.org/ver20/imaging/wsdl}StopRequest out={http://www.onvif.org/ver20/imaging/wsdl}StopResponse faults=0 action=http://www.onvif.org/ver20/imaging/wsdl/FocusStop
+binding "ImagingBinding" portType={http://www.onvif.org/ver20/imaging/wsdl}ImagingPort soap=soap12 style=document ops=11
+
+=== onvif/ver20/media/wsdl/media.wsdl ===
+kind: wsdl
+targetNS: http://www.onvif.org/ver20/media/wsdl
+types: 1 inline schema(s)
+  schema targetNS=http://www.onvif.org/ver20/media/wsdl simple=4 complex=22 elements=118 attributes=0 attrGroups=0 groups=0
+    import ns=http://www.onvif.org/ver10/schema loc=../../../ver10/schema/onvif.xsd
+messages: 116
+portType "Media2" operations=58
+  op "AddAudioClip" in={http://www.onvif.org/ver20/media/wsdl}AddAudioClipRequest out={http://www.onvif.org/ver20/media/wsdl}AddAudioClipResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/AddAudioClip
+  op "AddConfiguration" in={http://www.onvif.org/ver20/media/wsdl}AddConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}AddConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/AddConfiguration
+  op "CreateMask" in={http://www.onvif.org/ver20/media/wsdl}CreateMaskRequest out={http://www.onvif.org/ver20/media/wsdl}CreateMaskResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/CreateMask
+  op "CreateOSD" in={http://www.onvif.org/ver20/media/wsdl}CreateOSDRequest out={http://www.onvif.org/ver20/media/wsdl}CreateOSDResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/CreateOSD
+  op "CreateProfile" in={http://www.onvif.org/ver20/media/wsdl}CreateProfileRequest out={http://www.onvif.org/ver20/media/wsdl}CreateProfileResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/CreateProfile
+  op "DeleteAudioClip" in={http://www.onvif.org/ver20/media/wsdl}DeleteAudioClipRequest out={http://www.onvif.org/ver20/media/wsdl}DeleteAudioClipResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/DeleteAudioClip
+  op "DeleteMask" in={http://www.onvif.org/ver20/media/wsdl}DeleteMaskRequest out={http://www.onvif.org/ver20/media/wsdl}DeleteMaskResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/DeleteMask
+  op "DeleteOSD" in={http://www.onvif.org/ver20/media/wsdl}DeleteOSDRequest out={http://www.onvif.org/ver20/media/wsdl}DeleteOSDResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/DeleteOSD
+  op "DeleteProfile" in={http://www.onvif.org/ver20/media/wsdl}DeleteProfileRequest out={http://www.onvif.org/ver20/media/wsdl}DeleteProfileResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/DeleteProfile
+  op "GetAnalyticsConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetAnalyticsConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAnalyticsConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAnalyticsConfigurations
+  op "GetAudioClips" in={http://www.onvif.org/ver20/media/wsdl}GetAudioClipsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioClipsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioClips
+  op "GetAudioDecoderConfigurationOptions" in={http://www.onvif.org/ver20/media/wsdl}GetAudioDecoderConfigurationOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioDecoderConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioDecoderConfigurationOptions
+  op "GetAudioDecoderConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetAudioDecoderConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioDecoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioDecoderConfigurations
+  op "GetAudioEncoderConfigurationOptions" in={http://www.onvif.org/ver20/media/wsdl}GetAudioEncoderConfigurationOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioEncoderConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioEncoderConfigurationOptions
+  op "GetAudioEncoderConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetAudioEncoderConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioEncoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioEncoderConfigurations
+  op "GetAudioOutputConfigurationOptions" in={http://www.onvif.org/ver20/media/wsdl}GetAudioOutputConfigurationOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioOutputConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioOutputConfigurationOptions
+  op "GetAudioOutputConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetAudioOutputConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioOutputConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioOutputConfigurations
+  op "GetAudioSourceConfigurationOptions" in={http://www.onvif.org/ver20/media/wsdl}GetAudioSourceConfigurationOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioSourceConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioSourceConfigurationOptions
+  op "GetAudioSourceConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetAudioSourceConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetAudioSourceConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetAudioSourceConfigurations/
+  op "GetMaskOptions" in={http://www.onvif.org/ver20/media/wsdl}GetMaskOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetMaskOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetMaskOptions
+  op "GetMasks" in={http://www.onvif.org/ver20/media/wsdl}GetMasksRequest out={http://www.onvif.org/ver20/media/wsdl}GetMasksResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetMasks
+  op "GetMetadataConfigurationOptions" in={http://www.onvif.org/ver20/media/wsdl}GetMetadataConfigurationOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetMetadataConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetMetadataConfigurationOptions
+  op "GetMetadataConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetMetadataConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetMetadataConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetMetadataConfigurations
+  op "GetMulticastAudioDecoderConfigurationOptions" in={http://www.onvif.org/ver20/media/wsdl}GetMulticastAudioDecoderConfigurationOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetMulticastAudioDecoderConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetMulticastAudioDecoderConfigurationOptions
+  op "GetMulticastAudioDecoderConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetMulticastAudioDecoderConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetMulticastAudioDecoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetMulticastAudioDecoderConfigurations
+  op "GetOSDOptions" in={http://www.onvif.org/ver20/media/wsdl}GetOSDOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetOSDOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetOSDOptions
+  op "GetOSDs" in={http://www.onvif.org/ver20/media/wsdl}GetOSDsRequest out={http://www.onvif.org/ver20/media/wsdl}GetOSDsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetOSDs
+  op "GetPlayingAudioClips" in={http://www.onvif.org/ver20/media/wsdl}GetPlayingAudioClipsRequest out={http://www.onvif.org/ver20/media/wsdl}GetPlayingAudioClipsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetPlayingAudioClips
+  op "GetProfiles" in={http://www.onvif.org/ver20/media/wsdl}GetProfilesRequest out={http://www.onvif.org/ver20/media/wsdl}GetProfilesResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetProfiles
+  op "GetServiceCapabilities" in={http://www.onvif.org/ver20/media/wsdl}GetServiceCapabilitiesRequest out={http://www.onvif.org/ver20/media/wsdl}GetServiceCapabilitiesResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetServiceCapabilities
+  op "GetSnapshotUri" in={http://www.onvif.org/ver20/media/wsdl}GetSnapshotUriRequest out={http://www.onvif.org/ver20/media/wsdl}GetSnapshotUriResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetSnapshotUri
+  op "GetStreamUri" in={http://www.onvif.org/ver20/media/wsdl}GetStreamUriRequest out={http://www.onvif.org/ver20/media/wsdl}GetStreamUriResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetStreamUri
+  op "GetVideoEncoderConfigurationOptions" in={http://www.onvif.org/ver20/media/wsdl}GetVideoEncoderConfigurationOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetVideoEncoderConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetVideoEncoderConfigurationOptions
+  op "GetVideoEncoderConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetVideoEncoderConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetVideoEncoderConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetVideoEncoderConfigurations
+  op "GetVideoEncoderInstances" in={http://www.onvif.org/ver20/media/wsdl}GetVideoEncoderInstancesRequest out={http://www.onvif.org/ver20/media/wsdl}GetVideoEncoderInstancesResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetVideoEncoderInstances
+  op "GetVideoSourceConfigurationOptions" in={http://www.onvif.org/ver20/media/wsdl}GetVideoSourceConfigurationOptionsRequest out={http://www.onvif.org/ver20/media/wsdl}GetVideoSourceConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetVideoSourceConfigurationOptions/
+  op "GetVideoSourceConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetVideoSourceConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetVideoSourceConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetVideoSourceConfigurations
+  op "GetVideoSourceModes" in={http://www.onvif.org/ver20/media/wsdl}GetVideoSourceModesRequest out={http://www.onvif.org/ver20/media/wsdl}GetVideoSourceModesResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetVideoSourceModes
+  op "GetWebRTCConfigurations" in={http://www.onvif.org/ver20/media/wsdl}GetWebRTCConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}GetWebRTCConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/GetWebRTCConfigurations
+  op "PlayAudioClip" in={http://www.onvif.org/ver20/media/wsdl}PlayAudioClipRequest out={http://www.onvif.org/ver20/media/wsdl}PlayAudioClipResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/PlayAudioClip
+  op "RemoveConfiguration" in={http://www.onvif.org/ver20/media/wsdl}RemoveConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}RemoveConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/RemoveConfiguration
+  op "SetAudioClip" in={http://www.onvif.org/ver20/media/wsdl}SetAudioClipRequest out={http://www.onvif.org/ver20/media/wsdl}SetAudioClipResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetAudioClip
+  op "SetAudioDecoderConfiguration" in={http://www.onvif.org/ver20/media/wsdl}SetAudioDecoderConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}SetAudioDecoderConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetAudioDecoderConfiguration
+  op "SetAudioEncoderConfiguration" in={http://www.onvif.org/ver20/media/wsdl}SetAudioEncoderConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}SetAudioEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetAudioEncoderConfiguration
+  op "SetAudioOutputConfiguration" in={http://www.onvif.org/ver20/media/wsdl}SetAudioOutputConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}SetAudioOutputConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetAudioOutputConfiguration
+  op "SetAudioSourceConfiguration" in={http://www.onvif.org/ver20/media/wsdl}SetAudioSourceConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}SetAudioSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetAudioSourceConfiguration
+  op "SetEQPreset" in={http://www.onvif.org/ver20/media/wsdl}SetEQPresetRequest out={http://www.onvif.org/ver20/media/wsdl}SetEQPresetResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetEQPreset
+  op "SetMask" in={http://www.onvif.org/ver20/media/wsdl}SetMaskRequest out={http://www.onvif.org/ver20/media/wsdl}SetMaskResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetMask
+  op "SetMetadataConfiguration" in={http://www.onvif.org/ver20/media/wsdl}SetMetadataConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}SetMetadataConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetMetadataConfiguration
+  op "SetMulticastAudioDecoderConfiguration" in={http://www.onvif.org/ver20/media/wsdl}SetMulticastAudioDecoderConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}SetMulticastAudioDecoderConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetMulticastAudioDecoderConfiguration
+  op "SetOSD" in={http://www.onvif.org/ver20/media/wsdl}SetOSDRequest out={http://www.onvif.org/ver20/media/wsdl}SetOSDResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetOSD
+  op "SetSynchronizationPoint" in={http://www.onvif.org/ver20/media/wsdl}SetSynchronizationPointRequest out={http://www.onvif.org/ver20/media/wsdl}SetSynchronizationPointResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetSynchronizationPoint
+  op "SetVideoEncoderConfiguration" in={http://www.onvif.org/ver20/media/wsdl}SetVideoEncoderConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}SetVideoEncoderConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetVideoEncoderConfiguration
+  op "SetVideoSourceConfiguration" in={http://www.onvif.org/ver20/media/wsdl}SetVideoSourceConfigurationRequest out={http://www.onvif.org/ver20/media/wsdl}SetVideoSourceConfigurationResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetVideoSourceConfiguration
+  op "SetVideoSourceMode" in={http://www.onvif.org/ver20/media/wsdl}SetVideoSourceModeRequest out={http://www.onvif.org/ver20/media/wsdl}SetVideoSourceModeResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetVideoSourceMode
+  op "SetWebRTCConfigurations" in={http://www.onvif.org/ver20/media/wsdl}SetWebRTCConfigurationsRequest out={http://www.onvif.org/ver20/media/wsdl}SetWebRTCConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/SetWebRTCConfigurations
+  op "StartMulticastStreaming" in={http://www.onvif.org/ver20/media/wsdl}StartMulticastStreamingRequest out={http://www.onvif.org/ver20/media/wsdl}StartMulticastStreamingResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/StartMulticastStreaming
+  op "StopMulticastStreaming" in={http://www.onvif.org/ver20/media/wsdl}StopMulticastStreamingRequest out={http://www.onvif.org/ver20/media/wsdl}StopMulticastStreamingResponse faults=0 action=http://www.onvif.org/ver20/media/wsdl/StopMulticastStreaming
+binding "Media2Binding" portType={http://www.onvif.org/ver20/media/wsdl}Media2 soap=soap12 style=document ops=58
+
+=== onvif/ver20/ptz/wsdl/ptz.wsdl ===
+kind: wsdl
+targetNS: http://www.onvif.org/ver20/ptz/wsdl
+types: 1 inline schema(s)
+  schema targetNS=http://www.onvif.org/ver20/ptz/wsdl simple=0 complex=1 elements=59 attributes=0 attrGroups=0 groups=0
+    import ns=http://www.onvif.org/ver10/schema loc=../../../ver10/schema/onvif.xsd
+messages: 58
+portType "PTZ" operations=29
+  op "AbsoluteMove" in={http://www.onvif.org/ver20/ptz/wsdl}AbsoluteMoveRequest out={http://www.onvif.org/ver20/ptz/wsdl}AbsoluteMoveResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/AbsoluteMove
+  op "ContinuousMove" in={http://www.onvif.org/ver20/ptz/wsdl}ContinuousMoveRequest out={http://www.onvif.org/ver20/ptz/wsdl}ContinuousMoveResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/ContinuousMove
+  op "CreatePresetTour" in={http://www.onvif.org/ver20/ptz/wsdl}CreatePresetTourRequest out={http://www.onvif.org/ver20/ptz/wsdl}CreatePresetTourResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/CreatePresetTour
+  op "GeoMove" in={http://www.onvif.org/ver20/ptz/wsdl}GeoMoveRequest out={http://www.onvif.org/ver20/ptz/wsdl}GeoMoveResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GeoMove
+  op "GetCompatibleConfigurations" in={http://www.onvif.org/ver20/ptz/wsdl}GetCompatibleConfigurationsRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetCompatibleConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetCompatibleConfigurations
+  op "GetConfiguration" in={http://www.onvif.org/ver20/ptz/wsdl}GetConfigurationRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetConfigurationResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetConfiguration
+  op "GetConfigurationOptions" in={http://www.onvif.org/ver20/ptz/wsdl}GetConfigurationOptionsRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetConfigurationOptionsResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetConfigurationOptions
+  op "GetConfigurations" in={http://www.onvif.org/ver20/ptz/wsdl}GetConfigurationsRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetConfigurationsResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetConfigurations
+  op "GetNode" in={http://www.onvif.org/ver20/ptz/wsdl}GetNodeRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetNodeResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetNode
+  op "GetNodes" in={http://www.onvif.org/ver20/ptz/wsdl}GetNodesRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetNodesResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetNodes
+  op "GetPresetTour" in={http://www.onvif.org/ver20/ptz/wsdl}GetPresetTourRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetPresetTourResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetPresetTour
+  op "GetPresetTourOptions" in={http://www.onvif.org/ver20/ptz/wsdl}GetPresetTourOptionsRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetPresetTourOptionsResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetPresetTourOptions
+  op "GetPresetTours" in={http://www.onvif.org/ver20/ptz/wsdl}GetPresetToursRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetPresetToursResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetPresetTours
+  op "GetPresets" in={http://www.onvif.org/ver20/ptz/wsdl}GetPresetsRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetPresetsResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetPresets
+  op "GetServiceCapabilities" in={http://www.onvif.org/ver20/ptz/wsdl}GetServiceCapabilitiesRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetServiceCapabilitiesResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetServiceCapabilities
+  op "GetStatus" in={http://www.onvif.org/ver20/ptz/wsdl}GetStatusRequest out={http://www.onvif.org/ver20/ptz/wsdl}GetStatusResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GetStatus
+  op "GotoHomePosition" in={http://www.onvif.org/ver20/ptz/wsdl}GotoHomePositionRequest out={http://www.onvif.org/ver20/ptz/wsdl}GotoHomePositionResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GotoHomePosition
+  op "GotoPreset" in={http://www.onvif.org/ver20/ptz/wsdl}GotoPresetRequest out={http://www.onvif.org/ver20/ptz/wsdl}GotoPresetResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/GotoPreset
+  op "ModifyPresetTour" in={http://www.onvif.org/ver20/ptz/wsdl}ModifyPresetTourRequest out={http://www.onvif.org/ver20/ptz/wsdl}ModifyPresetTourResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/ModifyPresetTour
+  op "MoveAndStartTracking" in={http://www.onvif.org/ver20/ptz/wsdl}MoveAndStartTrackingRequest out={http://www.onvif.org/ver20/ptz/wsdl}MoveAndStartTrackingResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/MoveAndStartTracking
+  op "OperatePresetTour" in={http://www.onvif.org/ver20/ptz/wsdl}OperatePresetTourRequest out={http://www.onvif.org/ver20/ptz/wsdl}OperatePresetTourResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/OperatePresetTour
+  op "RelativeMove" in={http://www.onvif.org/ver20/ptz/wsdl}RelativeMoveRequest out={http://www.onvif.org/ver20/ptz/wsdl}RelativeMoveResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/RelativeMove
+  op "RemovePreset" in={http://www.onvif.org/ver20/ptz/wsdl}RemovePresetRequest out={http://www.onvif.org/ver20/ptz/wsdl}RemovePresetResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/RemovePreset
+  op "RemovePresetTour" in={http://www.onvif.org/ver20/ptz/wsdl}RemovePresetTourRequest out={http://www.onvif.org/ver20/ptz/wsdl}RemovePresetTourResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/RemovePresetTour
+  op "SendAuxiliaryCommand" in={http://www.onvif.org/ver20/ptz/wsdl}SendAuxiliaryCommandRequest out={http://www.onvif.org/ver20/ptz/wsdl}SendAuxiliaryCommandResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/SendAuxiliaryCommand
+  op "SetConfiguration" in={http://www.onvif.org/ver20/ptz/wsdl}SetConfigurationRequest out={http://www.onvif.org/ver20/ptz/wsdl}SetConfigurationResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/SetConfiguration
+  op "SetHomePosition" in={http://www.onvif.org/ver20/ptz/wsdl}SetHomePositionRequest out={http://www.onvif.org/ver20/ptz/wsdl}SetHomePositionResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/SetHomePosition
+  op "SetPreset" in={http://www.onvif.org/ver20/ptz/wsdl}SetPresetRequest out={http://www.onvif.org/ver20/ptz/wsdl}SetPresetResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/SetPreset
+  op "Stop" in={http://www.onvif.org/ver20/ptz/wsdl}StopRequest out={http://www.onvif.org/ver20/ptz/wsdl}StopResponse faults=0 action=http://www.onvif.org/ver20/ptz/wsdl/Stop
+binding "PTZBinding" portType={http://www.onvif.org/ver20/ptz/wsdl}PTZ soap=soap12 style=document ops=29
+
