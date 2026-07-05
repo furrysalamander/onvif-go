@@ -24,7 +24,7 @@ every milestone. Last updated: **M0 complete**.
 
 | ID | Milestone | Status | Notes |
 |---|---|---|---|
-| M0 | Repo bootstrap: go.mod, AGENTS.md, Makefile, golangci-lint, CI, gh repo | done | https://github.com/furrysalamander/onvif-go created; CI workflow queued |
+| M0 | Repo bootstrap: go.mod, AGENTS.md, Makefile, golangci-lint, CI, gh repo | done | repo at https://github.com/furrysalamander/onvif-go created; all 3 CI jobs green |
 | M1 | Vendored OASIS/W3C catalog + onvifgen IR parser with golden self-test | pending | |
 | M2 | Codegen for DeviceMgmt + Core schema (`tt`) package | pending | |
 | M3 | `internal/ws` SOAP envelope + `wssecurity` client + DeviceMgmt client + golden tests + `onvif-cli` | pending | |

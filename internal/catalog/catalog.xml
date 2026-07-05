@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML Catalog for cmd/onvifgen.
+
+  Maps schema/wsdl namespaces + remote schemaLocation URLs to their
+  vendored copies under internal/catalog/. The generator uses this catalog so
+  it never fetches schemas from the network.
+
+  Maintained by hand; integrity of the vendored files is checked by the
+  checksums in NOTICE.md (see `go test ./internal/catalog`).
+-->
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+  <!-- ===================== ONVIF schemas ===================== -->
+  <uri name="http://www.onvif.org/ver10/device/wsdl"          uri="onvif/ver10/device/wsdl/devicemgmt.wsdl"/>
+  <uri name="http://www.onvif.org/ver10/media/wsdl"           uri="onvif/ver10/media/wsdl/media.wsdl"/>
+  <uri name="http://www.onvif.org/ver20/media/wsdl"           uri="onvif/ver20/media/wsdl/media.wsdl"/>
+  <uri name="http://www.onvif.org/ver20/ptz/wsdl"             uri="onvif/ver20/ptz/wsdl/ptz.wsdl"/>
+  <uri name="http://www.onvif.org/ver10/events/wsdl"          uri="onvif/ver10/events/wsdl/event.wsdl"/>
+  <uri name="http://www.onvif.org/ver20/imaging/wsdl"         uri="onvif/ver20/imaging/wsdl/imaging.wsdl"/>
+  <uri name="http://www.onvif.org/ver10/schema"               uri="onvif/ver10/schema/onvif.xsd"/>
+  <uri name="http://www.onvif.org/ver10/schema/common"       uri="onvif/ver10/schema/common.xsd"/>
+
+  <!-- onvif.xsd uses an unsuffixed import path; map it to common.xsd too -->
+  <uri name="http://www.onvif.org/ver10/schema/common.xsd"    uri="onvif/ver10/schema/common.xsd"/>
+
+  <!-- ===================== OASIS WS-Notification / WS-ResourceFramework ===================== -->
+  <uri name="http://docs.oasis-open.org/wsn/b-2"             uri="external/oasis/wsn/b-2.xsd"/>
+  <uri name="http://docs.oasis-open.org/wsn/t-1"             uri="external/oasis/wsn/t-1.xsd"/>
+  <uri name="http://docs.oasis-open.org/wsn/bw-2"            uri="external/oasis/wsn/bw-2.wsdl"/>
+  <uri name="http://docs.oasis-open.org/wsrf/rw-2"           uri="external/oasis/wsrf/rw-2.wsdl"/>
+  <uri name="http://docs.oasis-open.org/wsrf/bf-2"           uri="external/oasis/wsrf/bf-2.xsd"/>
+  <uri name="http://docs.oasis-open.org/wsrf/r-2"            uri="external/oasis/wsrf/r-2.xsd"/>
+
+  <!-- ===================== W3C support schemas ===================== -->
+  <uri name="http://www.w3.org/2005/08/addressing"           uri="external/w3c/2005/08/addressing/ws-addr.xsd"/>
+  <uri name="http://www.w3.org/2005/05/xmlmime"             uri="external/w3c/2005/05/xmlmime/xmlmime.xsd"/>
+  <uri name="http://www.w3.org/2003/05/soap-envelope"       uri="external/w3c/2003/05/soap-envelope/soap-envelope.xsd"/>
+  <uri name="http://www.w3.org/2004/08/xop/include"         uri="external/w3c/2004/08/xop/include/xop-include.xsd"/>
+  <uri name="http://www.w3.org/XML/1998/namespace"          uri="external/w3c/2001/xml.xsd"/>
+
+  <!-- ===================== URL-keyed fallbacks (schemaLocation values) ===================== -->
+  <!-- These map the full http(s) URLs that some schemas use as schemaLocation
+       directly to their vendored copies, so resolution works even when the
+       importer didn't quote a namespace (xs:include) or used a non-namespace
+       URL (some W3C imports). -->
+  <system systemId="http://docs.oasis-open.org/wsn/b-2.xsd"             uri="external/oasis/wsn/b-2.xsd"/>
+  <system systemId="http://docs.oasis-open.org/wsn/t-1.xsd"             uri="external/oasis/wsn/t-1.xsd"/>
+  <system systemId="http://docs.oasis-open.org/wsn/bw-2.wsdl"           uri="external/oasis/wsn/bw-2.wsdl"/>
+  <system systemId="http://docs.oasis-open.org/wsrf/rw-2.wsdl"          uri="external/oasis/wsrf/rw-2.wsdl"/>
+  <system systemId="http://docs.oasis-open.org/wsrf/bf-2.xsd"           uri="external/oasis/wsrf/bf-2.xsd"/>
+  <system systemId="http://docs.oasis-open.org/wsrf/r-2.xsd"            uri="external/oasis/wsrf/r-2.xsd"/>
+  <system systemId="http://www.w3.org/2005/08/addressing/ws-addr.xsd"   uri="external/w3c/2005/08/addressing/ws-addr.xsd"/>
+  <system systemId="https://www.w3.org/2005/05/xmlmime"                uri="external/w3c/2005/05/xmlmime/xmlmime.xsd"/>
+  <system systemId="https://www.w3.org/2003/05/soap-envelope"          uri="external/w3c/2003/05/soap-envelope/soap-envelope.xsd"/>
+  <system systemId="https://www.w3.org/2004/08/xop/include"             uri="external/w3c/2004/08/xop/include/xop-include.xsd"/>
+  <system systemId="http://www.w3.org/2001/xml.xsd"                     uri="external/w3c/2001/xml.xsd"/>
+</catalog>
