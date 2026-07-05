@@ -3,4 +3,4 @@
 // During M0 this is a placeholder so `go build ./...` succeeds.
 package onvif
 
-//go:generate go run ../../cmd/onvifgen ../../internal/catalog onvif/schema
+//go:generate go run ../cmd/onvifgen ../internal/catalog onvif/schema

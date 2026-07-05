@@ -1,7 +1,7 @@
 # PROGRESS.md — onvif-go milestone tracker
 
 This file is the source of truth for project status. Update it at the end of
-every milestone. Last updated: **M0 (in progress)**.
+every milestone. Last updated: **M0 complete**.
 
 ## Decisions (locked)
 
@@ -24,7 +24,7 @@ every milestone. Last updated: **M0 (in progress)**.
 
 | ID | Milestone | Status | Notes |
 |---|---|---|---|
-| M0 | Repo bootstrap: go.mod, AGENTS.md, Makefile, golangci-lint, CI, gh repo | in progress | |
+| M0 | Repo bootstrap: go.mod, AGENTS.md, Makefile, golangci-lint, CI, gh repo | done | https://github.com/furrysalamander/onvif-go created; CI workflow queued |
 | M1 | Vendored OASIS/W3C catalog + onvifgen IR parser with golden self-test | pending | |
 | M2 | Codegen for DeviceMgmt + Core schema (`tt`) package | pending | |
 | M3 | `internal/ws` SOAP envelope + `wssecurity` client + DeviceMgmt client + golden tests + `onvif-cli` | pending | |
