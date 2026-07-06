@@ -774,7 +774,7 @@ type EventCapabilities struct {
 }
 
 type EventFilter struct {
-	wsn.FilterType `xml:",omitempty"`
+	Base1 wsn.FilterType `xml:",omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 

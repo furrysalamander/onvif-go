@@ -1,7 +1,7 @@
 # PROGRESS.md — onvif-go milestone tracker
 
 This file is the source of truth for project status. Update it at the end of
-every milestone. Last updated: **M4 complete**.
+every milestone. Last updated: **M5 complete**.
 
 ## Decisions (locked)
 
@@ -31,7 +31,7 @@ every milestone. Last updated: **M4 complete**.
 | M2 | Codegen for DeviceMgmt + Core schema (`tt`) package | **done** | codegen emits 12 schema packages (core, env, tt, tds, wsa, wsn, wsnt, wsrf, wsrfbf, xmlmime, xop, xmlns); core package breaks tt↔wsn cycle; all builds/vets/tests pass; gen idempotent |
 | M3 | `internal/ws` SOAP envelope + `wssecurity` client + DeviceMgmt client + golden tests + `onvif-cli` | **done** | ws.MarshalRequest/UnmarshalResponse, wssecurity.UsernameToken digest auth, devicemgmt.Client (GetServices/GetDeviceInformation/GetCapabilities), golden XML tests, onvif-cli wired to devicemgmt |
 | M4 | WS-Discovery (UDP multicast Probe/ProbeMatch/Hello) with golden tests | **done** | Probe/ProbeMatch/Hello/Bye types, UDP multicast send/receive, golden marshal test, client.Discover/DiscoverWithTypes, onvif-cli discover command |
-| M5 | Codegen + client facade for Media (v1/v2), PTZ, Imaging | pending | |
+| M5 | Codegen + client facade for Media (v1/v2), PTZ, Imaging | **done** | Generated trt/tr2/tptz/timg/tev schema packages; shared soaphdr.Client transport; client facades for media, media2, ptz, imaging, events |
 | M6 | Events service + OASIS WS-Notification pull-points/topics | pending | |
 | M7 | Mock server (`mockcam`) + round-trip test harness | pending | |
 | M8 | ODM validation pass + examples + docs | pending | |

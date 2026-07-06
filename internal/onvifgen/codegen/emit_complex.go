@@ -122,7 +122,7 @@ func emitField(b *strings.Builder, f fieldShape) {
 		b.WriteString(cleanComment(f.Doc, "\t"))
 	}
 	if f.GoName == "" {
-		if strings.HasPrefix(f.GoType, "[") || strings.HasPrefix(f.GoType, "*") {
+		if strings.HasPrefix(f.GoType, "[") || strings.HasPrefix(f.GoType, "*") || strings.Contains(f.GoType, ".") {
 			baseFieldCount++
 			name := fmt.Sprintf("Base%d", baseFieldCount)
 			fmt.Fprintf(b, "\t%s %s `xml:\"%s\"`\n", name, f.GoType, f.XMLTag)

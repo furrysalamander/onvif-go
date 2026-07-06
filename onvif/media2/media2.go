@@ -1,0 +1,28 @@
+package media2
+
+import (
+	"github.com/furrysalamander/onvif-go/onvif/schema/tr2"
+	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
+)
+
+const actionBase = "http://www.onvif.org/ver20/media/wsdl"
+
+type Client struct {
+	c *soaphdr.Client
+}
+
+func New(endpoint, username, password string) *Client {
+	return &Client{c: soaphdr.New(endpoint, username, password)}
+}
+
+func (c *Client) GetVideoSourceConfigurations() (*tr2.GetVideoSourceConfigurationsResponse, error) {
+	res := &tr2.GetVideoSourceConfigurationsResponse{}
+	err := c.c.Do(actionBase+"/GetVideoSourceConfigurations", &tr2.GetVideoSourceConfigurations{}, res)
+	return res, err
+}
+
+func (c *Client) GetProfiles() (*tr2.GetProfilesResponse, error) {
+	res := &tr2.GetProfilesResponse{}
+	err := c.c.Do(actionBase+"/GetProfiles", &tr2.GetProfiles{}, res)
+	return res, err
+}

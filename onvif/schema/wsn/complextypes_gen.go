@@ -16,42 +16,42 @@ type FilterType struct {
 }
 
 type InvalidFilterFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base9 wsrfbf.BaseFaultType `xml:",omitempty"`
 	UnknownFilter []*core.QName `xml:"UnknownFilter,omitempty"`
 }
 
 type InvalidMessageContentExpressionFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base10 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type InvalidProducerPropertiesExpressionFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base11 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type InvalidTopicExpressionFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base12 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type MultipleTopicsSpecifiedFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base13 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type NoCurrentMessageOnTopicFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base14 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type NotificationMessageHolderType struct {
-	Base1 *wsa.EndpointReferenceType `xml:",omitempty"`
-	Base2 *TopicExpressionType `xml:",omitempty"`
-	Base3 *wsa.EndpointReferenceType `xml:",omitempty"`
+	Base15 *wsa.EndpointReferenceType `xml:",omitempty"`
+	Base16 *TopicExpressionType `xml:",omitempty"`
+	Base17 *wsa.EndpointReferenceType `xml:",omitempty"`
 }
 
 type NotifyMessageNotSupportedFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base18 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type PauseFailedFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base19 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type QueryExpressionType struct {
@@ -60,11 +60,11 @@ type QueryExpressionType struct {
 }
 
 type ResumeFailedFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base20 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type SubscribeCreationFailedFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base21 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type SubscriptionPolicyType struct {
@@ -72,7 +72,7 @@ type SubscriptionPolicyType struct {
 }
 
 type TopicExpressionDialectUnknownFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base22 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type TopicExpressionType struct {
@@ -82,44 +82,44 @@ type TopicExpressionType struct {
 }
 
 type TopicNotSupportedFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base23 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnableToCreatePullPointFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base24 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnableToDestroyPullPointFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base25 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnableToDestroySubscriptionFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base26 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnableToGetMessagesFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base27 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnacceptableInitialTerminationTimeFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base28 wsrfbf.BaseFaultType `xml:",omitempty"`
 	MinimumTime time.Time `xml:"MinimumTime"`
 	MaximumTime *time.Time `xml:"MaximumTime,omitempty"`
 }
 
 type UnacceptableTerminationTimeFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base29 wsrfbf.BaseFaultType `xml:",omitempty"`
 	MinimumTime time.Time `xml:"MinimumTime"`
 	MaximumTime *time.Time `xml:"MaximumTime,omitempty"`
 }
 
 type UnrecognizedPolicyRequestFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base30 wsrfbf.BaseFaultType `xml:",omitempty"`
 	UnrecognizedPolicy []*core.QName `xml:"UnrecognizedPolicy,omitempty"`
 }
 
 type UnsupportedPolicyRequestFaultType struct {
-	wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base31 wsrfbf.BaseFaultType `xml:",omitempty"`
 	UnsupportedPolicy []*core.QName `xml:"UnsupportedPolicy,omitempty"`
 }
 

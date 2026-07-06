@@ -58,7 +58,7 @@ type GetMessages struct {
 }
 
 type GetMessagesResponse struct {
-	Base4 []NotificationMessageHolderType `xml:",omitempty"`
+	Base32 []NotificationMessageHolderType `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
@@ -80,14 +80,14 @@ type NoCurrentMessageOnTopicFault NoCurrentMessageOnTopicFaultType
 type NotificationMessage NotificationMessageHolderType
 
 type NotificationProducerRP struct {
-	Base5 []TopicExpressionType `xml:",omitempty"`
-	Base6 *bool `xml:",omitempty"`
-	Base7 []string `xml:",omitempty"`
-	Base8 *wsnt.TopicSetType `xml:",omitempty"`
+	Base33 []TopicExpressionType `xml:",omitempty"`
+	Base34 *bool `xml:",omitempty"`
+	Base35 []string `xml:",omitempty"`
+	Base36 *wsnt.TopicSetType `xml:",omitempty"`
 }
 
 type Notify struct {
-	Base9 []NotificationMessageHolderType `xml:",omitempty"`
+	Base37 []NotificationMessageHolderType `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 }
 
@@ -113,8 +113,8 @@ type Renew struct {
 }
 
 type RenewResponse struct {
-	time.Time `xml:""`
-	Base10 *time.Time `xml:",omitempty"`
+	Base38 time.Time `xml:""`
+	Base39 *time.Time `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 }
 
@@ -138,16 +138,16 @@ type SubscribeCreationFailedFault SubscribeCreationFailedFaultType
 
 type SubscribeResponse struct {
 	SubscriptionReference wsa.EndpointReferenceType `xml:"SubscriptionReference"`
-	Base11 *time.Time `xml:",omitempty"`
-	Base12 *time.Time `xml:",omitempty"`
+	Base40 *time.Time `xml:",omitempty"`
+	Base41 *time.Time `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 }
 
 type SubscriptionManagerRP struct {
-	wsa.EndpointReferenceType `xml:""`
-	Base13 *FilterType `xml:",omitempty"`
-	Base14 *SubscriptionPolicyType `xml:",omitempty"`
-	Base15 *time.Time `xml:",omitempty"`
+	Base42 wsa.EndpointReferenceType `xml:""`
+	Base43 *FilterType `xml:",omitempty"`
+	Base44 *SubscriptionPolicyType `xml:",omitempty"`
+	Base45 *time.Time `xml:",omitempty"`
 }
 
 type SubscriptionPolicy SubscriptionPolicyType
