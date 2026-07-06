@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/internal/wsdiscovery"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tds"
 	"github.com/furrysalamander/onvif-go/onvif/schema/trt"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
@@ -191,4 +192,36 @@ func (d *Device) GetSnapshotURI(ctx context.Context, profileToken string) (strin
 		return "", err
 	}
 	return res.MediaUri.Uri, nil
+}
+
+type FoundDevice struct {
+	Info  wsdiscovery.DeviceInfo
+	XAddr string
+}
+
+func (fd *FoundDevice) Connect(username, password string) *Device {
+	endpoint := fd.XAddr
+	if endpoint == "" && len(fd.Info.XAddrs) > 0 {
+		endpoint = fd.Info.XAddrs[0]
+	}
+	return NewDevice(endpoint, username, password)
+}
+
+func Discover(ctx context.Context) ([]*FoundDevice, error) {
+	devices, err := wsdiscovery.Discover(ctx)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]*FoundDevice, len(devices))
+	for i, d := range devices {
+		xaddr := ""
+		if len(d.XAddrs) > 0 {
+			xaddr = d.XAddrs[0]
+		}
+		out[i] = &FoundDevice{
+			Info:  d,
+			XAddr: xaddr,
+		}
+	}
+	return out, nil
 }
