@@ -5,6 +5,7 @@ import (
 	"io/fs"
 	"path"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/furrysalamander/onvif-go/internal/onvifgen/ir"
@@ -25,6 +26,21 @@ func NewLoader(p *Parser) *Loader {
 		parsed:  map[string]*ir.Module{},
 		loading: map[string]bool{},
 	}
+}
+
+// Modules returns every module the loader has parsed so far, in
+// catalog-path order (stable iteration for the symbol table).
+func (l *Loader) Modules() []*ir.Module {
+	paths := make([]string, 0, len(l.parsed))
+	for p := range l.parsed {
+		paths = append(paths, p)
+	}
+	sort.Strings(paths)
+	out := make([]*ir.Module, 0, len(paths))
+	for _, p := range paths {
+		out = append(out, l.parsed[p])
+	}
+	return out
 }
 
 // Load opens the WSDL at the catalog-relative path wFile, parses it and all
