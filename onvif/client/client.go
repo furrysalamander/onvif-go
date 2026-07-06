@@ -1,12 +1,17 @@
-// Package client is the ONVIF client transport and service routing layer.
-// Placeholder during M0; real implementation arrives in M3 + M4.
 package client
 
-// Device is a discovered ONVIF device endpoint. M0 placeholder.
-type Device struct {
-	Address         string
-	Scopes          []string
-	Types           []string
-	XAddrs          []string
-	MetadataVersion string
+import (
+	"context"
+
+	"github.com/furrysalamander/onvif-go/internal/wsdiscovery"
+)
+
+type Device = wsdiscovery.DeviceInfo
+
+func Discover(ctx context.Context) ([]Device, error) {
+	return wsdiscovery.Discover(ctx)
+}
+
+func DiscoverWithTypes(ctx context.Context, types string) ([]Device, error) {
+	return wsdiscovery.DiscoverWithTypes(ctx, types)
 }

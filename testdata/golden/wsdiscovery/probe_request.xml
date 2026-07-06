@@ -1,0 +1,1 @@
+<Envelope xmlns="http://www.w3.org/2003/05/soap-envelope"><Body xmlns="http://www.w3.org/2003/05/soap-envelope"><Probe xmlns="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01" xmlns="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01"><Types xmlns="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01">dn:NetworkVideoTransmitter</Types></Probe></Body></Envelope>
