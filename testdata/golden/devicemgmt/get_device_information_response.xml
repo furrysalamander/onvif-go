@@ -1,0 +1,11 @@
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+ <env:Body>
+  <tds:GetDeviceInformationResponse xmlns:tds="http://www.onvif.org/ver10/device/wsdl">
+   <tds:Manufacturer>TestCorp</tds:Manufacturer>
+   <tds:Model>TestCam</tds:Model>
+   <tds:FirmwareVersion>1.0</tds:FirmwareVersion>
+   <tds:SerialNumber>ABC123</tds:SerialNumber>
+   <tds:HardwareId>HW1</tds:HardwareId>
+  </tds:GetDeviceInformationResponse>
+ </env:Body>
+</env:Envelope>

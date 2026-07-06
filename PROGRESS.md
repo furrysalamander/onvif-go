@@ -1,7 +1,7 @@
 # PROGRESS.md — onvif-go milestone tracker
 
 This file is the source of truth for project status. Update it at the end of
-every milestone. Last updated: **M0 complete**.
+every milestone. Last updated: **M3 complete**.
 
 ## Decisions (locked)
 
@@ -28,8 +28,8 @@ every milestone. Last updated: **M0 complete**.
 | M1a | Vendored Phase 1 schemas + catalog.xml + Resolver + checksum tests | done | 8 ONVIF + 11 OASIS/W3C files vendored; TestChecksums + Resolver pass |
 | M1b | onvifgen IR types + WSDL/XSD parser using catalog | done | parses all Phase-1 WSDLs (incl. OASIS closure) with no errors |
 | M1c | golden self-test for onvifgen IR | done | testdata/ir_dump.txt; counts match raw grep (devicemgmt: 103 ops, 206 msgs) |
-| M2 | Codegen for DeviceMgmt + Core schema (`tt`) package | pending | |
-| M3 | `internal/ws` SOAP envelope + `wssecurity` client + DeviceMgmt client + golden tests + `onvif-cli` | pending | |
+| M2 | Codegen for DeviceMgmt + Core schema (`tt`) package | **done** | codegen emits 12 schema packages (core, env, tt, tds, wsa, wsn, wsnt, wsrf, wsrfbf, xmlmime, xop, xmlns); core package breaks tt↔wsn cycle; all builds/vets/tests pass; gen idempotent |
+| M3 | `internal/ws` SOAP envelope + `wssecurity` client + DeviceMgmt client + golden tests + `onvif-cli` | **done** | ws.MarshalRequest/UnmarshalResponse, wssecurity.UsernameToken digest auth, devicemgmt.Client (GetServices/GetDeviceInformation/GetCapabilities), golden XML tests, onvif-cli wired to devicemgmt |
 | M4 | WS-Discovery (UDP multicast Probe/ProbeMatch/Hello) with golden tests | pending | |
 | M5 | Codegen + client facade for Media (v1/v2), PTZ, Imaging | pending | |
 | M6 | Events service + OASIS WS-Notification pull-points/topics | pending | |

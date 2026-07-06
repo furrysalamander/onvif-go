@@ -107,3 +107,34 @@ func pipeXML(enc *xml.Encoder, r rawXML) error {
 		}
 	}
 }
+
+func (e *Envelope) SetBody(v interface{}) error {
+	raw, err := xml.Marshal(v)
+	if err != nil {
+		return err
+	}
+	e.Body.Any = append(e.Body.Any, rawXML(raw))
+	return nil
+}
+
+func (e *Envelope) AddHeader(v interface{}) error {
+	if e.Header == nil {
+		e.Header = &Header{}
+	}
+	raw, err := xml.Marshal(v)
+	if err != nil {
+		return err
+	}
+	e.Header.Any = append(e.Header.Any, rawXML(raw))
+	return nil
+}
+
+func (b *Body) UnmarshalBody(v interface{}) error {
+	if b.Fault != nil {
+		return nil
+	}
+	if len(b.Any) == 0 {
+		return nil
+	}
+	return xml.Unmarshal(b.Any[0], v)
+}
