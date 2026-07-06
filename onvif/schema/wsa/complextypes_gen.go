@@ -31,7 +31,7 @@ type AttributedUnsignedLongType struct {
 type EndpointReferenceType struct {
 	Address AttributedURIType `xml:"Address"`
 	ReferenceParameters *ReferenceParametersType `xml:"ReferenceParameters,omitempty"`
-	Base58 *MetadataType `xml:",omitempty"`
+	Base106 *MetadataType `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
@@ -42,7 +42,7 @@ type MetadataType struct {
 }
 
 type ProblemActionType struct {
-	Base59 *AttributedURIType `xml:",omitempty"`
+	Base107 *AttributedURIType `xml:",omitempty"`
 	SoapAction *string `xml:"SoapAction,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }

@@ -67,7 +67,7 @@ type Service struct {
 }
 
 type StorageConfiguration struct {
-	Base3 tt.DeviceEntity `xml:",omitempty"`
+	Base35 tt.DeviceEntity `xml:",omitempty"`
 	Data StorageConfigurationData `xml:"Data"`
 }
 

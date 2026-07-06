@@ -22,7 +22,7 @@ type AntipassbackState struct {
 // information system. A credential holds one or more credential identifiers. To gain access one or
 // more identifiers may be required.
 type Credential struct {
-	CredentialInfo `xml:",omitempty"`
+	Base50 CredentialInfo `xml:",omitempty"`
 	CredentialIdentifier []CredentialIdentifier `xml:"CredentialIdentifier,omitempty"`
 	CredentialAccessProfile []CredentialAccessProfile `xml:"CredentialAccessProfile,omitempty"`
 	ExtendedGrantTime *bool `xml:"ExtendedGrantTime,omitempty"`
@@ -98,7 +98,7 @@ type CredentialIdentifierType struct {
 // the basic information of a specific credential instance. The device shall provide the following
 // fields for each credential.
 type CredentialInfo struct {
-	Base14 pacs.DataEntity `xml:",omitempty"`
+	Base51 pacs.DataEntity `xml:",omitempty"`
 	Description *pacs.Description `xml:"Description,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }

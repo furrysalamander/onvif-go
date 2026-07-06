@@ -16,42 +16,42 @@ type FilterType struct {
 }
 
 type InvalidFilterFaultType struct {
-	Base21 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base66 wsrfbf.BaseFaultType `xml:",omitempty"`
 	UnknownFilter []*core.QName `xml:"UnknownFilter,omitempty"`
 }
 
 type InvalidMessageContentExpressionFaultType struct {
-	Base22 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base67 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type InvalidProducerPropertiesExpressionFaultType struct {
-	Base23 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base68 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type InvalidTopicExpressionFaultType struct {
-	Base24 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base69 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type MultipleTopicsSpecifiedFaultType struct {
-	Base25 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base70 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type NoCurrentMessageOnTopicFaultType struct {
-	Base26 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base71 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type NotificationMessageHolderType struct {
-	Base27 *wsa.EndpointReferenceType `xml:",omitempty"`
-	Base28 *TopicExpressionType `xml:",omitempty"`
-	Base29 *wsa.EndpointReferenceType `xml:",omitempty"`
+	Base72 *wsa.EndpointReferenceType `xml:",omitempty"`
+	Base73 *TopicExpressionType `xml:",omitempty"`
+	Base74 *wsa.EndpointReferenceType `xml:",omitempty"`
 }
 
 type NotifyMessageNotSupportedFaultType struct {
-	Base30 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base75 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type PauseFailedFaultType struct {
-	Base31 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base76 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type QueryExpressionType struct {
@@ -60,11 +60,11 @@ type QueryExpressionType struct {
 }
 
 type ResumeFailedFaultType struct {
-	Base32 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base77 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type SubscribeCreationFailedFaultType struct {
-	Base33 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base78 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type SubscriptionPolicyType struct {
@@ -72,7 +72,7 @@ type SubscriptionPolicyType struct {
 }
 
 type TopicExpressionDialectUnknownFaultType struct {
-	Base34 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base79 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type TopicExpressionType struct {
@@ -82,44 +82,44 @@ type TopicExpressionType struct {
 }
 
 type TopicNotSupportedFaultType struct {
-	Base35 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base80 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnableToCreatePullPointFaultType struct {
-	Base36 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base81 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnableToDestroyPullPointFaultType struct {
-	Base37 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base82 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnableToDestroySubscriptionFaultType struct {
-	Base38 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base83 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnableToGetMessagesFaultType struct {
-	Base39 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base84 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type UnacceptableInitialTerminationTimeFaultType struct {
-	Base40 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base85 wsrfbf.BaseFaultType `xml:",omitempty"`
 	MinimumTime time.Time `xml:"MinimumTime"`
 	MaximumTime *time.Time `xml:"MaximumTime,omitempty"`
 }
 
 type UnacceptableTerminationTimeFaultType struct {
-	Base41 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base86 wsrfbf.BaseFaultType `xml:",omitempty"`
 	MinimumTime time.Time `xml:"MinimumTime"`
 	MaximumTime *time.Time `xml:"MaximumTime,omitempty"`
 }
 
 type UnrecognizedPolicyRequestFaultType struct {
-	Base42 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base87 wsrfbf.BaseFaultType `xml:",omitempty"`
 	UnrecognizedPolicy []*core.QName `xml:"UnrecognizedPolicy,omitempty"`
 }
 
 type UnsupportedPolicyRequestFaultType struct {
-	Base43 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base88 wsrfbf.BaseFaultType `xml:",omitempty"`
 	UnsupportedPolicy []*core.QName `xml:"UnsupportedPolicy,omitempty"`
 }
 

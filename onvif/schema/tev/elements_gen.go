@@ -28,8 +28,8 @@ type CreatePullPointSubscription struct {
 
 type CreatePullPointSubscriptionResponse struct {
 	SubscriptionReference wsa.EndpointReferenceType `xml:"SubscriptionReference"`
-	Base5 time.Time `xml:""`
-	Base6 time.Time `xml:""`
+	Base37 time.Time `xml:""`
+	Base38 time.Time `xml:""`
 	Any core.Extension `xml:"Any,omitempty"`
 }
 
@@ -53,9 +53,9 @@ type GetEventProperties struct {
 
 type GetEventPropertiesResponse struct {
 	TopicNamespaceLocation []string `xml:"TopicNamespaceLocation,omitempty"`
-	bool `xml:""`
-	Base7 wsnt.TopicSetType `xml:""`
-	Base8 []string `xml:",omitempty"`
+	Base39 bool `xml:""`
+	Base40 wsnt.TopicSetType `xml:""`
+	Base41 []string `xml:",omitempty"`
 	MessageContentFilterDialect []string `xml:"MessageContentFilterDialect,omitempty"`
 	ProducerPropertiesFilterDialect []string `xml:"ProducerPropertiesFilterDialect,omitempty"`
 	MessageContentSchemaLocation []string `xml:"MessageContentSchemaLocation,omitempty"`
@@ -84,7 +84,7 @@ type PullMessagesFaultResponse struct {
 type PullMessagesResponse struct {
 	CurrentTime time.Time `xml:"CurrentTime"`
 	TerminationTime time.Time `xml:"TerminationTime"`
-	Base9 []wsn.NotificationMessageHolderType `xml:",omitempty"`
+	Base42 []wsn.NotificationMessageHolderType `xml:",omitempty"`
 }
 
 type Seek struct {

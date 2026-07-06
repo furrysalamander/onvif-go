@@ -29,7 +29,7 @@ type AuthenticationPolicyExtension struct {
 // and also a default security level, an authentication mode, and a list of AuthenticationProfile
 // instances.
 type AuthenticationProfile struct {
-	AuthenticationProfileInfo `xml:",omitempty"`
+	Base46 AuthenticationProfileInfo `xml:",omitempty"`
 	DefaultSecurityLevelToken pacs.ReferenceToken `xml:"DefaultSecurityLevelToken"`
 	AuthenticationPolicy []AuthenticationPolicy `xml:"AuthenticationPolicy,omitempty"`
 	Extension *AuthenticationProfileExtension `xml:"Extension,omitempty"`
@@ -43,7 +43,7 @@ type AuthenticationProfileExtension struct {
 // The AuthenticationProfileInfo structure contains information of a specific authentication
 // profile instance.
 type AuthenticationProfileInfo struct {
-	Base12 pacs.DataEntity `xml:",omitempty"`
+	Base47 pacs.DataEntity `xml:",omitempty"`
 	Name pacs.Name `xml:"Name"`
 	Description *pacs.Description `xml:"Description,omitempty"`
 }
@@ -83,7 +83,7 @@ type RecognitionMethodExtension struct {
 // group consists
 // of one or more recognition methods.
 type SecurityLevel struct {
-	SecurityLevelInfo `xml:",omitempty"`
+	Base48 SecurityLevelInfo `xml:",omitempty"`
 	RecognitionGroup []RecognitionGroup `xml:"RecognitionGroup,omitempty"`
 	Extension *SecurityLevelExtension `xml:"Extension,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -110,7 +110,7 @@ type SecurityLevelExtension struct {
 
 // The SecurityLevelInfo structure contains information of a specific security level instance.
 type SecurityLevelInfo struct {
-	Base13 pacs.DataEntity `xml:",omitempty"`
+	Base49 pacs.DataEntity `xml:",omitempty"`
 	Name pacs.Name `xml:"Name"`
 	Priority int32 `xml:"Priority"`
 	Description *pacs.Description `xml:"Description,omitempty"`

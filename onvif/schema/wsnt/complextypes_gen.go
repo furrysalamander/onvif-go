@@ -23,19 +23,19 @@ type QueryExpressionType struct {
 }
 
 type TopicNamespaceType struct {
-	ExtensibleDocumented `xml:",omitempty"`
+	Base103 ExtensibleDocumented `xml:",omitempty"`
 	Xname string `xml:"name,omitempty,attr"`
 	XtargetNamespace string `xml:"targetNamespace,attr"`
 	Xfinal bool `xml:"final,omitempty,attr"`
 }
 
 type TopicSetType struct {
-	ExtensibleDocumented `xml:",omitempty"`
+	Base104 ExtensibleDocumented `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 }
 
 type TopicType struct {
-	ExtensibleDocumented `xml:",omitempty"`
+	Base105 ExtensibleDocumented `xml:",omitempty"`
 	MessagePattern *QueryExpressionType `xml:"MessagePattern,omitempty"`
 	Topic []TopicType `xml:"Topic,omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`

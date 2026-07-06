@@ -12,7 +12,7 @@ import (
 // The AccessPoint structure shall include all properties of the AccessPointInfo structure,
 // a reference to an authentication profile instance, and optionally a number of input and output devices.
 type AccessPoint struct {
-	AccessPointInfo `xml:",omitempty"`
+	Base53 AccessPointInfo `xml:",omitempty"`
 	AuthenticationProfileToken *pacs.ReferenceToken `xml:"AuthenticationProfileToken,omitempty"`
 	Extension *AccessPointExtension `xml:"Extension,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -48,7 +48,7 @@ type AccessPointExtension struct {
 // Multiple access points may cover the same door. A typical case is one access point for
 // entry and another for exit, both referencing the same door.
 type AccessPointInfo struct {
-	AccessPointInfoBase `xml:",omitempty"`
+	Base54 AccessPointInfoBase `xml:",omitempty"`
 	Capabilities AccessPointCapabilities `xml:"Capabilities"`
 	Any core.Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -56,7 +56,7 @@ type AccessPointInfo struct {
 
 // Used as extension base for AccessPointInfo.
 type AccessPointInfoBase struct {
-	Base16 pacs.DataEntity `xml:",omitempty"`
+	Base55 pacs.DataEntity `xml:",omitempty"`
 	Name pacs.Name `xml:"Name"`
 	Description *pacs.Description `xml:"Description,omitempty"`
 	AreaFrom *pacs.ReferenceToken `xml:"AreaFrom,omitempty"`
@@ -76,7 +76,7 @@ type AccessPointState struct {
 // The Area structure shall include all properties of the AreaInfo structure and optionally
 // a parent area token, an OccupancyControl structure and/or an Antipassback structure.
 type Area struct {
-	AreaInfo `xml:",omitempty"`
+	Base56 AreaInfo `xml:",omitempty"`
 	Extension *AreaExtension `xml:"Extension,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
@@ -88,13 +88,13 @@ type AreaExtension struct {
 // The AreaInfo structure contains basic information about an Area.
 // An ONVIF compliant device shall provide the following fields for each Area:
 type AreaInfo struct {
-	AreaInfoBase `xml:",omitempty"`
+	Base57 AreaInfoBase `xml:",omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
 // Basic information about an Area. Used as extension base.
 type AreaInfoBase struct {
-	Base17 pacs.DataEntity `xml:",omitempty"`
+	Base58 pacs.DataEntity `xml:",omitempty"`
 	Name pacs.Name `xml:"Name"`
 	Description *pacs.Description `xml:"Description,omitempty"`
 }

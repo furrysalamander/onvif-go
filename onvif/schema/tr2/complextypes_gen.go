@@ -157,7 +157,7 @@ type ProfileCapabilities struct {
 }
 
 type ReceiverConfiguration struct {
-	Base4 tt.ReceiverConfiguration `xml:",omitempty"`
+	Base36 tt.ReceiverConfiguration `xml:",omitempty"`
 	Xtoken tt.ReferenceToken `xml:"token,omitempty,attr"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }

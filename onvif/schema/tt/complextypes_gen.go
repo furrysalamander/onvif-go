@@ -79,7 +79,7 @@ type AnalyticsDeviceExtension struct {
 }
 
 type AnalyticsEngine struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base1 ConfigurationEntity `xml:",omitempty"`
 	AnalyticsEngineConfiguration AnalyticsDeviceEngineConfiguration `xml:"AnalyticsEngineConfiguration"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -96,7 +96,7 @@ type AnalyticsEngineConfigurationExtension struct {
 }
 
 type AnalyticsEngineControl struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base2 ConfigurationEntity `xml:",omitempty"`
 	EngineToken ReferenceToken `xml:"EngineToken"`
 	EngineConfigToken ReferenceToken `xml:"EngineConfigToken"`
 	InputToken []ReferenceToken `xml:"InputToken,omitempty"`
@@ -109,7 +109,7 @@ type AnalyticsEngineControl struct {
 }
 
 type AnalyticsEngineInput struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base3 ConfigurationEntity `xml:",omitempty"`
 	SourceIdentification SourceIdentification `xml:"SourceIdentification"`
 	VideoInput VideoEncoderConfiguration `xml:"VideoInput"`
 	MetadataInput MetadataInput `xml:"MetadataInput"`
@@ -188,7 +188,7 @@ type AsymmetricEncryption struct {
 }
 
 type AttachmentData struct {
-	string `xml:",omitempty,attr"`
+	Base4 string `xml:",omitempty,attr"`
 }
 
 type AudioAnalyticsStream struct {
@@ -241,7 +241,7 @@ type AudioDecoder2Options struct {
 // The Audio Decoder Configuration does not contain any that parameter to configure the
 // decoding .A decoder shall decode every data it receives (according to its capabilities).
 type AudioDecoderConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base5 ConfigurationEntity `xml:",omitempty"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
@@ -265,7 +265,7 @@ type AudioDescriptor struct {
 }
 
 type AudioEncoder2Configuration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base6 ConfigurationEntity `xml:",omitempty"`
 	Encoding string `xml:"Encoding"`
 	Multicast *MulticastConfiguration `xml:"Multicast,omitempty"`
 	Bitrate int32 `xml:"Bitrate"`
@@ -283,7 +283,7 @@ type AudioEncoder2ConfigurationOptions struct {
 }
 
 type AudioEncoderConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base7 ConfigurationEntity `xml:",omitempty"`
 	Encoding AudioEncoding `xml:"Encoding"`
 	Bitrate int32 `xml:"Bitrate"`
 	SampleRate int32 `xml:"SampleRate"`
@@ -308,13 +308,13 @@ type AudioEncoderConfigurationOptions struct {
 
 // Representation of a physical audio outputs.
 type AudioOutput struct {
-	DeviceEntity `xml:",omitempty"`
+	Base8 DeviceEntity `xml:",omitempty"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
 type AudioOutputConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base9 ConfigurationEntity `xml:",omitempty"`
 	OutputToken ReferenceToken `xml:"OutputToken"`
 	SendPrimacy *string `xml:"SendPrimacy,omitempty"`
 	OutputLevel int32 `xml:"OutputLevel"`
@@ -334,14 +334,14 @@ type AudioOutputConfigurationOptions struct {
 
 // Representation of a physical audio input.
 type AudioSource struct {
-	DeviceEntity `xml:",omitempty"`
+	Base10 DeviceEntity `xml:",omitempty"`
 	Channels int32 `xml:"Channels"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
 type AudioSourceConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base11 ConfigurationEntity `xml:",omitempty"`
 	SourceToken ReferenceToken `xml:"SourceToken"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -401,7 +401,7 @@ type BehaviourExtension struct {
 
 type BinaryData struct {
 	Data []byte `xml:"Data"`
-	string `xml:",omitempty,attr"`
+	Base12 string `xml:",omitempty,attr"`
 }
 
 type Capabilities struct {
@@ -675,7 +675,7 @@ type DeviceIOCapabilities struct {
 }
 
 type DigitalInput struct {
-	DeviceEntity `xml:",omitempty"`
+	Base13 DeviceEntity `xml:",omitempty"`
 	Any Extension `xml:"Any,omitempty"`
 	IdleState DigitalIdleState `xml:"IdleState,omitempty,attr"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -851,12 +851,12 @@ type EventCapabilities struct {
 }
 
 type EventFilter struct {
-	Base1 wsn.FilterType `xml:",omitempty"`
+	Base14 wsn.FilterType `xml:",omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
 type EventStream struct {
-	Base2 *wsn.NotificationMessageHolderType `xml:",omitempty"`
+	Base15 *wsn.NotificationMessageHolderType `xml:",omitempty"`
 	Extension *EventStreamExtension `xml:"Extension,omitempty"`
 	Any Extension `xml:"Any,omitempty"`
 }
@@ -1183,7 +1183,7 @@ type H264Options struct {
 }
 
 type H264Options2 struct {
-	H264Options `xml:",omitempty"`
+	Base16 H264Options `xml:",omitempty"`
 	BitrateRange IntRange `xml:"BitrateRange"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -1521,7 +1521,7 @@ type JpegOptions struct {
 }
 
 type JpegOptions2 struct {
-	JpegOptions `xml:",omitempty"`
+	Base17 JpegOptions `xml:",omitempty"`
 	BitrateRange IntRange `xml:"BitrateRange"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -1692,7 +1692,7 @@ type MetadataAttributes struct {
 }
 
 type MetadataConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base18 ConfigurationEntity `xml:",omitempty"`
 	PTZStatus *PTZFilter `xml:"PTZStatus,omitempty"`
 	Events *EventSubscription `xml:"Events,omitempty"`
 	Analytics *bool `xml:"Analytics,omitempty"`
@@ -1821,7 +1821,7 @@ type Mpeg4Options struct {
 }
 
 type Mpeg4Options2 struct {
-	Mpeg4Options `xml:",omitempty"`
+	Base19 Mpeg4Options `xml:",omitempty"`
 	BitrateRange IntRange `xml:"BitrateRange"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -1829,7 +1829,7 @@ type Mpeg4Options2 struct {
 
 // Configuration for the Multicast Audio Decoder.
 type MulticastAudioDecoderConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base20 ConfigurationEntity `xml:",omitempty"`
 	Enable bool `xml:"Enable"`
 	AudioOutputToken []ReferenceToken `xml:"AudioOutputToken,omitempty"`
 	Encoding string `xml:"Encoding"`
@@ -1922,7 +1922,7 @@ type NetworkHostExtension struct {
 }
 
 type NetworkInterface struct {
-	DeviceEntity `xml:",omitempty"`
+	Base21 DeviceEntity `xml:",omitempty"`
 	Enabled bool `xml:"Enabled"`
 	Info *NetworkInterfaceInfo `xml:"Info,omitempty"`
 	Link *NetworkInterfaceLink `xml:"Link,omitempty"`
@@ -2046,7 +2046,7 @@ type OSDColorOptionsExtension struct {
 }
 
 type OSDConfiguration struct {
-	DeviceEntity `xml:",omitempty"`
+	Base22 DeviceEntity `xml:",omitempty"`
 	VideoSourceConfigurationToken OSDReference `xml:"VideoSourceConfigurationToken"`
 	Type OSDType `xml:"Type"`
 	Position OSDPosConfiguration `xml:"Position"`
@@ -2154,7 +2154,7 @@ type OSDTextOptionsExtension struct {
 }
 
 type Object struct {
-	ObjectId `xml:",omitempty"`
+	Base23 ObjectId `xml:",omitempty"`
 	Appearance *Appearance `xml:"Appearance,omitempty"`
 	Behaviour *Behaviour `xml:"Behaviour,omitempty"`
 	Extension *ObjectExtension `xml:"Extension,omitempty"`
@@ -2175,7 +2175,7 @@ type ObjectId struct {
 
 // An object state describes an object's condition, for e.g position, speed and appearance, at a certain time instance.
 type ObjectState struct {
-	Object `xml:",omitempty"`
+	Base24 Object `xml:",omitempty"`
 	CaptureTime time.Time `xml:"CaptureTime,attr"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
@@ -2242,7 +2242,7 @@ type PTZCapabilities struct {
 }
 
 type PTZConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base25 ConfigurationEntity `xml:",omitempty"`
 	NodeToken ReferenceToken `xml:"NodeToken"`
 	DefaultAbsolutePantTiltPositionSpace *string `xml:"DefaultAbsolutePantTiltPositionSpace,omitempty"`
 	DefaultAbsoluteZoomPositionSpace *string `xml:"DefaultAbsoluteZoomPositionSpace,omitempty"`
@@ -2298,7 +2298,7 @@ type PTZMoveStatus struct {
 }
 
 type PTZNode struct {
-	DeviceEntity `xml:",omitempty"`
+	Base26 DeviceEntity `xml:",omitempty"`
 	Name *Name `xml:"Name,omitempty"`
 	SupportedPTZSpaces PTZSpaces `xml:"SupportedPTZSpaces"`
 	MaximumNumberOfPresets int32 `xml:"MaximumNumberOfPresets"`
@@ -2839,7 +2839,7 @@ type RelativeFocusOptions20 struct {
 }
 
 type RelayOutput struct {
-	DeviceEntity `xml:",omitempty"`
+	Base27 DeviceEntity `xml:",omitempty"`
 	Properties RelayOutputSettings `xml:"Properties"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -3291,7 +3291,7 @@ type VehicleInfo struct {
 }
 
 type VideoAnalyticsConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base28 ConfigurationEntity `xml:",omitempty"`
 	AnalyticsEngineConfiguration AnalyticsEngineConfiguration `xml:"AnalyticsEngineConfiguration"`
 	RuleEngineConfiguration RuleEngineConfiguration `xml:"RuleEngineConfiguration"`
 	Any Extension `xml:"Any,omitempty"`
@@ -3331,7 +3331,7 @@ type VideoDecoderConfigurationOptionsExtension struct {
 }
 
 type VideoEncoder2Configuration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base29 ConfigurationEntity `xml:",omitempty"`
 	Encoding string `xml:"Encoding"`
 	Resolution VideoResolution2 `xml:"Resolution"`
 	RateControl *VideoRateControl2 `xml:"RateControl,omitempty"`
@@ -3362,7 +3362,7 @@ type VideoEncoder2ConfigurationOptions struct {
 }
 
 type VideoEncoderConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base30 ConfigurationEntity `xml:",omitempty"`
 	Encoding VideoEncoding `xml:"Encoding"`
 	Resolution VideoResolution `xml:"Resolution"`
 	Quality float32 `xml:"Quality"`
@@ -3400,7 +3400,7 @@ type VideoEncoderOptionsExtension2 struct {
 
 // Representation of a physical video outputs.
 type VideoOutput struct {
-	DeviceEntity `xml:",omitempty"`
+	Base31 DeviceEntity `xml:",omitempty"`
 	Layout Layout `xml:"Layout"`
 	Resolution *VideoResolution `xml:"Resolution,omitempty"`
 	RefreshRate *float32 `xml:"RefreshRate,omitempty"`
@@ -3410,7 +3410,7 @@ type VideoOutput struct {
 }
 
 type VideoOutputConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base32 ConfigurationEntity `xml:",omitempty"`
 	OutputToken ReferenceToken `xml:"OutputToken"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -3453,7 +3453,7 @@ type VideoResolution2 struct {
 
 // Representation of a physical video input.
 type VideoSource struct {
-	DeviceEntity `xml:",omitempty"`
+	Base33 DeviceEntity `xml:",omitempty"`
 	Framerate float32 `xml:"Framerate"`
 	Resolution VideoResolution `xml:"Resolution"`
 	Imaging *ImagingSettings `xml:"Imaging,omitempty"`
@@ -3462,7 +3462,7 @@ type VideoSource struct {
 }
 
 type VideoSourceConfiguration struct {
-	ConfigurationEntity `xml:",omitempty"`
+	Base34 ConfigurationEntity `xml:",omitempty"`
 	SourceToken ReferenceToken `xml:"SourceToken"`
 	Bounds IntRectangle `xml:"Bounds"`
 	Any Extension `xml:"Any,omitempty"`

@@ -4,11 +4,11 @@ package xmlmime
 
 type Xbase64Binary struct {
 	Value []byte `xml:",chardata"`
-	string `xml:",omitempty,attr"`
+	Base110 string `xml:",omitempty,attr"`
 }
 
 type XhexBinary struct {
 	Value []byte `xml:",chardata"`
-	string `xml:",omitempty,attr"`
+	Base111 string `xml:",omitempty,attr"`
 }
 

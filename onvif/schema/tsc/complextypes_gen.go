@@ -13,7 +13,7 @@ import (
 // The schedule structure shall include all properties of the ScheduleInfo structure
 // and also the standard events (iCalendar format) and a list of SpecialDaysSchedule instances.
 type Schedule struct {
-	ScheduleInfo `xml:",omitempty"`
+	Base62 ScheduleInfo `xml:",omitempty"`
 	Standard string `xml:"Standard"`
 	SpecialDays []SpecialDaysSchedule `xml:"SpecialDays,omitempty"`
 	Extension *ScheduleExtension `xml:"Extension,omitempty"`
@@ -27,7 +27,7 @@ type ScheduleExtension struct {
 // The ScheduleInfo type represents the schedule as a physical object.
 // The structure contains information of a specific schedule instance.
 type ScheduleInfo struct {
-	Base19 pacs.DataEntity `xml:",omitempty"`
+	Base63 pacs.DataEntity `xml:",omitempty"`
 	Name pacs.Name `xml:"Name"`
 	Description *pacs.Description `xml:"Description,omitempty"`
 }
@@ -67,7 +67,7 @@ type ServiceCapabilities struct {
 // that require the regular schedule to be overridden with an alternate schedule.
 // For example holidays, half-days, working Sundays, etc.
 type SpecialDayGroup struct {
-	SpecialDayGroupInfo `xml:",omitempty"`
+	Base64 SpecialDayGroupInfo `xml:",omitempty"`
 	Days *string `xml:"Days,omitempty"`
 	Extension *SpecialDayGroupExtension `xml:"Extension,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -79,7 +79,7 @@ type SpecialDayGroupExtension struct {
 
 // The SpecialDayGroupInfo structure contains the basic information about the special days list.
 type SpecialDayGroupInfo struct {
-	Base20 pacs.DataEntity `xml:",omitempty"`
+	Base65 pacs.DataEntity `xml:",omitempty"`
 	Name pacs.Name `xml:"Name"`
 	Description *pacs.Description `xml:"Description,omitempty"`
 }

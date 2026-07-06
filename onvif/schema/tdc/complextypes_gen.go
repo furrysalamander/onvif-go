@@ -18,7 +18,7 @@ type AccessDoorExtension struct {
 // The door structure shall include all properties of the DoorInfo structure and also a timings
 // structure.
 type Door struct {
-	DoorInfoBase `xml:",omitempty"`
+	Base59 DoorInfoBase `xml:",omitempty"`
 	Capabilities DoorCapabilities `xml:"Capabilities"`
 	DoorType pacs.Name `xml:"DoorType"`
 	Timings Timings `xml:"Timings"`
@@ -66,7 +66,7 @@ type DoorFault struct {
 // The structure contains information and capabilities of a specific door instance.
 // An ONVIF compliant device shall provide the following fields for each Door instance:
 type DoorInfo struct {
-	DoorInfoBase `xml:",omitempty"`
+	Base60 DoorInfoBase `xml:",omitempty"`
 	Capabilities DoorCapabilities `xml:"Capabilities"`
 	Any core.Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -74,7 +74,7 @@ type DoorInfo struct {
 
 // Used as extension base.
 type DoorInfoBase struct {
-	Base18 pacs.DataEntity `xml:",omitempty"`
+	Base61 pacs.DataEntity `xml:",omitempty"`
 	Name pacs.Name `xml:"Name"`
 	Description *pacs.Description `xml:"Description,omitempty"`
 }

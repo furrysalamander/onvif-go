@@ -29,7 +29,7 @@ type AccessPolicyExtension struct {
 // device shall include all properties of the AccessProfileInfo structure and also a list of access
 // policies.
 type AccessProfile struct {
-	AccessProfileInfo `xml:",omitempty"`
+	Base43 AccessProfileInfo `xml:",omitempty"`
 	AccessPolicy []AccessPolicy `xml:"AccessPolicy,omitempty"`
 	Extension *AccessProfileExtension `xml:"Extension,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
@@ -42,7 +42,7 @@ type AccessProfileExtension struct {
 // The AccessProfileInfo structure contains basic information about an access profile. The device
 // shall provide the following fields for each access profile instance.
 type AccessProfileInfo struct {
-	Base10 pacs.DataEntity `xml:",omitempty"`
+	Base44 pacs.DataEntity `xml:",omitempty"`
 	Name pacs.Name `xml:"Name"`
 	Description *pacs.Description `xml:"Description,omitempty"`
 }

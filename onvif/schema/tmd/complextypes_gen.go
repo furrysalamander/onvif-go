@@ -62,7 +62,7 @@ type SerialData struct {
 
 // Lists all available serial ports of a device
 type SerialPort struct {
-	Base15 tt.DeviceEntity `xml:",omitempty"`
+	Base52 tt.DeviceEntity `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }

@@ -17,7 +17,7 @@ type AlgorithmIdentifier struct {
 }
 
 type AuthorizationServerConfiguration struct {
-	Base11 tt.DeviceEntity `xml:",omitempty"`
+	Base45 tt.DeviceEntity `xml:",omitempty"`
 	Data AuthorizationServerConfigurationData `xml:"Data"`
 	Any core.Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
