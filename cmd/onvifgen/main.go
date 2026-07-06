@@ -88,7 +88,15 @@ func runSchema(loader *parser.Loader, args []string) {
 func runFacade(loader *parser.Loader, args []string) {
 	outBase := args[2]
 
-	files, err := codegen.EmitFacades(loader.Modules(), outBase)
+	tab := codegen.NewSymTab()
+	for _, m := range loader.Modules() {
+		if err := tab.AddModule(m); err != nil {
+			fmt.Fprintf(os.Stderr, "onvifgen: add module %s: %v\n", m.Path, err)
+			os.Exit(1)
+		}
+	}
+
+	files, err := codegen.EmitFacades(tab, loader.Modules(), outBase)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "onvifgen: facade: %v\n", err)
 		os.Exit(1)

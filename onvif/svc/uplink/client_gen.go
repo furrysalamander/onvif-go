@@ -27,27 +27,31 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) DeleteUplink(ctx context.Context) (*tup.DeleteUplinkResponse, error) {
+func (c *Client) DeleteUplink(ctx context.Context, remoteAddress string) (*tup.DeleteUplinkResponse, error) {
+	req := &tup.DeleteUplink{RemoteAddress: remoteAddress}
 	out := &tup.DeleteUplinkResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/DeleteUplink", &tup.DeleteUplink{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/DeleteUplink", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tup.GetServiceCapabilitiesResponse, error) {
+	req := &tup.GetServiceCapabilities{}
 	out := &tup.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/GetServiceCapabilities", &tup.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
 func (c *Client) GetUplinks(ctx context.Context) (*tup.GetUplinksResponse, error) {
+	req := &tup.GetUplinks{}
 	out := &tup.GetUplinksResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/GetUplinks", &tup.GetUplinks{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/GetUplinks", req, out)
 	return out, err
 }
 
-func (c *Client) SetUplink(ctx context.Context) (*tup.SetUplinkResponse, error) {
+func (c *Client) SetUplink(ctx context.Context, configuration tup.Configuration) (*tup.SetUplinkResponse, error) {
+	req := &tup.SetUplink{Configuration: configuration}
 	out := &tup.SetUplinkResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/SetUplink", &tup.SetUplink{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/SetUplink", req, out)
 	return out, err
 }
 

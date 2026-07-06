@@ -6,8 +6,11 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/core"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
+	"time"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tse"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/search/wsdl"
@@ -27,87 +30,101 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) EndSearch(ctx context.Context) (*tse.EndSearchResponse, error) {
+func (c *Client) EndSearch(ctx context.Context, searchToken tt.JobToken) (*tse.EndSearchResponse, error) {
+	req := &tse.EndSearch{SearchToken: searchToken}
 	out := &tse.EndSearchResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/EndSearch", &tse.EndSearch{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/EndSearch", req, out)
 	return out, err
 }
 
-func (c *Client) FindEvents(ctx context.Context) (*tse.FindEventsResponse, error) {
+func (c *Client) FindEvents(ctx context.Context, startPoint time.Time, endPoint *time.Time, scope tt.SearchScope, searchFilter tt.EventFilter, includeStartState bool, maxMatches *int32, keepAliveTime *core.Duration) (*tse.FindEventsResponse, error) {
+	req := &tse.FindEvents{StartPoint: startPoint, EndPoint: endPoint, Scope: scope, SearchFilter: searchFilter, IncludeStartState: includeStartState, MaxMatches: maxMatches, KeepAliveTime: keepAliveTime}
 	out := &tse.FindEventsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindEvents", &tse.FindEvents{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindEvents", req, out)
 	return out, err
 }
 
-func (c *Client) FindMetadata(ctx context.Context) (*tse.FindMetadataResponse, error) {
+func (c *Client) FindMetadata(ctx context.Context, startPoint time.Time, endPoint *time.Time, scope tt.SearchScope, metadataFilter tt.MetadataFilter, maxMatches *int32, keepAliveTime *core.Duration) (*tse.FindMetadataResponse, error) {
+	req := &tse.FindMetadata{StartPoint: startPoint, EndPoint: endPoint, Scope: scope, MetadataFilter: metadataFilter, MaxMatches: maxMatches, KeepAliveTime: keepAliveTime}
 	out := &tse.FindMetadataResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindMetadata", &tse.FindMetadata{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindMetadata", req, out)
 	return out, err
 }
 
-func (c *Client) FindPTZPosition(ctx context.Context) (*tse.FindPTZPositionResponse, error) {
+func (c *Client) FindPTZPosition(ctx context.Context, startPoint time.Time, endPoint *time.Time, scope tt.SearchScope, searchFilter tt.PTZPositionFilter, maxMatches *int32, keepAliveTime *core.Duration) (*tse.FindPTZPositionResponse, error) {
+	req := &tse.FindPTZPosition{StartPoint: startPoint, EndPoint: endPoint, Scope: scope, SearchFilter: searchFilter, MaxMatches: maxMatches, KeepAliveTime: keepAliveTime}
 	out := &tse.FindPTZPositionResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindPTZPosition", &tse.FindPTZPosition{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindPTZPosition", req, out)
 	return out, err
 }
 
-func (c *Client) FindRecordings(ctx context.Context) (*tse.FindRecordingsResponse, error) {
+func (c *Client) FindRecordings(ctx context.Context, scope tt.SearchScope, maxMatches *int32, keepAliveTime *core.Duration) (*tse.FindRecordingsResponse, error) {
+	req := &tse.FindRecordings{Scope: scope, MaxMatches: maxMatches, KeepAliveTime: keepAliveTime}
 	out := &tse.FindRecordingsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindRecordings", &tse.FindRecordings{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindRecordings", req, out)
 	return out, err
 }
 
-func (c *Client) GetEventSearchResults(ctx context.Context) (*tse.GetEventSearchResultsResponse, error) {
+func (c *Client) GetEventSearchResults(ctx context.Context, searchToken tt.JobToken, minResults *int32, maxResults *int32, waitTime **core.Duration) (*tse.GetEventSearchResultsResponse, error) {
+	req := &tse.GetEventSearchResults{SearchToken: searchToken, MinResults: minResults, MaxResults: maxResults, WaitTime: waitTime}
 	out := &tse.GetEventSearchResultsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetEventSearchResults", &tse.GetEventSearchResults{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetEventSearchResults", req, out)
 	return out, err
 }
 
-func (c *Client) GetMediaAttributes(ctx context.Context) (*tse.GetMediaAttributesResponse, error) {
+func (c *Client) GetMediaAttributes(ctx context.Context, recordingTokens []tt.RecordingReference, time time.Time) (*tse.GetMediaAttributesResponse, error) {
+	req := &tse.GetMediaAttributes{RecordingTokens: recordingTokens, Time: time}
 	out := &tse.GetMediaAttributesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetMediaAttributes", &tse.GetMediaAttributes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetMediaAttributes", req, out)
 	return out, err
 }
 
-func (c *Client) GetMetadataSearchResults(ctx context.Context) (*tse.GetMetadataSearchResultsResponse, error) {
+func (c *Client) GetMetadataSearchResults(ctx context.Context, searchToken tt.JobToken, minResults *int32, maxResults *int32, waitTime **core.Duration) (*tse.GetMetadataSearchResultsResponse, error) {
+	req := &tse.GetMetadataSearchResults{SearchToken: searchToken, MinResults: minResults, MaxResults: maxResults, WaitTime: waitTime}
 	out := &tse.GetMetadataSearchResultsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetMetadataSearchResults", &tse.GetMetadataSearchResults{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetMetadataSearchResults", req, out)
 	return out, err
 }
 
-func (c *Client) GetPTZPositionSearchResults(ctx context.Context) (*tse.GetPTZPositionSearchResultsResponse, error) {
+func (c *Client) GetPTZPositionSearchResults(ctx context.Context, searchToken tt.JobToken, minResults *int32, maxResults *int32, waitTime **core.Duration) (*tse.GetPTZPositionSearchResultsResponse, error) {
+	req := &tse.GetPTZPositionSearchResults{SearchToken: searchToken, MinResults: minResults, MaxResults: maxResults, WaitTime: waitTime}
 	out := &tse.GetPTZPositionSearchResultsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetPTZPositionSearchResults", &tse.GetPTZPositionSearchResults{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetPTZPositionSearchResults", req, out)
 	return out, err
 }
 
-func (c *Client) GetRecordingInformation(ctx context.Context) (*tse.GetRecordingInformationResponse, error) {
+func (c *Client) GetRecordingInformation(ctx context.Context, recordingToken tt.RecordingReference) (*tse.GetRecordingInformationResponse, error) {
+	req := &tse.GetRecordingInformation{RecordingToken: recordingToken}
 	out := &tse.GetRecordingInformationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingInformation", &tse.GetRecordingInformation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingInformation", req, out)
 	return out, err
 }
 
-func (c *Client) GetRecordingSearchResults(ctx context.Context) (*tse.GetRecordingSearchResultsResponse, error) {
+func (c *Client) GetRecordingSearchResults(ctx context.Context, searchToken tt.JobToken, minResults *int32, maxResults *int32, waitTime **core.Duration) (*tse.GetRecordingSearchResultsResponse, error) {
+	req := &tse.GetRecordingSearchResults{SearchToken: searchToken, MinResults: minResults, MaxResults: maxResults, WaitTime: waitTime}
 	out := &tse.GetRecordingSearchResultsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingSearchResults", &tse.GetRecordingSearchResults{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingSearchResults", req, out)
 	return out, err
 }
 
 func (c *Client) GetRecordingSummary(ctx context.Context) (*tse.GetRecordingSummaryResponse, error) {
+	req := &tse.GetRecordingSummary{}
 	out := &tse.GetRecordingSummaryResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingSummary", &tse.GetRecordingSummary{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingSummary", req, out)
 	return out, err
 }
 
-func (c *Client) GetSearchState(ctx context.Context) (*tse.GetSearchStateResponse, error) {
+func (c *Client) GetSearchState(ctx context.Context, searchToken tt.JobToken) (*tse.GetSearchStateResponse, error) {
+	req := &tse.GetSearchState{SearchToken: searchToken}
 	out := &tse.GetSearchStateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetSearchState", &tse.GetSearchState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetSearchState", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tse.GetServiceCapabilitiesResponse, error) {
+	req := &tse.GetServiceCapabilities{}
 	out := &tse.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetServiceCapabilities", &tse.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 

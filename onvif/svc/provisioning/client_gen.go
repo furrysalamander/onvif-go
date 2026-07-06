@@ -6,8 +6,10 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/core"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tpv"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/provisioning/wsdl"
@@ -27,51 +29,59 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) FocusMove(ctx context.Context) (*tpv.FocusMoveResponse, error) {
+func (c *Client) FocusMove(ctx context.Context, videoSource tt.ReferenceToken, direction tpv.FocusDirection, timeout **core.Duration) (*tpv.FocusMoveResponse, error) {
+	req := &tpv.FocusMove{VideoSource: videoSource, Direction: direction, Timeout: timeout}
 	out := &tpv.FocusMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/FocusMove", &tpv.FocusMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/FocusMove", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tpv.GetServiceCapabilitiesResponse, error) {
+	req := &tpv.GetServiceCapabilities{}
 	out := &tpv.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/GetServiceCapabilities", &tpv.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) GetUsage(ctx context.Context) (*tpv.GetUsageResponse, error) {
+func (c *Client) GetUsage(ctx context.Context, videoSource tt.ReferenceToken) (*tpv.GetUsageResponse, error) {
+	req := &tpv.GetUsage{VideoSource: videoSource}
 	out := &tpv.GetUsageResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/Usage", &tpv.GetUsage{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/Usage", req, out)
 	return out, err
 }
 
-func (c *Client) PanMove(ctx context.Context) (*tpv.PanMoveResponse, error) {
+func (c *Client) PanMove(ctx context.Context, videoSource tt.ReferenceToken, direction tpv.PanDirection, timeout **core.Duration) (*tpv.PanMoveResponse, error) {
+	req := &tpv.PanMove{VideoSource: videoSource, Direction: direction, Timeout: timeout}
 	out := &tpv.PanMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/PanMove", &tpv.PanMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/PanMove", req, out)
 	return out, err
 }
 
-func (c *Client) RollMove(ctx context.Context) (*tpv.RollMoveResponse, error) {
+func (c *Client) RollMove(ctx context.Context, videoSource tt.ReferenceToken, direction tpv.RollDirection, timeout **core.Duration) (*tpv.RollMoveResponse, error) {
+	req := &tpv.RollMove{VideoSource: videoSource, Direction: direction, Timeout: timeout}
 	out := &tpv.RollMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/RollMove", &tpv.RollMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/RollMove", req, out)
 	return out, err
 }
 
-func (c *Client) Stop(ctx context.Context) (*tpv.StopResponse, error) {
+func (c *Client) Stop(ctx context.Context, videoSource tt.ReferenceToken) (*tpv.StopResponse, error) {
+	req := &tpv.Stop{VideoSource: videoSource}
 	out := &tpv.StopResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/Stop", &tpv.Stop{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/Stop", req, out)
 	return out, err
 }
 
-func (c *Client) TiltMove(ctx context.Context) (*tpv.TiltMoveResponse, error) {
+func (c *Client) TiltMove(ctx context.Context, videoSource tt.ReferenceToken, direction tpv.TiltDirection, timeout **core.Duration) (*tpv.TiltMoveResponse, error) {
+	req := &tpv.TiltMove{VideoSource: videoSource, Direction: direction, Timeout: timeout}
 	out := &tpv.TiltMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/TiltMove", &tpv.TiltMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/TiltMove", req, out)
 	return out, err
 }
 
-func (c *Client) ZoomMove(ctx context.Context) (*tpv.ZoomMoveResponse, error) {
+func (c *Client) ZoomMove(ctx context.Context, videoSource tt.ReferenceToken, direction tpv.ZoomDirection, timeout **core.Duration) (*tpv.ZoomMoveResponse, error) {
+	req := &tpv.ZoomMove{VideoSource: videoSource, Direction: direction, Timeout: timeout}
 	out := &tpv.ZoomMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/ZoomMove", &tpv.ZoomMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/ZoomMove", req, out)
 	return out, err
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/trv"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/receiver/wsdl"
@@ -27,51 +28,59 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) ConfigureReceiver(ctx context.Context) (*trv.ConfigureReceiverResponse, error) {
+func (c *Client) ConfigureReceiver(ctx context.Context, receiverToken tt.ReferenceToken, configuration tt.ReceiverConfiguration) (*trv.ConfigureReceiverResponse, error) {
+	req := &trv.ConfigureReceiver{ReceiverToken: receiverToken, Configuration: configuration}
 	out := &trv.ConfigureReceiverResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/ConfigureReceiver", &trv.ConfigureReceiver{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/ConfigureReceiver", req, out)
 	return out, err
 }
 
-func (c *Client) CreateReceiver(ctx context.Context) (*trv.CreateReceiverResponse, error) {
+func (c *Client) CreateReceiver(ctx context.Context, configuration tt.ReceiverConfiguration) (*trv.CreateReceiverResponse, error) {
+	req := &trv.CreateReceiver{Configuration: configuration}
 	out := &trv.CreateReceiverResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/CreateReceiver", &trv.CreateReceiver{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/CreateReceiver", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteReceiver(ctx context.Context) (*trv.DeleteReceiverResponse, error) {
+func (c *Client) DeleteReceiver(ctx context.Context, receiverToken tt.ReferenceToken) (*trv.DeleteReceiverResponse, error) {
+	req := &trv.DeleteReceiver{ReceiverToken: receiverToken}
 	out := &trv.DeleteReceiverResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/DeleteReceiver", &trv.DeleteReceiver{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/DeleteReceiver", req, out)
 	return out, err
 }
 
-func (c *Client) GetReceiver(ctx context.Context) (*trv.GetReceiverResponse, error) {
+func (c *Client) GetReceiver(ctx context.Context, receiverToken tt.ReferenceToken) (*trv.GetReceiverResponse, error) {
+	req := &trv.GetReceiver{ReceiverToken: receiverToken}
 	out := &trv.GetReceiverResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceiver", &trv.GetReceiver{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceiver", req, out)
 	return out, err
 }
 
-func (c *Client) GetReceiverState(ctx context.Context) (*trv.GetReceiverStateResponse, error) {
+func (c *Client) GetReceiverState(ctx context.Context, receiverToken tt.ReferenceToken) (*trv.GetReceiverStateResponse, error) {
+	req := &trv.GetReceiverState{ReceiverToken: receiverToken}
 	out := &trv.GetReceiverStateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceiverState", &trv.GetReceiverState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceiverState", req, out)
 	return out, err
 }
 
 func (c *Client) GetReceivers(ctx context.Context) (*trv.GetReceiversResponse, error) {
+	req := &trv.GetReceivers{}
 	out := &trv.GetReceiversResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceivers", &trv.GetReceivers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceivers", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*trv.GetServiceCapabilitiesResponse, error) {
+	req := &trv.GetServiceCapabilities{}
 	out := &trv.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetServiceCapabilities", &trv.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) SetReceiverMode(ctx context.Context) (*trv.SetReceiverModeResponse, error) {
+func (c *Client) SetReceiverMode(ctx context.Context, receiverToken tt.ReferenceToken, mode tt.ReceiverMode) (*trv.SetReceiverModeResponse, error) {
+	req := &trv.SetReceiverMode{ReceiverToken: receiverToken, Mode: mode}
 	out := &trv.SetReceiverModeResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/SetReceiverMode", &trv.SetReceiverMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/SetReceiverMode", req, out)
 	return out, err
 }
 

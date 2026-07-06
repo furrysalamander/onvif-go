@@ -8,6 +8,7 @@ import (
 
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tae"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/actionengine/wsdl"
@@ -27,63 +28,73 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) CreateActionTriggers(ctx context.Context) (*tae.CreateActionTriggersResponse, error) {
+func (c *Client) CreateActionTriggers(ctx context.Context, actionTrigger []tae.ActionTriggerConfiguration) (*tae.CreateActionTriggersResponse, error) {
+	req := &tae.CreateActionTriggers{ActionTrigger: actionTrigger}
 	out := &tae.CreateActionTriggersResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/CreateActionTriggers", &tae.CreateActionTriggers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/CreateActionTriggers", req, out)
 	return out, err
 }
 
-func (c *Client) CreateActions(ctx context.Context) (*tae.CreateActionsResponse, error) {
+func (c *Client) CreateActions(ctx context.Context, action []tae.ActionConfiguration) (*tae.CreateActionsResponse, error) {
+	req := &tae.CreateActions{Action: action}
 	out := &tae.CreateActionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/CreateActions", &tae.CreateActions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/CreateActions", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteActionTriggers(ctx context.Context) (*tae.DeleteActionTriggersResponse, error) {
+func (c *Client) DeleteActionTriggers(ctx context.Context, token []tt.ReferenceToken) (*tae.DeleteActionTriggersResponse, error) {
+	req := &tae.DeleteActionTriggers{Token: token}
 	out := &tae.DeleteActionTriggersResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/DeleteActionTriggers", &tae.DeleteActionTriggers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/DeleteActionTriggers", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteActions(ctx context.Context) (*tae.DeleteActionsResponse, error) {
+func (c *Client) DeleteActions(ctx context.Context, token []tt.ReferenceToken) (*tae.DeleteActionsResponse, error) {
+	req := &tae.DeleteActions{Token: token}
 	out := &tae.DeleteActionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/DeleteActions", &tae.DeleteActions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/DeleteActions", req, out)
 	return out, err
 }
 
 func (c *Client) GetActionTriggers(ctx context.Context) (*tae.GetActionTriggersResponse, error) {
+	req := &tae.GetActionTriggers{}
 	out := &tae.GetActionTriggersResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/GetActionTriggers", &tae.GetActionTriggers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/GetActionTriggers", req, out)
 	return out, err
 }
 
 func (c *Client) GetActions(ctx context.Context) (*tae.GetActionsResponse, error) {
+	req := &tae.GetActions{}
 	out := &tae.GetActionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/GetActions", &tae.GetActions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/GetActions", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tae.GetServiceCapabilitiesResponse, error) {
+	req := &tae.GetServiceCapabilities{}
 	out := &tae.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/GetServiceCapabilities", &tae.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
 func (c *Client) GetSupportedActions(ctx context.Context) (*tae.GetSupportedActionsResponse, error) {
+	req := &tae.GetSupportedActions{}
 	out := &tae.GetSupportedActionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/GetSupportedActions", &tae.GetSupportedActions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/GetSupportedActions", req, out)
 	return out, err
 }
 
-func (c *Client) ModifyActionTriggers(ctx context.Context) (*tae.ModifyActionTriggersResponse, error) {
+func (c *Client) ModifyActionTriggers(ctx context.Context, actionTrigger []tae.ActionTrigger) (*tae.ModifyActionTriggersResponse, error) {
+	req := &tae.ModifyActionTriggers{ActionTrigger: actionTrigger}
 	out := &tae.ModifyActionTriggersResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/ModifyActionTriggers", &tae.ModifyActionTriggers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/ModifyActionTriggers", req, out)
 	return out, err
 }
 
-func (c *Client) ModifyActions(ctx context.Context) (*tae.ModifyActionsResponse, error) {
+func (c *Client) ModifyActions(ctx context.Context, action []tae.Action) (*tae.ModifyActionsResponse, error) {
+	req := &tae.ModifyActions{Action: action}
 	out := &tae.ModifyActionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/ModifyActions", &tae.ModifyActions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/actionengine/wsdl/ModifyActions", req, out)
 	return out, err
 }
 

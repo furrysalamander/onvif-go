@@ -6,8 +6,10 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/core"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tptz"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver20/ptz/wsdl"
@@ -27,177 +29,206 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) AbsoluteMove(ctx context.Context) (*tptz.AbsoluteMoveResponse, error) {
+func (c *Client) AbsoluteMove(ctx context.Context, profileToken tt.ReferenceToken, position tt.PTZVector, speed *tt.PTZSpeed) (*tptz.AbsoluteMoveResponse, error) {
+	req := &tptz.AbsoluteMove{ProfileToken: profileToken, Position: position, Speed: speed}
 	out := &tptz.AbsoluteMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/AbsoluteMove", &tptz.AbsoluteMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/AbsoluteMove", req, out)
 	return out, err
 }
 
-func (c *Client) ContinuousMove(ctx context.Context) (*tptz.ContinuousMoveResponse, error) {
+func (c *Client) ContinuousMove(ctx context.Context, profileToken tt.ReferenceToken, velocity tt.PTZSpeed, timeout **core.Duration) (*tptz.ContinuousMoveResponse, error) {
+	req := &tptz.ContinuousMove{ProfileToken: profileToken, Velocity: velocity, Timeout: timeout}
 	out := &tptz.ContinuousMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/ContinuousMove", &tptz.ContinuousMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/ContinuousMove", req, out)
 	return out, err
 }
 
-func (c *Client) CreatePresetTour(ctx context.Context) (*tptz.CreatePresetTourResponse, error) {
+func (c *Client) CreatePresetTour(ctx context.Context, profileToken tt.ReferenceToken) (*tptz.CreatePresetTourResponse, error) {
+	req := &tptz.CreatePresetTour{ProfileToken: profileToken}
 	out := &tptz.CreatePresetTourResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/CreatePresetTour", &tptz.CreatePresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/CreatePresetTour", req, out)
 	return out, err
 }
 
-func (c *Client) GeoMove(ctx context.Context) (*tptz.GeoMoveResponse, error) {
+func (c *Client) GeoMove(ctx context.Context, profileToken tt.ReferenceToken, target tt.GeoLocation, speed *tt.PTZSpeed, areaHeight *float32, areaWidth *float32) (*tptz.GeoMoveResponse, error) {
+	req := &tptz.GeoMove{ProfileToken: profileToken, Target: target, Speed: speed, AreaHeight: areaHeight, AreaWidth: areaWidth}
 	out := &tptz.GeoMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GeoMove", &tptz.GeoMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GeoMove", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleConfigurations(ctx context.Context) (*tptz.GetCompatibleConfigurationsResponse, error) {
+func (c *Client) GetCompatibleConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*tptz.GetCompatibleConfigurationsResponse, error) {
+	req := &tptz.GetCompatibleConfigurations{ProfileToken: profileToken}
 	out := &tptz.GetCompatibleConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetCompatibleConfigurations", &tptz.GetCompatibleConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetCompatibleConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetConfiguration(ctx context.Context) (*tptz.GetConfigurationResponse, error) {
+func (c *Client) GetConfiguration(ctx context.Context, pTZConfigurationToken tt.ReferenceToken) (*tptz.GetConfigurationResponse, error) {
+	req := &tptz.GetConfiguration{PTZConfigurationToken: pTZConfigurationToken}
 	out := &tptz.GetConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfiguration", &tptz.GetConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetConfigurationOptions(ctx context.Context) (*tptz.GetConfigurationOptionsResponse, error) {
+func (c *Client) GetConfigurationOptions(ctx context.Context, configurationToken tt.ReferenceToken) (*tptz.GetConfigurationOptionsResponse, error) {
+	req := &tptz.GetConfigurationOptions{ConfigurationToken: configurationToken}
 	out := &tptz.GetConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfigurationOptions", &tptz.GetConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetConfigurations(ctx context.Context) (*tptz.GetConfigurationsResponse, error) {
+	req := &tptz.GetConfigurations{}
 	out := &tptz.GetConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfigurations", &tptz.GetConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetNode(ctx context.Context) (*tptz.GetNodeResponse, error) {
+func (c *Client) GetNode(ctx context.Context, nodeToken tt.ReferenceToken) (*tptz.GetNodeResponse, error) {
+	req := &tptz.GetNode{NodeToken: nodeToken}
 	out := &tptz.GetNodeResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetNode", &tptz.GetNode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetNode", req, out)
 	return out, err
 }
 
 func (c *Client) GetNodes(ctx context.Context) (*tptz.GetNodesResponse, error) {
+	req := &tptz.GetNodes{}
 	out := &tptz.GetNodesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetNodes", &tptz.GetNodes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetNodes", req, out)
 	return out, err
 }
 
-func (c *Client) GetPresetTour(ctx context.Context) (*tptz.GetPresetTourResponse, error) {
+func (c *Client) GetPresetTour(ctx context.Context, profileToken tt.ReferenceToken, presetTourToken tt.ReferenceToken) (*tptz.GetPresetTourResponse, error) {
+	req := &tptz.GetPresetTour{ProfileToken: profileToken, PresetTourToken: presetTourToken}
 	out := &tptz.GetPresetTourResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTour", &tptz.GetPresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTour", req, out)
 	return out, err
 }
 
-func (c *Client) GetPresetTourOptions(ctx context.Context) (*tptz.GetPresetTourOptionsResponse, error) {
+func (c *Client) GetPresetTourOptions(ctx context.Context, profileToken tt.ReferenceToken, presetTourToken *tt.ReferenceToken) (*tptz.GetPresetTourOptionsResponse, error) {
+	req := &tptz.GetPresetTourOptions{ProfileToken: profileToken, PresetTourToken: presetTourToken}
 	out := &tptz.GetPresetTourOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTourOptions", &tptz.GetPresetTourOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTourOptions", req, out)
 	return out, err
 }
 
-func (c *Client) GetPresetTours(ctx context.Context) (*tptz.GetPresetToursResponse, error) {
+func (c *Client) GetPresetTours(ctx context.Context, profileToken tt.ReferenceToken) (*tptz.GetPresetToursResponse, error) {
+	req := &tptz.GetPresetTours{ProfileToken: profileToken}
 	out := &tptz.GetPresetToursResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTours", &tptz.GetPresetTours{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTours", req, out)
 	return out, err
 }
 
-func (c *Client) GetPresets(ctx context.Context) (*tptz.GetPresetsResponse, error) {
+func (c *Client) GetPresets(ctx context.Context, profileToken tt.ReferenceToken) (*tptz.GetPresetsResponse, error) {
+	req := &tptz.GetPresets{ProfileToken: profileToken}
 	out := &tptz.GetPresetsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresets", &tptz.GetPresets{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresets", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tptz.GetServiceCapabilitiesResponse, error) {
+	req := &tptz.GetServiceCapabilities{}
 	out := &tptz.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetServiceCapabilities", &tptz.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) GetStatus(ctx context.Context) (*tptz.GetStatusResponse, error) {
+func (c *Client) GetStatus(ctx context.Context, profileToken tt.ReferenceToken) (*tptz.GetStatusResponse, error) {
+	req := &tptz.GetStatus{ProfileToken: profileToken}
 	out := &tptz.GetStatusResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetStatus", &tptz.GetStatus{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetStatus", req, out)
 	return out, err
 }
 
-func (c *Client) GotoHomePosition(ctx context.Context) (*tptz.GotoHomePositionResponse, error) {
+func (c *Client) GotoHomePosition(ctx context.Context, profileToken tt.ReferenceToken, speed *tt.PTZSpeed) (*tptz.GotoHomePositionResponse, error) {
+	req := &tptz.GotoHomePosition{ProfileToken: profileToken, Speed: speed}
 	out := &tptz.GotoHomePositionResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GotoHomePosition", &tptz.GotoHomePosition{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GotoHomePosition", req, out)
 	return out, err
 }
 
-func (c *Client) GotoPreset(ctx context.Context) (*tptz.GotoPresetResponse, error) {
+func (c *Client) GotoPreset(ctx context.Context, profileToken tt.ReferenceToken, presetToken tt.ReferenceToken, speed *tt.PTZSpeed) (*tptz.GotoPresetResponse, error) {
+	req := &tptz.GotoPreset{ProfileToken: profileToken, PresetToken: presetToken, Speed: speed}
 	out := &tptz.GotoPresetResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GotoPreset", &tptz.GotoPreset{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GotoPreset", req, out)
 	return out, err
 }
 
-func (c *Client) ModifyPresetTour(ctx context.Context) (*tptz.ModifyPresetTourResponse, error) {
+func (c *Client) ModifyPresetTour(ctx context.Context, profileToken tt.ReferenceToken, presetTour tt.PresetTour) (*tptz.ModifyPresetTourResponse, error) {
+	req := &tptz.ModifyPresetTour{ProfileToken: profileToken, PresetTour: presetTour}
 	out := &tptz.ModifyPresetTourResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/ModifyPresetTour", &tptz.ModifyPresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/ModifyPresetTour", req, out)
 	return out, err
 }
 
-func (c *Client) MoveAndStartTracking(ctx context.Context) (*tptz.MoveAndStartTrackingResponse, error) {
+func (c *Client) MoveAndStartTracking(ctx context.Context, profileToken tt.ReferenceToken, presetToken *tt.ReferenceToken, geoLocation *tt.GeoLocation, targetPosition *tt.PTZVector, speed *tt.PTZSpeed, objectID *int32) (*tptz.MoveAndStartTrackingResponse, error) {
+	req := &tptz.MoveAndStartTracking{ProfileToken: profileToken, PresetToken: presetToken, GeoLocation: geoLocation, TargetPosition: targetPosition, Speed: speed, ObjectID: objectID}
 	out := &tptz.MoveAndStartTrackingResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/MoveAndStartTracking", &tptz.MoveAndStartTracking{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/MoveAndStartTracking", req, out)
 	return out, err
 }
 
-func (c *Client) OperatePresetTour(ctx context.Context) (*tptz.OperatePresetTourResponse, error) {
+func (c *Client) OperatePresetTour(ctx context.Context, profileToken tt.ReferenceToken, presetTourToken tt.ReferenceToken, operation tt.PTZPresetTourOperation) (*tptz.OperatePresetTourResponse, error) {
+	req := &tptz.OperatePresetTour{ProfileToken: profileToken, PresetTourToken: presetTourToken, Operation: operation}
 	out := &tptz.OperatePresetTourResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/OperatePresetTour", &tptz.OperatePresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/OperatePresetTour", req, out)
 	return out, err
 }
 
-func (c *Client) RelativeMove(ctx context.Context) (*tptz.RelativeMoveResponse, error) {
+func (c *Client) RelativeMove(ctx context.Context, profileToken tt.ReferenceToken, translation tt.PTZVector, speed *tt.PTZSpeed) (*tptz.RelativeMoveResponse, error) {
+	req := &tptz.RelativeMove{ProfileToken: profileToken, Translation: translation, Speed: speed}
 	out := &tptz.RelativeMoveResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RelativeMove", &tptz.RelativeMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RelativeMove", req, out)
 	return out, err
 }
 
-func (c *Client) RemovePreset(ctx context.Context) (*tptz.RemovePresetResponse, error) {
+func (c *Client) RemovePreset(ctx context.Context, profileToken tt.ReferenceToken, presetToken tt.ReferenceToken) (*tptz.RemovePresetResponse, error) {
+	req := &tptz.RemovePreset{ProfileToken: profileToken, PresetToken: presetToken}
 	out := &tptz.RemovePresetResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RemovePreset", &tptz.RemovePreset{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RemovePreset", req, out)
 	return out, err
 }
 
-func (c *Client) RemovePresetTour(ctx context.Context) (*tptz.RemovePresetTourResponse, error) {
+func (c *Client) RemovePresetTour(ctx context.Context, profileToken tt.ReferenceToken, presetTourToken tt.ReferenceToken) (*tptz.RemovePresetTourResponse, error) {
+	req := &tptz.RemovePresetTour{ProfileToken: profileToken, PresetTourToken: presetTourToken}
 	out := &tptz.RemovePresetTourResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RemovePresetTour", &tptz.RemovePresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RemovePresetTour", req, out)
 	return out, err
 }
 
-func (c *Client) SendAuxiliaryCommand(ctx context.Context) (*tptz.SendAuxiliaryCommandResponse, error) {
+func (c *Client) SendAuxiliaryCommand(ctx context.Context, profileToken tt.ReferenceToken, auxiliaryData tt.AuxiliaryData) (*tptz.SendAuxiliaryCommandResponse, error) {
+	req := &tptz.SendAuxiliaryCommand{ProfileToken: profileToken, AuxiliaryData: auxiliaryData}
 	out := &tptz.SendAuxiliaryCommandResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SendAuxiliaryCommand", &tptz.SendAuxiliaryCommand{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SendAuxiliaryCommand", req, out)
 	return out, err
 }
 
-func (c *Client) SetConfiguration(ctx context.Context) (*tptz.SetConfigurationResponse, error) {
+func (c *Client) SetConfiguration(ctx context.Context, pTZConfiguration tt.PTZConfiguration, forcePersistence bool) (*tptz.SetConfigurationResponse, error) {
+	req := &tptz.SetConfiguration{PTZConfiguration: pTZConfiguration, ForcePersistence: forcePersistence}
 	out := &tptz.SetConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetConfiguration", &tptz.SetConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetHomePosition(ctx context.Context) (*tptz.SetHomePositionResponse, error) {
+func (c *Client) SetHomePosition(ctx context.Context, profileToken tt.ReferenceToken) (*tptz.SetHomePositionResponse, error) {
+	req := &tptz.SetHomePosition{ProfileToken: profileToken}
 	out := &tptz.SetHomePositionResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetHomePosition", &tptz.SetHomePosition{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetHomePosition", req, out)
 	return out, err
 }
 
-func (c *Client) SetPreset(ctx context.Context) (*tptz.SetPresetResponse, error) {
+func (c *Client) SetPreset(ctx context.Context, profileToken tt.ReferenceToken, presetName *string, presetToken *tt.ReferenceToken) (*tptz.SetPresetResponse, error) {
+	req := &tptz.SetPreset{ProfileToken: profileToken, PresetName: presetName, PresetToken: presetToken}
 	out := &tptz.SetPresetResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetPreset", &tptz.SetPreset{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetPreset", req, out)
 	return out, err
 }
 
-func (c *Client) Stop(ctx context.Context) (*tptz.StopResponse, error) {
+func (c *Client) Stop(ctx context.Context, profileToken tt.ReferenceToken, panTilt *bool, zoom *bool) (*tptz.StopResponse, error) {
+	req := &tptz.Stop{ProfileToken: profileToken, PanTilt: panTilt, Zoom: zoom}
 	out := &tptz.StopResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/Stop", &tptz.Stop{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/Stop", req, out)
 	return out, err
 }
 

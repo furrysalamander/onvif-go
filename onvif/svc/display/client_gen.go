@@ -8,6 +8,7 @@ import (
 
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tls"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/display/wsdl"
@@ -27,63 +28,73 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) CreatePaneConfiguration(ctx context.Context) (*tls.CreatePaneConfigurationResponse, error) {
+func (c *Client) CreatePaneConfiguration(ctx context.Context, videoOutput tt.ReferenceToken, paneConfiguration tt.PaneConfiguration) (*tls.CreatePaneConfigurationResponse, error) {
+	req := &tls.CreatePaneConfiguration{VideoOutput: videoOutput, PaneConfiguration: paneConfiguration}
 	out := &tls.CreatePaneConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/CreatePaneConfiguration", &tls.CreatePaneConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/CreatePaneConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) DeletePaneConfiguration(ctx context.Context) (*tls.DeletePaneConfigurationResponse, error) {
+func (c *Client) DeletePaneConfiguration(ctx context.Context, videoOutput tt.ReferenceToken, paneToken tt.ReferenceToken) (*tls.DeletePaneConfigurationResponse, error) {
+	req := &tls.DeletePaneConfiguration{VideoOutput: videoOutput, PaneToken: paneToken}
 	out := &tls.DeletePaneConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/DeletePaneConfiguration", &tls.DeletePaneConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/DeletePaneConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetDisplayOptions(ctx context.Context) (*tls.GetDisplayOptionsResponse, error) {
+func (c *Client) GetDisplayOptions(ctx context.Context, videoOutput tt.ReferenceToken) (*tls.GetDisplayOptionsResponse, error) {
+	req := &tls.GetDisplayOptions{VideoOutput: videoOutput}
 	out := &tls.GetDisplayOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetDisplayOptions", &tls.GetDisplayOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetDisplayOptions", req, out)
 	return out, err
 }
 
-func (c *Client) GetLayout(ctx context.Context) (*tls.GetLayoutResponse, error) {
+func (c *Client) GetLayout(ctx context.Context, videoOutput tt.ReferenceToken) (*tls.GetLayoutResponse, error) {
+	req := &tls.GetLayout{VideoOutput: videoOutput}
 	out := &tls.GetLayoutResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetLayout", &tls.GetLayout{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetLayout", req, out)
 	return out, err
 }
 
-func (c *Client) GetPaneConfiguration(ctx context.Context) (*tls.GetPaneConfigurationResponse, error) {
+func (c *Client) GetPaneConfiguration(ctx context.Context, videoOutput tt.ReferenceToken, pane tt.ReferenceToken) (*tls.GetPaneConfigurationResponse, error) {
+	req := &tls.GetPaneConfiguration{VideoOutput: videoOutput, Pane: pane}
 	out := &tls.GetPaneConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetPaneConfiguration", &tls.GetPaneConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetPaneConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetPaneConfigurations(ctx context.Context) (*tls.GetPaneConfigurationsResponse, error) {
+func (c *Client) GetPaneConfigurations(ctx context.Context, videoOutput tt.ReferenceToken) (*tls.GetPaneConfigurationsResponse, error) {
+	req := &tls.GetPaneConfigurations{VideoOutput: videoOutput}
 	out := &tls.GetPaneConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetPaneConfigurations", &tls.GetPaneConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetPaneConfigurations", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tls.GetServiceCapabilitiesResponse, error) {
+	req := &tls.GetServiceCapabilities{}
 	out := &tls.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetServiceCapabilities", &tls.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) SetLayout(ctx context.Context) (*tls.SetLayoutResponse, error) {
+func (c *Client) SetLayout(ctx context.Context, videoOutput tt.ReferenceToken, layout tt.Layout) (*tls.SetLayoutResponse, error) {
+	req := &tls.SetLayout{VideoOutput: videoOutput, Layout: layout}
 	out := &tls.SetLayoutResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetLayout", &tls.SetLayout{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetLayout", req, out)
 	return out, err
 }
 
-func (c *Client) SetPaneConfiguration(ctx context.Context) (*tls.SetPaneConfigurationResponse, error) {
+func (c *Client) SetPaneConfiguration(ctx context.Context, videoOutput tt.ReferenceToken, paneConfiguration tt.PaneConfiguration) (*tls.SetPaneConfigurationResponse, error) {
+	req := &tls.SetPaneConfiguration{VideoOutput: videoOutput, PaneConfiguration: paneConfiguration}
 	out := &tls.SetPaneConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetPaneConfiguration", &tls.SetPaneConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetPaneConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetPaneConfigurations(ctx context.Context) (*tls.SetPaneConfigurationsResponse, error) {
+func (c *Client) SetPaneConfigurations(ctx context.Context, videoOutput tt.ReferenceToken, paneConfiguration []tt.PaneConfiguration) (*tls.SetPaneConfigurationsResponse, error) {
+	req := &tls.SetPaneConfigurations{VideoOutput: videoOutput, PaneConfiguration: paneConfiguration}
 	out := &tls.SetPaneConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetPaneConfigurations", &tls.SetPaneConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetPaneConfigurations", req, out)
 	return out, err
 }
 

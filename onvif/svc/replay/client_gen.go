@@ -8,6 +8,7 @@ import (
 
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/trp"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/replay/wsdl"
@@ -28,26 +29,30 @@ func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) GetReplayConfiguration(ctx context.Context) (*trp.GetReplayConfigurationResponse, error) {
+	req := &trp.GetReplayConfiguration{}
 	out := &trp.GetReplayConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetReplayConfiguration", &trp.GetReplayConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetReplayConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetReplayUri(ctx context.Context) (*trp.GetReplayUriResponse, error) {
+func (c *Client) GetReplayUri(ctx context.Context, streamSetup tt.StreamSetup, recordingToken tt.ReferenceToken) (*trp.GetReplayUriResponse, error) {
+	req := &trp.GetReplayUri{StreamSetup: streamSetup, RecordingToken: recordingToken}
 	out := &trp.GetReplayUriResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetReplayUri", &trp.GetReplayUri{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetReplayUri", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*trp.GetServiceCapabilitiesResponse, error) {
+	req := &trp.GetServiceCapabilities{}
 	out := &trp.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetServiceCapabilities", &trp.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) SetReplayConfiguration(ctx context.Context) (*trp.SetReplayConfigurationResponse, error) {
+func (c *Client) SetReplayConfiguration(ctx context.Context, configuration tt.ReplayConfiguration) (*trp.SetReplayConfigurationResponse, error) {
+	req := &trp.SetReplayConfiguration{Configuration: configuration}
 	out := &trp.SetReplayConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/SetReplayConfiguration", &trp.SetReplayConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/SetReplayConfiguration", req, out)
 	return out, err
 }
 

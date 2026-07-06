@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/pacs"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tab"
 )
@@ -27,105 +28,122 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) CreateAuthenticationProfile(ctx context.Context) (*tab.CreateAuthenticationProfileResponse, error) {
+func (c *Client) CreateAuthenticationProfile(ctx context.Context, authenticationProfile tab.AuthenticationProfile) (*tab.CreateAuthenticationProfileResponse, error) {
+	req := &tab.CreateAuthenticationProfile{AuthenticationProfile: authenticationProfile}
 	out := &tab.CreateAuthenticationProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/CreateAuthenticationProfile", &tab.CreateAuthenticationProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/CreateAuthenticationProfile", req, out)
 	return out, err
 }
 
-func (c *Client) CreateSecurityLevel(ctx context.Context) (*tab.CreateSecurityLevelResponse, error) {
+func (c *Client) CreateSecurityLevel(ctx context.Context, securityLevel tab.SecurityLevel) (*tab.CreateSecurityLevelResponse, error) {
+	req := &tab.CreateSecurityLevel{SecurityLevel: securityLevel}
 	out := &tab.CreateSecurityLevelResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/CreateSecurityLevel", &tab.CreateSecurityLevel{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/CreateSecurityLevel", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteAuthenticationProfile(ctx context.Context) (*tab.DeleteAuthenticationProfileResponse, error) {
+func (c *Client) DeleteAuthenticationProfile(ctx context.Context, token pacs.ReferenceToken) (*tab.DeleteAuthenticationProfileResponse, error) {
+	req := &tab.DeleteAuthenticationProfile{Token: token}
 	out := &tab.DeleteAuthenticationProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/DeleteAuthenticationProfile", &tab.DeleteAuthenticationProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/DeleteAuthenticationProfile", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteSecurityLevel(ctx context.Context) (*tab.DeleteSecurityLevelResponse, error) {
+func (c *Client) DeleteSecurityLevel(ctx context.Context, token pacs.ReferenceToken) (*tab.DeleteSecurityLevelResponse, error) {
+	req := &tab.DeleteSecurityLevel{Token: token}
 	out := &tab.DeleteSecurityLevelResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/DeleteSecurityLevel", &tab.DeleteSecurityLevel{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/DeleteSecurityLevel", req, out)
 	return out, err
 }
 
-func (c *Client) GetAuthenticationProfileInfo(ctx context.Context) (*tab.GetAuthenticationProfileInfoResponse, error) {
+func (c *Client) GetAuthenticationProfileInfo(ctx context.Context, token []pacs.ReferenceToken) (*tab.GetAuthenticationProfileInfoResponse, error) {
+	req := &tab.GetAuthenticationProfileInfo{Token: token}
 	out := &tab.GetAuthenticationProfileInfoResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetAuthenticationProfileInfo", &tab.GetAuthenticationProfileInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetAuthenticationProfileInfo", req, out)
 	return out, err
 }
 
-func (c *Client) GetAuthenticationProfileInfoList(ctx context.Context) (*tab.GetAuthenticationProfileInfoListResponse, error) {
+func (c *Client) GetAuthenticationProfileInfoList(ctx context.Context, limit *int32, startReference *string) (*tab.GetAuthenticationProfileInfoListResponse, error) {
+	req := &tab.GetAuthenticationProfileInfoList{Limit: limit, StartReference: startReference}
 	out := &tab.GetAuthenticationProfileInfoListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetAuthenticationProfileInfoList", &tab.GetAuthenticationProfileInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetAuthenticationProfileInfoList", req, out)
 	return out, err
 }
 
-func (c *Client) GetAuthenticationProfileList(ctx context.Context) (*tab.GetAuthenticationProfileListResponse, error) {
+func (c *Client) GetAuthenticationProfileList(ctx context.Context, limit *int32, startReference *string) (*tab.GetAuthenticationProfileListResponse, error) {
+	req := &tab.GetAuthenticationProfileList{Limit: limit, StartReference: startReference}
 	out := &tab.GetAuthenticationProfileListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetAuthenticationProfileList", &tab.GetAuthenticationProfileList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetAuthenticationProfileList", req, out)
 	return out, err
 }
 
-func (c *Client) GetAuthenticationProfiles(ctx context.Context) (*tab.GetAuthenticationProfilesResponse, error) {
+func (c *Client) GetAuthenticationProfiles(ctx context.Context, token []pacs.ReferenceToken) (*tab.GetAuthenticationProfilesResponse, error) {
+	req := &tab.GetAuthenticationProfiles{Token: token}
 	out := &tab.GetAuthenticationProfilesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetAuthenticationProfiles", &tab.GetAuthenticationProfiles{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetAuthenticationProfiles", req, out)
 	return out, err
 }
 
-func (c *Client) GetSecurityLevelInfo(ctx context.Context) (*tab.GetSecurityLevelInfoResponse, error) {
+func (c *Client) GetSecurityLevelInfo(ctx context.Context, token []pacs.ReferenceToken) (*tab.GetSecurityLevelInfoResponse, error) {
+	req := &tab.GetSecurityLevelInfo{Token: token}
 	out := &tab.GetSecurityLevelInfoResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetSecurityLevelInfo", &tab.GetSecurityLevelInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetSecurityLevelInfo", req, out)
 	return out, err
 }
 
-func (c *Client) GetSecurityLevelInfoList(ctx context.Context) (*tab.GetSecurityLevelInfoListResponse, error) {
+func (c *Client) GetSecurityLevelInfoList(ctx context.Context, limit *int32, startReference *string) (*tab.GetSecurityLevelInfoListResponse, error) {
+	req := &tab.GetSecurityLevelInfoList{Limit: limit, StartReference: startReference}
 	out := &tab.GetSecurityLevelInfoListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetSecurityLevelInfoList", &tab.GetSecurityLevelInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetSecurityLevelInfoList", req, out)
 	return out, err
 }
 
-func (c *Client) GetSecurityLevelList(ctx context.Context) (*tab.GetSecurityLevelListResponse, error) {
+func (c *Client) GetSecurityLevelList(ctx context.Context, limit *int32, startReference *string) (*tab.GetSecurityLevelListResponse, error) {
+	req := &tab.GetSecurityLevelList{Limit: limit, StartReference: startReference}
 	out := &tab.GetSecurityLevelListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetSecurityLevelList", &tab.GetSecurityLevelList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetSecurityLevelList", req, out)
 	return out, err
 }
 
-func (c *Client) GetSecurityLevels(ctx context.Context) (*tab.GetSecurityLevelsResponse, error) {
+func (c *Client) GetSecurityLevels(ctx context.Context, token []pacs.ReferenceToken) (*tab.GetSecurityLevelsResponse, error) {
+	req := &tab.GetSecurityLevels{Token: token}
 	out := &tab.GetSecurityLevelsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetSecurityLevels", &tab.GetSecurityLevels{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetSecurityLevels", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tab.GetServiceCapabilitiesResponse, error) {
+	req := &tab.GetServiceCapabilities{}
 	out := &tab.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetServiceCapabilities", &tab.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) ModifyAuthenticationProfile(ctx context.Context) (*tab.ModifyAuthenticationProfileResponse, error) {
+func (c *Client) ModifyAuthenticationProfile(ctx context.Context, authenticationProfile tab.AuthenticationProfile) (*tab.ModifyAuthenticationProfileResponse, error) {
+	req := &tab.ModifyAuthenticationProfile{AuthenticationProfile: authenticationProfile}
 	out := &tab.ModifyAuthenticationProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/ModifyAuthenticationProfile", &tab.ModifyAuthenticationProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/ModifyAuthenticationProfile", req, out)
 	return out, err
 }
 
-func (c *Client) ModifySecurityLevel(ctx context.Context) (*tab.ModifySecurityLevelResponse, error) {
+func (c *Client) ModifySecurityLevel(ctx context.Context, securityLevel tab.SecurityLevel) (*tab.ModifySecurityLevelResponse, error) {
+	req := &tab.ModifySecurityLevel{SecurityLevel: securityLevel}
 	out := &tab.ModifySecurityLevelResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/ModifySecurityLevel", &tab.ModifySecurityLevel{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/ModifySecurityLevel", req, out)
 	return out, err
 }
 
-func (c *Client) SetAuthenticationProfile(ctx context.Context) (*tab.SetAuthenticationProfileResponse, error) {
+func (c *Client) SetAuthenticationProfile(ctx context.Context, authenticationProfile tab.AuthenticationProfile) (*tab.SetAuthenticationProfileResponse, error) {
+	req := &tab.SetAuthenticationProfile{AuthenticationProfile: authenticationProfile}
 	out := &tab.SetAuthenticationProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/SetAuthenticationProfile", &tab.SetAuthenticationProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/SetAuthenticationProfile", req, out)
 	return out, err
 }
 
-func (c *Client) SetSecurityLevel(ctx context.Context) (*tab.SetSecurityLevelResponse, error) {
+func (c *Client) SetSecurityLevel(ctx context.Context, securityLevel tab.SecurityLevel) (*tab.SetSecurityLevelResponse, error) {
+	req := &tab.SetSecurityLevel{SecurityLevel: securityLevel}
 	out := &tab.SetSecurityLevelResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/SetSecurityLevel", &tab.SetSecurityLevel{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/authenticationbehavior/wsdl/SetSecurityLevel", req, out)
 	return out, err
 }
 

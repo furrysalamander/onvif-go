@@ -6,8 +6,11 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/core"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
+	"time"
 	"github.com/furrysalamander/onvif-go/onvif/schema/trc"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/recording/wsdl"
@@ -27,135 +30,157 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) CreateRecording(ctx context.Context) (*trc.CreateRecordingResponse, error) {
+func (c *Client) CreateRecording(ctx context.Context, recordingConfiguration tt.RecordingConfiguration) (*trc.CreateRecordingResponse, error) {
+	req := &trc.CreateRecording{RecordingConfiguration: recordingConfiguration}
 	out := &trc.CreateRecordingResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/CreateRecording", &trc.CreateRecording{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/CreateRecording", req, out)
 	return out, err
 }
 
-func (c *Client) CreateRecordingJob(ctx context.Context) (*trc.CreateRecordingJobResponse, error) {
+func (c *Client) CreateRecordingJob(ctx context.Context, jobConfiguration tt.RecordingJobConfiguration) (*trc.CreateRecordingJobResponse, error) {
+	req := &trc.CreateRecordingJob{JobConfiguration: jobConfiguration}
 	out := &trc.CreateRecordingJobResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/CreateRecordingJob", &trc.CreateRecordingJob{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/CreateRecordingJob", req, out)
 	return out, err
 }
 
-func (c *Client) CreateTrack(ctx context.Context) (*trc.CreateTrackResponse, error) {
+func (c *Client) CreateTrack(ctx context.Context, recordingToken tt.RecordingReference, trackConfiguration tt.TrackConfiguration) (*trc.CreateTrackResponse, error) {
+	req := &trc.CreateTrack{RecordingToken: recordingToken, TrackConfiguration: trackConfiguration}
 	out := &trc.CreateTrackResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/CreateTrack", &trc.CreateTrack{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/CreateTrack", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteRecording(ctx context.Context) (*trc.DeleteRecordingResponse, error) {
+func (c *Client) DeleteRecording(ctx context.Context, recordingToken tt.RecordingReference) (*trc.DeleteRecordingResponse, error) {
+	req := &trc.DeleteRecording{RecordingToken: recordingToken}
 	out := &trc.DeleteRecordingResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/DeleteRecording", &trc.DeleteRecording{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/DeleteRecording", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteRecordingJob(ctx context.Context) (*trc.DeleteRecordingJobResponse, error) {
+func (c *Client) DeleteRecordingJob(ctx context.Context, jobToken tt.RecordingJobReference) (*trc.DeleteRecordingJobResponse, error) {
+	req := &trc.DeleteRecordingJob{JobToken: jobToken}
 	out := &trc.DeleteRecordingJobResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/DeleteRecordingJob", &trc.DeleteRecordingJob{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/DeleteRecordingJob", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteTrack(ctx context.Context) (*trc.DeleteTrackResponse, error) {
+func (c *Client) DeleteTrack(ctx context.Context, recordingToken tt.RecordingReference, trackToken tt.TrackReference) (*trc.DeleteTrackResponse, error) {
+	req := &trc.DeleteTrack{RecordingToken: recordingToken, TrackToken: trackToken}
 	out := &trc.DeleteTrackResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/DeleteTrack", &trc.DeleteTrack{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/DeleteTrack", req, out)
 	return out, err
 }
 
-func (c *Client) ExportRecordedData(ctx context.Context) (*trc.ExportRecordedDataResponse, error) {
+func (c *Client) ExportRecordedData(ctx context.Context, startPoint *time.Time, endPoint *time.Time, searchScope tt.SearchScope, fileFormat string, storageDestination tt.StorageReferencePath) (*trc.ExportRecordedDataResponse, error) {
+	req := &trc.ExportRecordedData{StartPoint: startPoint, EndPoint: endPoint, SearchScope: searchScope, FileFormat: fileFormat, StorageDestination: storageDestination}
 	out := &trc.ExportRecordedDataResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/ExportRecordedData", &trc.ExportRecordedData{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/ExportRecordedData", req, out)
 	return out, err
 }
 
-func (c *Client) GetExportRecordedDataState(ctx context.Context) (*trc.GetExportRecordedDataStateResponse, error) {
+func (c *Client) GetExportRecordedDataState(ctx context.Context, operationToken tt.ReferenceToken) (*trc.GetExportRecordedDataStateResponse, error) {
+	req := &trc.GetExportRecordedDataState{OperationToken: operationToken}
 	out := &trc.GetExportRecordedDataStateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetExportRecordedDataState", &trc.GetExportRecordedDataState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetExportRecordedDataState", req, out)
 	return out, err
 }
 
-func (c *Client) GetRecordingConfiguration(ctx context.Context) (*trc.GetRecordingConfigurationResponse, error) {
+func (c *Client) GetRecordingConfiguration(ctx context.Context, recordingToken tt.RecordingReference) (*trc.GetRecordingConfigurationResponse, error) {
+	req := &trc.GetRecordingConfiguration{RecordingToken: recordingToken}
 	out := &trc.GetRecordingConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingConfiguration", &trc.GetRecordingConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetRecordingJobConfiguration(ctx context.Context) (*trc.GetRecordingJobConfigurationResponse, error) {
+func (c *Client) GetRecordingJobConfiguration(ctx context.Context, jobToken tt.RecordingJobReference) (*trc.GetRecordingJobConfigurationResponse, error) {
+	req := &trc.GetRecordingJobConfiguration{JobToken: jobToken}
 	out := &trc.GetRecordingJobConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingJobConfiguration", &trc.GetRecordingJobConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingJobConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetRecordingJobState(ctx context.Context) (*trc.GetRecordingJobStateResponse, error) {
+func (c *Client) GetRecordingJobState(ctx context.Context, jobToken tt.RecordingJobReference) (*trc.GetRecordingJobStateResponse, error) {
+	req := &trc.GetRecordingJobState{JobToken: jobToken}
 	out := &trc.GetRecordingJobStateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingJobState", &trc.GetRecordingJobState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingJobState", req, out)
 	return out, err
 }
 
 func (c *Client) GetRecordingJobs(ctx context.Context) (*trc.GetRecordingJobsResponse, error) {
+	req := &trc.GetRecordingJobs{}
 	out := &trc.GetRecordingJobsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingJobs", &trc.GetRecordingJobs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingJobs", req, out)
 	return out, err
 }
 
-func (c *Client) GetRecordingOptions(ctx context.Context) (*trc.GetRecordingOptionsResponse, error) {
+func (c *Client) GetRecordingOptions(ctx context.Context, recordingToken tt.RecordingReference) (*trc.GetRecordingOptionsResponse, error) {
+	req := &trc.GetRecordingOptions{RecordingToken: recordingToken}
 	out := &trc.GetRecordingOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingOptions", &trc.GetRecordingOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordingOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetRecordings(ctx context.Context) (*trc.GetRecordingsResponse, error) {
+	req := &trc.GetRecordings{}
 	out := &trc.GetRecordingsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordings", &trc.GetRecordings{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetRecordings", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*trc.GetServiceCapabilitiesResponse, error) {
+	req := &trc.GetServiceCapabilities{}
 	out := &trc.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetServiceCapabilities", &trc.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) GetTrackConfiguration(ctx context.Context) (*trc.GetTrackConfigurationResponse, error) {
+func (c *Client) GetTrackConfiguration(ctx context.Context, recordingToken tt.RecordingReference, trackToken tt.TrackReference) (*trc.GetTrackConfigurationResponse, error) {
+	req := &trc.GetTrackConfiguration{RecordingToken: recordingToken, TrackToken: trackToken}
 	out := &trc.GetTrackConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetTrackConfiguration", &trc.GetTrackConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/GetTrackConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) OverrideSegmentDuration(ctx context.Context) (*trc.OverrideSegmentDurationResponse, error) {
+func (c *Client) OverrideSegmentDuration(ctx context.Context, targetSegmentDuration *core.Duration, expiration *core.Duration, recordingConfiguration tt.RecordingReference) (*trc.OverrideSegmentDurationResponse, error) {
+	req := &trc.OverrideSegmentDuration{TargetSegmentDuration: targetSegmentDuration, Expiration: expiration, RecordingConfiguration: recordingConfiguration}
 	out := &trc.OverrideSegmentDurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/OverrideSegmentDuration", &trc.OverrideSegmentDuration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/OverrideSegmentDuration", req, out)
 	return out, err
 }
 
-func (c *Client) SetRecordingConfiguration(ctx context.Context) (*trc.SetRecordingConfigurationResponse, error) {
+func (c *Client) SetRecordingConfiguration(ctx context.Context, recordingToken tt.RecordingReference, recordingConfiguration tt.RecordingConfiguration) (*trc.SetRecordingConfigurationResponse, error) {
+	req := &trc.SetRecordingConfiguration{RecordingToken: recordingToken, RecordingConfiguration: recordingConfiguration}
 	out := &trc.SetRecordingConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/SetRecordingConfiguration", &trc.SetRecordingConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/SetRecordingConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetRecordingJobConfiguration(ctx context.Context) (*trc.SetRecordingJobConfigurationResponse, error) {
+func (c *Client) SetRecordingJobConfiguration(ctx context.Context, jobToken tt.RecordingJobReference, jobConfiguration tt.RecordingJobConfiguration) (*trc.SetRecordingJobConfigurationResponse, error) {
+	req := &trc.SetRecordingJobConfiguration{JobToken: jobToken, JobConfiguration: jobConfiguration}
 	out := &trc.SetRecordingJobConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/SetRecordingJobConfiguration", &trc.SetRecordingJobConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/SetRecordingJobConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetRecordingJobMode(ctx context.Context) (*trc.SetRecordingJobModeResponse, error) {
+func (c *Client) SetRecordingJobMode(ctx context.Context, jobToken tt.RecordingJobReference, mode tt.RecordingJobMode) (*trc.SetRecordingJobModeResponse, error) {
+	req := &trc.SetRecordingJobMode{JobToken: jobToken, Mode: mode}
 	out := &trc.SetRecordingJobModeResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/SetRecordingJobMode", &trc.SetRecordingJobMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/SetRecordingJobMode", req, out)
 	return out, err
 }
 
-func (c *Client) SetTrackConfiguration(ctx context.Context) (*trc.SetTrackConfigurationResponse, error) {
+func (c *Client) SetTrackConfiguration(ctx context.Context, recordingToken tt.RecordingReference, trackToken tt.TrackReference, trackConfiguration tt.TrackConfiguration) (*trc.SetTrackConfigurationResponse, error) {
+	req := &trc.SetTrackConfiguration{RecordingToken: recordingToken, TrackToken: trackToken, TrackConfiguration: trackConfiguration}
 	out := &trc.SetTrackConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/SetTrackConfiguration", &trc.SetTrackConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/SetTrackConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) StopExportRecordedData(ctx context.Context) (*trc.StopExportRecordedDataResponse, error) {
+func (c *Client) StopExportRecordedData(ctx context.Context, operationToken tt.ReferenceToken) (*trc.StopExportRecordedDataResponse, error) {
+	req := &trc.StopExportRecordedData{OperationToken: operationToken}
 	out := &trc.StopExportRecordedDataResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/StopExportRecordedData", &trc.StopExportRecordedData{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/recording/wsdl/StopExportRecordedData", req, out)
 	return out, err
 }
 

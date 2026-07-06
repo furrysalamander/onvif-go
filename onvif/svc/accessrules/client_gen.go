@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/pacs"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tar"
 )
@@ -27,57 +28,66 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) CreateAccessProfile(ctx context.Context) (*tar.CreateAccessProfileResponse, error) {
+func (c *Client) CreateAccessProfile(ctx context.Context, accessProfile tar.AccessProfile) (*tar.CreateAccessProfileResponse, error) {
+	req := &tar.CreateAccessProfile{AccessProfile: accessProfile}
 	out := &tar.CreateAccessProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/CreateAccessProfile", &tar.CreateAccessProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/CreateAccessProfile", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteAccessProfile(ctx context.Context) (*tar.DeleteAccessProfileResponse, error) {
+func (c *Client) DeleteAccessProfile(ctx context.Context, token pacs.ReferenceToken) (*tar.DeleteAccessProfileResponse, error) {
+	req := &tar.DeleteAccessProfile{Token: token}
 	out := &tar.DeleteAccessProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/DeleteAccessProfile", &tar.DeleteAccessProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/DeleteAccessProfile", req, out)
 	return out, err
 }
 
-func (c *Client) GetAccessProfileInfo(ctx context.Context) (*tar.GetAccessProfileInfoResponse, error) {
+func (c *Client) GetAccessProfileInfo(ctx context.Context, token []pacs.ReferenceToken) (*tar.GetAccessProfileInfoResponse, error) {
+	req := &tar.GetAccessProfileInfo{Token: token}
 	out := &tar.GetAccessProfileInfoResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetAccessProfileInfo", &tar.GetAccessProfileInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetAccessProfileInfo", req, out)
 	return out, err
 }
 
-func (c *Client) GetAccessProfileInfoList(ctx context.Context) (*tar.GetAccessProfileInfoListResponse, error) {
+func (c *Client) GetAccessProfileInfoList(ctx context.Context, limit *int32, startReference *string) (*tar.GetAccessProfileInfoListResponse, error) {
+	req := &tar.GetAccessProfileInfoList{Limit: limit, StartReference: startReference}
 	out := &tar.GetAccessProfileInfoListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetAccessProfileInfoList", &tar.GetAccessProfileInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetAccessProfileInfoList", req, out)
 	return out, err
 }
 
-func (c *Client) GetAccessProfileList(ctx context.Context) (*tar.GetAccessProfileListResponse, error) {
+func (c *Client) GetAccessProfileList(ctx context.Context, limit *int32, startReference *string) (*tar.GetAccessProfileListResponse, error) {
+	req := &tar.GetAccessProfileList{Limit: limit, StartReference: startReference}
 	out := &tar.GetAccessProfileListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetAccessProfileList", &tar.GetAccessProfileList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetAccessProfileList", req, out)
 	return out, err
 }
 
-func (c *Client) GetAccessProfiles(ctx context.Context) (*tar.GetAccessProfilesResponse, error) {
+func (c *Client) GetAccessProfiles(ctx context.Context, token []pacs.ReferenceToken) (*tar.GetAccessProfilesResponse, error) {
+	req := &tar.GetAccessProfiles{Token: token}
 	out := &tar.GetAccessProfilesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetAccessProfiles", &tar.GetAccessProfiles{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetAccessProfiles", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tar.GetServiceCapabilitiesResponse, error) {
+	req := &tar.GetServiceCapabilities{}
 	out := &tar.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetServiceCapabilities", &tar.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) ModifyAccessProfile(ctx context.Context) (*tar.ModifyAccessProfileResponse, error) {
+func (c *Client) ModifyAccessProfile(ctx context.Context, accessProfile tar.AccessProfile) (*tar.ModifyAccessProfileResponse, error) {
+	req := &tar.ModifyAccessProfile{AccessProfile: accessProfile}
 	out := &tar.ModifyAccessProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/ModifyAccessProfile", &tar.ModifyAccessProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/ModifyAccessProfile", req, out)
 	return out, err
 }
 
-func (c *Client) SetAccessProfile(ctx context.Context) (*tar.SetAccessProfileResponse, error) {
+func (c *Client) SetAccessProfile(ctx context.Context, accessProfile tar.AccessProfile) (*tar.SetAccessProfileResponse, error) {
+	req := &tar.SetAccessProfile{AccessProfile: accessProfile}
 	out := &tar.SetAccessProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/SetAccessProfile", &tar.SetAccessProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accessrules/wsdl/SetAccessProfile", req, out)
 	return out, err
 }
 

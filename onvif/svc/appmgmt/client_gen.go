@@ -27,51 +27,59 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) Activate(ctx context.Context) (*ans.ActivateResponse, error) {
+func (c *Client) Activate(ctx context.Context, appID string) (*ans.ActivateResponse, error) {
+	req := &ans.Activate{AppID: appID}
 	out := &ans.ActivateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Activate", &ans.Activate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Activate", req, out)
 	return out, err
 }
 
-func (c *Client) Deactivate(ctx context.Context) (*ans.DeactivateResponse, error) {
+func (c *Client) Deactivate(ctx context.Context, appID string) (*ans.DeactivateResponse, error) {
+	req := &ans.Deactivate{AppID: appID}
 	out := &ans.DeactivateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Deactivate", &ans.Deactivate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Deactivate", req, out)
 	return out, err
 }
 
-func (c *Client) GetAppsInfo(ctx context.Context) (*ans.GetAppsInfoResponse, error) {
+func (c *Client) GetAppsInfo(ctx context.Context, appID *string) (*ans.GetAppsInfoResponse, error) {
+	req := &ans.GetAppsInfo{AppID: appID}
 	out := &ans.GetAppsInfoResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetAppsInfo", &ans.GetAppsInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetAppsInfo", req, out)
 	return out, err
 }
 
 func (c *Client) GetDeviceId(ctx context.Context) (*ans.GetDeviceIdResponse, error) {
+	req := &ans.GetDeviceId{}
 	out := &ans.GetDeviceIdResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetDeviceId", &ans.GetDeviceId{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetDeviceId", req, out)
 	return out, err
 }
 
 func (c *Client) GetInstalledApps(ctx context.Context) (*ans.GetInstalledAppsResponse, error) {
+	req := &ans.GetInstalledApps{}
 	out := &ans.GetInstalledAppsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetInstalledApps", &ans.GetInstalledApps{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetInstalledApps", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*ans.GetServiceCapabilitiesResponse, error) {
+	req := &ans.GetServiceCapabilities{}
 	out := &ans.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetServiceCapabilities", &ans.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) InstallLicense(ctx context.Context) (*ans.InstallLicenseResponse, error) {
+func (c *Client) InstallLicense(ctx context.Context, appID *string, license string) (*ans.InstallLicenseResponse, error) {
+	req := &ans.InstallLicense{AppID: appID, License: license}
 	out := &ans.InstallLicenseResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/InstallLicense", &ans.InstallLicense{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/InstallLicense", req, out)
 	return out, err
 }
 
-func (c *Client) Uninstall(ctx context.Context) (*ans.UninstallResponse, error) {
+func (c *Client) Uninstall(ctx context.Context, appID string) (*ans.UninstallResponse, error) {
+	req := &ans.Uninstall{AppID: appID}
 	out := &ans.UninstallResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Uninstall", &ans.Uninstall{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Uninstall", req, out)
 	return out, err
 }
 

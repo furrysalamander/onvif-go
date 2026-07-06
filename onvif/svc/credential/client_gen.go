@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/pacs"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tcr"
 )
@@ -27,171 +28,199 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) AddToBlacklist(ctx context.Context) (*tcr.AddToBlacklistResponse, error) {
+func (c *Client) AddToBlacklist(ctx context.Context, identifier []tcr.CredentialIdentifierItem) (*tcr.AddToBlacklistResponse, error) {
+	req := &tcr.AddToBlacklist{Identifier: identifier}
 	out := &tcr.AddToBlacklistResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/AddToBlacklist", &tcr.AddToBlacklist{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/AddToBlacklist", req, out)
 	return out, err
 }
 
-func (c *Client) AddToWhitelist(ctx context.Context) (*tcr.AddToWhitelistResponse, error) {
+func (c *Client) AddToWhitelist(ctx context.Context, identifier []tcr.CredentialIdentifierItem) (*tcr.AddToWhitelistResponse, error) {
+	req := &tcr.AddToWhitelist{Identifier: identifier}
 	out := &tcr.AddToWhitelistResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/AddToWhitelist", &tcr.AddToWhitelist{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/AddToWhitelist", req, out)
 	return out, err
 }
 
-func (c *Client) CreateCredential(ctx context.Context) (*tcr.CreateCredentialResponse, error) {
+func (c *Client) CreateCredential(ctx context.Context, credential tcr.Credential, state tcr.CredentialState) (*tcr.CreateCredentialResponse, error) {
+	req := &tcr.CreateCredential{Credential: credential, State: state}
 	out := &tcr.CreateCredentialResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/CreateCredential", &tcr.CreateCredential{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/CreateCredential", req, out)
 	return out, err
 }
 
 func (c *Client) DeleteBlacklist(ctx context.Context) (*tcr.DeleteBlacklistResponse, error) {
+	req := &tcr.DeleteBlacklist{}
 	out := &tcr.DeleteBlacklistResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteBlacklist", &tcr.DeleteBlacklist{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteBlacklist", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteCredential(ctx context.Context) (*tcr.DeleteCredentialResponse, error) {
+func (c *Client) DeleteCredential(ctx context.Context, token pacs.ReferenceToken) (*tcr.DeleteCredentialResponse, error) {
+	req := &tcr.DeleteCredential{Token: token}
 	out := &tcr.DeleteCredentialResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteCredential", &tcr.DeleteCredential{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteCredential", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteCredentialAccessProfiles(ctx context.Context) (*tcr.DeleteCredentialAccessProfilesResponse, error) {
+func (c *Client) DeleteCredentialAccessProfiles(ctx context.Context, credentialToken pacs.ReferenceToken, accessProfileToken []pacs.ReferenceToken) (*tcr.DeleteCredentialAccessProfilesResponse, error) {
+	req := &tcr.DeleteCredentialAccessProfiles{CredentialToken: credentialToken, AccessProfileToken: accessProfileToken}
 	out := &tcr.DeleteCredentialAccessProfilesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteCredentialAccessProfiles", &tcr.DeleteCredentialAccessProfiles{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteCredentialAccessProfiles", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteCredentialIdentifier(ctx context.Context) (*tcr.DeleteCredentialIdentifierResponse, error) {
+func (c *Client) DeleteCredentialIdentifier(ctx context.Context, credentialToken pacs.ReferenceToken, credentialIdentifierTypeName pacs.Name) (*tcr.DeleteCredentialIdentifierResponse, error) {
+	req := &tcr.DeleteCredentialIdentifier{CredentialToken: credentialToken, CredentialIdentifierTypeName: credentialIdentifierTypeName}
 	out := &tcr.DeleteCredentialIdentifierResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteCredentialIdentifier", &tcr.DeleteCredentialIdentifier{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteCredentialIdentifier", req, out)
 	return out, err
 }
 
 func (c *Client) DeleteWhitelist(ctx context.Context) (*tcr.DeleteWhitelistResponse, error) {
+	req := &tcr.DeleteWhitelist{}
 	out := &tcr.DeleteWhitelistResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteWhitelist", &tcr.DeleteWhitelist{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DeleteWhitelist", req, out)
 	return out, err
 }
 
-func (c *Client) DisableCredential(ctx context.Context) (*tcr.DisableCredentialResponse, error) {
+func (c *Client) DisableCredential(ctx context.Context, token pacs.ReferenceToken, reason *pacs.Name) (*tcr.DisableCredentialResponse, error) {
+	req := &tcr.DisableCredential{Token: token, Reason: reason}
 	out := &tcr.DisableCredentialResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DisableCredential", &tcr.DisableCredential{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/DisableCredential", req, out)
 	return out, err
 }
 
-func (c *Client) EnableCredential(ctx context.Context) (*tcr.EnableCredentialResponse, error) {
+func (c *Client) EnableCredential(ctx context.Context, token pacs.ReferenceToken, reason *pacs.Name) (*tcr.EnableCredentialResponse, error) {
+	req := &tcr.EnableCredential{Token: token, Reason: reason}
 	out := &tcr.EnableCredentialResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/EnableCredential", &tcr.EnableCredential{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/EnableCredential", req, out)
 	return out, err
 }
 
-func (c *Client) GetBlacklist(ctx context.Context) (*tcr.GetBlacklistResponse, error) {
+func (c *Client) GetBlacklist(ctx context.Context, limit *int32, startReference *string, identifierType *string, formatType *string, value *[]byte) (*tcr.GetBlacklistResponse, error) {
+	req := &tcr.GetBlacklist{Limit: limit, StartReference: startReference, IdentifierType: identifierType, FormatType: formatType, Value: value}
 	out := &tcr.GetBlacklistResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetBlacklist", &tcr.GetBlacklist{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetBlacklist", req, out)
 	return out, err
 }
 
-func (c *Client) GetCredentialAccessProfiles(ctx context.Context) (*tcr.GetCredentialAccessProfilesResponse, error) {
+func (c *Client) GetCredentialAccessProfiles(ctx context.Context, credentialToken pacs.ReferenceToken) (*tcr.GetCredentialAccessProfilesResponse, error) {
+	req := &tcr.GetCredentialAccessProfiles{CredentialToken: credentialToken}
 	out := &tcr.GetCredentialAccessProfilesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialAccessProfiles", &tcr.GetCredentialAccessProfiles{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialAccessProfiles", req, out)
 	return out, err
 }
 
-func (c *Client) GetCredentialIdentifiers(ctx context.Context) (*tcr.GetCredentialIdentifiersResponse, error) {
+func (c *Client) GetCredentialIdentifiers(ctx context.Context, credentialToken pacs.ReferenceToken) (*tcr.GetCredentialIdentifiersResponse, error) {
+	req := &tcr.GetCredentialIdentifiers{CredentialToken: credentialToken}
 	out := &tcr.GetCredentialIdentifiersResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialIdentifiers", &tcr.GetCredentialIdentifiers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialIdentifiers", req, out)
 	return out, err
 }
 
-func (c *Client) GetCredentialInfo(ctx context.Context) (*tcr.GetCredentialInfoResponse, error) {
+func (c *Client) GetCredentialInfo(ctx context.Context, token []pacs.ReferenceToken) (*tcr.GetCredentialInfoResponse, error) {
+	req := &tcr.GetCredentialInfo{Token: token}
 	out := &tcr.GetCredentialInfoResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialInfo", &tcr.GetCredentialInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialInfo", req, out)
 	return out, err
 }
 
-func (c *Client) GetCredentialInfoList(ctx context.Context) (*tcr.GetCredentialInfoListResponse, error) {
+func (c *Client) GetCredentialInfoList(ctx context.Context, limit *int32, startReference *string) (*tcr.GetCredentialInfoListResponse, error) {
+	req := &tcr.GetCredentialInfoList{Limit: limit, StartReference: startReference}
 	out := &tcr.GetCredentialInfoListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialInfoList", &tcr.GetCredentialInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialInfoList", req, out)
 	return out, err
 }
 
-func (c *Client) GetCredentialList(ctx context.Context) (*tcr.GetCredentialListResponse, error) {
+func (c *Client) GetCredentialList(ctx context.Context, limit *int32, startReference *string) (*tcr.GetCredentialListResponse, error) {
+	req := &tcr.GetCredentialList{Limit: limit, StartReference: startReference}
 	out := &tcr.GetCredentialListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialList", &tcr.GetCredentialList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialList", req, out)
 	return out, err
 }
 
-func (c *Client) GetCredentialState(ctx context.Context) (*tcr.GetCredentialStateResponse, error) {
+func (c *Client) GetCredentialState(ctx context.Context, token pacs.ReferenceToken) (*tcr.GetCredentialStateResponse, error) {
+	req := &tcr.GetCredentialState{Token: token}
 	out := &tcr.GetCredentialStateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialState", &tcr.GetCredentialState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentialState", req, out)
 	return out, err
 }
 
-func (c *Client) GetCredentials(ctx context.Context) (*tcr.GetCredentialsResponse, error) {
+func (c *Client) GetCredentials(ctx context.Context, token []pacs.ReferenceToken) (*tcr.GetCredentialsResponse, error) {
+	req := &tcr.GetCredentials{Token: token}
 	out := &tcr.GetCredentialsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentials", &tcr.GetCredentials{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetCredentials", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tcr.GetServiceCapabilitiesResponse, error) {
+	req := &tcr.GetServiceCapabilities{}
 	out := &tcr.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetServiceCapabilities", &tcr.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) GetSupportedFormatTypes(ctx context.Context) (*tcr.GetSupportedFormatTypesResponse, error) {
+func (c *Client) GetSupportedFormatTypes(ctx context.Context, credentialIdentifierTypeName string) (*tcr.GetSupportedFormatTypesResponse, error) {
+	req := &tcr.GetSupportedFormatTypes{CredentialIdentifierTypeName: credentialIdentifierTypeName}
 	out := &tcr.GetSupportedFormatTypesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetSupportedFormatTypes", &tcr.GetSupportedFormatTypes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetSupportedFormatTypes", req, out)
 	return out, err
 }
 
-func (c *Client) GetWhitelist(ctx context.Context) (*tcr.GetWhitelistResponse, error) {
+func (c *Client) GetWhitelist(ctx context.Context, limit *int32, startReference *string, identifierType *string, formatType *string, value *[]byte) (*tcr.GetWhitelistResponse, error) {
+	req := &tcr.GetWhitelist{Limit: limit, StartReference: startReference, IdentifierType: identifierType, FormatType: formatType, Value: value}
 	out := &tcr.GetWhitelistResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetWhitelist", &tcr.GetWhitelist{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/GetWhitelist", req, out)
 	return out, err
 }
 
-func (c *Client) ModifyCredential(ctx context.Context) (*tcr.ModifyCredentialResponse, error) {
+func (c *Client) ModifyCredential(ctx context.Context, credential tcr.Credential) (*tcr.ModifyCredentialResponse, error) {
+	req := &tcr.ModifyCredential{Credential: credential}
 	out := &tcr.ModifyCredentialResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/ModifyCredential", &tcr.ModifyCredential{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/ModifyCredential", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveFromBlacklist(ctx context.Context) (*tcr.RemoveFromBlacklistResponse, error) {
+func (c *Client) RemoveFromBlacklist(ctx context.Context, identifier []tcr.CredentialIdentifierItem) (*tcr.RemoveFromBlacklistResponse, error) {
+	req := &tcr.RemoveFromBlacklist{Identifier: identifier}
 	out := &tcr.RemoveFromBlacklistResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/RemoveFromBlacklist", &tcr.RemoveFromBlacklist{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/RemoveFromBlacklist", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveFromWhitelist(ctx context.Context) (*tcr.RemoveFromWhitelistResponse, error) {
+func (c *Client) RemoveFromWhitelist(ctx context.Context, identifier []tcr.CredentialIdentifierItem) (*tcr.RemoveFromWhitelistResponse, error) {
+	req := &tcr.RemoveFromWhitelist{Identifier: identifier}
 	out := &tcr.RemoveFromWhitelistResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/RemoveFromWhitelist", &tcr.RemoveFromWhitelist{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/RemoveFromWhitelist", req, out)
 	return out, err
 }
 
-func (c *Client) ResetAntipassbackViolation(ctx context.Context) (*tcr.ResetAntipassbackViolationResponse, error) {
+func (c *Client) ResetAntipassbackViolation(ctx context.Context, credentialToken pacs.ReferenceToken) (*tcr.ResetAntipassbackViolationResponse, error) {
+	req := &tcr.ResetAntipassbackViolation{CredentialToken: credentialToken}
 	out := &tcr.ResetAntipassbackViolationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/ResetAntipassbackViolation", &tcr.ResetAntipassbackViolation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/ResetAntipassbackViolation", req, out)
 	return out, err
 }
 
-func (c *Client) SetCredential(ctx context.Context) (*tcr.SetCredentialResponse, error) {
+func (c *Client) SetCredential(ctx context.Context, credentialData tcr.CredentialData) (*tcr.SetCredentialResponse, error) {
+	req := &tcr.SetCredential{CredentialData: credentialData}
 	out := &tcr.SetCredentialResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/SetCredential", &tcr.SetCredential{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/SetCredential", req, out)
 	return out, err
 }
 
-func (c *Client) SetCredentialAccessProfiles(ctx context.Context) (*tcr.SetCredentialAccessProfilesResponse, error) {
+func (c *Client) SetCredentialAccessProfiles(ctx context.Context, credentialToken pacs.ReferenceToken, credentialAccessProfile []tcr.CredentialAccessProfile) (*tcr.SetCredentialAccessProfilesResponse, error) {
+	req := &tcr.SetCredentialAccessProfiles{CredentialToken: credentialToken, CredentialAccessProfile: credentialAccessProfile}
 	out := &tcr.SetCredentialAccessProfilesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/SetCredentialAccessProfiles", &tcr.SetCredentialAccessProfiles{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/SetCredentialAccessProfiles", req, out)
 	return out, err
 }
 
-func (c *Client) SetCredentialIdentifier(ctx context.Context) (*tcr.SetCredentialIdentifierResponse, error) {
+func (c *Client) SetCredentialIdentifier(ctx context.Context, credentialToken pacs.ReferenceToken, credentialIdentifier tcr.CredentialIdentifier) (*tcr.SetCredentialIdentifierResponse, error) {
+	req := &tcr.SetCredentialIdentifier{CredentialToken: credentialToken, CredentialIdentifier: credentialIdentifier}
 	out := &tcr.SetCredentialIdentifierResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/SetCredentialIdentifier", &tcr.SetCredentialIdentifier{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/credential/wsdl/SetCredentialIdentifier", req, out)
 	return out, err
 }
 

@@ -38,14 +38,20 @@ var serviceNames = map[string]string{
 }
 
 type facadeOp struct {
-	Name      string
-	Action    string
-	SchemaPkg string
-	ReqType   string
-	ResType   string
+	Name   string
+	Action string
+	Res    string
+	Req    string
+	Fields []facadeField
 }
 
-func EmitFacades(modules []*ir.Module, outBase string) (map[string]string, error) {
+type facadeField struct {
+	Name    string
+	Type    string
+	XMLName string
+}
+
+func EmitFacades(tab *SymTab, modules []*ir.Module, outBase string) (map[string]string, error) {
 	out := map[string]string{}
 	for _, m := range modules {
 		if m.Kind != ir.ModuleWSDL {
@@ -60,7 +66,7 @@ func EmitFacades(modules []*ir.Module, outBase string) (map[string]string, error
 		if !ok {
 			continue
 		}
-		ops, err := collectOps(w, schemaPkg)
+		ops, err := collectOps(w, schemaPkg, tab)
 		if err != nil {
 			return nil, fmt.Errorf("%s: %w", svcName, err)
 		}
@@ -75,16 +81,13 @@ func EmitFacades(modules []*ir.Module, outBase string) (map[string]string, error
 	return out, nil
 }
 
-func collectOps(w *ir.WSDL, schemaPkg string) ([]facadeOp, error) {
+func collectOps(w *ir.WSDL, schemaPkg string, tab *SymTab) ([]facadeOp, error) {
 	msgMap := map[string]*ir.Message{}
 	for _, m := range w.Messages {
-		key := m.Name
-		if key == "" {
-			continue
+		if m.Name != "" {
+			msgMap[m.Name] = m
 		}
-		msgMap[key] = m
 	}
-
 	actionMap := map[string]string{}
 	for _, b := range w.Bindings {
 		for _, bo := range b.Operations {
@@ -93,52 +96,157 @@ func collectOps(w *ir.WSDL, schemaPkg string) ([]facadeOp, error) {
 			}
 		}
 	}
+	r := &resolver{tab: tab, curPkg: schemaPkg}
 
 	var ops []facadeOp
 	for _, pt := range w.PortTypes {
 		for _, op := range pt.Operations {
-			fo := facadeOp{Name: op.Name}
-			if fo.Name == "" {
+			if op.Name == "" {
 				continue
 			}
-			fo.SchemaPkg = schemaPkg
+			fo := facadeOp{Name: op.Name}
 			fo.Action = actionMap[op.Name]
 			if fo.Action == "" {
 				fo.Action = w.TargetNS + "/" + op.Name
 			}
-
+			var reqQName ir.QName
 			if op.Input != nil {
 				reqMsg, ok := resolveMessage(op.Input.Message, msgMap)
 				if ok && len(reqMsg.Parts) > 0 {
-					reqElem := reqMsg.Parts[0].Element
-					if reqElem.Local == "" && reqMsg.Parts[0].Type.Local != "" {
-						reqElem = reqMsg.Parts[0].Type
-					}
-					if reqElem.Local != "" {
-						fo.ReqType = qualifyType(schemaPkg, reqElem)
+					reqQName = reqMsg.Parts[0].Element
+					if reqQName.Local == "" {
+						reqQName = reqMsg.Parts[0].Type
 					}
 				}
 			}
+			if reqQName.Local == "" {
+				continue
+			}
+			fo.Req = qualifyType(schemaPkg, reqQName)
+			if fo.Req == "" || fo.Req == "core.Extension" {
+				continue
+			}
+
 			if op.Output != nil {
 				resMsg, ok := resolveMessage(op.Output.Message, msgMap)
 				if ok && len(resMsg.Parts) > 0 {
-					resElem := resMsg.Parts[0].Element
-					if resElem.Local == "" && resMsg.Parts[0].Type.Local != "" {
-						resElem = resMsg.Parts[0].Type
+					resQName := resMsg.Parts[0].Element
+					if resQName.Local == "" {
+						resQName = resMsg.Parts[0].Type
 					}
-					if resElem.Local != "" {
-						fo.ResType = qualifyType(schemaPkg, resElem)
+					if resQName.Local != "" {
+						fo.Res = qualifyType(schemaPkg, resQName)
 					}
 				}
 			}
-			if fo.ReqType == "" || fo.ResType == "" {
+			if fo.Res == "" {
 				continue
 			}
+
+			fo.Fields = requestFields(r, w.TargetNS, reqQName)
 			ops = append(ops, fo)
 		}
 	}
 	sort.SliceStable(ops, func(i, j int) bool { return ops[i].Name < ops[j].Name })
 	return ops, nil
+}
+
+func requestFields(r *resolver, targetNS string, q ir.QName) []facadeField {
+	sym, ok := r.tab.Lookup(targetNS, q.Local)
+	if !ok || sym.Element == nil {
+		return nil
+	}
+	e := sym.Element
+
+	var cmplx *ir.ComplexType
+	if e.Type != (ir.QName{}) {
+		s, ok := r.tab.Lookup(e.Type.NS, e.Type.Local)
+		if ok && s.Complex != nil {
+			cmplx = s.Complex
+		}
+	}
+	if cmplx == nil && e.InlineComplex != nil {
+		cmplx = e.InlineComplex
+	}
+	if cmplx == nil {
+		return nil
+	}
+
+	var shapes []fieldShape
+	anySeen := false
+	_ = r.particleFields(cmplx.Content, &shapes, &anySeen)
+
+	var params []facadeField
+	for _, f := range shapes {
+		if f.GoType == "" {
+			continue
+		}
+		if f.IsExtension {
+			continue
+		}
+		xmlName := f.XMLTag
+		if comma := strings.IndexByte(xmlName, ','); comma >= 0 {
+			xmlName = xmlName[:comma]
+		}
+		if xmlName == "" {
+			continue
+		}
+		paramName := camel(xmlName)
+		if paramName == "" {
+			continue
+		}
+		// Qualify type with package if needed — the resolver omits
+		// same-package prefixes, but facades always need them.
+		goty := qualifyFieldType(f.GoType, targetNS)
+		params = append(params, facadeField{
+			Name:    paramName,
+			Type:    goty,
+			XMLName: xmlName,
+		})
+	}
+	return params
+}
+
+func qualifyFieldType(goty, targetNS string) string {
+	if goty == "" || strings.Contains(goty, ".") || isBuiltin(goty) {
+		return goty
+	}
+	pkg, ok := NSPkg[targetNS]
+	if !ok || pkg == "" {
+		return goty
+	}
+	// Handle pointer and slice prefixes.
+	prefix := ""
+	for strings.HasPrefix(goty, "[]") {
+		prefix += "[]"
+		goty = goty[2:]
+	}
+	for strings.HasPrefix(goty, "*") {
+		prefix += "*"
+		goty = goty[1:]
+	}
+	return prefix + pkg + "." + goty
+}
+
+func isBuiltin(goty string) bool {
+	base := strings.TrimLeft(goty, "*[]")
+	switch base {
+	case "string", "bool", "byte", "int", "int8", "int16", "int32", "int64",
+		"uint", "uint8", "uint16", "uint32", "uint64", "float32", "float64":
+		return true
+	}
+	return false
+}
+
+func camel(s string) string {
+	if s == "" {
+		return ""
+	}
+	n := strings.ToLower(s[:1]) + s[1:]
+	if _, bad := goKeywords[n]; bad {
+		n += "_"
+	}
+	return n
 }
 
 func resolveMessage(q ir.QName, msgMap map[string]*ir.Message) (*ir.Message, bool) {
@@ -176,11 +284,26 @@ func emitClientFile(svcName, schemaPkg, targetNS string, ops []facadeOp) string 
 
 	imports := map[string]bool{schemaPkg: true}
 	for _, op := range ops {
-		for _, ty := range []string{op.ReqType, op.ResType} {
+		for _, ty := range []string{op.Req, op.Res} {
+			cleanTy := strings.TrimLeft(ty, "*[]")
 			for _, pkg := range NSPkg {
-				if strings.HasPrefix(ty, pkg+".") && pkg != "" {
+				if strings.HasPrefix(cleanTy, pkg+".") && pkg != "" {
 					imports[pkg] = true
 				}
+			}
+			if strings.HasPrefix(cleanTy, "time.") {
+				imports["time"] = true
+			}
+		}
+		for _, f := range op.Fields {
+			baseType := strings.TrimLeft(f.Type, "*[]")
+			for _, pkg := range NSPkg {
+				if strings.HasPrefix(baseType, pkg+".") && pkg != "" {
+					imports[pkg] = true
+				}
+			}
+			if strings.HasPrefix(baseType, "time.") {
+				imports["time"] = true
 			}
 		}
 	}
@@ -196,9 +319,12 @@ func emitClientFile(svcName, schemaPkg, targetNS string, ops []facadeOp) string 
 	b.WriteString("\t\"context\"\n")
 	b.WriteString("\t\"net/http\"\n\n")
 	for _, pkg := range pkgList {
-		if pkg == "soaphdr" {
+		switch pkg {
+		case "soaphdr":
 			b.WriteString("\t\"github.com/furrysalamander/onvif-go/onvif/soaphdr\"\n")
-		} else {
+		case "time":
+			b.WriteString("\t\"time\"\n")
+		default:
 			fmt.Fprintf(&b, "\t\"github.com/furrysalamander/onvif-go/onvif/schema/%s\"\n", pkg)
 		}
 	}
@@ -215,15 +341,34 @@ func emitClientFile(svcName, schemaPkg, targetNS string, ops []facadeOp) string 
 	b.WriteString("func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }\n\n")
 
 	for _, op := range ops {
-		req := ensurePkg(op.ReqType, schemaPkg)
-		res := ensurePkg(op.ResType, schemaPkg)
-		fmt.Fprintf(&b, "func (c *Client) %s(ctx context.Context) (*%s, error) {\n", op.Name, res)
-		fmt.Fprintf(&b, "\tout := &%s{}\n", res)
-		fmt.Fprintf(&b, "\terr := c.c.Do(ctx, %q, &%s{}, out)\n", op.Action, req)
-		b.WriteString("\treturn out, err\n")
-		b.WriteString("}\n\n")
+		req := ensurePkg(op.Req, schemaPkg)
+		res := ensurePkg(op.Res, schemaPkg)
+		emitMethod(&b, op.Name, req, res, op.Action, op.Fields)
 	}
 	return b.String()
+}
+
+func emitMethod(b *strings.Builder, name, reqType, resType, action string, fields []facadeField) {
+	var params []string
+	var reqFields []string
+	for _, f := range fields {
+		params = append(params, f.Name+" "+f.Type)
+		reqFields = append(reqFields, fmt.Sprintf("%s: %s", pascal(f.XMLName), f.Name))
+	}
+	fmt.Fprintf(b, "func (c *Client) %s(ctx context.Context", name)
+	for _, p := range params {
+		fmt.Fprintf(b, ", %s", p)
+	}
+	fmt.Fprintf(b, ") (*%s, error) {\n", resType)
+	fmt.Fprintf(b, "\treq := &%s{", reqType)
+	if len(reqFields) > 0 {
+		b.WriteString(strings.Join(reqFields, ", "))
+	}
+	b.WriteString("}\n")
+	fmt.Fprintf(b, "\tout := &%s{}\n", resType)
+	fmt.Fprintf(b, "\terr := c.c.Do(ctx, %q, req, out)\n", action)
+	b.WriteString("\treturn out, err\n")
+	b.WriteString("}\n\n")
 }
 
 func ensurePkg(ty, pkg string) string {

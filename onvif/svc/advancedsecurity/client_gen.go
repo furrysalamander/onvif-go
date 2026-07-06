@@ -8,6 +8,8 @@ import (
 
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tas"
+	"time"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/advancedsecurity/wsdl"
@@ -27,375 +29,437 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) AddCertPathValidationPolicyAssignment(ctx context.Context) (*tas.AddCertPathValidationPolicyAssignmentResponse, error) {
+func (c *Client) AddCertPathValidationPolicyAssignment(ctx context.Context, certPathValidationPolicyID tas.CertPathValidationPolicyID) (*tas.AddCertPathValidationPolicyAssignmentResponse, error) {
+	req := &tas.AddCertPathValidationPolicyAssignment{CertPathValidationPolicyID: certPathValidationPolicyID}
 	out := &tas.AddCertPathValidationPolicyAssignmentResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/AddCertPathValidationPolicyAssignment", &tas.AddCertPathValidationPolicyAssignment{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/AddCertPathValidationPolicyAssignment", req, out)
 	return out, err
 }
 
-func (c *Client) AddDot1XConfiguration(ctx context.Context) (*tas.AddDot1XConfigurationResponse, error) {
+func (c *Client) AddDot1XConfiguration(ctx context.Context, dot1XConfiguration tas.Dot1XConfiguration) (*tas.AddDot1XConfigurationResponse, error) {
+	req := &tas.AddDot1XConfiguration{Dot1XConfiguration: dot1XConfiguration}
 	out := &tas.AddDot1XConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/AddDot1XConfiguration", &tas.AddDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/AddDot1XConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddMediaSigningCertificateAssignment(ctx context.Context) (*tas.AddMediaSigningCertificateAssignmentResponse, error) {
+func (c *Client) AddMediaSigningCertificateAssignment(ctx context.Context, certificationPathID tas.CertificationPathID) (*tas.AddMediaSigningCertificateAssignmentResponse, error) {
+	req := &tas.AddMediaSigningCertificateAssignment{CertificationPathID: certificationPathID}
 	out := &tas.AddMediaSigningCertificateAssignmentResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/AddMediaSigningCertificateAssignment", &tas.AddMediaSigningCertificateAssignment{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/AddMediaSigningCertificateAssignment", req, out)
 	return out, err
 }
 
-func (c *Client) AddServerCertificateAssignment(ctx context.Context) (*tas.AddServerCertificateAssignmentResponse, error) {
+func (c *Client) AddServerCertificateAssignment(ctx context.Context, certificationPathID tas.CertificationPathID) (*tas.AddServerCertificateAssignmentResponse, error) {
+	req := &tas.AddServerCertificateAssignment{CertificationPathID: certificationPathID}
 	out := &tas.AddServerCertificateAssignmentResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/AddServerCertificateAssignment", &tas.AddServerCertificateAssignment{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/AddServerCertificateAssignment", req, out)
 	return out, err
 }
 
-func (c *Client) CreateAuthorizationServerConfiguration(ctx context.Context) (*tas.CreateAuthorizationServerConfigurationResponse, error) {
+func (c *Client) CreateAuthorizationServerConfiguration(ctx context.Context, configuration tas.AuthorizationServerConfigurationData) (*tas.CreateAuthorizationServerConfigurationResponse, error) {
+	req := &tas.CreateAuthorizationServerConfiguration{Configuration: configuration}
 	out := &tas.CreateAuthorizationServerConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateAuthorizationServerConfiguration", &tas.CreateAuthorizationServerConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateAuthorizationServerConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) CreateCertPathValidationPolicy(ctx context.Context) (*tas.CreateCertPathValidationPolicyResponse, error) {
+func (c *Client) CreateCertPathValidationPolicy(ctx context.Context, alias *string, parameters tas.CertPathValidationParameters, trustAnchor []tas.TrustAnchor) (*tas.CreateCertPathValidationPolicyResponse, error) {
+	req := &tas.CreateCertPathValidationPolicy{Alias: alias, Parameters: parameters, TrustAnchor: trustAnchor}
 	out := &tas.CreateCertPathValidationPolicyResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateCertPathValidationPolicy", &tas.CreateCertPathValidationPolicy{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateCertPathValidationPolicy", req, out)
 	return out, err
 }
 
-func (c *Client) CreateCertificationPath(ctx context.Context) (*tas.CreateCertificationPathResponse, error) {
+func (c *Client) CreateCertificationPath(ctx context.Context, certificateIDs tas.CertificateIDs, alias *string) (*tas.CreateCertificationPathResponse, error) {
+	req := &tas.CreateCertificationPath{CertificateIDs: certificateIDs, Alias: alias}
 	out := &tas.CreateCertificationPathResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateCertificationPath", &tas.CreateCertificationPath{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateCertificationPath", req, out)
 	return out, err
 }
 
-func (c *Client) CreateECCKeyPair(ctx context.Context) (*tas.CreateECCKeyPairResponse, error) {
+func (c *Client) CreateECCKeyPair(ctx context.Context, ellipticCurve string, alias *string) (*tas.CreateECCKeyPairResponse, error) {
+	req := &tas.CreateECCKeyPair{EllipticCurve: ellipticCurve, Alias: alias}
 	out := &tas.CreateECCKeyPairResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateECCKeyPair", &tas.CreateECCKeyPair{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateECCKeyPair", req, out)
 	return out, err
 }
 
-func (c *Client) CreatePKCS10CSR(ctx context.Context) (*tas.CreatePKCS10CSRResponse, error) {
+func (c *Client) CreatePKCS10CSR(ctx context.Context, subject tas.DistinguishedName, keyID tas.KeyID, cSRAttribute []tas.CSRAttribute, signatureAlgorithm tas.AlgorithmIdentifier) (*tas.CreatePKCS10CSRResponse, error) {
+	req := &tas.CreatePKCS10CSR{Subject: subject, KeyID: keyID, CSRAttribute: cSRAttribute, SignatureAlgorithm: signatureAlgorithm}
 	out := &tas.CreatePKCS10CSRResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreatePKCS10CSR", &tas.CreatePKCS10CSR{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreatePKCS10CSR", req, out)
 	return out, err
 }
 
-func (c *Client) CreateRSAKeyPair(ctx context.Context) (*tas.CreateRSAKeyPairResponse, error) {
+func (c *Client) CreateRSAKeyPair(ctx context.Context, keyLength int32, alias *string) (*tas.CreateRSAKeyPairResponse, error) {
+	req := &tas.CreateRSAKeyPair{KeyLength: keyLength, Alias: alias}
 	out := &tas.CreateRSAKeyPairResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateRSAKeyPair", &tas.CreateRSAKeyPair{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateRSAKeyPair", req, out)
 	return out, err
 }
 
-func (c *Client) CreateSelfSignedCertificate(ctx context.Context) (*tas.CreateSelfSignedCertificateResponse, error) {
+func (c *Client) CreateSelfSignedCertificate(ctx context.Context, x509Version *int32, subject tas.DistinguishedName, keyID tas.KeyID, alias *string, notValidBefore *time.Time, notValidAfter *time.Time, signatureAlgorithm tas.AlgorithmIdentifier, extension []tas.X509v3Extension) (*tas.CreateSelfSignedCertificateResponse, error) {
+	req := &tas.CreateSelfSignedCertificate{X509Version: x509Version, Subject: subject, KeyID: keyID, Alias: alias, XnotValidBefore: notValidBefore, XnotValidAfter: notValidAfter, SignatureAlgorithm: signatureAlgorithm, Extension: extension}
 	out := &tas.CreateSelfSignedCertificateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateSelfSignedCertificate", &tas.CreateSelfSignedCertificate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/CreateSelfSignedCertificate", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteAuthorizationServerConfiguration(ctx context.Context) (*tas.DeleteAuthorizationServerConfigurationResponse, error) {
+func (c *Client) DeleteAuthorizationServerConfiguration(ctx context.Context, token tt.ReferenceToken) (*tas.DeleteAuthorizationServerConfigurationResponse, error) {
+	req := &tas.DeleteAuthorizationServerConfiguration{Token: token}
 	out := &tas.DeleteAuthorizationServerConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteAuthorizationServerConfiguration", &tas.DeleteAuthorizationServerConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteAuthorizationServerConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteCRL(ctx context.Context) (*tas.DeleteCRLResponse, error) {
+func (c *Client) DeleteCRL(ctx context.Context, crlID tas.CRLID) (*tas.DeleteCRLResponse, error) {
+	req := &tas.DeleteCRL{CrlID: crlID}
 	out := &tas.DeleteCRLResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteCRL", &tas.DeleteCRL{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteCRL", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteCertPathValidationPolicy(ctx context.Context) (*tas.DeleteCertPathValidationPolicyResponse, error) {
+func (c *Client) DeleteCertPathValidationPolicy(ctx context.Context, certPathValidationPolicyID tas.CertPathValidationPolicyID) (*tas.DeleteCertPathValidationPolicyResponse, error) {
+	req := &tas.DeleteCertPathValidationPolicy{CertPathValidationPolicyID: certPathValidationPolicyID}
 	out := &tas.DeleteCertPathValidationPolicyResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteCertPathValidationPolicy", &tas.DeleteCertPathValidationPolicy{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteCertPathValidationPolicy", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteCertificate(ctx context.Context) (*tas.DeleteCertificateResponse, error) {
+func (c *Client) DeleteCertificate(ctx context.Context, certificateID tas.CertificateID) (*tas.DeleteCertificateResponse, error) {
+	req := &tas.DeleteCertificate{CertificateID: certificateID}
 	out := &tas.DeleteCertificateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteCertificate", &tas.DeleteCertificate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteCertificate", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteCertificationPath(ctx context.Context) (*tas.DeleteCertificationPathResponse, error) {
+func (c *Client) DeleteCertificationPath(ctx context.Context, certificationPathID tas.CertificationPathID) (*tas.DeleteCertificationPathResponse, error) {
+	req := &tas.DeleteCertificationPath{CertificationPathID: certificationPathID}
 	out := &tas.DeleteCertificationPathResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteCertificationPath", &tas.DeleteCertificationPath{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteCertificationPath", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteDot1XConfiguration(ctx context.Context) (*tas.DeleteDot1XConfigurationResponse, error) {
+func (c *Client) DeleteDot1XConfiguration(ctx context.Context, dot1XID tas.Dot1XID) (*tas.DeleteDot1XConfigurationResponse, error) {
+	req := &tas.DeleteDot1XConfiguration{Dot1XID: dot1XID}
 	out := &tas.DeleteDot1XConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteDot1XConfiguration", &tas.DeleteDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteDot1XConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteKey(ctx context.Context) (*tas.DeleteKeyResponse, error) {
+func (c *Client) DeleteKey(ctx context.Context, keyID tas.KeyID) (*tas.DeleteKeyResponse, error) {
+	req := &tas.DeleteKey{KeyID: keyID}
 	out := &tas.DeleteKeyResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteKey", &tas.DeleteKey{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteKey", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteNetworkInterfaceDot1XConfiguration(ctx context.Context) (*tas.DeleteNetworkInterfaceDot1XConfigurationResponse, error) {
+func (c *Client) DeleteNetworkInterfaceDot1XConfiguration(ctx context.Context, token string) (*tas.DeleteNetworkInterfaceDot1XConfigurationResponse, error) {
+	req := &tas.DeleteNetworkInterfaceDot1XConfiguration{Xtoken: token}
 	out := &tas.DeleteNetworkInterfaceDot1XConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteNetworkInterfaceDot1XConfiguration", &tas.DeleteNetworkInterfaceDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeleteNetworkInterfaceDot1XConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) DeletePassphrase(ctx context.Context) (*tas.DeletePassphraseResponse, error) {
+func (c *Client) DeletePassphrase(ctx context.Context, passphraseID tas.PassphraseID) (*tas.DeletePassphraseResponse, error) {
+	req := &tas.DeletePassphrase{PassphraseID: passphraseID}
 	out := &tas.DeletePassphraseResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeletePassphrase", &tas.DeletePassphrase{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/DeletePassphrase", req, out)
 	return out, err
 }
 
 func (c *Client) GetAllCRLs(ctx context.Context) (*tas.GetAllCRLsResponse, error) {
+	req := &tas.GetAllCRLs{}
 	out := &tas.GetAllCRLsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllCRLs", &tas.GetAllCRLs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllCRLs", req, out)
 	return out, err
 }
 
 func (c *Client) GetAllCertPathValidationPolicies(ctx context.Context) (*tas.GetAllCertPathValidationPoliciesResponse, error) {
+	req := &tas.GetAllCertPathValidationPolicies{}
 	out := &tas.GetAllCertPathValidationPoliciesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllCertPathValidationPolicies", &tas.GetAllCertPathValidationPolicies{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllCertPathValidationPolicies", req, out)
 	return out, err
 }
 
 func (c *Client) GetAllCertificates(ctx context.Context) (*tas.GetAllCertificatesResponse, error) {
+	req := &tas.GetAllCertificates{}
 	out := &tas.GetAllCertificatesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllCertificates", &tas.GetAllCertificates{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllCertificates", req, out)
 	return out, err
 }
 
 func (c *Client) GetAllCertificationPaths(ctx context.Context) (*tas.GetAllCertificationPathsResponse, error) {
+	req := &tas.GetAllCertificationPaths{}
 	out := &tas.GetAllCertificationPathsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllCertificationPaths", &tas.GetAllCertificationPaths{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllCertificationPaths", req, out)
 	return out, err
 }
 
 func (c *Client) GetAllDot1XConfigurations(ctx context.Context) (*tas.GetAllDot1XConfigurationsResponse, error) {
+	req := &tas.GetAllDot1XConfigurations{}
 	out := &tas.GetAllDot1XConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllDot1XConfigurations", &tas.GetAllDot1XConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllDot1XConfigurations", req, out)
 	return out, err
 }
 
 func (c *Client) GetAllKeys(ctx context.Context) (*tas.GetAllKeysResponse, error) {
+	req := &tas.GetAllKeys{}
 	out := &tas.GetAllKeysResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllKeys", &tas.GetAllKeys{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllKeys", req, out)
 	return out, err
 }
 
 func (c *Client) GetAllPassphrases(ctx context.Context) (*tas.GetAllPassphrasesResponse, error) {
+	req := &tas.GetAllPassphrases{}
 	out := &tas.GetAllPassphrasesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllPassphrases", &tas.GetAllPassphrases{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAllPassphrases", req, out)
 	return out, err
 }
 
 func (c *Client) GetAssignedCertPathValidationPolicies(ctx context.Context) (*tas.GetAssignedCertPathValidationPoliciesResponse, error) {
+	req := &tas.GetAssignedCertPathValidationPolicies{}
 	out := &tas.GetAssignedCertPathValidationPoliciesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAssignedCertPathValidationPolicies", &tas.GetAssignedCertPathValidationPolicies{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAssignedCertPathValidationPolicies", req, out)
 	return out, err
 }
 
 func (c *Client) GetAssignedMediaSigningCertificates(ctx context.Context) (*tas.GetAssignedMediaSigningCertificatesResponse, error) {
+	req := &tas.GetAssignedMediaSigningCertificates{}
 	out := &tas.GetAssignedMediaSigningCertificatesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAssignedMediaSigningCertificates", &tas.GetAssignedMediaSigningCertificates{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAssignedMediaSigningCertificates", req, out)
 	return out, err
 }
 
 func (c *Client) GetAssignedServerCertificates(ctx context.Context) (*tas.GetAssignedServerCertificatesResponse, error) {
+	req := &tas.GetAssignedServerCertificates{}
 	out := &tas.GetAssignedServerCertificatesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAssignedServerCertificates", &tas.GetAssignedServerCertificates{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAssignedServerCertificates", req, out)
 	return out, err
 }
 
-func (c *Client) GetAuthorizationServerConfigurations(ctx context.Context) (*tas.GetAuthorizationServerConfigurationsResponse, error) {
+func (c *Client) GetAuthorizationServerConfigurations(ctx context.Context, token *tt.ReferenceToken) (*tas.GetAuthorizationServerConfigurationsResponse, error) {
+	req := &tas.GetAuthorizationServerConfigurations{Token: token}
 	out := &tas.GetAuthorizationServerConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAuthorizationServerConfigurations", &tas.GetAuthorizationServerConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetAuthorizationServerConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetCRL(ctx context.Context) (*tas.GetCRLResponse, error) {
+func (c *Client) GetCRL(ctx context.Context, crlID tas.CRLID) (*tas.GetCRLResponse, error) {
+	req := &tas.GetCRL{CrlID: crlID}
 	out := &tas.GetCRLResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCRL", &tas.GetCRL{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCRL", req, out)
 	return out, err
 }
 
-func (c *Client) GetCertPathValidationPolicy(ctx context.Context) (*tas.GetCertPathValidationPolicyResponse, error) {
+func (c *Client) GetCertPathValidationPolicy(ctx context.Context, certPathValidationPolicyID tas.CertPathValidationPolicyID) (*tas.GetCertPathValidationPolicyResponse, error) {
+	req := &tas.GetCertPathValidationPolicy{CertPathValidationPolicyID: certPathValidationPolicyID}
 	out := &tas.GetCertPathValidationPolicyResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCertPathValidationPolicy", &tas.GetCertPathValidationPolicy{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCertPathValidationPolicy", req, out)
 	return out, err
 }
 
-func (c *Client) GetCertificate(ctx context.Context) (*tas.GetCertificateResponse, error) {
+func (c *Client) GetCertificate(ctx context.Context, certificateID tas.CertificateID) (*tas.GetCertificateResponse, error) {
+	req := &tas.GetCertificate{CertificateID: certificateID}
 	out := &tas.GetCertificateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCertificate", &tas.GetCertificate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCertificate", req, out)
 	return out, err
 }
 
-func (c *Client) GetCertificationPath(ctx context.Context) (*tas.GetCertificationPathResponse, error) {
+func (c *Client) GetCertificationPath(ctx context.Context, certificationPathID tas.CertificationPathID) (*tas.GetCertificationPathResponse, error) {
+	req := &tas.GetCertificationPath{CertificationPathID: certificationPathID}
 	out := &tas.GetCertificationPathResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCertificationPath", &tas.GetCertificationPath{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCertificationPath", req, out)
 	return out, err
 }
 
 func (c *Client) GetClientAuthenticationRequired(ctx context.Context) (*tas.GetClientAuthenticationRequiredResponse, error) {
+	req := &tas.GetClientAuthenticationRequired{}
 	out := &tas.GetClientAuthenticationRequiredResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetClientAuthenticationRequired", &tas.GetClientAuthenticationRequired{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetClientAuthenticationRequired", req, out)
 	return out, err
 }
 
 func (c *Client) GetCnMapsToUser(ctx context.Context) (*tas.GetCnMapsToUserResponse, error) {
+	req := &tas.GetCnMapsToUser{}
 	out := &tas.GetCnMapsToUserResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCnMapsToUser", &tas.GetCnMapsToUser{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetCnMapsToUser", req, out)
 	return out, err
 }
 
-func (c *Client) GetDot1XConfiguration(ctx context.Context) (*tas.GetDot1XConfigurationResponse, error) {
+func (c *Client) GetDot1XConfiguration(ctx context.Context, dot1XID tas.Dot1XID) (*tas.GetDot1XConfigurationResponse, error) {
+	req := &tas.GetDot1XConfiguration{Dot1XID: dot1XID}
 	out := &tas.GetDot1XConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetDot1XConfiguration", &tas.GetDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetDot1XConfiguration", req, out)
 	return out, err
 }
 
 func (c *Client) GetEnabledTLSVersions(ctx context.Context) (*tas.GetEnabledTLSVersionsResponse, error) {
+	req := &tas.GetEnabledTLSVersions{}
 	out := &tas.GetEnabledTLSVersionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetEnabledTLSVersions", &tas.GetEnabledTLSVersions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetEnabledTLSVersions", req, out)
 	return out, err
 }
 
 func (c *Client) GetJWTConfiguration(ctx context.Context) (*tas.GetJWTConfigurationResponse, error) {
+	req := &tas.GetJWTConfiguration{}
 	out := &tas.GetJWTConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetJWTConfiguration", &tas.GetJWTConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetJWTConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetKeyStatus(ctx context.Context) (*tas.GetKeyStatusResponse, error) {
+func (c *Client) GetKeyStatus(ctx context.Context, keyID tas.KeyID) (*tas.GetKeyStatusResponse, error) {
+	req := &tas.GetKeyStatus{KeyID: keyID}
 	out := &tas.GetKeyStatusResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetKeyStatus", &tas.GetKeyStatus{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetKeyStatus", req, out)
 	return out, err
 }
 
-func (c *Client) GetNetworkInterfaceDot1XConfiguration(ctx context.Context) (*tas.GetNetworkInterfaceDot1XConfigurationResponse, error) {
+func (c *Client) GetNetworkInterfaceDot1XConfiguration(ctx context.Context, token string) (*tas.GetNetworkInterfaceDot1XConfigurationResponse, error) {
+	req := &tas.GetNetworkInterfaceDot1XConfiguration{Xtoken: token}
 	out := &tas.GetNetworkInterfaceDot1XConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetNetworkInterfaceDot1XConfiguration", &tas.GetNetworkInterfaceDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetNetworkInterfaceDot1XConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetPrivateKeyStatus(ctx context.Context) (*tas.GetPrivateKeyStatusResponse, error) {
+func (c *Client) GetPrivateKeyStatus(ctx context.Context, keyID tas.KeyID) (*tas.GetPrivateKeyStatusResponse, error) {
+	req := &tas.GetPrivateKeyStatus{KeyID: keyID}
 	out := &tas.GetPrivateKeyStatusResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetPrivateKeyStatus", &tas.GetPrivateKeyStatus{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetPrivateKeyStatus", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tas.GetServiceCapabilitiesResponse, error) {
+	req := &tas.GetServiceCapabilities{}
 	out := &tas.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetServiceCapabilities", &tas.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveCertPathValidationPolicyAssignment(ctx context.Context) (*tas.RemoveCertPathValidationPolicyAssignmentResponse, error) {
+func (c *Client) RemoveCertPathValidationPolicyAssignment(ctx context.Context, certPathValidationPolicyID tas.CertPathValidationPolicyID) (*tas.RemoveCertPathValidationPolicyAssignmentResponse, error) {
+	req := &tas.RemoveCertPathValidationPolicyAssignment{CertPathValidationPolicyID: certPathValidationPolicyID}
 	out := &tas.RemoveCertPathValidationPolicyAssignmentResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/RemoveCertPathValidationPolicyAssignment", &tas.RemoveCertPathValidationPolicyAssignment{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/RemoveCertPathValidationPolicyAssignment", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveMediaSigningCertificateAssignment(ctx context.Context) (*tas.RemoveMediaSigningCertificateAssignmentResponse, error) {
+func (c *Client) RemoveMediaSigningCertificateAssignment(ctx context.Context, certificationPathID tas.CertificationPathID) (*tas.RemoveMediaSigningCertificateAssignmentResponse, error) {
+	req := &tas.RemoveMediaSigningCertificateAssignment{CertificationPathID: certificationPathID}
 	out := &tas.RemoveMediaSigningCertificateAssignmentResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/RemoveMediaSigningCertificateAssignment", &tas.RemoveMediaSigningCertificateAssignment{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/RemoveMediaSigningCertificateAssignment", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveServerCertificateAssignment(ctx context.Context) (*tas.RemoveServerCertificateAssignmentResponse, error) {
+func (c *Client) RemoveServerCertificateAssignment(ctx context.Context, certificationPathID tas.CertificationPathID) (*tas.RemoveServerCertificateAssignmentResponse, error) {
+	req := &tas.RemoveServerCertificateAssignment{CertificationPathID: certificationPathID}
 	out := &tas.RemoveServerCertificateAssignmentResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/RemoveServerCertificateAssignment", &tas.RemoveServerCertificateAssignment{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/RemoveServerCertificateAssignment", req, out)
 	return out, err
 }
 
-func (c *Client) ReplaceCertPathValidationPolicyAssignment(ctx context.Context) (*tas.ReplaceCertPathValidationPolicyAssignmentResponse, error) {
+func (c *Client) ReplaceCertPathValidationPolicyAssignment(ctx context.Context, oldCertPathValidationPolicyID tas.CertPathValidationPolicyID, newCertPathValidationPolicyID tas.CertPathValidationPolicyID) (*tas.ReplaceCertPathValidationPolicyAssignmentResponse, error) {
+	req := &tas.ReplaceCertPathValidationPolicyAssignment{OldCertPathValidationPolicyID: oldCertPathValidationPolicyID, NewCertPathValidationPolicyID: newCertPathValidationPolicyID}
 	out := &tas.ReplaceCertPathValidationPolicyAssignmentResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/ReplaceCertPathValidationPolicyAssignment", &tas.ReplaceCertPathValidationPolicyAssignment{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/ReplaceCertPathValidationPolicyAssignment", req, out)
 	return out, err
 }
 
-func (c *Client) ReplaceServerCertificateAssignment(ctx context.Context) (*tas.ReplaceServerCertificateAssignmentResponse, error) {
+func (c *Client) ReplaceServerCertificateAssignment(ctx context.Context, oldCertificationPathID tas.CertificationPathID, newCertificationPathID tas.CertificationPathID) (*tas.ReplaceServerCertificateAssignmentResponse, error) {
+	req := &tas.ReplaceServerCertificateAssignment{OldCertificationPathID: oldCertificationPathID, NewCertificationPathID: newCertificationPathID}
 	out := &tas.ReplaceServerCertificateAssignmentResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/ReplaceServerCertificateAssignment", &tas.ReplaceServerCertificateAssignment{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/ReplaceServerCertificateAssignment", req, out)
 	return out, err
 }
 
-func (c *Client) SetAuthorizationServerConfiguration(ctx context.Context) (*tas.SetAuthorizationServerConfigurationResponse, error) {
+func (c *Client) SetAuthorizationServerConfiguration(ctx context.Context, configuration tas.AuthorizationServerConfiguration) (*tas.SetAuthorizationServerConfigurationResponse, error) {
+	req := &tas.SetAuthorizationServerConfiguration{Configuration: configuration}
 	out := &tas.SetAuthorizationServerConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetAuthorizationServerConfiguration", &tas.SetAuthorizationServerConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetAuthorizationServerConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetCertPathValidationPolicy(ctx context.Context) (*tas.SetCertPathValidationPolicyResponse, error) {
+func (c *Client) SetCertPathValidationPolicy(ctx context.Context, certPathValidationPolicyID *tas.CertPathValidationPolicyID, certPathValidationPolicy tas.CertPathValidationPolicy) (*tas.SetCertPathValidationPolicyResponse, error) {
+	req := &tas.SetCertPathValidationPolicy{CertPathValidationPolicyID: certPathValidationPolicyID, CertPathValidationPolicy: certPathValidationPolicy}
 	out := &tas.SetCertPathValidationPolicyResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetCertPathValidationPolicy", &tas.SetCertPathValidationPolicy{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetCertPathValidationPolicy", req, out)
 	return out, err
 }
 
-func (c *Client) SetCertificationPath(ctx context.Context) (*tas.SetCertificationPathResponse, error) {
+func (c *Client) SetCertificationPath(ctx context.Context, certificationPathID tas.CertificationPathID, certificationPath tas.CertificationPath) (*tas.SetCertificationPathResponse, error) {
+	req := &tas.SetCertificationPath{CertificationPathID: certificationPathID, CertificationPath: certificationPath}
 	out := &tas.SetCertificationPathResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetCertificationPath", &tas.SetCertificationPath{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetCertificationPath", req, out)
 	return out, err
 }
 
-func (c *Client) SetClientAuthenticationRequired(ctx context.Context) (*tas.SetClientAuthenticationRequiredResponse, error) {
+func (c *Client) SetClientAuthenticationRequired(ctx context.Context, clientAuthenticationRequired bool) (*tas.SetClientAuthenticationRequiredResponse, error) {
+	req := &tas.SetClientAuthenticationRequired{XclientAuthenticationRequired: clientAuthenticationRequired}
 	out := &tas.SetClientAuthenticationRequiredResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetClientAuthenticationRequired", &tas.SetClientAuthenticationRequired{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetClientAuthenticationRequired", req, out)
 	return out, err
 }
 
-func (c *Client) SetCnMapsToUser(ctx context.Context) (*tas.SetCnMapsToUserResponse, error) {
+func (c *Client) SetCnMapsToUser(ctx context.Context, cnMapsToUser bool) (*tas.SetCnMapsToUserResponse, error) {
+	req := &tas.SetCnMapsToUser{XcnMapsToUser: cnMapsToUser}
 	out := &tas.SetCnMapsToUserResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetCnMapsToUser", &tas.SetCnMapsToUser{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetCnMapsToUser", req, out)
 	return out, err
 }
 
-func (c *Client) SetEnabledTLSVersions(ctx context.Context) (*tas.SetEnabledTLSVersionsResponse, error) {
+func (c *Client) SetEnabledTLSVersions(ctx context.Context, versions tas.TLSVersions) (*tas.SetEnabledTLSVersionsResponse, error) {
+	req := &tas.SetEnabledTLSVersions{Versions: versions}
 	out := &tas.SetEnabledTLSVersionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetEnabledTLSVersions", &tas.SetEnabledTLSVersions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetEnabledTLSVersions", req, out)
 	return out, err
 }
 
-func (c *Client) SetJWTConfiguration(ctx context.Context) (*tas.SetJWTConfigurationResponse, error) {
+func (c *Client) SetJWTConfiguration(ctx context.Context, configuration tas.JWTConfiguration) (*tas.SetJWTConfigurationResponse, error) {
+	req := &tas.SetJWTConfiguration{Configuration: configuration}
 	out := &tas.SetJWTConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetJWTConfiguration", &tas.SetJWTConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetJWTConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetNetworkInterfaceDot1XConfiguration(ctx context.Context) (*tas.SetNetworkInterfaceDot1XConfigurationResponse, error) {
+func (c *Client) SetNetworkInterfaceDot1XConfiguration(ctx context.Context, token string, dot1XID tas.Dot1XID) (*tas.SetNetworkInterfaceDot1XConfigurationResponse, error) {
+	req := &tas.SetNetworkInterfaceDot1XConfiguration{Xtoken: token, Dot1XID: dot1XID}
 	out := &tas.SetNetworkInterfaceDot1XConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetNetworkInterfaceDot1XConfiguration", &tas.SetNetworkInterfaceDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/SetNetworkInterfaceDot1XConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) UploadCRL(ctx context.Context) (*tas.UploadCRLResponse, error) {
+func (c *Client) UploadCRL(ctx context.Context, crl tas.Base64DERencodedASN1Value, alias *string) (*tas.UploadCRLResponse, error) {
+	req := &tas.UploadCRL{Crl: crl, Alias: alias}
 	out := &tas.UploadCRLResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadCRL", &tas.UploadCRL{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadCRL", req, out)
 	return out, err
 }
 
-func (c *Client) UploadCertificate(ctx context.Context) (*tas.UploadCertificateResponse, error) {
+func (c *Client) UploadCertificate(ctx context.Context, certificate tas.Base64DERencodedASN1Value, alias *string, keyAlias *string, privateKeyRequired *bool) (*tas.UploadCertificateResponse, error) {
+	req := &tas.UploadCertificate{Certificate: certificate, Alias: alias, KeyAlias: keyAlias, PrivateKeyRequired: privateKeyRequired}
 	out := &tas.UploadCertificateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadCertificate", &tas.UploadCertificate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadCertificate", req, out)
 	return out, err
 }
 
-func (c *Client) UploadCertificateWithPrivateKeyInPKCS12(ctx context.Context) (*tas.UploadCertificateWithPrivateKeyInPKCS12Response, error) {
+func (c *Client) UploadCertificateWithPrivateKeyInPKCS12(ctx context.Context, certWithPrivateKey tas.Base64DERencodedASN1Value, certificationPathAlias *string, keyAlias *string, ignoreAdditionalCertificates *bool, integrityPassphraseID *tas.PassphraseID, encryptionPassphraseID *tas.PassphraseID, passphrase *string) (*tas.UploadCertificateWithPrivateKeyInPKCS12Response, error) {
+	req := &tas.UploadCertificateWithPrivateKeyInPKCS12{CertWithPrivateKey: certWithPrivateKey, CertificationPathAlias: certificationPathAlias, KeyAlias: keyAlias, IgnoreAdditionalCertificates: ignoreAdditionalCertificates, IntegrityPassphraseID: integrityPassphraseID, EncryptionPassphraseID: encryptionPassphraseID, Passphrase: passphrase}
 	out := &tas.UploadCertificateWithPrivateKeyInPKCS12Response{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadCertificateWithPrivateKeyInPKCS12", &tas.UploadCertificateWithPrivateKeyInPKCS12{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadCertificateWithPrivateKeyInPKCS12", req, out)
 	return out, err
 }
 
-func (c *Client) UploadKeyPairInPKCS8(ctx context.Context) (*tas.UploadKeyPairInPKCS8Response, error) {
+func (c *Client) UploadKeyPairInPKCS8(ctx context.Context, keyPair tas.Base64DERencodedASN1Value, alias *string, encryptionPassphraseID *tas.PassphraseID, encryptionPassphrase *string) (*tas.UploadKeyPairInPKCS8Response, error) {
+	req := &tas.UploadKeyPairInPKCS8{KeyPair: keyPair, Alias: alias, EncryptionPassphraseID: encryptionPassphraseID, EncryptionPassphrase: encryptionPassphrase}
 	out := &tas.UploadKeyPairInPKCS8Response{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadKeyPairInPKCS8", &tas.UploadKeyPairInPKCS8{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadKeyPairInPKCS8", req, out)
 	return out, err
 }
 
-func (c *Client) UploadPassphrase(ctx context.Context) (*tas.UploadPassphraseResponse, error) {
+func (c *Client) UploadPassphrase(ctx context.Context, passphrase string, passphraseAlias *string) (*tas.UploadPassphraseResponse, error) {
+	req := &tas.UploadPassphrase{Passphrase: passphrase, PassphraseAlias: passphraseAlias}
 	out := &tas.UploadPassphraseResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadPassphrase", &tas.UploadPassphrase{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/advancedsecurity/wsdl/UploadPassphrase", req, out)
 	return out, err
 }
 

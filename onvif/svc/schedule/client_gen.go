@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/pacs"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tsc"
 )
@@ -27,111 +28,129 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) CreateSchedule(ctx context.Context) (*tsc.CreateScheduleResponse, error) {
+func (c *Client) CreateSchedule(ctx context.Context, schedule tsc.Schedule) (*tsc.CreateScheduleResponse, error) {
+	req := &tsc.CreateSchedule{Schedule: schedule}
 	out := &tsc.CreateScheduleResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/CreateSchedule", &tsc.CreateSchedule{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/CreateSchedule", req, out)
 	return out, err
 }
 
-func (c *Client) CreateSpecialDayGroup(ctx context.Context) (*tsc.CreateSpecialDayGroupResponse, error) {
+func (c *Client) CreateSpecialDayGroup(ctx context.Context, specialDayGroup tsc.SpecialDayGroup) (*tsc.CreateSpecialDayGroupResponse, error) {
+	req := &tsc.CreateSpecialDayGroup{SpecialDayGroup: specialDayGroup}
 	out := &tsc.CreateSpecialDayGroupResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/CreateSpecialDayGroup", &tsc.CreateSpecialDayGroup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/CreateSpecialDayGroup", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteSchedule(ctx context.Context) (*tsc.DeleteScheduleResponse, error) {
+func (c *Client) DeleteSchedule(ctx context.Context, token pacs.ReferenceToken) (*tsc.DeleteScheduleResponse, error) {
+	req := &tsc.DeleteSchedule{Token: token}
 	out := &tsc.DeleteScheduleResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/DeleteSchedule", &tsc.DeleteSchedule{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/DeleteSchedule", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteSpecialDayGroup(ctx context.Context) (*tsc.DeleteSpecialDayGroupResponse, error) {
+func (c *Client) DeleteSpecialDayGroup(ctx context.Context, token pacs.ReferenceToken) (*tsc.DeleteSpecialDayGroupResponse, error) {
+	req := &tsc.DeleteSpecialDayGroup{Token: token}
 	out := &tsc.DeleteSpecialDayGroupResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/DeleteSpecialDayGroup", &tsc.DeleteSpecialDayGroup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/DeleteSpecialDayGroup", req, out)
 	return out, err
 }
 
-func (c *Client) GetScheduleInfo(ctx context.Context) (*tsc.GetScheduleInfoResponse, error) {
+func (c *Client) GetScheduleInfo(ctx context.Context, token []pacs.ReferenceToken) (*tsc.GetScheduleInfoResponse, error) {
+	req := &tsc.GetScheduleInfo{Token: token}
 	out := &tsc.GetScheduleInfoResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleInfo", &tsc.GetScheduleInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleInfo", req, out)
 	return out, err
 }
 
-func (c *Client) GetScheduleInfoList(ctx context.Context) (*tsc.GetScheduleInfoListResponse, error) {
+func (c *Client) GetScheduleInfoList(ctx context.Context, limit *int32, startReference *string) (*tsc.GetScheduleInfoListResponse, error) {
+	req := &tsc.GetScheduleInfoList{Limit: limit, StartReference: startReference}
 	out := &tsc.GetScheduleInfoListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleInfoList", &tsc.GetScheduleInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleInfoList", req, out)
 	return out, err
 }
 
-func (c *Client) GetScheduleList(ctx context.Context) (*tsc.GetScheduleListResponse, error) {
+func (c *Client) GetScheduleList(ctx context.Context, limit *int32, startReference *string) (*tsc.GetScheduleListResponse, error) {
+	req := &tsc.GetScheduleList{Limit: limit, StartReference: startReference}
 	out := &tsc.GetScheduleListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleList", &tsc.GetScheduleList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleList", req, out)
 	return out, err
 }
 
-func (c *Client) GetScheduleState(ctx context.Context) (*tsc.GetScheduleStateResponse, error) {
+func (c *Client) GetScheduleState(ctx context.Context, token pacs.ReferenceToken) (*tsc.GetScheduleStateResponse, error) {
+	req := &tsc.GetScheduleState{Token: token}
 	out := &tsc.GetScheduleStateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleState", &tsc.GetScheduleState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleState", req, out)
 	return out, err
 }
 
-func (c *Client) GetSchedules(ctx context.Context) (*tsc.GetSchedulesResponse, error) {
+func (c *Client) GetSchedules(ctx context.Context, token []pacs.ReferenceToken) (*tsc.GetSchedulesResponse, error) {
+	req := &tsc.GetSchedules{Token: token}
 	out := &tsc.GetSchedulesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSchedules", &tsc.GetSchedules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSchedules", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tsc.GetServiceCapabilitiesResponse, error) {
+	req := &tsc.GetServiceCapabilities{}
 	out := &tsc.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetServiceCapabilities", &tsc.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) GetSpecialDayGroupInfo(ctx context.Context) (*tsc.GetSpecialDayGroupInfoResponse, error) {
+func (c *Client) GetSpecialDayGroupInfo(ctx context.Context, token []pacs.ReferenceToken) (*tsc.GetSpecialDayGroupInfoResponse, error) {
+	req := &tsc.GetSpecialDayGroupInfo{Token: token}
 	out := &tsc.GetSpecialDayGroupInfoResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupInfo", &tsc.GetSpecialDayGroupInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupInfo", req, out)
 	return out, err
 }
 
-func (c *Client) GetSpecialDayGroupInfoList(ctx context.Context) (*tsc.GetSpecialDayGroupInfoListResponse, error) {
+func (c *Client) GetSpecialDayGroupInfoList(ctx context.Context, limit *int32, startReference *string) (*tsc.GetSpecialDayGroupInfoListResponse, error) {
+	req := &tsc.GetSpecialDayGroupInfoList{Limit: limit, StartReference: startReference}
 	out := &tsc.GetSpecialDayGroupInfoListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupInfoList", &tsc.GetSpecialDayGroupInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupInfoList", req, out)
 	return out, err
 }
 
-func (c *Client) GetSpecialDayGroupList(ctx context.Context) (*tsc.GetSpecialDayGroupListResponse, error) {
+func (c *Client) GetSpecialDayGroupList(ctx context.Context, limit *int32, startReference *string) (*tsc.GetSpecialDayGroupListResponse, error) {
+	req := &tsc.GetSpecialDayGroupList{Limit: limit, StartReference: startReference}
 	out := &tsc.GetSpecialDayGroupListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupList", &tsc.GetSpecialDayGroupList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupList", req, out)
 	return out, err
 }
 
-func (c *Client) GetSpecialDayGroups(ctx context.Context) (*tsc.GetSpecialDayGroupsResponse, error) {
+func (c *Client) GetSpecialDayGroups(ctx context.Context, token []pacs.ReferenceToken) (*tsc.GetSpecialDayGroupsResponse, error) {
+	req := &tsc.GetSpecialDayGroups{Token: token}
 	out := &tsc.GetSpecialDayGroupsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroups", &tsc.GetSpecialDayGroups{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroups", req, out)
 	return out, err
 }
 
-func (c *Client) ModifySchedule(ctx context.Context) (*tsc.ModifyScheduleResponse, error) {
+func (c *Client) ModifySchedule(ctx context.Context, schedule tsc.Schedule) (*tsc.ModifyScheduleResponse, error) {
+	req := &tsc.ModifySchedule{Schedule: schedule}
 	out := &tsc.ModifyScheduleResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/ModifySchedule", &tsc.ModifySchedule{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/ModifySchedule", req, out)
 	return out, err
 }
 
-func (c *Client) ModifySpecialDayGroup(ctx context.Context) (*tsc.ModifySpecialDayGroupResponse, error) {
+func (c *Client) ModifySpecialDayGroup(ctx context.Context, specialDayGroup tsc.SpecialDayGroup) (*tsc.ModifySpecialDayGroupResponse, error) {
+	req := &tsc.ModifySpecialDayGroup{SpecialDayGroup: specialDayGroup}
 	out := &tsc.ModifySpecialDayGroupResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/ModifySpecialDayGroup", &tsc.ModifySpecialDayGroup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/ModifySpecialDayGroup", req, out)
 	return out, err
 }
 
-func (c *Client) SetSchedule(ctx context.Context) (*tsc.SetScheduleResponse, error) {
+func (c *Client) SetSchedule(ctx context.Context, schedule tsc.Schedule) (*tsc.SetScheduleResponse, error) {
+	req := &tsc.SetSchedule{Schedule: schedule}
 	out := &tsc.SetScheduleResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/SetSchedule", &tsc.SetSchedule{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/SetSchedule", req, out)
 	return out, err
 }
 
-func (c *Client) SetSpecialDayGroup(ctx context.Context) (*tsc.SetSpecialDayGroupResponse, error) {
+func (c *Client) SetSpecialDayGroup(ctx context.Context, specialDayGroup tsc.SpecialDayGroup) (*tsc.SetSpecialDayGroupResponse, error) {
+	req := &tsc.SetSpecialDayGroup{SpecialDayGroup: specialDayGroup}
 	out := &tsc.SetSpecialDayGroupResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/SetSpecialDayGroup", &tsc.SetSpecialDayGroup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/SetSpecialDayGroup", req, out)
 	return out, err
 }
 

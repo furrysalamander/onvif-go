@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tth"
 )
 
@@ -27,51 +28,59 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) GetConfiguration(ctx context.Context) (*tth.GetConfigurationResponse, error) {
+func (c *Client) GetConfiguration(ctx context.Context, videoSourceToken tt.ReferenceToken) (*tth.GetConfigurationResponse, error) {
+	req := &tth.GetConfiguration{VideoSourceToken: videoSourceToken}
 	out := &tth.GetConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetConfiguration", &tth.GetConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetConfigurationOptions(ctx context.Context) (*tth.GetConfigurationOptionsResponse, error) {
+func (c *Client) GetConfigurationOptions(ctx context.Context, videoSourceToken tt.ReferenceToken) (*tth.GetConfigurationOptionsResponse, error) {
+	req := &tth.GetConfigurationOptions{VideoSourceToken: videoSourceToken}
 	out := &tth.GetConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetConfigurationOptions", &tth.GetConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetConfigurations(ctx context.Context) (*tth.GetConfigurationsResponse, error) {
+	req := &tth.GetConfigurations{}
 	out := &tth.GetConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetConfigurations", &tth.GetConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetRadiometryConfiguration(ctx context.Context) (*tth.GetRadiometryConfigurationResponse, error) {
+func (c *Client) GetRadiometryConfiguration(ctx context.Context, videoSourceToken tt.ReferenceToken) (*tth.GetRadiometryConfigurationResponse, error) {
+	req := &tth.GetRadiometryConfiguration{VideoSourceToken: videoSourceToken}
 	out := &tth.GetRadiometryConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetRadiometryConfiguration", &tth.GetRadiometryConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetRadiometryConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetRadiometryConfigurationOptions(ctx context.Context) (*tth.GetRadiometryConfigurationOptionsResponse, error) {
+func (c *Client) GetRadiometryConfigurationOptions(ctx context.Context, videoSourceToken tt.ReferenceToken) (*tth.GetRadiometryConfigurationOptionsResponse, error) {
+	req := &tth.GetRadiometryConfigurationOptions{VideoSourceToken: videoSourceToken}
 	out := &tth.GetRadiometryConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetRadiometryConfigurationOptions", &tth.GetRadiometryConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetRadiometryConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tth.GetServiceCapabilitiesResponse, error) {
+	req := &tth.GetServiceCapabilities{}
 	out := &tth.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetServiceCapabilities", &tth.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) SetConfiguration(ctx context.Context) (*tth.SetConfigurationResponse, error) {
+func (c *Client) SetConfiguration(ctx context.Context, videoSourceToken tt.ReferenceToken, configuration tth.Configuration) (*tth.SetConfigurationResponse, error) {
+	req := &tth.SetConfiguration{VideoSourceToken: videoSourceToken, Configuration: configuration}
 	out := &tth.SetConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/SetConfiguration", &tth.SetConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/SetConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetRadiometryConfiguration(ctx context.Context) (*tth.SetRadiometryConfigurationResponse, error) {
+func (c *Client) SetRadiometryConfiguration(ctx context.Context, videoSourceToken tt.ReferenceToken, configuration tth.RadiometryConfiguration) (*tth.SetRadiometryConfigurationResponse, error) {
+	req := &tth.SetRadiometryConfiguration{VideoSourceToken: videoSourceToken, Configuration: configuration}
 	out := &tth.SetRadiometryConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/SetRadiometryConfiguration", &tth.SetRadiometryConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/thermal/wsdl/SetRadiometryConfiguration", req, out)
 	return out, err
 }
 

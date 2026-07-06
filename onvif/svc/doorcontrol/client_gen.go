@@ -6,6 +6,8 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/core"
+	"github.com/furrysalamander/onvif-go/onvif/schema/pacs"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tdc"
 )
@@ -27,117 +29,136 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) AccessDoor(ctx context.Context) (*tdc.AccessDoorResponse, error) {
+func (c *Client) AccessDoor(ctx context.Context, token pacs.ReferenceToken, useExtendedTime *bool, accessTime **core.Duration, openTooLongTime **core.Duration, preAlarmTime **core.Duration, extension *tdc.AccessDoorExtension) (*tdc.AccessDoorResponse, error) {
+	req := &tdc.AccessDoor{Token: token, UseExtendedTime: useExtendedTime, AccessTime: accessTime, OpenTooLongTime: openTooLongTime, PreAlarmTime: preAlarmTime, Extension: extension}
 	out := &tdc.AccessDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/AccessDoor", &tdc.AccessDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/AccessDoor", req, out)
 	return out, err
 }
 
-func (c *Client) BlockDoor(ctx context.Context) (*tdc.BlockDoorResponse, error) {
+func (c *Client) BlockDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.BlockDoorResponse, error) {
+	req := &tdc.BlockDoor{Token: token}
 	out := &tdc.BlockDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/BlockDoor", &tdc.BlockDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/BlockDoor", req, out)
 	return out, err
 }
 
-func (c *Client) CreateDoor(ctx context.Context) (*tdc.CreateDoorResponse, error) {
+func (c *Client) CreateDoor(ctx context.Context, door tdc.Door) (*tdc.CreateDoorResponse, error) {
+	req := &tdc.CreateDoor{Door: door}
 	out := &tdc.CreateDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/CreateDoor", &tdc.CreateDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/CreateDoor", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteDoor(ctx context.Context) (*tdc.DeleteDoorResponse, error) {
+func (c *Client) DeleteDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.DeleteDoorResponse, error) {
+	req := &tdc.DeleteDoor{Token: token}
 	out := &tdc.DeleteDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/DeleteDoor", &tdc.DeleteDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/DeleteDoor", req, out)
 	return out, err
 }
 
-func (c *Client) DoubleLockDoor(ctx context.Context) (*tdc.DoubleLockDoorResponse, error) {
+func (c *Client) DoubleLockDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.DoubleLockDoorResponse, error) {
+	req := &tdc.DoubleLockDoor{Token: token}
 	out := &tdc.DoubleLockDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/DoubleLockDoor", &tdc.DoubleLockDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/DoubleLockDoor", req, out)
 	return out, err
 }
 
-func (c *Client) GetDoorInfo(ctx context.Context) (*tdc.GetDoorInfoResponse, error) {
+func (c *Client) GetDoorInfo(ctx context.Context, token []pacs.ReferenceToken) (*tdc.GetDoorInfoResponse, error) {
+	req := &tdc.GetDoorInfo{Token: token}
 	out := &tdc.GetDoorInfoResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorInfo", &tdc.GetDoorInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorInfo", req, out)
 	return out, err
 }
 
-func (c *Client) GetDoorInfoList(ctx context.Context) (*tdc.GetDoorInfoListResponse, error) {
+func (c *Client) GetDoorInfoList(ctx context.Context, limit *int32, startReference *string) (*tdc.GetDoorInfoListResponse, error) {
+	req := &tdc.GetDoorInfoList{Limit: limit, StartReference: startReference}
 	out := &tdc.GetDoorInfoListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorInfoList", &tdc.GetDoorInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorInfoList", req, out)
 	return out, err
 }
 
-func (c *Client) GetDoorList(ctx context.Context) (*tdc.GetDoorListResponse, error) {
+func (c *Client) GetDoorList(ctx context.Context, limit *int32, startReference *string) (*tdc.GetDoorListResponse, error) {
+	req := &tdc.GetDoorList{Limit: limit, StartReference: startReference}
 	out := &tdc.GetDoorListResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorList", &tdc.GetDoorList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorList", req, out)
 	return out, err
 }
 
-func (c *Client) GetDoorState(ctx context.Context) (*tdc.GetDoorStateResponse, error) {
+func (c *Client) GetDoorState(ctx context.Context, token pacs.ReferenceToken) (*tdc.GetDoorStateResponse, error) {
+	req := &tdc.GetDoorState{Token: token}
 	out := &tdc.GetDoorStateResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorState", &tdc.GetDoorState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorState", req, out)
 	return out, err
 }
 
-func (c *Client) GetDoors(ctx context.Context) (*tdc.GetDoorsResponse, error) {
+func (c *Client) GetDoors(ctx context.Context, token []pacs.ReferenceToken) (*tdc.GetDoorsResponse, error) {
+	req := &tdc.GetDoors{Token: token}
 	out := &tdc.GetDoorsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoors", &tdc.GetDoors{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoors", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tdc.GetServiceCapabilitiesResponse, error) {
+	req := &tdc.GetServiceCapabilities{}
 	out := &tdc.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetServiceCapabilities", &tdc.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) LockDoor(ctx context.Context) (*tdc.LockDoorResponse, error) {
+func (c *Client) LockDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.LockDoorResponse, error) {
+	req := &tdc.LockDoor{Token: token}
 	out := &tdc.LockDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDoor", &tdc.LockDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDoor", req, out)
 	return out, err
 }
 
-func (c *Client) LockDownDoor(ctx context.Context) (*tdc.LockDownDoorResponse, error) {
+func (c *Client) LockDownDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.LockDownDoorResponse, error) {
+	req := &tdc.LockDownDoor{Token: token}
 	out := &tdc.LockDownDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDownDoor", &tdc.LockDownDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDownDoor", req, out)
 	return out, err
 }
 
-func (c *Client) LockDownReleaseDoor(ctx context.Context) (*tdc.LockDownReleaseDoorResponse, error) {
+func (c *Client) LockDownReleaseDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.LockDownReleaseDoorResponse, error) {
+	req := &tdc.LockDownReleaseDoor{Token: token}
 	out := &tdc.LockDownReleaseDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDownReleaseDoor", &tdc.LockDownReleaseDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDownReleaseDoor", req, out)
 	return out, err
 }
 
-func (c *Client) LockOpenDoor(ctx context.Context) (*tdc.LockOpenDoorResponse, error) {
+func (c *Client) LockOpenDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.LockOpenDoorResponse, error) {
+	req := &tdc.LockOpenDoor{Token: token}
 	out := &tdc.LockOpenDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockOpenDoor", &tdc.LockOpenDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockOpenDoor", req, out)
 	return out, err
 }
 
-func (c *Client) LockOpenReleaseDoor(ctx context.Context) (*tdc.LockOpenReleaseDoorResponse, error) {
+func (c *Client) LockOpenReleaseDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.LockOpenReleaseDoorResponse, error) {
+	req := &tdc.LockOpenReleaseDoor{Token: token}
 	out := &tdc.LockOpenReleaseDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockOpenReleaseDoor", &tdc.LockOpenReleaseDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockOpenReleaseDoor", req, out)
 	return out, err
 }
 
-func (c *Client) ModifyDoor(ctx context.Context) (*tdc.ModifyDoorResponse, error) {
+func (c *Client) ModifyDoor(ctx context.Context, door tdc.Door) (*tdc.ModifyDoorResponse, error) {
+	req := &tdc.ModifyDoor{Door: door}
 	out := &tdc.ModifyDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/ModifyDoor", &tdc.ModifyDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/ModifyDoor", req, out)
 	return out, err
 }
 
-func (c *Client) SetDoor(ctx context.Context) (*tdc.SetDoorResponse, error) {
+func (c *Client) SetDoor(ctx context.Context, door tdc.Door) (*tdc.SetDoorResponse, error) {
+	req := &tdc.SetDoor{Door: door}
 	out := &tdc.SetDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/SetDoor", &tdc.SetDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/SetDoor", req, out)
 	return out, err
 }
 
-func (c *Client) UnlockDoor(ctx context.Context) (*tdc.UnlockDoorResponse, error) {
+func (c *Client) UnlockDoor(ctx context.Context, token pacs.ReferenceToken) (*tdc.UnlockDoorResponse, error) {
+	req := &tdc.UnlockDoor{Token: token}
 	out := &tdc.UnlockDoorResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/UnlockDoor", &tdc.UnlockDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/UnlockDoor", req, out)
 	return out, err
 }
 

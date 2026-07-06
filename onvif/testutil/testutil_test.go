@@ -5,12 +5,15 @@ import (
 	"testing"
 
 	"github.com/furrysalamander/onvif-go/onvif"
-	"github.com/furrysalamander/onvif-go/onvif/devicemgmt"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
+	"github.com/furrysalamander/onvif-go/onvif/svc/devicemgmt"
 	"github.com/furrysalamander/onvif-go/onvif/svc/events"
 	"github.com/furrysalamander/onvif-go/onvif/svc/imaging"
 	"github.com/furrysalamander/onvif-go/onvif/svc/media"
 	"github.com/furrysalamander/onvif-go/onvif/svc/ptz"
 )
+
+func boolPtr(v bool) *bool { return &v }
 
 func TestRoundTrip_GetDeviceInformation(t *testing.T) {
 	WithMockServer(t, func(addr string) {
@@ -37,7 +40,7 @@ func TestRoundTrip_GetServices(t *testing.T) {
 	WithMockServer(t, func(addr string) {
 		c := devicemgmt.NewClient(addr, "admin", "password")
 		ctx := context.Background()
-		svcs, err := c.GetServices(ctx)
+		svcs, err := c.GetServices(ctx, false)
 		if err != nil {
 			t.Fatalf("GetServices: %v", err)
 		}
@@ -93,13 +96,13 @@ func TestRoundTrip_Media(t *testing.T) {
 		}
 		t.Logf("Media.GetVideoSources: OK")
 
-		stream, err := c.GetStreamUri(ctx)
+		stream, err := c.GetStreamUri(ctx, tt.StreamSetup{}, tt.ReferenceToken("profile1"))
 		if err != nil {
 			t.Fatalf("GetStreamUri: %v", err)
 		}
 		t.Logf("Media.GetStreamUri: %s", stream.MediaUri.Uri)
 
-		_, err = c.GetSnapshotUri(ctx)
+		_, err = c.GetSnapshotUri(ctx, tt.ReferenceToken("profile1"))
 		if err != nil {
 			t.Fatalf("GetSnapshotUri: %v", err)
 		}
@@ -118,31 +121,31 @@ func TestRoundTrip_PTZ(t *testing.T) {
 		}
 		t.Logf("PTZ.GetNodes: %d nodes", len(nodes.PTZNode))
 
-		_, err = c.GetStatus(ctx)
+		_, err = c.GetStatus(ctx, tt.ReferenceToken("profile1"))
 		if err != nil {
 			t.Fatalf("GetStatus: %v", err)
 		}
 		t.Logf("PTZ.GetStatus: OK")
 
-		_, err = c.AbsoluteMove(ctx)
+		_, err = c.AbsoluteMove(ctx, tt.ReferenceToken("profile1"), tt.PTZVector{}, nil)
 		if err != nil {
 			t.Fatalf("AbsoluteMove: %v", err)
 		}
 		t.Logf("PTZ.AbsoluteMove: OK")
 
-		_, err = c.ContinuousMove(ctx)
+		_, err = c.ContinuousMove(ctx, tt.ReferenceToken("profile1"), tt.PTZSpeed{}, nil)
 		if err != nil {
 			t.Fatalf("ContinuousMove: %v", err)
 		}
 		t.Logf("PTZ.ContinuousMove: OK")
 
-		_, err = c.Stop(ctx)
+		_, err = c.Stop(ctx, tt.ReferenceToken("profile1"), boolPtr(false), boolPtr(false))
 		if err != nil {
 			t.Fatalf("Stop: %v", err)
 		}
 		t.Logf("PTZ.Stop: OK")
 
-		_, err = c.GetPresets(ctx)
+		_, err = c.GetPresets(ctx, tt.ReferenceToken("profile1"))
 		if err != nil {
 			t.Fatalf("GetPresets: %v", err)
 		}
@@ -155,13 +158,13 @@ func TestRoundTrip_Events(t *testing.T) {
 		c := events.NewClient(addr, "admin", "password")
 		ctx := context.Background()
 
-		_, err := c.CreatePullPointSubscription(ctx)
+		_, err := c.CreatePullPointSubscription(ctx, nil, nil)
 		if err != nil {
 			t.Fatalf("CreatePullPointSubscription: %v", err)
 		}
 		t.Logf("Events.CreatePullPointSubscription: OK")
 
-		_, err = c.PullMessages(ctx)
+		_, err = c.PullMessages(ctx, nil, 1024)
 		if err != nil {
 			t.Fatalf("PullMessages: %v", err)
 		}
@@ -174,19 +177,19 @@ func TestRoundTrip_Imaging(t *testing.T) {
 		c := imaging.NewClient(addr, "admin", "password")
 		ctx := context.Background()
 
-		_, err := c.GetImagingSettings(ctx)
+		_, err := c.GetImagingSettings(ctx, tt.ReferenceToken("videosource1"))
 		if err != nil {
 			t.Fatalf("GetImagingSettings: %v", err)
 		}
 		t.Logf("Imaging.GetImagingSettings: OK")
 
-		_, err = c.GetMoveOptions(ctx)
+		_, err = c.GetMoveOptions(ctx, tt.ReferenceToken("videosource1"))
 		if err != nil {
 			t.Fatalf("GetMoveOptions: %v", err)
 		}
 		t.Logf("Imaging.GetMoveOptions: OK")
 
-		_, err = c.GetOptions(ctx)
+		_, err = c.GetOptions(ctx, tt.ReferenceToken("videosource1"))
 		if err != nil {
 			t.Fatalf("GetOptions: %v", err)
 		}

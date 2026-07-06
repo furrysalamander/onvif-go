@@ -8,6 +8,7 @@ import (
 
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 	"github.com/furrysalamander/onvif-go/onvif/schema/trt"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
 const actionBase = "http://www.onvif.org/ver10/media/wsdl"
@@ -27,477 +28,556 @@ func NewClientWithTransport(c *soaphdr.Client) *Client {
 func (c *Client) HTTP() *http.Client { return c.c.HTTP }
 func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
-func (c *Client) AddAudioDecoderConfiguration(ctx context.Context) (*trt.AddAudioDecoderConfigurationResponse, error) {
+func (c *Client) AddAudioDecoderConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddAudioDecoderConfigurationResponse, error) {
+	req := &trt.AddAudioDecoderConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddAudioDecoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddAudioDecoderConfiguration", &trt.AddAudioDecoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddAudioDecoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddAudioEncoderConfiguration(ctx context.Context) (*trt.AddAudioEncoderConfigurationResponse, error) {
+func (c *Client) AddAudioEncoderConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddAudioEncoderConfigurationResponse, error) {
+	req := &trt.AddAudioEncoderConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddAudioEncoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddAudioEncoderConfiguration", &trt.AddAudioEncoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddAudioEncoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddAudioOutputConfiguration(ctx context.Context) (*trt.AddAudioOutputConfigurationResponse, error) {
+func (c *Client) AddAudioOutputConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddAudioOutputConfigurationResponse, error) {
+	req := &trt.AddAudioOutputConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddAudioOutputConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddAudioOutputConfiguration", &trt.AddAudioOutputConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddAudioOutputConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddAudioSourceConfiguration(ctx context.Context) (*trt.AddAudioSourceConfigurationResponse, error) {
+func (c *Client) AddAudioSourceConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddAudioSourceConfigurationResponse, error) {
+	req := &trt.AddAudioSourceConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddAudioSourceConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddAudioSourceConfiguration", &trt.AddAudioSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddAudioSourceConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddMetadataConfiguration(ctx context.Context) (*trt.AddMetadataConfigurationResponse, error) {
+func (c *Client) AddMetadataConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddMetadataConfigurationResponse, error) {
+	req := &trt.AddMetadataConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddMetadataConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddMetadataConfiguration", &trt.AddMetadataConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddMetadataConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddPTZConfiguration(ctx context.Context) (*trt.AddPTZConfigurationResponse, error) {
+func (c *Client) AddPTZConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddPTZConfigurationResponse, error) {
+	req := &trt.AddPTZConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddPTZConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddPTZConfiguration", &trt.AddPTZConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddPTZConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddVideoAnalyticsConfiguration(ctx context.Context) (*trt.AddVideoAnalyticsConfigurationResponse, error) {
+func (c *Client) AddVideoAnalyticsConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddVideoAnalyticsConfigurationResponse, error) {
+	req := &trt.AddVideoAnalyticsConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddVideoAnalyticsConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddVideoAnalyticsConfiguration", &trt.AddVideoAnalyticsConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddVideoAnalyticsConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddVideoEncoderConfiguration(ctx context.Context) (*trt.AddVideoEncoderConfigurationResponse, error) {
+func (c *Client) AddVideoEncoderConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddVideoEncoderConfigurationResponse, error) {
+	req := &trt.AddVideoEncoderConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddVideoEncoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddVideoEncoderConfiguration", &trt.AddVideoEncoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddVideoEncoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) AddVideoSourceConfiguration(ctx context.Context) (*trt.AddVideoSourceConfigurationResponse, error) {
+func (c *Client) AddVideoSourceConfiguration(ctx context.Context, profileToken tt.ReferenceToken, configurationToken tt.ReferenceToken) (*trt.AddVideoSourceConfigurationResponse, error) {
+	req := &trt.AddVideoSourceConfiguration{ProfileToken: profileToken, ConfigurationToken: configurationToken}
 	out := &trt.AddVideoSourceConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddVideoSourceConfiguration", &trt.AddVideoSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/AddVideoSourceConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) CreateOSD(ctx context.Context) (*trt.CreateOSDResponse, error) {
+func (c *Client) CreateOSD(ctx context.Context, oSD tt.OSDConfiguration) (*trt.CreateOSDResponse, error) {
+	req := &trt.CreateOSD{OSD: oSD}
 	out := &trt.CreateOSDResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/CreateOSD", &trt.CreateOSD{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/CreateOSD", req, out)
 	return out, err
 }
 
-func (c *Client) CreateProfile(ctx context.Context) (*trt.CreateProfileResponse, error) {
+func (c *Client) CreateProfile(ctx context.Context, name tt.Name, token *tt.ReferenceToken) (*trt.CreateProfileResponse, error) {
+	req := &trt.CreateProfile{Name: name, Token: token}
 	out := &trt.CreateProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/CreateProfile", &trt.CreateProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/CreateProfile", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteOSD(ctx context.Context) (*trt.DeleteOSDResponse, error) {
+func (c *Client) DeleteOSD(ctx context.Context, oSDToken tt.ReferenceToken) (*trt.DeleteOSDResponse, error) {
+	req := &trt.DeleteOSD{OSDToken: oSDToken}
 	out := &trt.DeleteOSDResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/DeleteOSD", &trt.DeleteOSD{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/DeleteOSD", req, out)
 	return out, err
 }
 
-func (c *Client) DeleteProfile(ctx context.Context) (*trt.DeleteProfileResponse, error) {
+func (c *Client) DeleteProfile(ctx context.Context, profileToken tt.ReferenceToken) (*trt.DeleteProfileResponse, error) {
+	req := &trt.DeleteProfile{ProfileToken: profileToken}
 	out := &trt.DeleteProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/DeleteProfile", &trt.DeleteProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/DeleteProfile", req, out)
 	return out, err
 }
 
-func (c *Client) GetAudioDecoderConfiguration(ctx context.Context) (*trt.GetAudioDecoderConfigurationResponse, error) {
+func (c *Client) GetAudioDecoderConfiguration(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetAudioDecoderConfigurationResponse, error) {
+	req := &trt.GetAudioDecoderConfiguration{ConfigurationToken: configurationToken}
 	out := &trt.GetAudioDecoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfiguration", &trt.GetAudioDecoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetAudioDecoderConfigurationOptions(ctx context.Context) (*trt.GetAudioDecoderConfigurationOptionsResponse, error) {
+func (c *Client) GetAudioDecoderConfigurationOptions(ctx context.Context, configurationToken *tt.ReferenceToken, profileToken *tt.ReferenceToken) (*trt.GetAudioDecoderConfigurationOptionsResponse, error) {
+	req := &trt.GetAudioDecoderConfigurationOptions{ConfigurationToken: configurationToken, ProfileToken: profileToken}
 	out := &trt.GetAudioDecoderConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfigurationOptions", &trt.GetAudioDecoderConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetAudioDecoderConfigurations(ctx context.Context) (*trt.GetAudioDecoderConfigurationsResponse, error) {
+	req := &trt.GetAudioDecoderConfigurations{}
 	out := &trt.GetAudioDecoderConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfigurations", &trt.GetAudioDecoderConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioDecoderConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetAudioEncoderConfiguration(ctx context.Context) (*trt.GetAudioEncoderConfigurationResponse, error) {
+func (c *Client) GetAudioEncoderConfiguration(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetAudioEncoderConfigurationResponse, error) {
+	req := &trt.GetAudioEncoderConfiguration{ConfigurationToken: configurationToken}
 	out := &trt.GetAudioEncoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfiguration", &trt.GetAudioEncoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetAudioEncoderConfigurationOptions(ctx context.Context) (*trt.GetAudioEncoderConfigurationOptionsResponse, error) {
+func (c *Client) GetAudioEncoderConfigurationOptions(ctx context.Context, configurationToken *tt.ReferenceToken, profileToken *tt.ReferenceToken) (*trt.GetAudioEncoderConfigurationOptionsResponse, error) {
+	req := &trt.GetAudioEncoderConfigurationOptions{ConfigurationToken: configurationToken, ProfileToken: profileToken}
 	out := &trt.GetAudioEncoderConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfigurationOptions", &trt.GetAudioEncoderConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetAudioEncoderConfigurations(ctx context.Context) (*trt.GetAudioEncoderConfigurationsResponse, error) {
+	req := &trt.GetAudioEncoderConfigurations{}
 	out := &trt.GetAudioEncoderConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfigurations", &trt.GetAudioEncoderConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioEncoderConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetAudioOutputConfiguration(ctx context.Context) (*trt.GetAudioOutputConfigurationResponse, error) {
+func (c *Client) GetAudioOutputConfiguration(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetAudioOutputConfigurationResponse, error) {
+	req := &trt.GetAudioOutputConfiguration{ConfigurationToken: configurationToken}
 	out := &trt.GetAudioOutputConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfiguration", &trt.GetAudioOutputConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetAudioOutputConfigurationOptions(ctx context.Context) (*trt.GetAudioOutputConfigurationOptionsResponse, error) {
+func (c *Client) GetAudioOutputConfigurationOptions(ctx context.Context, configurationToken *tt.ReferenceToken, profileToken *tt.ReferenceToken) (*trt.GetAudioOutputConfigurationOptionsResponse, error) {
+	req := &trt.GetAudioOutputConfigurationOptions{ConfigurationToken: configurationToken, ProfileToken: profileToken}
 	out := &trt.GetAudioOutputConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfigurationOptions", &trt.GetAudioOutputConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetAudioOutputConfigurations(ctx context.Context) (*trt.GetAudioOutputConfigurationsResponse, error) {
+	req := &trt.GetAudioOutputConfigurations{}
 	out := &trt.GetAudioOutputConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfigurations", &trt.GetAudioOutputConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioOutputConfigurations", req, out)
 	return out, err
 }
 
 func (c *Client) GetAudioOutputs(ctx context.Context) (*trt.GetAudioOutputsResponse, error) {
+	req := &trt.GetAudioOutputs{}
 	out := &trt.GetAudioOutputsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioOutputs", &trt.GetAudioOutputs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioOutputs", req, out)
 	return out, err
 }
 
-func (c *Client) GetAudioSourceConfiguration(ctx context.Context) (*trt.GetAudioSourceConfigurationResponse, error) {
+func (c *Client) GetAudioSourceConfiguration(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetAudioSourceConfigurationResponse, error) {
+	req := &trt.GetAudioSourceConfiguration{ConfigurationToken: configurationToken}
 	out := &trt.GetAudioSourceConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioSourceConfiguration", &trt.GetAudioSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioSourceConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetAudioSourceConfigurationOptions(ctx context.Context) (*trt.GetAudioSourceConfigurationOptionsResponse, error) {
+func (c *Client) GetAudioSourceConfigurationOptions(ctx context.Context, configurationToken *tt.ReferenceToken, profileToken *tt.ReferenceToken) (*trt.GetAudioSourceConfigurationOptionsResponse, error) {
+	req := &trt.GetAudioSourceConfigurationOptions{ConfigurationToken: configurationToken, ProfileToken: profileToken}
 	out := &trt.GetAudioSourceConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioSourceConfigurationOptions", &trt.GetAudioSourceConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioSourceConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetAudioSourceConfigurations(ctx context.Context) (*trt.GetAudioSourceConfigurationsResponse, error) {
+	req := &trt.GetAudioSourceConfigurations{}
 	out := &trt.GetAudioSourceConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdlGetAudioSourceConfigurations/", &trt.GetAudioSourceConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdlGetAudioSourceConfigurations/", req, out)
 	return out, err
 }
 
 func (c *Client) GetAudioSources(ctx context.Context) (*trt.GetAudioSourcesResponse, error) {
+	req := &trt.GetAudioSources{}
 	out := &trt.GetAudioSourcesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioSources", &trt.GetAudioSources{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetAudioSources", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleAudioDecoderConfigurations(ctx context.Context) (*trt.GetCompatibleAudioDecoderConfigurationsResponse, error) {
+func (c *Client) GetCompatibleAudioDecoderConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetCompatibleAudioDecoderConfigurationsResponse, error) {
+	req := &trt.GetCompatibleAudioDecoderConfigurations{ProfileToken: profileToken}
 	out := &trt.GetCompatibleAudioDecoderConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioDecoderConfigurations", &trt.GetCompatibleAudioDecoderConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioDecoderConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleAudioEncoderConfigurations(ctx context.Context) (*trt.GetCompatibleAudioEncoderConfigurationsResponse, error) {
+func (c *Client) GetCompatibleAudioEncoderConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetCompatibleAudioEncoderConfigurationsResponse, error) {
+	req := &trt.GetCompatibleAudioEncoderConfigurations{ProfileToken: profileToken}
 	out := &trt.GetCompatibleAudioEncoderConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioEncoderConfigurations", &trt.GetCompatibleAudioEncoderConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioEncoderConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleAudioOutputConfigurations(ctx context.Context) (*trt.GetCompatibleAudioOutputConfigurationsResponse, error) {
+func (c *Client) GetCompatibleAudioOutputConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetCompatibleAudioOutputConfigurationsResponse, error) {
+	req := &trt.GetCompatibleAudioOutputConfigurations{ProfileToken: profileToken}
 	out := &trt.GetCompatibleAudioOutputConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioOutputConfigurations", &trt.GetCompatibleAudioOutputConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioOutputConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleAudioSourceConfigurations(ctx context.Context) (*trt.GetCompatibleAudioSourceConfigurationsResponse, error) {
+func (c *Client) GetCompatibleAudioSourceConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetCompatibleAudioSourceConfigurationsResponse, error) {
+	req := &trt.GetCompatibleAudioSourceConfigurations{ProfileToken: profileToken}
 	out := &trt.GetCompatibleAudioSourceConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioSourceConfigurations", &trt.GetCompatibleAudioSourceConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleAudioSourceConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleMetadataConfigurations(ctx context.Context) (*trt.GetCompatibleMetadataConfigurationsResponse, error) {
+func (c *Client) GetCompatibleMetadataConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetCompatibleMetadataConfigurationsResponse, error) {
+	req := &trt.GetCompatibleMetadataConfigurations{ProfileToken: profileToken}
 	out := &trt.GetCompatibleMetadataConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleMetadataConfigurations", &trt.GetCompatibleMetadataConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleMetadataConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleVideoAnalyticsConfigurations(ctx context.Context) (*trt.GetCompatibleVideoAnalyticsConfigurationsResponse, error) {
+func (c *Client) GetCompatibleVideoAnalyticsConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetCompatibleVideoAnalyticsConfigurationsResponse, error) {
+	req := &trt.GetCompatibleVideoAnalyticsConfigurations{ProfileToken: profileToken}
 	out := &trt.GetCompatibleVideoAnalyticsConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoAnalyticsConfigurations", &trt.GetCompatibleVideoAnalyticsConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoAnalyticsConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleVideoEncoderConfigurations(ctx context.Context) (*trt.GetCompatibleVideoEncoderConfigurationsResponse, error) {
+func (c *Client) GetCompatibleVideoEncoderConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetCompatibleVideoEncoderConfigurationsResponse, error) {
+	req := &trt.GetCompatibleVideoEncoderConfigurations{ProfileToken: profileToken}
 	out := &trt.GetCompatibleVideoEncoderConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoEncoderConfigurations", &trt.GetCompatibleVideoEncoderConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoEncoderConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetCompatibleVideoSourceConfigurations(ctx context.Context) (*trt.GetCompatibleVideoSourceConfigurationsResponse, error) {
+func (c *Client) GetCompatibleVideoSourceConfigurations(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetCompatibleVideoSourceConfigurationsResponse, error) {
+	req := &trt.GetCompatibleVideoSourceConfigurations{ProfileToken: profileToken}
 	out := &trt.GetCompatibleVideoSourceConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoSourceConfigurations", &trt.GetCompatibleVideoSourceConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetCompatibleVideoSourceConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetGuaranteedNumberOfVideoEncoderInstances(ctx context.Context) (*trt.GetGuaranteedNumberOfVideoEncoderInstancesResponse, error) {
+func (c *Client) GetGuaranteedNumberOfVideoEncoderInstances(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetGuaranteedNumberOfVideoEncoderInstancesResponse, error) {
+	req := &trt.GetGuaranteedNumberOfVideoEncoderInstances{ConfigurationToken: configurationToken}
 	out := &trt.GetGuaranteedNumberOfVideoEncoderInstancesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetGuaranteedNumberOfVideoEncoderInstances", &trt.GetGuaranteedNumberOfVideoEncoderInstances{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetGuaranteedNumberOfVideoEncoderInstances", req, out)
 	return out, err
 }
 
-func (c *Client) GetMetadataConfiguration(ctx context.Context) (*trt.GetMetadataConfigurationResponse, error) {
+func (c *Client) GetMetadataConfiguration(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetMetadataConfigurationResponse, error) {
+	req := &trt.GetMetadataConfiguration{ConfigurationToken: configurationToken}
 	out := &trt.GetMetadataConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetMetadataConfiguration", &trt.GetMetadataConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetMetadataConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetMetadataConfigurationOptions(ctx context.Context) (*trt.GetMetadataConfigurationOptionsResponse, error) {
+func (c *Client) GetMetadataConfigurationOptions(ctx context.Context, configurationToken *tt.ReferenceToken, profileToken *tt.ReferenceToken) (*trt.GetMetadataConfigurationOptionsResponse, error) {
+	req := &trt.GetMetadataConfigurationOptions{ConfigurationToken: configurationToken, ProfileToken: profileToken}
 	out := &trt.GetMetadataConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetMetadataConfigurationOptions", &trt.GetMetadataConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetMetadataConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetMetadataConfigurations(ctx context.Context) (*trt.GetMetadataConfigurationsResponse, error) {
+	req := &trt.GetMetadataConfigurations{}
 	out := &trt.GetMetadataConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetMetadataConfigurations", &trt.GetMetadataConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetMetadataConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetOSD(ctx context.Context) (*trt.GetOSDResponse, error) {
+func (c *Client) GetOSD(ctx context.Context, oSDToken tt.ReferenceToken) (*trt.GetOSDResponse, error) {
+	req := &trt.GetOSD{OSDToken: oSDToken}
 	out := &trt.GetOSDResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetOSD", &trt.GetOSD{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetOSD", req, out)
 	return out, err
 }
 
-func (c *Client) GetOSDOptions(ctx context.Context) (*trt.GetOSDOptionsResponse, error) {
+func (c *Client) GetOSDOptions(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetOSDOptionsResponse, error) {
+	req := &trt.GetOSDOptions{ConfigurationToken: configurationToken}
 	out := &trt.GetOSDOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetOSDOptions", &trt.GetOSDOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetOSDOptions", req, out)
 	return out, err
 }
 
-func (c *Client) GetOSDs(ctx context.Context) (*trt.GetOSDsResponse, error) {
+func (c *Client) GetOSDs(ctx context.Context, configurationToken *tt.ReferenceToken) (*trt.GetOSDsResponse, error) {
+	req := &trt.GetOSDs{ConfigurationToken: configurationToken}
 	out := &trt.GetOSDsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetOSDs", &trt.GetOSDs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetOSDs", req, out)
 	return out, err
 }
 
-func (c *Client) GetProfile(ctx context.Context) (*trt.GetProfileResponse, error) {
+func (c *Client) GetProfile(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetProfileResponse, error) {
+	req := &trt.GetProfile{ProfileToken: profileToken}
 	out := &trt.GetProfileResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdlGetProfile/", &trt.GetProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdlGetProfile/", req, out)
 	return out, err
 }
 
 func (c *Client) GetProfiles(ctx context.Context) (*trt.GetProfilesResponse, error) {
+	req := &trt.GetProfiles{}
 	out := &trt.GetProfilesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetProfiles", &trt.GetProfiles{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetProfiles", req, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*trt.GetServiceCapabilitiesResponse, error) {
+	req := &trt.GetServiceCapabilities{}
 	out := &trt.GetServiceCapabilitiesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetServiceCapabilities", &trt.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetServiceCapabilities", req, out)
 	return out, err
 }
 
-func (c *Client) GetSnapshotUri(ctx context.Context) (*trt.GetSnapshotUriResponse, error) {
+func (c *Client) GetSnapshotUri(ctx context.Context, profileToken tt.ReferenceToken) (*trt.GetSnapshotUriResponse, error) {
+	req := &trt.GetSnapshotUri{ProfileToken: profileToken}
 	out := &trt.GetSnapshotUriResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetSnapshotUri", &trt.GetSnapshotUri{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetSnapshotUri", req, out)
 	return out, err
 }
 
-func (c *Client) GetStreamUri(ctx context.Context) (*trt.GetStreamUriResponse, error) {
+func (c *Client) GetStreamUri(ctx context.Context, streamSetup tt.StreamSetup, profileToken tt.ReferenceToken) (*trt.GetStreamUriResponse, error) {
+	req := &trt.GetStreamUri{StreamSetup: streamSetup, ProfileToken: profileToken}
 	out := &trt.GetStreamUriResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetStreamUri", &trt.GetStreamUri{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetStreamUri", req, out)
 	return out, err
 }
 
-func (c *Client) GetVideoAnalyticsConfiguration(ctx context.Context) (*trt.GetVideoAnalyticsConfigurationResponse, error) {
+func (c *Client) GetVideoAnalyticsConfiguration(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetVideoAnalyticsConfigurationResponse, error) {
+	req := &trt.GetVideoAnalyticsConfiguration{ConfigurationToken: configurationToken}
 	out := &trt.GetVideoAnalyticsConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoAnalyticsConfiguration", &trt.GetVideoAnalyticsConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoAnalyticsConfiguration", req, out)
 	return out, err
 }
 
 func (c *Client) GetVideoAnalyticsConfigurations(ctx context.Context) (*trt.GetVideoAnalyticsConfigurationsResponse, error) {
+	req := &trt.GetVideoAnalyticsConfigurations{}
 	out := &trt.GetVideoAnalyticsConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoAnalyticsConfigurations", &trt.GetVideoAnalyticsConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoAnalyticsConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetVideoEncoderConfiguration(ctx context.Context) (*trt.GetVideoEncoderConfigurationResponse, error) {
+func (c *Client) GetVideoEncoderConfiguration(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetVideoEncoderConfigurationResponse, error) {
+	req := &trt.GetVideoEncoderConfiguration{ConfigurationToken: configurationToken}
 	out := &trt.GetVideoEncoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfiguration", &trt.GetVideoEncoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetVideoEncoderConfigurationOptions(ctx context.Context) (*trt.GetVideoEncoderConfigurationOptionsResponse, error) {
+func (c *Client) GetVideoEncoderConfigurationOptions(ctx context.Context, configurationToken *tt.ReferenceToken, profileToken *tt.ReferenceToken) (*trt.GetVideoEncoderConfigurationOptionsResponse, error) {
+	req := &trt.GetVideoEncoderConfigurationOptions{ConfigurationToken: configurationToken, ProfileToken: profileToken}
 	out := &trt.GetVideoEncoderConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfigurationOptions", &trt.GetVideoEncoderConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfigurationOptions", req, out)
 	return out, err
 }
 
 func (c *Client) GetVideoEncoderConfigurations(ctx context.Context) (*trt.GetVideoEncoderConfigurationsResponse, error) {
+	req := &trt.GetVideoEncoderConfigurations{}
 	out := &trt.GetVideoEncoderConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfigurations", &trt.GetVideoEncoderConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoEncoderConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetVideoSourceConfiguration(ctx context.Context) (*trt.GetVideoSourceConfigurationResponse, error) {
+func (c *Client) GetVideoSourceConfiguration(ctx context.Context, configurationToken tt.ReferenceToken) (*trt.GetVideoSourceConfigurationResponse, error) {
+	req := &trt.GetVideoSourceConfiguration{ConfigurationToken: configurationToken}
 	out := &trt.GetVideoSourceConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoSourceConfiguration", &trt.GetVideoSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoSourceConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) GetVideoSourceConfigurationOptions(ctx context.Context) (*trt.GetVideoSourceConfigurationOptionsResponse, error) {
+func (c *Client) GetVideoSourceConfigurationOptions(ctx context.Context, configurationToken *tt.ReferenceToken, profileToken *tt.ReferenceToken) (*trt.GetVideoSourceConfigurationOptionsResponse, error) {
+	req := &trt.GetVideoSourceConfigurationOptions{ConfigurationToken: configurationToken, ProfileToken: profileToken}
 	out := &trt.GetVideoSourceConfigurationOptionsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdlGetVideoSourceConfigurationOptions/", &trt.GetVideoSourceConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdlGetVideoSourceConfigurationOptions/", req, out)
 	return out, err
 }
 
 func (c *Client) GetVideoSourceConfigurations(ctx context.Context) (*trt.GetVideoSourceConfigurationsResponse, error) {
+	req := &trt.GetVideoSourceConfigurations{}
 	out := &trt.GetVideoSourceConfigurationsResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoSourceConfigurations", &trt.GetVideoSourceConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoSourceConfigurations", req, out)
 	return out, err
 }
 
-func (c *Client) GetVideoSourceModes(ctx context.Context) (*trt.GetVideoSourceModesResponse, error) {
+func (c *Client) GetVideoSourceModes(ctx context.Context, videoSourceToken tt.ReferenceToken) (*trt.GetVideoSourceModesResponse, error) {
+	req := &trt.GetVideoSourceModes{VideoSourceToken: videoSourceToken}
 	out := &trt.GetVideoSourceModesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoSourceModes", &trt.GetVideoSourceModes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/GetVideoSourceModes", req, out)
 	return out, err
 }
 
 func (c *Client) GetVideoSources(ctx context.Context) (*trt.GetVideoSourcesResponse, error) {
+	req := &trt.GetVideoSources{}
 	out := &trt.GetVideoSourcesResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdlGetVideoSources/", &trt.GetVideoSources{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdlGetVideoSources/", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveAudioDecoderConfiguration(ctx context.Context) (*trt.RemoveAudioDecoderConfigurationResponse, error) {
+func (c *Client) RemoveAudioDecoderConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemoveAudioDecoderConfigurationResponse, error) {
+	req := &trt.RemoveAudioDecoderConfiguration{ProfileToken: profileToken}
 	out := &trt.RemoveAudioDecoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveAudioDecoderConfiguration", &trt.RemoveAudioDecoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveAudioDecoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveAudioEncoderConfiguration(ctx context.Context) (*trt.RemoveAudioEncoderConfigurationResponse, error) {
+func (c *Client) RemoveAudioEncoderConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemoveAudioEncoderConfigurationResponse, error) {
+	req := &trt.RemoveAudioEncoderConfiguration{ProfileToken: profileToken}
 	out := &trt.RemoveAudioEncoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveAudioEncoderConfiguration", &trt.RemoveAudioEncoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveAudioEncoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveAudioOutputConfiguration(ctx context.Context) (*trt.RemoveAudioOutputConfigurationResponse, error) {
+func (c *Client) RemoveAudioOutputConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemoveAudioOutputConfigurationResponse, error) {
+	req := &trt.RemoveAudioOutputConfiguration{ProfileToken: profileToken}
 	out := &trt.RemoveAudioOutputConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveAudioOutputConfiguration", &trt.RemoveAudioOutputConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveAudioOutputConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveAudioSourceConfiguration(ctx context.Context) (*trt.RemoveAudioSourceConfigurationResponse, error) {
+func (c *Client) RemoveAudioSourceConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemoveAudioSourceConfigurationResponse, error) {
+	req := &trt.RemoveAudioSourceConfiguration{ProfileToken: profileToken}
 	out := &trt.RemoveAudioSourceConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveAudioSourceConfiguration", &trt.RemoveAudioSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveAudioSourceConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveMetadataConfiguration(ctx context.Context) (*trt.RemoveMetadataConfigurationResponse, error) {
+func (c *Client) RemoveMetadataConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemoveMetadataConfigurationResponse, error) {
+	req := &trt.RemoveMetadataConfiguration{ProfileToken: profileToken}
 	out := &trt.RemoveMetadataConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveMetadataConfiguration", &trt.RemoveMetadataConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveMetadataConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) RemovePTZConfiguration(ctx context.Context) (*trt.RemovePTZConfigurationResponse, error) {
+func (c *Client) RemovePTZConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemovePTZConfigurationResponse, error) {
+	req := &trt.RemovePTZConfiguration{ProfileToken: profileToken}
 	out := &trt.RemovePTZConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemovePTZConfiguration", &trt.RemovePTZConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemovePTZConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveVideoAnalyticsConfiguration(ctx context.Context) (*trt.RemoveVideoAnalyticsConfigurationResponse, error) {
+func (c *Client) RemoveVideoAnalyticsConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemoveVideoAnalyticsConfigurationResponse, error) {
+	req := &trt.RemoveVideoAnalyticsConfiguration{ProfileToken: profileToken}
 	out := &trt.RemoveVideoAnalyticsConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveVideoAnalyticsConfiguration", &trt.RemoveVideoAnalyticsConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveVideoAnalyticsConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveVideoEncoderConfiguration(ctx context.Context) (*trt.RemoveVideoEncoderConfigurationResponse, error) {
+func (c *Client) RemoveVideoEncoderConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemoveVideoEncoderConfigurationResponse, error) {
+	req := &trt.RemoveVideoEncoderConfiguration{ProfileToken: profileToken}
 	out := &trt.RemoveVideoEncoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveVideoEncoderConfiguration", &trt.RemoveVideoEncoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveVideoEncoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) RemoveVideoSourceConfiguration(ctx context.Context) (*trt.RemoveVideoSourceConfigurationResponse, error) {
+func (c *Client) RemoveVideoSourceConfiguration(ctx context.Context, profileToken tt.ReferenceToken) (*trt.RemoveVideoSourceConfigurationResponse, error) {
+	req := &trt.RemoveVideoSourceConfiguration{ProfileToken: profileToken}
 	out := &trt.RemoveVideoSourceConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveVideoSourceConfiguration", &trt.RemoveVideoSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/RemoveVideoSourceConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetAudioDecoderConfiguration(ctx context.Context) (*trt.SetAudioDecoderConfigurationResponse, error) {
+func (c *Client) SetAudioDecoderConfiguration(ctx context.Context, configuration tt.AudioDecoderConfiguration, forcePersistence bool) (*trt.SetAudioDecoderConfigurationResponse, error) {
+	req := &trt.SetAudioDecoderConfiguration{Configuration: configuration, ForcePersistence: forcePersistence}
 	out := &trt.SetAudioDecoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetAudioDecoderConfiguration", &trt.SetAudioDecoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetAudioDecoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetAudioEncoderConfiguration(ctx context.Context) (*trt.SetAudioEncoderConfigurationResponse, error) {
+func (c *Client) SetAudioEncoderConfiguration(ctx context.Context, configuration tt.AudioEncoderConfiguration, forcePersistence bool) (*trt.SetAudioEncoderConfigurationResponse, error) {
+	req := &trt.SetAudioEncoderConfiguration{Configuration: configuration, ForcePersistence: forcePersistence}
 	out := &trt.SetAudioEncoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetAudioEncoderConfiguration", &trt.SetAudioEncoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetAudioEncoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetAudioOutputConfiguration(ctx context.Context) (*trt.SetAudioOutputConfigurationResponse, error) {
+func (c *Client) SetAudioOutputConfiguration(ctx context.Context, configuration tt.AudioOutputConfiguration, forcePersistence bool) (*trt.SetAudioOutputConfigurationResponse, error) {
+	req := &trt.SetAudioOutputConfiguration{Configuration: configuration, ForcePersistence: forcePersistence}
 	out := &trt.SetAudioOutputConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetAudioOutputConfiguration", &trt.SetAudioOutputConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetAudioOutputConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetAudioSourceConfiguration(ctx context.Context) (*trt.SetAudioSourceConfigurationResponse, error) {
+func (c *Client) SetAudioSourceConfiguration(ctx context.Context, configuration tt.AudioSourceConfiguration, forcePersistence bool) (*trt.SetAudioSourceConfigurationResponse, error) {
+	req := &trt.SetAudioSourceConfiguration{Configuration: configuration, ForcePersistence: forcePersistence}
 	out := &trt.SetAudioSourceConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetAudioSourceConfiguration", &trt.SetAudioSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetAudioSourceConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetMetadataConfiguration(ctx context.Context) (*trt.SetMetadataConfigurationResponse, error) {
+func (c *Client) SetMetadataConfiguration(ctx context.Context, configuration tt.MetadataConfiguration, forcePersistence bool) (*trt.SetMetadataConfigurationResponse, error) {
+	req := &trt.SetMetadataConfiguration{Configuration: configuration, ForcePersistence: forcePersistence}
 	out := &trt.SetMetadataConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetMetadataConfiguration", &trt.SetMetadataConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetMetadataConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetOSD(ctx context.Context) (*trt.SetOSDResponse, error) {
+func (c *Client) SetOSD(ctx context.Context, oSD tt.OSDConfiguration) (*trt.SetOSDResponse, error) {
+	req := &trt.SetOSD{OSD: oSD}
 	out := &trt.SetOSDResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetOSD", &trt.SetOSD{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetOSD", req, out)
 	return out, err
 }
 
-func (c *Client) SetSynchronizationPoint(ctx context.Context) (*trt.SetSynchronizationPointResponse, error) {
+func (c *Client) SetSynchronizationPoint(ctx context.Context, profileToken tt.ReferenceToken) (*trt.SetSynchronizationPointResponse, error) {
+	req := &trt.SetSynchronizationPoint{ProfileToken: profileToken}
 	out := &trt.SetSynchronizationPointResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetSynchronizationPoint", &trt.SetSynchronizationPoint{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetSynchronizationPoint", req, out)
 	return out, err
 }
 
-func (c *Client) SetVideoAnalyticsConfiguration(ctx context.Context) (*trt.SetVideoAnalyticsConfigurationResponse, error) {
+func (c *Client) SetVideoAnalyticsConfiguration(ctx context.Context, configuration tt.VideoAnalyticsConfiguration, forcePersistence bool) (*trt.SetVideoAnalyticsConfigurationResponse, error) {
+	req := &trt.SetVideoAnalyticsConfiguration{Configuration: configuration, ForcePersistence: forcePersistence}
 	out := &trt.SetVideoAnalyticsConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetVideoAnalyticsConfiguration", &trt.SetVideoAnalyticsConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetVideoAnalyticsConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetVideoEncoderConfiguration(ctx context.Context) (*trt.SetVideoEncoderConfigurationResponse, error) {
+func (c *Client) SetVideoEncoderConfiguration(ctx context.Context, configuration tt.VideoEncoderConfiguration, forcePersistence bool) (*trt.SetVideoEncoderConfigurationResponse, error) {
+	req := &trt.SetVideoEncoderConfiguration{Configuration: configuration, ForcePersistence: forcePersistence}
 	out := &trt.SetVideoEncoderConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetVideoEncoderConfiguration", &trt.SetVideoEncoderConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetVideoEncoderConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetVideoSourceConfiguration(ctx context.Context) (*trt.SetVideoSourceConfigurationResponse, error) {
+func (c *Client) SetVideoSourceConfiguration(ctx context.Context, configuration tt.VideoSourceConfiguration, forcePersistence bool) (*trt.SetVideoSourceConfigurationResponse, error) {
+	req := &trt.SetVideoSourceConfiguration{Configuration: configuration, ForcePersistence: forcePersistence}
 	out := &trt.SetVideoSourceConfigurationResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetVideoSourceConfiguration", &trt.SetVideoSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetVideoSourceConfiguration", req, out)
 	return out, err
 }
 
-func (c *Client) SetVideoSourceMode(ctx context.Context) (*trt.SetVideoSourceModeResponse, error) {
+func (c *Client) SetVideoSourceMode(ctx context.Context, videoSourceToken tt.ReferenceToken, videoSourceModeToken tt.ReferenceToken) (*trt.SetVideoSourceModeResponse, error) {
+	req := &trt.SetVideoSourceMode{VideoSourceToken: videoSourceToken, VideoSourceModeToken: videoSourceModeToken}
 	out := &trt.SetVideoSourceModeResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetVideoSourceMode", &trt.SetVideoSourceMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/SetVideoSourceMode", req, out)
 	return out, err
 }
 
-func (c *Client) StartMulticastStreaming(ctx context.Context) (*trt.StartMulticastStreamingResponse, error) {
+func (c *Client) StartMulticastStreaming(ctx context.Context, profileToken tt.ReferenceToken) (*trt.StartMulticastStreamingResponse, error) {
+	req := &trt.StartMulticastStreaming{ProfileToken: profileToken}
 	out := &trt.StartMulticastStreamingResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/StartMulticastStreaming", &trt.StartMulticastStreaming{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/StartMulticastStreaming", req, out)
 	return out, err
 }
 
-func (c *Client) StopMulticastStreaming(ctx context.Context) (*trt.StopMulticastStreamingResponse, error) {
+func (c *Client) StopMulticastStreaming(ctx context.Context, profileToken tt.ReferenceToken) (*trt.StopMulticastStreamingResponse, error) {
+	req := &trt.StopMulticastStreaming{ProfileToken: profileToken}
 	out := &trt.StopMulticastStreamingResponse{}
-	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/StopMulticastStreaming", &trt.StopMulticastStreaming{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/media/wsdl/StopMulticastStreaming", req, out)
 	return out, err
 }
 
