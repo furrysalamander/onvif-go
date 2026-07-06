@@ -2,12 +2,12 @@
 //
 // Usage:
 //
-//	onvifgen <catalog-dir> <out-base> <pkg> [<pkg>...]
+//	onvifgen schema <out-base> <pkg> [<pkg>...]
+//	onvifgen facade <out-base>
 //
 // It loads each vendored WSDL/XSD via internal/catalog, parses them into the
-// onvifgen IR, then emits one Go package per requested package id under
-// <out-base>/<pkg>/. Output is committed to the repo and verified for drift
-// by CI.
+// onvifgen IR, then emits Go source files under <out-base>.
+// Output is committed to the repo and verified for drift by CI.
 package main
 
 import (
@@ -15,7 +15,6 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
-	"strings"
 
 	"github.com/furrysalamander/onvif-go/internal/catalog"
 	"github.com/furrysalamander/onvif-go/internal/onvifgen/codegen"
@@ -23,13 +22,24 @@ import (
 )
 
 func main() {
-	if len(os.Args) < 4 {
-		fmt.Fprintln(os.Stderr, "usage: onvifgen <catalog-req-build-tag|ignored> <out-base> <pkg> [<pkg>...]")
-		fmt.Fprintln(os.Stderr, "note: the first arg is retained for backward compatibility with the M0 directive; the catalog is embedded.")
+	if len(os.Args) < 3 {
+		fmt.Fprintln(os.Stderr, "usage: onvifgen schema <out-base> <pkg> [<pkg>...]")
+		fmt.Fprintln(os.Stderr, "       onvifgen facade <out-base>")
 		os.Exit(2)
 	}
-	outBase := os.Args[2]
-	emitPkgs := os.Args[3:]
+	mode := os.Args[1]
+	if mode != "schema" && mode != "facade" {
+		fmt.Fprintf(os.Stderr, "onvifgen: unknown mode %q\n", mode)
+		os.Exit(2)
+	}
+	if mode == "facade" && len(os.Args) < 3 {
+		fmt.Fprintln(os.Stderr, "onvifgen facade <out-base>")
+		os.Exit(2)
+	}
+	if mode == "schema" && len(os.Args) < 4 {
+		fmt.Fprintln(os.Stderr, "onvifgen schema <out-base> <pkg> [<pkg>...]")
+		os.Exit(2)
+	}
 
 	cat, err := catalog.Load()
 	if err != nil {
@@ -39,15 +49,24 @@ func main() {
 	p := parser.New(cat)
 	loader := parser.NewLoader(p)
 
-	// Walk every WSDL referenced by the ONVIF Phase-1 set so the SymTab sees
-	// the full import closure (onvif.xsd, common.xsd, OASIS WS-Notification,
-	// WS-Addressing, ...).
-	for _, w := range phase1WSDLs {
+	for _, w := range allWSDLs {
 		if _, err := loader.Load(w); err != nil {
 			fmt.Fprintf(os.Stderr, "onvifgen: load %s: %v\n", w, err)
 			os.Exit(1)
 		}
 	}
+
+	switch mode {
+	case "schema":
+		runSchema(loader, os.Args)
+	case "facade":
+		runFacade(loader, os.Args)
+	}
+}
+
+func runSchema(loader *parser.Loader, args []string) {
+	outBase := args[2]
+	emitPkgs := args[3:]
 
 	tab := codegen.NewSymTab()
 	for _, m := range loader.Modules() {
@@ -63,7 +82,21 @@ func main() {
 		fmt.Fprintf(os.Stderr, "onvifgen: generate: %v\n", err)
 		os.Exit(1)
 	}
+	writeFiles(files)
+}
 
+func runFacade(loader *parser.Loader, args []string) {
+	outBase := args[2]
+
+	files, err := codegen.EmitFacades(loader.Modules(), outBase)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "onvifgen: facade: %v\n", err)
+		os.Exit(1)
+	}
+	writeFiles(files)
+}
+
+func writeFiles(files map[string]string) {
 	paths := make([]string, 0, len(files))
 	for pth := range files {
 		paths = append(paths, pth)
@@ -84,9 +117,7 @@ func main() {
 	}
 }
 
-// phase1WSDLs is the set of catalog-relative WSDL paths onvifgen loads so the
-// symbol table can resolve the full import closure for any Phase-1 package.
-var phase1WSDLs = []string{
+var allWSDLs = []string{
 	"onvif/ver10/device/wsdl/devicemgmt.wsdl",
 	"onvif/ver10/media/wsdl/media.wsdl",
 	"onvif/ver20/media/wsdl/media.wsdl",
@@ -113,6 +144,3 @@ var phase1WSDLs = []string{
 	"onvif/ver10/uplink/wsdl/uplink.wsdl",
 	"onvif/ver20/analytics/wsdl/analytics.wsdl",
 }
-
-// keep strings import used in case future errors need it.
-var _ = strings.TrimSpace
