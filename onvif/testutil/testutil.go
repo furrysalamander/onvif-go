@@ -14,11 +14,7 @@ func WithMockServer(t *testing.T, fn func(addr string)) {
 	mc := mockcam.New()
 	go func() { _ = mc.Listen() }()
 
-	time.Sleep(50 * time.Millisecond)
-
-	if mc.Addr == "" {
-		t.Fatal("mockcam address is empty")
-	}
+	<-mc.Ready
 
 	fn(mc.Addr)
 

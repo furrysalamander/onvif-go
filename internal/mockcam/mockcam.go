@@ -17,7 +17,8 @@ import (
 
 type Server struct {
 	http.Server
-	Addr string
+	Addr  string
+	Ready chan struct{}
 
 	DeviceInfo   tds.GetDeviceInformationResponse
 	Services     tds.GetServicesResponse
@@ -29,6 +30,7 @@ func New() *Server {
 	mux := http.NewServeMux()
 	s := &Server{
 		Server: http.Server{Handler: mux},
+		Ready:  make(chan struct{}),
 		DeviceInfo: tds.GetDeviceInformationResponse{
 			Manufacturer:    "MockONVIF",
 			Model:           "MockCam-3000",
@@ -59,6 +61,7 @@ func (s *Server) Listen() error {
 		return err
 	}
 	s.Addr = fmt.Sprintf("http://%s/onvif/device_service", ln.Addr().String())
+	close(s.Ready)
 	err = s.Serve(ln)
 	if errors.Is(err, http.ErrServerClosed) {
 		return nil
