@@ -44,7 +44,6 @@ func (r *resolver) goTypeOfQName(q ir.QName) (string, bool) {
 	if q.NS == "" || q.NS == "http://www.w3.org/2001/XMLSchema" {
 		return r.goBuiltin(q.Local)
 	}
-	// Named symbol in a known namespace.
 	pkg, ok := NSPkg[q.NS]
 	if !ok {
 		return "", false
@@ -52,7 +51,18 @@ func (r *resolver) goTypeOfQName(q ir.QName) (string, bool) {
 	if pkg == "tt" && isCoreLocal(q.Local) {
 		pkg = "core"
 	}
+	if r.curPkg == "tt" && isCyclePkg(pkg) {
+		return r.qualifyPkg("core", "Extension"), true
+	}
 	return r.qualifyPkg(pkg, pascal(q.Local)), true
+}
+
+func isCyclePkg(pkg string) bool {
+	switch pkg {
+	case "fc", "bd":
+		return true
+	}
+	return false
 }
 
 func isCoreLocal(local string) bool {

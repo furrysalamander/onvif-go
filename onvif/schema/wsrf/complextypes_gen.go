@@ -7,10 +7,10 @@ import (
 )
 
 type ResourceUnavailableFaultType struct {
-	Base48 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base60 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 
 type ResourceUnknownFaultType struct {
-	Base49 wsrfbf.BaseFaultType `xml:",omitempty"`
+	Base61 wsrfbf.BaseFaultType `xml:",omitempty"`
 }
 

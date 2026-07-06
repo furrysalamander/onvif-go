@@ -6,6 +6,7 @@ import (
 	"encoding/xml"
 	"time"
 
+	"github.com/furrysalamander/onvif-go/onvif/schema/core"
 	"github.com/furrysalamander/onvif-go/onvif/schema/env"
 	"github.com/furrysalamander/onvif-go/onvif/schema/wsn"
 )
@@ -145,6 +146,30 @@ type AnyHolder struct {
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+type Appearance struct {
+	Transformation *Transformation `xml:"Transformation,omitempty"`
+	Shape *ShapeDescriptor `xml:"Shape,omitempty"`
+	Color *ColorDescriptor `xml:"Color,omitempty"`
+	Class *ClassDescriptor `xml:"Class,omitempty"`
+	Extension *AppearanceExtension `xml:"Extension,omitempty"`
+	GeoLocation *GeoLocation `xml:"GeoLocation,omitempty"`
+	VehicleInfo []VehicleInfo `xml:"VehicleInfo,omitempty"`
+	LicensePlateInfo *LicensePlateInfo `xml:"LicensePlateInfo,omitempty"`
+	HumanFace *core.Extension `xml:"HumanFace,omitempty"`
+	HumanBody *core.Extension `xml:"HumanBody,omitempty"`
+	ImageRef *string `xml:"ImageRef,omitempty"`
+	Image *[]byte `xml:"Image,omitempty"`
+	BarcodeInfo *BarcodeInfo `xml:"BarcodeInfo,omitempty"`
+	SphericalCoordinate *SphericalCoordinate `xml:"SphericalCoordinate,omitempty"`
+	Label []LabelInfo `xml:"Label,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type AppearanceExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+}
+
 type ArrayOfFileProgress struct {
 	FileProgress []FileProgress `xml:"FileProgress,omitempty"`
 	Extension *ArrayOfFileProgressExtension `xml:"Extension,omitempty"`
@@ -164,6 +189,18 @@ type AsymmetricEncryption struct {
 
 type AttachmentData struct {
 	string `xml:",omitempty,attr"`
+}
+
+type AudioAnalyticsStream struct {
+	AudioDescriptor []AudioDescriptor `xml:"AudioDescriptor,omitempty"`
+	Extension *AudioAnalyticsStreamExtension `xml:"Extension,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type AudioAnalyticsStreamExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
 type AudioAttributes struct {
@@ -219,6 +256,12 @@ type AudioDecoderConfigurationOptions struct {
 
 type AudioDecoderConfigurationOptionsExtension struct {
 	Any Extension `xml:"Any,omitempty"`
+}
+
+type AudioDescriptor struct {
+	Any Extension `xml:"Any,omitempty"`
+	UtcTime time.Time `xml:"UtcTime,attr"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
 type AudioEncoder2Configuration struct {
@@ -340,6 +383,22 @@ type BackupFile struct {
 	Data AttachmentData `xml:"Data"`
 }
 
+type BarcodeInfo struct {
+	Data StringLikelihood `xml:"Data"`
+	Type *StringLikelihood `xml:"Type,omitempty"`
+	PPM *float32 `xml:"PPM,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type Behaviour struct {
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type BehaviourExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+}
+
 type BinaryData struct {
 	Data []byte `xml:"Data"`
 	string `xml:",omitempty,attr"`
@@ -435,6 +494,24 @@ type CertificateWithPrivateKey struct {
 	PrivateKey BinaryData `xml:"PrivateKey"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type ClassCandidate struct {
+	Type ClassType `xml:"Type"`
+	Likelihood float32 `xml:"Likelihood"`
+	Any Extension `xml:"Any,omitempty"`
+}
+
+type ClassDescriptor struct {
+	ClassCandidate []ClassCandidate `xml:"ClassCandidate,omitempty"`
+	Extension *ClassDescriptorExtension `xml:"Extension,omitempty"`
+	Type []StringLikelihood `xml:"Type,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+}
+
+type ClassDescriptorExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+	OtherTypes []OtherType `xml:"OtherTypes,omitempty"`
 }
 
 // This type contains the Audio and Video coding capabilities of a display service.
@@ -778,6 +855,16 @@ type EventFilter struct {
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+type EventStream struct {
+	Base2 *wsn.NotificationMessageHolderType `xml:",omitempty"`
+	Extension *EventStreamExtension `xml:"Extension,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+}
+
+type EventStreamExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+}
+
 // Subcription handling in the same way as base notification subscription.
 type EventSubscription struct {
 	Filter *wsn.FilterType `xml:"Filter,omitempty"`
@@ -978,6 +1065,31 @@ type FocusStatus20 struct {
 }
 
 type FocusStatus20Extension struct {
+	Any Extension `xml:"Any,omitempty"`
+}
+
+type Frame struct {
+	PTZStatus *PTZStatus `xml:"PTZStatus,omitempty"`
+	Transformation *Transformation `xml:"Transformation,omitempty"`
+	Object []Object `xml:"Object,omitempty"`
+	ObjectTree *ObjectTree `xml:"ObjectTree,omitempty"`
+	Extension *FrameExtension `xml:"Extension,omitempty"`
+	SceneImageRef *string `xml:"SceneImageRef,omitempty"`
+	SceneImage *[]byte `xml:"SceneImage,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	UtcTime time.Time `xml:"UtcTime,attr"`
+	Colorspace string `xml:"Colorspace,omitempty,attr"`
+	Source string `xml:"Source,omitempty,attr"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type FrameExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+	MotionInCells *MotionInCells `xml:"MotionInCells,omitempty"`
+	Extension *FrameExtension2 `xml:"Extension,omitempty"`
+}
+
+type FrameExtension2 struct {
 	Any Extension `xml:"Any,omitempty"`
 }
 
@@ -1415,6 +1527,14 @@ type JpegOptions2 struct {
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+type LabelInfo struct {
+	Authority string `xml:"Authority"`
+	ID string `xml:"ID"`
+	Any Extension `xml:"Any,omitempty"`
+	Likelihood float32 `xml:"Likelihood,omitempty,attr"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // A layout describes a set of Video windows that are displayed simultaniously on a display.
 type Layout struct {
 	PaneLayout []PaneLayout `xml:"PaneLayout,omitempty"`
@@ -1456,6 +1576,15 @@ type LensProjection struct {
 	Angle float32 `xml:"Angle"`
 	Radius float32 `xml:"Radius"`
 	Transmittance *float32 `xml:"Transmittance,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type LicensePlateInfo struct {
+	PlateNumber StringLikelihood `xml:"PlateNumber"`
+	PlateType *StringLikelihood `xml:"PlateType,omitempty"`
+	CountryCode *StringLikelihood `xml:"CountryCode,omitempty"`
+	IssuingEntity *StringLikelihood `xml:"IssuingEntity,omitempty"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
@@ -1529,6 +1658,11 @@ type MediaUri struct {
 	Timeout Duration `xml:"Timeout"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type Merge struct {
+	Xfrom []ObjectId `xml:"from,omitempty"`
+	Xto ObjectId `xml:"to"`
 }
 
 type MessageDescription struct {
@@ -1611,6 +1745,26 @@ type MetadataInputExtension struct {
 	Any Extension `xml:"Any,omitempty"`
 }
 
+type MetadataStream struct {
+	VideoAnalytics *VideoAnalyticsStream `xml:"VideoAnalytics,omitempty"`
+	PTZ *PTZStream `xml:"PTZ,omitempty"`
+	Event *EventStream `xml:"Event,omitempty"`
+	Extension *MetadataStreamExtension `xml:"Extension,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type MetadataStreamExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+	AudioAnalyticsStream *AudioAnalyticsStream `xml:"AudioAnalyticsStream,omitempty"`
+	Extension *MetadataStreamExtension2 `xml:"Extension,omitempty"`
+}
+
+type MetadataStreamExtension2 struct {
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 type MotionExpression struct {
 	Expression string `xml:"Expression"`
 	Any Extension `xml:"Any,omitempty"`
@@ -1621,6 +1775,14 @@ type MotionExpression struct {
 type MotionExpressionConfiguration struct {
 	MotionExpression MotionExpression `xml:"MotionExpression"`
 	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type MotionInCells struct {
+	Any Extension `xml:"Any,omitempty"`
+	Columns int32 `xml:"Columns,attr"`
+	Rows int32 `xml:"Rows,attr"`
+	Cells []byte `xml:"Cells,attr"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
@@ -1991,9 +2153,63 @@ type OSDTextOptionsExtension struct {
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+type Object struct {
+	ObjectId `xml:",omitempty"`
+	Appearance *Appearance `xml:"Appearance,omitempty"`
+	Behaviour *Behaviour `xml:"Behaviour,omitempty"`
+	Extension *ObjectExtension `xml:"Extension,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	Parent int32 `xml:"Parent,omitempty,attr"`
+	ParentUUID string `xml:"ParentUUID,omitempty,attr"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type ObjectExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+}
+
+type ObjectId struct {
+	ObjectId int32 `xml:"ObjectId,omitempty,attr"`
+	UUID string `xml:"UUID,omitempty,attr"`
+}
+
+// An object state describes an object's condition, for e.g position, speed and appearance, at a certain time instance.
+type ObjectState struct {
+	Object `xml:",omitempty"`
+	CaptureTime time.Time `xml:"CaptureTime,attr"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// An Object track includes a sequence of object states representing how an object's state changes over time.
+type ObjectTrack struct {
+	ObjectState []ObjectState `xml:"ObjectState,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type ObjectTree struct {
+	Rename []Rename `xml:"Rename,omitempty"`
+	Split []Split `xml:"Split,omitempty"`
+	Merge []Merge `xml:"Merge,omitempty"`
+	Delete []ObjectId `xml:"Delete,omitempty"`
+	Extension *ObjectTreeExtension `xml:"Extension,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type ObjectTreeExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+}
+
 type OnvifVersion struct {
 	Major int32 `xml:"Major"`
 	Minor int32 `xml:"Minor"`
+}
+
+type OtherType struct {
+	Type string `xml:"Type"`
+	Likelihood float32 `xml:"Likelihood"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
 type PTControlDirection struct {
@@ -2267,6 +2483,16 @@ type PTZStatusFilterOptions struct {
 }
 
 type PTZStatusFilterOptionsExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+}
+
+type PTZStream struct {
+	PTZStatus *PTZStatus `xml:"PTZStatus,omitempty"`
+	Extension *PTZStreamExtension `xml:"Extension,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+}
+
+type PTZStreamExtension struct {
 	Any Extension `xml:"Any,omitempty"`
 }
 
@@ -2633,6 +2859,11 @@ type RemoteUser struct {
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+type Rename struct {
+	Xfrom ObjectId `xml:"from"`
+	Xto ObjectId `xml:"to"`
+}
+
 type ReplayCapabilities struct {
 	XAddr string `xml:"XAddr"`
 	Any Extension `xml:"Any,omitempty"`
@@ -2761,6 +2992,19 @@ type SecurityCapabilitiesExtension2 struct {
 	Any Extension `xml:"Any,omitempty"`
 }
 
+type ShapeDescriptor struct {
+	BoundingBox Rectangle `xml:"BoundingBox"`
+	CenterOfGravity Vector `xml:"CenterOfGravity"`
+	Polygon []Polygon `xml:"Polygon,omitempty"`
+	Extension *ShapeDescriptorExtension `xml:"Extension,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type ShapeDescriptorExtension struct {
+	Any Extension `xml:"Any,omitempty"`
+}
+
 type SourceIdentification struct {
 	Name string `xml:"Name"`
 	Token []ReferenceToken `xml:"Token,omitempty"`
@@ -2797,6 +3041,11 @@ type SphericalCoordinate struct {
 	AzimuthAngle float32 `xml:"AzimuthAngle,omitempty,attr"`
 }
 
+type Split struct {
+	Xfrom ObjectId `xml:"from"`
+	Xto []ObjectId `xml:"to,omitempty"`
+}
+
 type StorageReferencePath struct {
 	StorageToken ReferenceToken `xml:"StorageToken"`
 	RelativePath *string `xml:"RelativePath,omitempty"`
@@ -2813,6 +3062,12 @@ type StreamSetup struct {
 	Stream StreamType `xml:"Stream"`
 	Transport Transport `xml:"Transport"`
 	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type StringLikelihood struct {
+	Value string `xml:",chardata"`
+	Likelihood float32 `xml:"Likelihood,omitempty,attr"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
 
@@ -3026,12 +3281,31 @@ type Vector2D struct {
 	Xspace string `xml:"space,omitempty,attr"`
 }
 
+type VehicleInfo struct {
+	Type StringLikelihood `xml:"Type"`
+	Brand *StringLikelihood `xml:"Brand,omitempty"`
+	Model *StringLikelihood `xml:"Model,omitempty"`
+	Color *ColorDescriptor `xml:"Color,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 type VideoAnalyticsConfiguration struct {
 	ConfigurationEntity `xml:",omitempty"`
 	AnalyticsEngineConfiguration AnalyticsEngineConfiguration `xml:"AnalyticsEngineConfiguration"`
 	RuleEngineConfiguration RuleEngineConfiguration `xml:"RuleEngineConfiguration"`
 	Any Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+type VideoAnalyticsStream struct {
+	Frame *Frame `xml:"Frame,omitempty"`
+	Extension *VideoAnalyticsStreamExtension `xml:"Extension,omitempty"`
+	Any Extension `xml:"Any,omitempty"`
+}
+
+type VideoAnalyticsStreamExtension struct {
+	Any Extension `xml:"Any,omitempty"`
 }
 
 type VideoAttributes struct {

@@ -64,6 +64,39 @@ const (
 	BacklightCompensationModeON BacklightCompensationMode = "ON"
 )
 
+type BarcodeType string
+
+const (
+	BarcodeTypeCode_39 BarcodeType = "Code-39"
+	BarcodeTypeCode_49 BarcodeType = "Code-49"
+	BarcodeTypeCode_93 BarcodeType = "Code-93"
+	BarcodeTypeCode_128 BarcodeType = "Code-128"
+	BarcodeTypeCode_11 BarcodeType = "Code-11"
+	BarcodeTypeCode_25_Interleaved BarcodeType = "Code-25-Interleaved"
+	BarcodeTypeCode_25_NonInterleaved BarcodeType = "Code-25-NonInterleaved"
+	BarcodeTypeDataMatrix BarcodeType = "DataMatrix"
+	BarcodeTypeMaxicode BarcodeType = "Maxicode"
+	BarcodeTypePostnet BarcodeType = "Postnet"
+	BarcodeTypeRM4SCC BarcodeType = "RM4SCC"
+	BarcodeTypeISBN_13 BarcodeType = "ISBN-13"
+	BarcodeTypeISBN_13_Dual BarcodeType = "ISBN-13-Dual"
+	BarcodeTypeISBN_10 BarcodeType = "ISBN-10"
+	BarcodeTypeITF_14 BarcodeType = "ITF-14"
+	BarcodeTypeEAN_2 BarcodeType = "EAN-2"
+	BarcodeTypeEAN_8 BarcodeType = "EAN-8"
+	BarcodeTypeEAN_13 BarcodeType = "EAN-13"
+	BarcodeTypeEAN_14 BarcodeType = "EAN-14"
+	BarcodeTypeEAN_18 BarcodeType = "EAN-18"
+	BarcodeTypeEAN_99 BarcodeType = "EAN-99"
+	BarcodeTypeEAN_128 BarcodeType = "EAN-128"
+	BarcodeTypeSCC_14 BarcodeType = "SCC-14"
+	BarcodeTypeSSCC_18 BarcodeType = "SSCC-18"
+	BarcodeTypeUPC_A BarcodeType = "UPC-A"
+	BarcodeTypeUPC_E BarcodeType = "UPC-E"
+	BarcodeTypePDF417 BarcodeType = "PDF417"
+	BarcodeTypeQRCode BarcodeType = "QRCode"
+)
+
 type CapabilityCategory string
 
 const (
@@ -74,6 +107,16 @@ const (
 	CapabilityCategoryImaging CapabilityCategory = "Imaging"
 	CapabilityCategoryMedia CapabilityCategory = "Media"
 	CapabilityCategoryPTZ CapabilityCategory = "PTZ"
+)
+
+type ClassType string
+
+const (
+	ClassTypeAnimal ClassType = "Animal"
+	ClassTypeFace ClassType = "Face"
+	ClassTypeHuman ClassType = "Human"
+	ClassTypeVehical ClassType = "Vehical"
+	ClassTypeOther ClassType = "Other"
 )
 
 type DNSName string
@@ -322,6 +365,15 @@ const (
 
 type JobToken ReferenceToken
 
+type LabelAuthority string
+
+const (
+	LabelAuthorityISO_3864 LabelAuthority = "ISO_3864"
+	LabelAuthorityISO_7010 LabelAuthority = "ISO_7010"
+	LabelAuthorityUNECE_ADR LabelAuthority = "UNECE_ADR"
+	LabelAuthorityUNECE_GHS LabelAuthority = "UNECE_GHS"
+)
+
 type MetadataCompressionType string
 
 const (
@@ -391,6 +443,21 @@ const (
 	OSDTypeExtended OSDType = "Extended"
 )
 
+type ObjectType string
+
+const (
+	ObjectTypeAnimal ObjectType = "Animal"
+	ObjectTypeHumanFace ObjectType = "HumanFace"
+	ObjectTypeHuman ObjectType = "Human"
+	ObjectTypeBicycle ObjectType = "Bicycle"
+	ObjectTypeVehicle ObjectType = "Vehicle"
+	ObjectTypeLicensePlate ObjectType = "LicensePlate"
+	ObjectTypeBike ObjectType = "Bike"
+	ObjectTypeBarcode ObjectType = "Barcode"
+	ObjectTypeFire ObjectType = "Fire"
+	ObjectTypeSmoke ObjectType = "Smoke"
+)
+
 type PTZPresetTourDirection string
 
 const (
@@ -415,6 +482,15 @@ const (
 	PTZPresetTourStateTouring PTZPresetTourState = "Touring"
 	PTZPresetTourStatePaused PTZPresetTourState = "Paused"
 	PTZPresetTourStateExtended PTZPresetTourState = "Extended"
+)
+
+type PlateType string
+
+const (
+	PlateTypeNormal PlateType = "Normal"
+	PlateTypePolice PlateType = "Police"
+	PlateTypeDiplomat PlateType = "Diplomat"
+	PlateTypeTemporary PlateType = "Temporary"
 )
 
 type PropertyOperation string
@@ -612,6 +688,16 @@ const (
 	UserLevelUser UserLevel = "User"
 	UserLevelAnonymous UserLevel = "Anonymous"
 	UserLevelExtended UserLevel = "Extended"
+)
+
+type VehicleType string
+
+const (
+	VehicleTypeBus VehicleType = "Bus"
+	VehicleTypeCar VehicleType = "Car"
+	VehicleTypeTruck VehicleType = "Truck"
+	VehicleTypeBicycle VehicleType = "Bicycle"
+	VehicleTypeMotorcycle VehicleType = "Motorcycle"
 )
 
 type VideoEncoding string

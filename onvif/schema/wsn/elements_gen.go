@@ -58,7 +58,7 @@ type GetMessages struct {
 }
 
 type GetMessagesResponse struct {
-	Base32 []NotificationMessageHolderType `xml:",omitempty"`
+	Base44 []NotificationMessageHolderType `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 	AnyAttributes []xml.Attr `xml:",any,attr,omitempty"`
 }
@@ -80,14 +80,14 @@ type NoCurrentMessageOnTopicFault NoCurrentMessageOnTopicFaultType
 type NotificationMessage NotificationMessageHolderType
 
 type NotificationProducerRP struct {
-	Base33 []TopicExpressionType `xml:",omitempty"`
-	Base34 *bool `xml:",omitempty"`
-	Base35 []string `xml:",omitempty"`
-	Base36 *wsnt.TopicSetType `xml:",omitempty"`
+	Base45 []TopicExpressionType `xml:",omitempty"`
+	Base46 *bool `xml:",omitempty"`
+	Base47 []string `xml:",omitempty"`
+	Base48 *wsnt.TopicSetType `xml:",omitempty"`
 }
 
 type Notify struct {
-	Base37 []NotificationMessageHolderType `xml:",omitempty"`
+	Base49 []NotificationMessageHolderType `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 }
 
@@ -113,8 +113,8 @@ type Renew struct {
 }
 
 type RenewResponse struct {
-	Base38 time.Time `xml:""`
-	Base39 *time.Time `xml:",omitempty"`
+	Base50 time.Time `xml:""`
+	Base51 *time.Time `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 }
 
@@ -138,16 +138,16 @@ type SubscribeCreationFailedFault SubscribeCreationFailedFaultType
 
 type SubscribeResponse struct {
 	SubscriptionReference wsa.EndpointReferenceType `xml:"SubscriptionReference"`
-	Base40 *time.Time `xml:",omitempty"`
-	Base41 *time.Time `xml:",omitempty"`
+	Base52 *time.Time `xml:",omitempty"`
+	Base53 *time.Time `xml:",omitempty"`
 	Any core.Extension `xml:"Any,omitempty"`
 }
 
 type SubscriptionManagerRP struct {
-	Base42 wsa.EndpointReferenceType `xml:""`
-	Base43 *FilterType `xml:",omitempty"`
-	Base44 *SubscriptionPolicyType `xml:",omitempty"`
-	Base45 *time.Time `xml:",omitempty"`
+	Base54 wsa.EndpointReferenceType `xml:""`
+	Base55 *FilterType `xml:",omitempty"`
+	Base56 *SubscriptionPolicyType `xml:",omitempty"`
+	Base57 *time.Time `xml:",omitempty"`
 }
 
 type SubscriptionPolicy SubscriptionPolicyType
