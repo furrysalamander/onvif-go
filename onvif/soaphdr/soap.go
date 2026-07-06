@@ -1,3 +1,5 @@
+// Package soaphdr provides a shared SOAP HTTP transport helper used by
+// per-service ONVIF client packages.
 package soaphdr
 
 import (

@@ -1,12 +1,26 @@
 # testdata
 
-Test fixtures used by the test suite.
+Test fixtures for golden-file and round-trip tests.
 
-## Layout (planned)
+## Layout
 
-- `golden/` — golden XML files for request marshal / response demarshal /
-  fault assertions, refreshed with `go test -run TestGolden -update`.
-- `fixtures/` — canned ONVIF responses captured from real devices or built by
-  hand from the spec.
+```
+golden/
+  devicemgmt/
+    get_device_information_request.xml
+    get_device_information_response.xml
+  wsdiscovery/
+    probe_request.xml
+  events/
+```
 
-Populated from M3 onward.
+## Regenerating golden files
+
+When marshaling output changes, regenerate golden files with:
+
+```bash
+UPDATE_GOLDEN=1 go test ./onvif/devicemgmt/
+UPDATE_GOLDEN=1 go test ./internal/wsdiscovery/
+```
+
+Review the diff and commit the updated golden files.

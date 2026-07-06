@@ -1,3 +1,6 @@
+// Package ptz implements the ONVIF PTZ client.
+//
+// Create a Client with New and call operations like GetNodes or GetStatus.
 package ptz
 
 import (

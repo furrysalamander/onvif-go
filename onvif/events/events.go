@@ -1,3 +1,8 @@
+// Package events implements the ONVIF Events client with WS-Notification
+// pull-point subscription support.
+//
+// Create a Client with New and use CreatePullPointSubscription to subscribe,
+// PullMessages to receive events, and Unsubscribe to tear down.
 package events
 
 import (

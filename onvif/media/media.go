@@ -1,3 +1,7 @@
+// Package media implements the ONVIF Media v1 client.
+//
+// Create a Client with New and call operations like GetProfiles,
+// GetVideoSources, or GetVideoSourceConfigurations.
 package media
 
 import (

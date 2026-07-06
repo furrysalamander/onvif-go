@@ -34,7 +34,7 @@ every milestone. Last updated: **Phase 1 complete (M0-M8)**.
 | M5 | Codegen + client facade for Media (v1/v2), PTZ, Imaging | **done** | Generated trt/tr2/tptz/timg/tev schema packages; shared soaphdr.Client transport; client facades for media, media2, ptz, imaging, events |
 | M6 | Events service + OASIS WS-Notification pull-points/topics | **done** | events client: PullMessages, Seek, SetSynchronizationPoint, CreatePullPoint, Renew, Unsubscribe |
 | M7 | Mock server (`mockcam`) + round-trip test harness | **done** | internal/mockcam HTTP server, cmd/mockcam binary, WithMockServer harness, round-trip tests pass |
-| M8 | ODM validation pass + examples + docs | **done** | manual validation checklist docs/odm-validation.md; all CI green |
+| M8 | ODM validation pass + examples + docs | **done** | docs/odm-validation.md, expanded README (quickstart), examples/discover + examples/deviceinfo, updated testdata/README, package doc comments |
 
 ## Risk register
 

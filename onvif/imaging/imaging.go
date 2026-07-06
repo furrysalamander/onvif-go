@@ -1,3 +1,7 @@
+// Package imaging implements the ONVIF Imaging client.
+//
+// Create a Client with New and call operations like GetImagingSettings
+// or GetMoveOptions.
 package imaging
 
 import (

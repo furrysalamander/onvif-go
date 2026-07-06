@@ -1,3 +1,8 @@
+// Package client provides ONVIF device discovery and the Device type.
+//
+// Use Discover to find ONVIF devices on the local network via WS-Discovery
+// multicast probe. Once discovered, connect using the per-service client
+// packages (devicemgmt, media, media2, ptz, events, imaging).
 package client
 
 import (

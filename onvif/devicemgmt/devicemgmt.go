@@ -1,3 +1,7 @@
+// Package devicemgmt implements the ONVIF Device Management client.
+//
+// Create a Client with NewClient and call operations like
+// GetDeviceInformation, GetServices, GetCapabilities, or GetScopes.
 package devicemgmt
 
 import (

@@ -1,3 +1,7 @@
+// Package media2 implements the ONVIF Media v2 client.
+//
+// Create a Client with New and call operations like GetProfiles,
+// GetVideoSourceConfigurations, or GetVideoEncoderConfigurations.
 package media2
 
 import (
