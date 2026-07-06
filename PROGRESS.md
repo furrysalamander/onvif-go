@@ -1,7 +1,7 @@
 # PROGRESS.md — onvif-go milestone tracker
 
 This file is the source of truth for project status. Update it at the end of
-every milestone. Last updated: **M5 complete**.
+every milestone. Last updated: **Phase 1 complete (M0-M8)**.
 
 ## Decisions (locked)
 
@@ -32,9 +32,9 @@ every milestone. Last updated: **M5 complete**.
 | M3 | `internal/ws` SOAP envelope + `wssecurity` client + DeviceMgmt client + golden tests + `onvif-cli` | **done** | ws.MarshalRequest/UnmarshalResponse, wssecurity.UsernameToken digest auth, devicemgmt.Client (GetServices/GetDeviceInformation/GetCapabilities), golden XML tests, onvif-cli wired to devicemgmt |
 | M4 | WS-Discovery (UDP multicast Probe/ProbeMatch/Hello) with golden tests | **done** | Probe/ProbeMatch/Hello/Bye types, UDP multicast send/receive, golden marshal test, client.Discover/DiscoverWithTypes, onvif-cli discover command |
 | M5 | Codegen + client facade for Media (v1/v2), PTZ, Imaging | **done** | Generated trt/tr2/tptz/timg/tev schema packages; shared soaphdr.Client transport; client facades for media, media2, ptz, imaging, events |
-| M6 | Events service + OASIS WS-Notification pull-points/topics | pending | |
-| M7 | Mock server (`mockcam`) + round-trip test harness | pending | |
-| M8 | ODM validation pass + examples + docs | pending | |
+| M6 | Events service + OASIS WS-Notification pull-points/topics | **done** | events client: PullMessages, Seek, SetSynchronizationPoint, CreatePullPoint, Renew, Unsubscribe |
+| M7 | Mock server (`mockcam`) + round-trip test harness | **done** | internal/mockcam HTTP server, cmd/mockcam binary, WithMockServer harness, round-trip tests pass |
+| M8 | ODM validation pass + examples + docs | **done** | manual validation checklist docs/odm-validation.md; all CI green |
 
 ## Risk register
 
