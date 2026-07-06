@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/furrysalamander/onvif-go/onvif/devicemgmt"
+	"github.com/furrysalamander/onvif-go/onvif"
 )
 
 func main() {
@@ -17,12 +17,12 @@ func main() {
 	username := os.Args[2]
 	password := os.Args[3]
 
-	c := devicemgmt.NewClient(endpoint, username, password)
+	d := onvif.NewDevice(endpoint, username, password)
 	ctx := context.Background()
 
-	info, err := c.GetDeviceInformation(ctx)
+	info, err := d.GetInfo(ctx)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "GetDeviceInformation: %v\n", err)
+		fmt.Fprintf(os.Stderr, "GetInfo: %v\n", err)
 		os.Exit(1)
 	}
 	fmt.Println("Device Information:")
@@ -30,15 +30,15 @@ func main() {
 	fmt.Printf("  Model:           %s\n", info.Model)
 	fmt.Printf("  FirmwareVersion: %s\n", info.FirmwareVersion)
 	fmt.Printf("  SerialNumber:    %s\n", info.SerialNumber)
-	fmt.Printf("  HardwareId:      %s\n", info.HardwareId)
+	fmt.Printf("  HardwareID:      %s\n", info.HardwareID)
 
-	svcs, err := c.GetServices(ctx)
+	svcs, err := d.GetServices(ctx, false)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "GetServices: %v\n", err)
 		os.Exit(1)
 	}
 	fmt.Println("\nServices:")
-	for _, svc := range svcs.Service {
+	for _, svc := range svcs {
 		fmt.Printf("  %s", svc.Namespace)
 		if svc.XAddr != "" {
 			fmt.Printf(" -> %s", svc.XAddr)

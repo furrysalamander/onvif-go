@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/furrysalamander/onvif-go/onvif/client"
+	"github.com/furrysalamander/onvif-go/onvif"
 )
 
 func main() {
@@ -17,7 +17,7 @@ func run() int {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	devices, err := client.Discover(ctx)
+	devices, err := onvif.Discover(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "discover: %v\n", err)
 		return 1
@@ -31,10 +31,10 @@ func run() int {
 	fmt.Printf("Found %d device(s):\n\n", len(devices))
 	for i, d := range devices {
 		fmt.Printf("Device %d:\n", i+1)
-		fmt.Printf("  Endpoint: %s\n", d.Endpoint)
-		fmt.Printf("  Address:  %s\n", d.Address)
-		fmt.Printf("  Types:    %v\n", d.Types)
-		fmt.Printf("  XAddrs:   %v\n", d.XAddrs)
+		fmt.Printf("  Endpoint:   %s\n", d.Info.Endpoint)
+		fmt.Printf("  Address:    %s\n", d.Info.Address)
+		fmt.Printf("  Service URL: %s\n", d.XAddr)
+		fmt.Printf("  Types:      %v\n", d.Info.Types)
 		fmt.Println()
 	}
 	return 0
