@@ -8,14 +8,10 @@ import (
 	"github.com/furrysalamander/onvif-go/onvif/schema/env"
 )
 
-const (
-	nsWSA = "http://www.w3.org/2005/08/addressing"
-)
-
 type ActionHeader struct {
-	XMLName   xml.Name `xml:"http://www.w3.org/2005/08/addressing Action"`
-	MustUnderstand string `xml:"http://schemas.xmlsoap.org/soap/envelope/ mustUnderstand,attr"`
-	Value     string   `xml:",chardata"`
+	XMLName        xml.Name `xml:"http://www.w3.org/2005/08/addressing Action"`
+	MustUnderstand string   `xml:"http://schemas.xmlsoap.org/soap/envelope/ mustUnderstand,attr"`
+	Value          string   `xml:",chardata"`
 }
 
 type ToHeader struct {

@@ -3,6 +3,7 @@ package wsdiscovery
 import (
 	"context"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"net"
 	"strings"
@@ -12,10 +13,10 @@ import (
 )
 
 const (
-	MulticastAddr    = "239.255.255.250"
-	Port             = 3702
-	nsDiscovery      = "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01"
-	nsWSA            = "http://www.w3.org/2005/08/addressing"
+	MulticastAddr = "239.255.255.250"
+	Port          = 3702
+	nsDiscovery   = "http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01"
+	nsWSA         = "http://www.w3.org/2005/08/addressing"
 )
 
 type Probe struct {
@@ -25,8 +26,8 @@ type Probe struct {
 }
 
 type ProbeMatches struct {
-	XMLName     xml.Name     `xml:"http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01 ProbeMatches"`
-	ProbeMatch  []ProbeMatch `xml:"ProbeMatch,omitempty"`
+	XMLName    xml.Name     `xml:"http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01 ProbeMatches"`
+	ProbeMatch []ProbeMatch `xml:"ProbeMatch,omitempty"`
 }
 
 type ProbeMatch struct {
@@ -42,16 +43,16 @@ type EndpointReference struct {
 }
 
 type Hello struct {
-	XMLName          xml.Name          `xml:"http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01 Hello"`
+	XMLName           xml.Name          `xml:"http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01 Hello"`
 	EndpointReference EndpointReference `xml:"http://www.w3.org/2005/08/addressing EndpointReference"`
-	Types            string            `xml:"Types,omitempty"`
-	Scopes           string            `xml:"Scopes,omitempty"`
-	XAddrs           string            `xml:"XAddrs,omitempty"`
-	MetadataVersion  int               `xml:"MetadataVersion"`
+	Types             string            `xml:"Types,omitempty"`
+	Scopes            string            `xml:"Scopes,omitempty"`
+	XAddrs            string            `xml:"XAddrs,omitempty"`
+	MetadataVersion   int               `xml:"MetadataVersion"`
 }
 
 type Bye struct {
-	XMLName          xml.Name          `xml:"http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01 Bye"`
+	XMLName           xml.Name          `xml:"http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01 Bye"`
 	EndpointReference EndpointReference `xml:"http://www.w3.org/2005/08/addressing EndpointReference"`
 }
 
@@ -82,7 +83,7 @@ func discover(ctx context.Context, types string) ([]DeviceInfo, error) {
 	if err != nil {
 		return nil, fmt.Errorf("wsdiscovery: listen: %w", err)
 	}
-	defer conn.Close()
+	defer func() { _ = conn.Close() }()
 
 	probe := &Probe{Types: types}
 	reqEnv := &env.Envelope{}
@@ -100,9 +101,9 @@ func discover(ctx context.Context, types string) ([]DeviceInfo, error) {
 	}
 
 	if deadline, ok := ctx.Deadline(); ok {
-		conn.SetReadDeadline(deadline)
+		_ = conn.SetReadDeadline(deadline)
 	} else {
-		conn.SetReadDeadline(time.Now().Add(3 * time.Second))
+		_ = conn.SetReadDeadline(time.Now().Add(3 * time.Second))
 	}
 
 	buf := make([]byte, 65535)
@@ -112,7 +113,8 @@ func discover(ctx context.Context, types string) ([]DeviceInfo, error) {
 	for {
 		n, _, err := conn.ReadFromUDP(buf)
 		if err != nil {
-			if netErr, ok := err.(net.Error); ok && netErr.Timeout() {
+			var netErr net.Error
+			if errors.As(err, &netErr) && netErr.Timeout() {
 				break
 			}
 			return devices, fmt.Errorf("wsdiscovery: read: %w", err)

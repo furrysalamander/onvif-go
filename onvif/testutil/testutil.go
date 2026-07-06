@@ -2,7 +2,6 @@ package testutil
 
 import (
 	"context"
-	"fmt"
 	"testing"
 	"time"
 
@@ -13,9 +12,7 @@ func WithMockServer(t *testing.T, fn func(addr string)) {
 	t.Helper()
 
 	mc := mockcam.New()
-	go func() {
-		mc.Listen()
-	}()
+	go func() { _ = mc.Listen() }()
 
 	time.Sleep(50 * time.Millisecond)
 
@@ -31,5 +28,3 @@ func WithMockServer(t *testing.T, fn func(addr string)) {
 		t.Logf("mockcam shutdown: %v", err)
 	}
 }
-
-var _ = fmt.Sprintf("")

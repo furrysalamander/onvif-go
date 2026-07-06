@@ -1,8 +1,6 @@
 package tt
 
 import (
-	"time"
-
 	"github.com/furrysalamander/onvif-go/onvif/schema/core"
 )
 
@@ -12,5 +10,3 @@ type Extension = core.Extension
 type RawXML = core.RawXML
 
 var ParseDuration = core.ParseDuration
-
-type _timeAlias = time.Time

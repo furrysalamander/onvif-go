@@ -2,6 +2,7 @@ package env
 
 import (
 	"encoding/xml"
+	"errors"
 	"io"
 	"strings"
 )
@@ -96,7 +97,7 @@ func pipeXML(enc *xml.Encoder, r rawXML) error {
 	dec := xml.NewDecoder(strings.NewReader(string(r)))
 	for {
 		tok, err := dec.Token()
-		if err == io.EOF {
+		if errors.Is(err, io.EOF) {
 			return nil
 		}
 		if err != nil {

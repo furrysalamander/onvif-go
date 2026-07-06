@@ -108,15 +108,6 @@ func anyAttrInFields(fields []fieldShape) bool {
 
 var baseFieldCount int
 
-func emitStruct(b *strings.Builder, goName string, fields []fieldShape) {
-	fmt.Fprintf(b, "type %s struct {\n", goName)
-	baseFieldCount = 0
-	for _, f := range fields {
-		emitField(b, f)
-	}
-	b.WriteString("}\n\n")
-}
-
 func emitField(b *strings.Builder, f fieldShape) {
 	if f.Doc != "" {
 		b.WriteString(cleanComment(f.Doc, "\t"))

@@ -94,13 +94,7 @@ func (s *SymTab) addSchema(m *ir.Module, sc *ir.Schema) error {
 		sym.Namespace = ns
 		sym.Local = name
 		sym.Owner = m
-		if s.byName[kind][ns+"|"+name] == (Symbol{}) || s.byName[kind][ns+"|"+name].Owner == nil {
-			s.byName[kind][ns+"|"+name] = sym
-		} else {
-			// Later writes win (so the most recently loaded module's symbol
-			// takes precedence, mirroring XSD semantics across includes).
-			s.byName[kind][ns+"|"+name] = sym
-		}
+		s.byName[kind][ns+"|"+name] = sym
 		bucket, ok := s.byNS[kind][ns]
 		if !ok {
 			bucket = map[string]Symbol{}

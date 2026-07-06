@@ -22,7 +22,7 @@ var NSPkg = map[string]string{
 	"http://www.w3.org/2004/08/xop/include":   "xop",
 	"http://www.w3.org/XML/1998/namespace":    "xmlns",
 	"http://www.w3.org/2001/XMLSchema":        "xs",
-	"urn:onvif:go:core":                      "core",
+	"urn:onvif:go:core":                       "core",
 }
 
 // PkgNS is the reverse map (package id → namespace).
@@ -84,7 +84,7 @@ func pascal(name string) string {
 		s = "X"
 	}
 	// Guarantee an exported identifier (first rune uppercase ASCII).
-	if !(s[0] >= 'A' && s[0] <= 'Z') {
+	if s[0] < 'A' || s[0] > 'Z' {
 		s = "X" + s
 	}
 	return safeIdent(s)

@@ -3,19 +3,16 @@ package mockcam
 import (
 	"context"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io"
-	"log"
 	"net"
 	"net/http"
 	"strings"
-	"time"
 
-	"github.com/furrysalamander/onvif-go/internal/ws"
 	"github.com/furrysalamander/onvif-go/onvif/schema/env"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tds"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
-	"github.com/furrysalamander/onvif-go/onvif/schema/wsa"
 )
 
 type Server struct {
@@ -56,19 +53,14 @@ func New() *Server {
 	return s
 }
 
-type mockResponse struct {
-	XMLName xml.Name
-	Body    interface{}
-}
-
 func (s *Server) Listen() error {
 	ln, err := net.Listen("tcp", "127.0.0.1:0")
 	if err != nil {
 		return err
 	}
 	s.Addr = fmt.Sprintf("http://%s/onvif/device_service", ln.Addr().String())
-	err = s.Server.Serve(ln)
-	if err == http.ErrServerClosed {
+	err = s.Serve(ln)
+	if errors.Is(err, http.ErrServerClosed) {
 		return nil
 	}
 	return err
@@ -80,11 +72,11 @@ func (s *Server) Shutdown(ctx context.Context) error {
 
 func (s *Server) handle(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
+	_ = r.Body.Close()
 	if err != nil {
 		http.Error(w, "read error", http.StatusBadRequest)
 		return
 	}
-	defer r.Body.Close()
 
 	var e env.Envelope
 	if err := xml.Unmarshal(body, &e); err != nil {
@@ -94,13 +86,13 @@ func (s *Server) handle(w http.ResponseWriter, r *http.Request) {
 
 	resp := s.dispatch(body, &e)
 	respEnv := &env.Envelope{}
-	respEnv.SetBody(resp)
+	_ = respEnv.SetBody(resp)
 	out, _ := xml.Marshal(respEnv)
 	w.Header().Set("Content-Type", "application/soap+xml; charset=utf-8")
-	w.Write(out)
+	_, _ = w.Write(out)
 }
 
-func (s *Server) dispatch(raw []byte, e *env.Envelope) interface{} {
+func (s *Server) dispatch(raw []byte, _ *env.Envelope) interface{} {
 	bodyStr := string(raw)
 	switch {
 	case strings.Contains(bodyStr, "GetDeviceInformation"):
@@ -137,8 +129,3 @@ func (s *Server) getScopes() *tds.GetScopesResponse {
 	}
 	return &tds.GetScopesResponse{Scopes: scopes}
 }
-
-var _ wsa.AttributedURIType
-var _ = time.Now()
-var _ = log.Default()
-var _ = ws.MarshalRequest

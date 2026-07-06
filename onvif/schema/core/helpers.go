@@ -2,11 +2,11 @@ package core
 
 import (
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io"
 	"strconv"
 	"strings"
-	"time"
 )
 
 type QName struct {
@@ -195,7 +195,7 @@ func pipeXML(enc *xml.Encoder, r RawXML) error {
 	dec := xml.NewDecoder(strings.NewReader(string(r)))
 	for {
 		tok, err := dec.Token()
-		if err == io.EOF {
+		if errors.Is(err, io.EOF) {
 			return nil
 		}
 		if err != nil {
@@ -277,5 +277,3 @@ func bufferSubtree(d *xml.Decoder, start xml.StartElement) (RawXML, error) {
 	}
 	return RawXML(b.String()), nil
 }
-
-type _timeAlias = time.Time
