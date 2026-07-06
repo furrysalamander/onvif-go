@@ -29,619 +29,619 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) AddIPAddressFilter(ctx context.Context) (*tds.AddIPAddressFilterResponse, error) {
 	out := &tds.AddIPAddressFilterResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/AddIPAddressFilter", &tds.AddIPAddressFilter{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/AddIPAddressFilter", &tds.AddIPAddressFilter{}, out)
 	return out, err
 }
 
 func (c *Client) AddScopes(ctx context.Context) (*tds.AddScopesResponse, error) {
 	out := &tds.AddScopesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/AddScopes", &tds.AddScopes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/AddScopes", &tds.AddScopes{}, out)
 	return out, err
 }
 
 func (c *Client) CreateCertificate(ctx context.Context) (*tds.CreateCertificateResponse, error) {
 	out := &tds.CreateCertificateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/CreateCertificate", &tds.CreateCertificate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/CreateCertificate", &tds.CreateCertificate{}, out)
 	return out, err
 }
 
 func (c *Client) CreateDot1XConfiguration(ctx context.Context) (*tds.CreateDot1XConfigurationResponse, error) {
 	out := &tds.CreateDot1XConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/CreateDot1XConfiguration", &tds.CreateDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/CreateDot1XConfiguration", &tds.CreateDot1XConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) CreateStorageConfiguration(ctx context.Context) (*tds.CreateStorageConfigurationResponse, error) {
 	out := &tds.CreateStorageConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/CreateStorageConfiguration", &tds.CreateStorageConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/CreateStorageConfiguration", &tds.CreateStorageConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) CreateUsers(ctx context.Context) (*tds.CreateUsersResponse, error) {
 	out := &tds.CreateUsersResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/CreateUsers", &tds.CreateUsers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/CreateUsers", &tds.CreateUsers{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteCertificates(ctx context.Context) (*tds.DeleteCertificatesResponse, error) {
 	out := &tds.DeleteCertificatesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/DeleteCertificates", &tds.DeleteCertificates{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/DeleteCertificates", &tds.DeleteCertificates{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteDot1XConfiguration(ctx context.Context) (*tds.DeleteDot1XConfigurationResponse, error) {
 	out := &tds.DeleteDot1XConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/DeleteDot1XConfiguration", &tds.DeleteDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/DeleteDot1XConfiguration", &tds.DeleteDot1XConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteGeoLocation(ctx context.Context) (*tds.DeleteGeoLocationResponse, error) {
 	out := &tds.DeleteGeoLocationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/DeleteGeoLocation", &tds.DeleteGeoLocation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/DeleteGeoLocation", &tds.DeleteGeoLocation{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteStorageConfiguration(ctx context.Context) (*tds.DeleteStorageConfigurationResponse, error) {
 	out := &tds.DeleteStorageConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/DeleteStorageConfiguration", &tds.DeleteStorageConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/DeleteStorageConfiguration", &tds.DeleteStorageConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteUserRole(ctx context.Context) (*tds.DeleteUserRoleResponse, error) {
 	out := &tds.DeleteUserRoleResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/DeleteUserRole", &tds.DeleteUserRole{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/DeleteUserRole", &tds.DeleteUserRole{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteUsers(ctx context.Context) (*tds.DeleteUsersResponse, error) {
 	out := &tds.DeleteUsersResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/DeleteUsers", &tds.DeleteUsers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/DeleteUsers", &tds.DeleteUsers{}, out)
 	return out, err
 }
 
 func (c *Client) GetAccessPolicy(ctx context.Context) (*tds.GetAccessPolicyResponse, error) {
 	out := &tds.GetAccessPolicyResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetAccessPolicy", &tds.GetAccessPolicy{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetAccessPolicy", &tds.GetAccessPolicy{}, out)
 	return out, err
 }
 
 func (c *Client) GetAuthFailureWarningConfiguration(ctx context.Context) (*tds.GetAuthFailureWarningConfigurationResponse, error) {
 	out := &tds.GetAuthFailureWarningConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetAuthFailureWarningConfiguration", &tds.GetAuthFailureWarningConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetAuthFailureWarningConfiguration", &tds.GetAuthFailureWarningConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetAuthFailureWarningOptions(ctx context.Context) (*tds.GetAuthFailureWarningOptionsResponse, error) {
 	out := &tds.GetAuthFailureWarningOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetAuthFailureWarningOptions", &tds.GetAuthFailureWarningOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetAuthFailureWarningOptions", &tds.GetAuthFailureWarningOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetCACertificates(ctx context.Context) (*tds.GetCACertificatesResponse, error) {
 	out := &tds.GetCACertificatesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetCACertificates", &tds.GetCACertificates{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetCACertificates", &tds.GetCACertificates{}, out)
 	return out, err
 }
 
 func (c *Client) GetCapabilities(ctx context.Context) (*tds.GetCapabilitiesResponse, error) {
 	out := &tds.GetCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetCapabilities", &tds.GetCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetCapabilities", &tds.GetCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetCertificateInformation(ctx context.Context) (*tds.GetCertificateInformationResponse, error) {
 	out := &tds.GetCertificateInformationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetCertificateInformation", &tds.GetCertificateInformation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetCertificateInformation", &tds.GetCertificateInformation{}, out)
 	return out, err
 }
 
 func (c *Client) GetCertificates(ctx context.Context) (*tds.GetCertificatesResponse, error) {
 	out := &tds.GetCertificatesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetCertificates", &tds.GetCertificates{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetCertificates", &tds.GetCertificates{}, out)
 	return out, err
 }
 
 func (c *Client) GetCertificatesStatus(ctx context.Context) (*tds.GetCertificatesStatusResponse, error) {
 	out := &tds.GetCertificatesStatusResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetCertificatesStatus", &tds.GetCertificatesStatus{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetCertificatesStatus", &tds.GetCertificatesStatus{}, out)
 	return out, err
 }
 
 func (c *Client) GetClientCertificateMode(ctx context.Context) (*tds.GetClientCertificateModeResponse, error) {
 	out := &tds.GetClientCertificateModeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetClientCertificateMode", &tds.GetClientCertificateMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetClientCertificateMode", &tds.GetClientCertificateMode{}, out)
 	return out, err
 }
 
 func (c *Client) GetDNS(ctx context.Context) (*tds.GetDNSResponse, error) {
 	out := &tds.GetDNSResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDNS", &tds.GetDNS{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDNS", &tds.GetDNS{}, out)
 	return out, err
 }
 
 func (c *Client) GetDPAddresses(ctx context.Context) (*tds.GetDPAddressesResponse, error) {
 	out := &tds.GetDPAddressesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDPAddresses", &tds.GetDPAddresses{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDPAddresses", &tds.GetDPAddresses{}, out)
 	return out, err
 }
 
 func (c *Client) GetDeviceInformation(ctx context.Context) (*tds.GetDeviceInformationResponse, error) {
 	out := &tds.GetDeviceInformationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDeviceInformation", &tds.GetDeviceInformation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDeviceInformation", &tds.GetDeviceInformation{}, out)
 	return out, err
 }
 
 func (c *Client) GetDiscoveryMode(ctx context.Context) (*tds.GetDiscoveryModeResponse, error) {
 	out := &tds.GetDiscoveryModeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDiscoveryMode", &tds.GetDiscoveryMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDiscoveryMode", &tds.GetDiscoveryMode{}, out)
 	return out, err
 }
 
 func (c *Client) GetDot11Capabilities(ctx context.Context) (*tds.GetDot11CapabilitiesResponse, error) {
 	out := &tds.GetDot11CapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDot11Capabilities", &tds.GetDot11Capabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDot11Capabilities", &tds.GetDot11Capabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetDot11Status(ctx context.Context) (*tds.GetDot11StatusResponse, error) {
 	out := &tds.GetDot11StatusResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDot11Status", &tds.GetDot11Status{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDot11Status", &tds.GetDot11Status{}, out)
 	return out, err
 }
 
 func (c *Client) GetDot1XConfiguration(ctx context.Context) (*tds.GetDot1XConfigurationResponse, error) {
 	out := &tds.GetDot1XConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDot1XConfiguration", &tds.GetDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDot1XConfiguration", &tds.GetDot1XConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetDot1XConfigurations(ctx context.Context) (*tds.GetDot1XConfigurationsResponse, error) {
 	out := &tds.GetDot1XConfigurationsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDot1XConfigurations", &tds.GetDot1XConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDot1XConfigurations", &tds.GetDot1XConfigurations{}, out)
 	return out, err
 }
 
 func (c *Client) GetDynamicDNS(ctx context.Context) (*tds.GetDynamicDNSResponse, error) {
 	out := &tds.GetDynamicDNSResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetDynamicDNS", &tds.GetDynamicDNS{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetDynamicDNS", &tds.GetDynamicDNS{}, out)
 	return out, err
 }
 
 func (c *Client) GetEndpointReference(ctx context.Context) (*tds.GetEndpointReferenceResponse, error) {
 	out := &tds.GetEndpointReferenceResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetEndpointReference", &tds.GetEndpointReference{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetEndpointReference", &tds.GetEndpointReference{}, out)
 	return out, err
 }
 
 func (c *Client) GetGeoLocation(ctx context.Context) (*tds.GetGeoLocationResponse, error) {
 	out := &tds.GetGeoLocationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetGeoLocation", &tds.GetGeoLocation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetGeoLocation", &tds.GetGeoLocation{}, out)
 	return out, err
 }
 
 func (c *Client) GetHostname(ctx context.Context) (*tds.GetHostnameResponse, error) {
 	out := &tds.GetHostnameResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetHostname", &tds.GetHostname{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetHostname", &tds.GetHostname{}, out)
 	return out, err
 }
 
 func (c *Client) GetIPAddressFilter(ctx context.Context) (*tds.GetIPAddressFilterResponse, error) {
 	out := &tds.GetIPAddressFilterResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetIPAddressFilter", &tds.GetIPAddressFilter{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetIPAddressFilter", &tds.GetIPAddressFilter{}, out)
 	return out, err
 }
 
 func (c *Client) GetNTP(ctx context.Context) (*tds.GetNTPResponse, error) {
 	out := &tds.GetNTPResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetNTP", &tds.GetNTP{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetNTP", &tds.GetNTP{}, out)
 	return out, err
 }
 
 func (c *Client) GetNetworkDefaultGateway(ctx context.Context) (*tds.GetNetworkDefaultGatewayResponse, error) {
 	out := &tds.GetNetworkDefaultGatewayResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetNetworkDefaultGateway", &tds.GetNetworkDefaultGateway{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetNetworkDefaultGateway", &tds.GetNetworkDefaultGateway{}, out)
 	return out, err
 }
 
 func (c *Client) GetNetworkInterfaces(ctx context.Context) (*tds.GetNetworkInterfacesResponse, error) {
 	out := &tds.GetNetworkInterfacesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetNetworkInterfaces", &tds.GetNetworkInterfaces{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetNetworkInterfaces", &tds.GetNetworkInterfaces{}, out)
 	return out, err
 }
 
 func (c *Client) GetNetworkProtocols(ctx context.Context) (*tds.GetNetworkProtocolsResponse, error) {
 	out := &tds.GetNetworkProtocolsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetNetworkProtocols", &tds.GetNetworkProtocols{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetNetworkProtocols", &tds.GetNetworkProtocols{}, out)
 	return out, err
 }
 
 func (c *Client) GetPasswordComplexityConfiguration(ctx context.Context) (*tds.GetPasswordComplexityConfigurationResponse, error) {
 	out := &tds.GetPasswordComplexityConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetPasswordComplexityConfiguration", &tds.GetPasswordComplexityConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetPasswordComplexityConfiguration", &tds.GetPasswordComplexityConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetPasswordComplexityOptions(ctx context.Context) (*tds.GetPasswordComplexityOptionsResponse, error) {
 	out := &tds.GetPasswordComplexityOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetPasswordComplexityOptions", &tds.GetPasswordComplexityOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetPasswordComplexityOptions", &tds.GetPasswordComplexityOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetPasswordHistoryConfiguration(ctx context.Context) (*tds.GetPasswordHistoryConfigurationResponse, error) {
 	out := &tds.GetPasswordHistoryConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetPasswordHistoryConfiguration", &tds.GetPasswordHistoryConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetPasswordHistoryConfiguration", &tds.GetPasswordHistoryConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetPkcs10Request(ctx context.Context) (*tds.GetPkcs10RequestResponse, error) {
 	out := &tds.GetPkcs10RequestResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetPkcs10Request", &tds.GetPkcs10Request{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetPkcs10Request", &tds.GetPkcs10Request{}, out)
 	return out, err
 }
 
 func (c *Client) GetRelayOutputs(ctx context.Context) (*tds.GetRelayOutputsResponse, error) {
 	out := &tds.GetRelayOutputsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetRelayOutputs", &tds.GetRelayOutputs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetRelayOutputs", &tds.GetRelayOutputs{}, out)
 	return out, err
 }
 
 func (c *Client) GetRemoteDiscoveryMode(ctx context.Context) (*tds.GetRemoteDiscoveryModeResponse, error) {
 	out := &tds.GetRemoteDiscoveryModeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetRemoteDiscoveryMode", &tds.GetRemoteDiscoveryMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetRemoteDiscoveryMode", &tds.GetRemoteDiscoveryMode{}, out)
 	return out, err
 }
 
 func (c *Client) GetRemoteUser(ctx context.Context) (*tds.GetRemoteUserResponse, error) {
 	out := &tds.GetRemoteUserResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetRemoteUser", &tds.GetRemoteUser{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetRemoteUser", &tds.GetRemoteUser{}, out)
 	return out, err
 }
 
 func (c *Client) GetScopes(ctx context.Context) (*tds.GetScopesResponse, error) {
 	out := &tds.GetScopesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetScopes", &tds.GetScopes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetScopes", &tds.GetScopes{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tds.GetServiceCapabilitiesResponse, error) {
 	out := &tds.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetServiceCapabilities", &tds.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetServiceCapabilities", &tds.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetServices(ctx context.Context) (*tds.GetServicesResponse, error) {
 	out := &tds.GetServicesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetServices", &tds.GetServices{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetServices", &tds.GetServices{}, out)
 	return out, err
 }
 
 func (c *Client) GetStorageConfiguration(ctx context.Context) (*tds.GetStorageConfigurationResponse, error) {
 	out := &tds.GetStorageConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetStorageConfiguration", &tds.GetStorageConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetStorageConfiguration", &tds.GetStorageConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetStorageConfigurations(ctx context.Context) (*tds.GetStorageConfigurationsResponse, error) {
 	out := &tds.GetStorageConfigurationsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetStorageConfigurations", &tds.GetStorageConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetStorageConfigurations", &tds.GetStorageConfigurations{}, out)
 	return out, err
 }
 
 func (c *Client) GetSystemBackup(ctx context.Context) (*tds.GetSystemBackupResponse, error) {
 	out := &tds.GetSystemBackupResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetSystemBackup", &tds.GetSystemBackup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetSystemBackup", &tds.GetSystemBackup{}, out)
 	return out, err
 }
 
 func (c *Client) GetSystemDateAndTime(ctx context.Context) (*tds.GetSystemDateAndTimeResponse, error) {
 	out := &tds.GetSystemDateAndTimeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetSystemDateAndTime", &tds.GetSystemDateAndTime{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetSystemDateAndTime", &tds.GetSystemDateAndTime{}, out)
 	return out, err
 }
 
 func (c *Client) GetSystemLog(ctx context.Context) (*tds.GetSystemLogResponse, error) {
 	out := &tds.GetSystemLogResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetSystemLog", &tds.GetSystemLog{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetSystemLog", &tds.GetSystemLog{}, out)
 	return out, err
 }
 
 func (c *Client) GetSystemSupportInformation(ctx context.Context) (*tds.GetSystemSupportInformationResponse, error) {
 	out := &tds.GetSystemSupportInformationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetSystemSupportInformation", &tds.GetSystemSupportInformation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetSystemSupportInformation", &tds.GetSystemSupportInformation{}, out)
 	return out, err
 }
 
 func (c *Client) GetSystemUris(ctx context.Context) (*tds.GetSystemUrisResponse, error) {
 	out := &tds.GetSystemUrisResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetSystemUris", &tds.GetSystemUris{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetSystemUris", &tds.GetSystemUris{}, out)
 	return out, err
 }
 
 func (c *Client) GetUserRoles(ctx context.Context) (*tds.GetUserRolesResponse, error) {
 	out := &tds.GetUserRolesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetUserRoles", &tds.GetUserRoles{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetUserRoles", &tds.GetUserRoles{}, out)
 	return out, err
 }
 
 func (c *Client) GetUsers(ctx context.Context) (*tds.GetUsersResponse, error) {
 	out := &tds.GetUsersResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetUsers", &tds.GetUsers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetUsers", &tds.GetUsers{}, out)
 	return out, err
 }
 
 func (c *Client) GetWsdlUrl(ctx context.Context) (*tds.GetWsdlUrlResponse, error) {
 	out := &tds.GetWsdlUrlResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetWsdlUrl", &tds.GetWsdlUrl{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetWsdlUrl", &tds.GetWsdlUrl{}, out)
 	return out, err
 }
 
 func (c *Client) GetZeroConfiguration(ctx context.Context) (*tds.GetZeroConfigurationResponse, error) {
 	out := &tds.GetZeroConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/GetZeroConfiguration", &tds.GetZeroConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetZeroConfiguration", &tds.GetZeroConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) LoadCACertificates(ctx context.Context) (*tds.LoadCACertificatesResponse, error) {
 	out := &tds.LoadCACertificatesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/LoadCACertificates", &tds.LoadCACertificates{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/LoadCACertificates", &tds.LoadCACertificates{}, out)
 	return out, err
 }
 
 func (c *Client) LoadCertificateWithPrivateKey(ctx context.Context) (*tds.LoadCertificateWithPrivateKeyResponse, error) {
 	out := &tds.LoadCertificateWithPrivateKeyResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/LoadCertificateWithPrivateKey", &tds.LoadCertificateWithPrivateKey{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/LoadCertificateWithPrivateKey", &tds.LoadCertificateWithPrivateKey{}, out)
 	return out, err
 }
 
 func (c *Client) LoadCertificates(ctx context.Context) (*tds.LoadCertificatesResponse, error) {
 	out := &tds.LoadCertificatesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/LoadCertificates", &tds.LoadCertificates{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/LoadCertificates", &tds.LoadCertificates{}, out)
 	return out, err
 }
 
 func (c *Client) RemoveIPAddressFilter(ctx context.Context) (*tds.RemoveIPAddressFilterResponse, error) {
 	out := &tds.RemoveIPAddressFilterResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/RemoveIPAddressFilter", &tds.RemoveIPAddressFilter{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/RemoveIPAddressFilter", &tds.RemoveIPAddressFilter{}, out)
 	return out, err
 }
 
 func (c *Client) RemoveScopes(ctx context.Context) (*tds.RemoveScopesResponse, error) {
 	out := &tds.RemoveScopesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/RemoveScopes", &tds.RemoveScopes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/RemoveScopes", &tds.RemoveScopes{}, out)
 	return out, err
 }
 
 func (c *Client) RestoreSystem(ctx context.Context) (*tds.RestoreSystemResponse, error) {
 	out := &tds.RestoreSystemResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/RestoreSystem", &tds.RestoreSystem{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/RestoreSystem", &tds.RestoreSystem{}, out)
 	return out, err
 }
 
 func (c *Client) ScanAvailableDot11Networks(ctx context.Context) (*tds.ScanAvailableDot11NetworksResponse, error) {
 	out := &tds.ScanAvailableDot11NetworksResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/ScanAvailableDot11Networks", &tds.ScanAvailableDot11Networks{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/ScanAvailableDot11Networks", &tds.ScanAvailableDot11Networks{}, out)
 	return out, err
 }
 
 func (c *Client) SendAuxiliaryCommand(ctx context.Context) (*tds.SendAuxiliaryCommandResponse, error) {
 	out := &tds.SendAuxiliaryCommandResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SendAuxiliaryCommand", &tds.SendAuxiliaryCommand{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SendAuxiliaryCommand", &tds.SendAuxiliaryCommand{}, out)
 	return out, err
 }
 
 func (c *Client) SetAccessPolicy(ctx context.Context) (*tds.SetAccessPolicyResponse, error) {
 	out := &tds.SetAccessPolicyResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetAccessPolicy", &tds.SetAccessPolicy{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetAccessPolicy", &tds.SetAccessPolicy{}, out)
 	return out, err
 }
 
 func (c *Client) SetAuthFailureWarningConfiguration(ctx context.Context) (*tds.SetAuthFailureWarningConfigurationResponse, error) {
 	out := &tds.SetAuthFailureWarningConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetAuthFailureWarningConfiguration", &tds.SetAuthFailureWarningConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetAuthFailureWarningConfiguration", &tds.SetAuthFailureWarningConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetCertificatesStatus(ctx context.Context) (*tds.SetCertificatesStatusResponse, error) {
 	out := &tds.SetCertificatesStatusResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetCertificatesStatus", &tds.SetCertificatesStatus{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetCertificatesStatus", &tds.SetCertificatesStatus{}, out)
 	return out, err
 }
 
 func (c *Client) SetClientCertificateMode(ctx context.Context) (*tds.SetClientCertificateModeResponse, error) {
 	out := &tds.SetClientCertificateModeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetClientCertificateMode", &tds.SetClientCertificateMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetClientCertificateMode", &tds.SetClientCertificateMode{}, out)
 	return out, err
 }
 
 func (c *Client) SetDNS(ctx context.Context) (*tds.SetDNSResponse, error) {
 	out := &tds.SetDNSResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetDNS", &tds.SetDNS{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetDNS", &tds.SetDNS{}, out)
 	return out, err
 }
 
 func (c *Client) SetDPAddresses(ctx context.Context) (*tds.SetDPAddressesResponse, error) {
 	out := &tds.SetDPAddressesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetDPAddresses", &tds.SetDPAddresses{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetDPAddresses", &tds.SetDPAddresses{}, out)
 	return out, err
 }
 
 func (c *Client) SetDiscoveryMode(ctx context.Context) (*tds.SetDiscoveryModeResponse, error) {
 	out := &tds.SetDiscoveryModeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetDiscoveryMode", &tds.SetDiscoveryMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetDiscoveryMode", &tds.SetDiscoveryMode{}, out)
 	return out, err
 }
 
 func (c *Client) SetDot1XConfiguration(ctx context.Context) (*tds.SetDot1XConfigurationResponse, error) {
 	out := &tds.SetDot1XConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetDot1XConfiguration", &tds.SetDot1XConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetDot1XConfiguration", &tds.SetDot1XConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetDynamicDNS(ctx context.Context) (*tds.SetDynamicDNSResponse, error) {
 	out := &tds.SetDynamicDNSResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetDynamicDNS", &tds.SetDynamicDNS{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetDynamicDNS", &tds.SetDynamicDNS{}, out)
 	return out, err
 }
 
 func (c *Client) SetGeoLocation(ctx context.Context) (*tds.SetGeoLocationResponse, error) {
 	out := &tds.SetGeoLocationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetGeoLocation", &tds.SetGeoLocation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetGeoLocation", &tds.SetGeoLocation{}, out)
 	return out, err
 }
 
 func (c *Client) SetHashingAlgorithm(ctx context.Context) (*tds.SetHashingAlgorithmResponse, error) {
 	out := &tds.SetHashingAlgorithmResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetHashingAlgorithm", &tds.SetHashingAlgorithm{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetHashingAlgorithm", &tds.SetHashingAlgorithm{}, out)
 	return out, err
 }
 
 func (c *Client) SetHostname(ctx context.Context) (*tds.SetHostnameResponse, error) {
 	out := &tds.SetHostnameResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetHostname", &tds.SetHostname{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetHostname", &tds.SetHostname{}, out)
 	return out, err
 }
 
 func (c *Client) SetHostnameFromDHCP(ctx context.Context) (*tds.SetHostnameFromDHCPResponse, error) {
 	out := &tds.SetHostnameFromDHCPResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetHostnameFromDHCP", &tds.SetHostnameFromDHCP{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetHostnameFromDHCP", &tds.SetHostnameFromDHCP{}, out)
 	return out, err
 }
 
 func (c *Client) SetIPAddressFilter(ctx context.Context) (*tds.SetIPAddressFilterResponse, error) {
 	out := &tds.SetIPAddressFilterResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetIPAddressFilter", &tds.SetIPAddressFilter{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetIPAddressFilter", &tds.SetIPAddressFilter{}, out)
 	return out, err
 }
 
 func (c *Client) SetNTP(ctx context.Context) (*tds.SetNTPResponse, error) {
 	out := &tds.SetNTPResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetNTP", &tds.SetNTP{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetNTP", &tds.SetNTP{}, out)
 	return out, err
 }
 
 func (c *Client) SetNetworkDefaultGateway(ctx context.Context) (*tds.SetNetworkDefaultGatewayResponse, error) {
 	out := &tds.SetNetworkDefaultGatewayResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetNetworkDefaultGateway", &tds.SetNetworkDefaultGateway{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetNetworkDefaultGateway", &tds.SetNetworkDefaultGateway{}, out)
 	return out, err
 }
 
 func (c *Client) SetNetworkInterfaces(ctx context.Context) (*tds.SetNetworkInterfacesResponse, error) {
 	out := &tds.SetNetworkInterfacesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetNetworkInterfaces", &tds.SetNetworkInterfaces{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetNetworkInterfaces", &tds.SetNetworkInterfaces{}, out)
 	return out, err
 }
 
 func (c *Client) SetNetworkProtocols(ctx context.Context) (*tds.SetNetworkProtocolsResponse, error) {
 	out := &tds.SetNetworkProtocolsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetNetworkProtocols", &tds.SetNetworkProtocols{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetNetworkProtocols", &tds.SetNetworkProtocols{}, out)
 	return out, err
 }
 
 func (c *Client) SetPasswordComplexityConfiguration(ctx context.Context) (*tds.SetPasswordComplexityConfigurationResponse, error) {
 	out := &tds.SetPasswordComplexityConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetPasswordComplexityConfiguration", &tds.SetPasswordComplexityConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetPasswordComplexityConfiguration", &tds.SetPasswordComplexityConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetPasswordHistoryConfiguration(ctx context.Context) (*tds.SetPasswordHistoryConfigurationResponse, error) {
 	out := &tds.SetPasswordHistoryConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetPasswordHistoryConfiguration", &tds.SetPasswordHistoryConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetPasswordHistoryConfiguration", &tds.SetPasswordHistoryConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetRelayOutputSettings(ctx context.Context) (*tds.SetRelayOutputSettingsResponse, error) {
 	out := &tds.SetRelayOutputSettingsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetRelayOutputSettings", &tds.SetRelayOutputSettings{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetRelayOutputSettings", &tds.SetRelayOutputSettings{}, out)
 	return out, err
 }
 
 func (c *Client) SetRelayOutputState(ctx context.Context) (*tds.SetRelayOutputStateResponse, error) {
 	out := &tds.SetRelayOutputStateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetRelayOutputState", &tds.SetRelayOutputState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetRelayOutputState", &tds.SetRelayOutputState{}, out)
 	return out, err
 }
 
 func (c *Client) SetRemoteDiscoveryMode(ctx context.Context) (*tds.SetRemoteDiscoveryModeResponse, error) {
 	out := &tds.SetRemoteDiscoveryModeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetRemoteDiscoveryMode", &tds.SetRemoteDiscoveryMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetRemoteDiscoveryMode", &tds.SetRemoteDiscoveryMode{}, out)
 	return out, err
 }
 
 func (c *Client) SetRemoteUser(ctx context.Context) (*tds.SetRemoteUserResponse, error) {
 	out := &tds.SetRemoteUserResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetRemoteUser", &tds.SetRemoteUser{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetRemoteUser", &tds.SetRemoteUser{}, out)
 	return out, err
 }
 
 func (c *Client) SetScopes(ctx context.Context) (*tds.SetScopesResponse, error) {
 	out := &tds.SetScopesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetScopes", &tds.SetScopes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetScopes", &tds.SetScopes{}, out)
 	return out, err
 }
 
 func (c *Client) SetStorageConfiguration(ctx context.Context) (*tds.SetStorageConfigurationResponse, error) {
 	out := &tds.SetStorageConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetStorageConfiguration", &tds.SetStorageConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetStorageConfiguration", &tds.SetStorageConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetSystemDateAndTime(ctx context.Context) (*tds.SetSystemDateAndTimeResponse, error) {
 	out := &tds.SetSystemDateAndTimeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetSystemDateAndTime", &tds.SetSystemDateAndTime{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetSystemDateAndTime", &tds.SetSystemDateAndTime{}, out)
 	return out, err
 }
 
 func (c *Client) SetSystemFactoryDefault(ctx context.Context) (*tds.SetSystemFactoryDefaultResponse, error) {
 	out := &tds.SetSystemFactoryDefaultResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetSystemFactoryDefault", &tds.SetSystemFactoryDefault{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetSystemFactoryDefault", &tds.SetSystemFactoryDefault{}, out)
 	return out, err
 }
 
 func (c *Client) SetUser(ctx context.Context) (*tds.SetUserResponse, error) {
 	out := &tds.SetUserResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetUser", &tds.SetUser{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetUser", &tds.SetUser{}, out)
 	return out, err
 }
 
 func (c *Client) SetUserRole(ctx context.Context) (*tds.SetUserRoleResponse, error) {
 	out := &tds.SetUserRoleResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetUserRole", &tds.SetUserRole{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetUserRole", &tds.SetUserRole{}, out)
 	return out, err
 }
 
 func (c *Client) SetZeroConfiguration(ctx context.Context) (*tds.SetZeroConfigurationResponse, error) {
 	out := &tds.SetZeroConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SetZeroConfiguration", &tds.SetZeroConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SetZeroConfiguration", &tds.SetZeroConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) StartFirmwareUpgrade(ctx context.Context) (*tds.StartFirmwareUpgradeResponse, error) {
 	out := &tds.StartFirmwareUpgradeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/StartFirmwareUpgrade", &tds.StartFirmwareUpgrade{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/StartFirmwareUpgrade", &tds.StartFirmwareUpgrade{}, out)
 	return out, err
 }
 
 func (c *Client) StartSystemRestore(ctx context.Context) (*tds.StartSystemRestoreResponse, error) {
 	out := &tds.StartSystemRestoreResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/StartSystemRestore", &tds.StartSystemRestore{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/StartSystemRestore", &tds.StartSystemRestore{}, out)
 	return out, err
 }
 
 func (c *Client) SystemReboot(ctx context.Context) (*tds.SystemRebootResponse, error) {
 	out := &tds.SystemRebootResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/SystemReboot", &tds.SystemReboot{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/SystemReboot", &tds.SystemReboot{}, out)
 	return out, err
 }
 
 func (c *Client) UpgradeFirmware(ctx context.Context) (*tds.UpgradeFirmwareResponse, error) {
 	out := &tds.UpgradeFirmwareResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/UpgradeFirmware", &tds.UpgradeFirmware{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/UpgradeFirmware", &tds.UpgradeFirmware{}, out)
 	return out, err
 }
 
 func (c *Client) UpgradeSystemFirmware(ctx context.Context) (*tds.UpgradeSystemFirmwareResponse, error) {
 	out := &tds.UpgradeSystemFirmwareResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/device/wsdl/UpgradeSystemFirmware", &tds.UpgradeSystemFirmware{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/UpgradeSystemFirmware", &tds.UpgradeSystemFirmware{}, out)
 	return out, err
 }
 

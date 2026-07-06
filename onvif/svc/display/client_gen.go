@@ -29,61 +29,61 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) CreatePaneConfiguration(ctx context.Context) (*tls.CreatePaneConfigurationResponse, error) {
 	out := &tls.CreatePaneConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/CreatePaneConfiguration", &tls.CreatePaneConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/CreatePaneConfiguration", &tls.CreatePaneConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) DeletePaneConfiguration(ctx context.Context) (*tls.DeletePaneConfigurationResponse, error) {
 	out := &tls.DeletePaneConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/DeletePaneConfiguration", &tls.DeletePaneConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/DeletePaneConfiguration", &tls.DeletePaneConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetDisplayOptions(ctx context.Context) (*tls.GetDisplayOptionsResponse, error) {
 	out := &tls.GetDisplayOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/GetDisplayOptions", &tls.GetDisplayOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetDisplayOptions", &tls.GetDisplayOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetLayout(ctx context.Context) (*tls.GetLayoutResponse, error) {
 	out := &tls.GetLayoutResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/GetLayout", &tls.GetLayout{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetLayout", &tls.GetLayout{}, out)
 	return out, err
 }
 
 func (c *Client) GetPaneConfiguration(ctx context.Context) (*tls.GetPaneConfigurationResponse, error) {
 	out := &tls.GetPaneConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/GetPaneConfiguration", &tls.GetPaneConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetPaneConfiguration", &tls.GetPaneConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetPaneConfigurations(ctx context.Context) (*tls.GetPaneConfigurationsResponse, error) {
 	out := &tls.GetPaneConfigurationsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/GetPaneConfigurations", &tls.GetPaneConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetPaneConfigurations", &tls.GetPaneConfigurations{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tls.GetServiceCapabilitiesResponse, error) {
 	out := &tls.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/GetServiceCapabilities", &tls.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/GetServiceCapabilities", &tls.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) SetLayout(ctx context.Context) (*tls.SetLayoutResponse, error) {
 	out := &tls.SetLayoutResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/SetLayout", &tls.SetLayout{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetLayout", &tls.SetLayout{}, out)
 	return out, err
 }
 
 func (c *Client) SetPaneConfiguration(ctx context.Context) (*tls.SetPaneConfigurationResponse, error) {
 	out := &tls.SetPaneConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/SetPaneConfiguration", &tls.SetPaneConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetPaneConfiguration", &tls.SetPaneConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetPaneConfigurations(ctx context.Context) (*tls.SetPaneConfigurationsResponse, error) {
 	out := &tls.SetPaneConfigurationsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/display/wsdl/SetPaneConfigurations", &tls.SetPaneConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/display/wsdl/SetPaneConfigurations", &tls.SetPaneConfigurations{}, out)
 	return out, err
 }
 

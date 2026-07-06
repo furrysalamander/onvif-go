@@ -29,109 +29,109 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) CreateSchedule(ctx context.Context) (*tsc.CreateScheduleResponse, error) {
 	out := &tsc.CreateScheduleResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/CreateSchedule", &tsc.CreateSchedule{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/CreateSchedule", &tsc.CreateSchedule{}, out)
 	return out, err
 }
 
 func (c *Client) CreateSpecialDayGroup(ctx context.Context) (*tsc.CreateSpecialDayGroupResponse, error) {
 	out := &tsc.CreateSpecialDayGroupResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/CreateSpecialDayGroup", &tsc.CreateSpecialDayGroup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/CreateSpecialDayGroup", &tsc.CreateSpecialDayGroup{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteSchedule(ctx context.Context) (*tsc.DeleteScheduleResponse, error) {
 	out := &tsc.DeleteScheduleResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/DeleteSchedule", &tsc.DeleteSchedule{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/DeleteSchedule", &tsc.DeleteSchedule{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteSpecialDayGroup(ctx context.Context) (*tsc.DeleteSpecialDayGroupResponse, error) {
 	out := &tsc.DeleteSpecialDayGroupResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/DeleteSpecialDayGroup", &tsc.DeleteSpecialDayGroup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/DeleteSpecialDayGroup", &tsc.DeleteSpecialDayGroup{}, out)
 	return out, err
 }
 
 func (c *Client) GetScheduleInfo(ctx context.Context) (*tsc.GetScheduleInfoResponse, error) {
 	out := &tsc.GetScheduleInfoResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetScheduleInfo", &tsc.GetScheduleInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleInfo", &tsc.GetScheduleInfo{}, out)
 	return out, err
 }
 
 func (c *Client) GetScheduleInfoList(ctx context.Context) (*tsc.GetScheduleInfoListResponse, error) {
 	out := &tsc.GetScheduleInfoListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetScheduleInfoList", &tsc.GetScheduleInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleInfoList", &tsc.GetScheduleInfoList{}, out)
 	return out, err
 }
 
 func (c *Client) GetScheduleList(ctx context.Context) (*tsc.GetScheduleListResponse, error) {
 	out := &tsc.GetScheduleListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetScheduleList", &tsc.GetScheduleList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleList", &tsc.GetScheduleList{}, out)
 	return out, err
 }
 
 func (c *Client) GetScheduleState(ctx context.Context) (*tsc.GetScheduleStateResponse, error) {
 	out := &tsc.GetScheduleStateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetScheduleState", &tsc.GetScheduleState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetScheduleState", &tsc.GetScheduleState{}, out)
 	return out, err
 }
 
 func (c *Client) GetSchedules(ctx context.Context) (*tsc.GetSchedulesResponse, error) {
 	out := &tsc.GetSchedulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetSchedules", &tsc.GetSchedules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSchedules", &tsc.GetSchedules{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tsc.GetServiceCapabilitiesResponse, error) {
 	out := &tsc.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetServiceCapabilities", &tsc.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetServiceCapabilities", &tsc.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetSpecialDayGroupInfo(ctx context.Context) (*tsc.GetSpecialDayGroupInfoResponse, error) {
 	out := &tsc.GetSpecialDayGroupInfoResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupInfo", &tsc.GetSpecialDayGroupInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupInfo", &tsc.GetSpecialDayGroupInfo{}, out)
 	return out, err
 }
 
 func (c *Client) GetSpecialDayGroupInfoList(ctx context.Context) (*tsc.GetSpecialDayGroupInfoListResponse, error) {
 	out := &tsc.GetSpecialDayGroupInfoListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupInfoList", &tsc.GetSpecialDayGroupInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupInfoList", &tsc.GetSpecialDayGroupInfoList{}, out)
 	return out, err
 }
 
 func (c *Client) GetSpecialDayGroupList(ctx context.Context) (*tsc.GetSpecialDayGroupListResponse, error) {
 	out := &tsc.GetSpecialDayGroupListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupList", &tsc.GetSpecialDayGroupList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroupList", &tsc.GetSpecialDayGroupList{}, out)
 	return out, err
 }
 
 func (c *Client) GetSpecialDayGroups(ctx context.Context) (*tsc.GetSpecialDayGroupsResponse, error) {
 	out := &tsc.GetSpecialDayGroupsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroups", &tsc.GetSpecialDayGroups{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/GetSpecialDayGroups", &tsc.GetSpecialDayGroups{}, out)
 	return out, err
 }
 
 func (c *Client) ModifySchedule(ctx context.Context) (*tsc.ModifyScheduleResponse, error) {
 	out := &tsc.ModifyScheduleResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/ModifySchedule", &tsc.ModifySchedule{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/ModifySchedule", &tsc.ModifySchedule{}, out)
 	return out, err
 }
 
 func (c *Client) ModifySpecialDayGroup(ctx context.Context) (*tsc.ModifySpecialDayGroupResponse, error) {
 	out := &tsc.ModifySpecialDayGroupResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/ModifySpecialDayGroup", &tsc.ModifySpecialDayGroup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/ModifySpecialDayGroup", &tsc.ModifySpecialDayGroup{}, out)
 	return out, err
 }
 
 func (c *Client) SetSchedule(ctx context.Context) (*tsc.SetScheduleResponse, error) {
 	out := &tsc.SetScheduleResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/SetSchedule", &tsc.SetSchedule{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/SetSchedule", &tsc.SetSchedule{}, out)
 	return out, err
 }
 
 func (c *Client) SetSpecialDayGroup(ctx context.Context) (*tsc.SetSpecialDayGroupResponse, error) {
 	out := &tsc.SetSpecialDayGroupResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/schedule/wsdl/SetSpecialDayGroup", &tsc.SetSpecialDayGroup{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/schedule/wsdl/SetSpecialDayGroup", &tsc.SetSpecialDayGroup{}, out)
 	return out, err
 }
 

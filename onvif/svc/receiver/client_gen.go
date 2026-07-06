@@ -29,49 +29,49 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) ConfigureReceiver(ctx context.Context) (*trv.ConfigureReceiverResponse, error) {
 	out := &trv.ConfigureReceiverResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/receiver/wsdl/ConfigureReceiver", &trv.ConfigureReceiver{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/ConfigureReceiver", &trv.ConfigureReceiver{}, out)
 	return out, err
 }
 
 func (c *Client) CreateReceiver(ctx context.Context) (*trv.CreateReceiverResponse, error) {
 	out := &trv.CreateReceiverResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/receiver/wsdl/CreateReceiver", &trv.CreateReceiver{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/CreateReceiver", &trv.CreateReceiver{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteReceiver(ctx context.Context) (*trv.DeleteReceiverResponse, error) {
 	out := &trv.DeleteReceiverResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/receiver/wsdl/DeleteReceiver", &trv.DeleteReceiver{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/DeleteReceiver", &trv.DeleteReceiver{}, out)
 	return out, err
 }
 
 func (c *Client) GetReceiver(ctx context.Context) (*trv.GetReceiverResponse, error) {
 	out := &trv.GetReceiverResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/receiver/wsdl/GetReceiver", &trv.GetReceiver{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceiver", &trv.GetReceiver{}, out)
 	return out, err
 }
 
 func (c *Client) GetReceiverState(ctx context.Context) (*trv.GetReceiverStateResponse, error) {
 	out := &trv.GetReceiverStateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/receiver/wsdl/GetReceiverState", &trv.GetReceiverState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceiverState", &trv.GetReceiverState{}, out)
 	return out, err
 }
 
 func (c *Client) GetReceivers(ctx context.Context) (*trv.GetReceiversResponse, error) {
 	out := &trv.GetReceiversResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/receiver/wsdl/GetReceivers", &trv.GetReceivers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetReceivers", &trv.GetReceivers{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*trv.GetServiceCapabilitiesResponse, error) {
 	out := &trv.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/receiver/wsdl/GetServiceCapabilities", &trv.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/GetServiceCapabilities", &trv.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) SetReceiverMode(ctx context.Context) (*trv.SetReceiverModeResponse, error) {
 	out := &trv.SetReceiverModeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/receiver/wsdl/SetReceiverMode", &trv.SetReceiverMode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/receiver/wsdl/SetReceiverMode", &trv.SetReceiverMode{}, out)
 	return out, err
 }
 

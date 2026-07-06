@@ -29,175 +29,175 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) AbsoluteMove(ctx context.Context) (*tptz.AbsoluteMoveResponse, error) {
 	out := &tptz.AbsoluteMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/AbsoluteMove", &tptz.AbsoluteMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/AbsoluteMove", &tptz.AbsoluteMove{}, out)
 	return out, err
 }
 
 func (c *Client) ContinuousMove(ctx context.Context) (*tptz.ContinuousMoveResponse, error) {
 	out := &tptz.ContinuousMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/ContinuousMove", &tptz.ContinuousMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/ContinuousMove", &tptz.ContinuousMove{}, out)
 	return out, err
 }
 
 func (c *Client) CreatePresetTour(ctx context.Context) (*tptz.CreatePresetTourResponse, error) {
 	out := &tptz.CreatePresetTourResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/CreatePresetTour", &tptz.CreatePresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/CreatePresetTour", &tptz.CreatePresetTour{}, out)
 	return out, err
 }
 
 func (c *Client) GeoMove(ctx context.Context) (*tptz.GeoMoveResponse, error) {
 	out := &tptz.GeoMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GeoMove", &tptz.GeoMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GeoMove", &tptz.GeoMove{}, out)
 	return out, err
 }
 
 func (c *Client) GetCompatibleConfigurations(ctx context.Context) (*tptz.GetCompatibleConfigurationsResponse, error) {
 	out := &tptz.GetCompatibleConfigurationsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetCompatibleConfigurations", &tptz.GetCompatibleConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetCompatibleConfigurations", &tptz.GetCompatibleConfigurations{}, out)
 	return out, err
 }
 
 func (c *Client) GetConfiguration(ctx context.Context) (*tptz.GetConfigurationResponse, error) {
 	out := &tptz.GetConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetConfiguration", &tptz.GetConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfiguration", &tptz.GetConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetConfigurationOptions(ctx context.Context) (*tptz.GetConfigurationOptionsResponse, error) {
 	out := &tptz.GetConfigurationOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetConfigurationOptions", &tptz.GetConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfigurationOptions", &tptz.GetConfigurationOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetConfigurations(ctx context.Context) (*tptz.GetConfigurationsResponse, error) {
 	out := &tptz.GetConfigurationsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetConfigurations", &tptz.GetConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetConfigurations", &tptz.GetConfigurations{}, out)
 	return out, err
 }
 
 func (c *Client) GetNode(ctx context.Context) (*tptz.GetNodeResponse, error) {
 	out := &tptz.GetNodeResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetNode", &tptz.GetNode{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetNode", &tptz.GetNode{}, out)
 	return out, err
 }
 
 func (c *Client) GetNodes(ctx context.Context) (*tptz.GetNodesResponse, error) {
 	out := &tptz.GetNodesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetNodes", &tptz.GetNodes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetNodes", &tptz.GetNodes{}, out)
 	return out, err
 }
 
 func (c *Client) GetPresetTour(ctx context.Context) (*tptz.GetPresetTourResponse, error) {
 	out := &tptz.GetPresetTourResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetPresetTour", &tptz.GetPresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTour", &tptz.GetPresetTour{}, out)
 	return out, err
 }
 
 func (c *Client) GetPresetTourOptions(ctx context.Context) (*tptz.GetPresetTourOptionsResponse, error) {
 	out := &tptz.GetPresetTourOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetPresetTourOptions", &tptz.GetPresetTourOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTourOptions", &tptz.GetPresetTourOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetPresetTours(ctx context.Context) (*tptz.GetPresetToursResponse, error) {
 	out := &tptz.GetPresetToursResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetPresetTours", &tptz.GetPresetTours{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresetTours", &tptz.GetPresetTours{}, out)
 	return out, err
 }
 
 func (c *Client) GetPresets(ctx context.Context) (*tptz.GetPresetsResponse, error) {
 	out := &tptz.GetPresetsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetPresets", &tptz.GetPresets{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetPresets", &tptz.GetPresets{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tptz.GetServiceCapabilitiesResponse, error) {
 	out := &tptz.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetServiceCapabilities", &tptz.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetServiceCapabilities", &tptz.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetStatus(ctx context.Context) (*tptz.GetStatusResponse, error) {
 	out := &tptz.GetStatusResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GetStatus", &tptz.GetStatus{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GetStatus", &tptz.GetStatus{}, out)
 	return out, err
 }
 
 func (c *Client) GotoHomePosition(ctx context.Context) (*tptz.GotoHomePositionResponse, error) {
 	out := &tptz.GotoHomePositionResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GotoHomePosition", &tptz.GotoHomePosition{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GotoHomePosition", &tptz.GotoHomePosition{}, out)
 	return out, err
 }
 
 func (c *Client) GotoPreset(ctx context.Context) (*tptz.GotoPresetResponse, error) {
 	out := &tptz.GotoPresetResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/GotoPreset", &tptz.GotoPreset{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/GotoPreset", &tptz.GotoPreset{}, out)
 	return out, err
 }
 
 func (c *Client) ModifyPresetTour(ctx context.Context) (*tptz.ModifyPresetTourResponse, error) {
 	out := &tptz.ModifyPresetTourResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/ModifyPresetTour", &tptz.ModifyPresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/ModifyPresetTour", &tptz.ModifyPresetTour{}, out)
 	return out, err
 }
 
 func (c *Client) MoveAndStartTracking(ctx context.Context) (*tptz.MoveAndStartTrackingResponse, error) {
 	out := &tptz.MoveAndStartTrackingResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/MoveAndStartTracking", &tptz.MoveAndStartTracking{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/MoveAndStartTracking", &tptz.MoveAndStartTracking{}, out)
 	return out, err
 }
 
 func (c *Client) OperatePresetTour(ctx context.Context) (*tptz.OperatePresetTourResponse, error) {
 	out := &tptz.OperatePresetTourResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/OperatePresetTour", &tptz.OperatePresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/OperatePresetTour", &tptz.OperatePresetTour{}, out)
 	return out, err
 }
 
 func (c *Client) RelativeMove(ctx context.Context) (*tptz.RelativeMoveResponse, error) {
 	out := &tptz.RelativeMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/RelativeMove", &tptz.RelativeMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RelativeMove", &tptz.RelativeMove{}, out)
 	return out, err
 }
 
 func (c *Client) RemovePreset(ctx context.Context) (*tptz.RemovePresetResponse, error) {
 	out := &tptz.RemovePresetResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/RemovePreset", &tptz.RemovePreset{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RemovePreset", &tptz.RemovePreset{}, out)
 	return out, err
 }
 
 func (c *Client) RemovePresetTour(ctx context.Context) (*tptz.RemovePresetTourResponse, error) {
 	out := &tptz.RemovePresetTourResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/RemovePresetTour", &tptz.RemovePresetTour{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/RemovePresetTour", &tptz.RemovePresetTour{}, out)
 	return out, err
 }
 
 func (c *Client) SendAuxiliaryCommand(ctx context.Context) (*tptz.SendAuxiliaryCommandResponse, error) {
 	out := &tptz.SendAuxiliaryCommandResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/SendAuxiliaryCommand", &tptz.SendAuxiliaryCommand{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SendAuxiliaryCommand", &tptz.SendAuxiliaryCommand{}, out)
 	return out, err
 }
 
 func (c *Client) SetConfiguration(ctx context.Context) (*tptz.SetConfigurationResponse, error) {
 	out := &tptz.SetConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/SetConfiguration", &tptz.SetConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetConfiguration", &tptz.SetConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetHomePosition(ctx context.Context) (*tptz.SetHomePositionResponse, error) {
 	out := &tptz.SetHomePositionResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/SetHomePosition", &tptz.SetHomePosition{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetHomePosition", &tptz.SetHomePosition{}, out)
 	return out, err
 }
 
 func (c *Client) SetPreset(ctx context.Context) (*tptz.SetPresetResponse, error) {
 	out := &tptz.SetPresetResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/SetPreset", &tptz.SetPreset{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/SetPreset", &tptz.SetPreset{}, out)
 	return out, err
 }
 
 func (c *Client) Stop(ctx context.Context) (*tptz.StopResponse, error) {
 	out := &tptz.StopResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/ptz/wsdl/Stop", &tptz.Stop{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/ptz/wsdl/Stop", &tptz.Stop{}, out)
 	return out, err
 }
 

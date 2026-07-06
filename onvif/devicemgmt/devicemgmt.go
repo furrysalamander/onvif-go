@@ -5,6 +5,8 @@
 package devicemgmt
 
 import (
+	"context"
+
 	"github.com/furrysalamander/onvif-go/onvif/schema/tds"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 )
@@ -19,20 +21,20 @@ func NewClient(endpoint, username, password string) *Client {
 	return &Client{c: soaphdr.New(endpoint, username, password)}
 }
 
-func (c *Client) GetServices() (*tds.GetServicesResponse, error) {
+func (c *Client) GetServices(ctx context.Context) (*tds.GetServicesResponse, error) {
 	res := &tds.GetServicesResponse{}
-	err := c.c.Do(actionBase+"/GetServices", &tds.GetServices{}, res)
+	err := c.c.Do(ctx, actionBase+"/GetServices", &tds.GetServices{}, res)
 	return res, err
 }
 
-func (c *Client) GetDeviceInformation() (*tds.GetDeviceInformationResponse, error) {
+func (c *Client) GetDeviceInformation(ctx context.Context) (*tds.GetDeviceInformationResponse, error) {
 	res := &tds.GetDeviceInformationResponse{}
-	err := c.c.Do(actionBase+"/GetDeviceInformation", &tds.GetDeviceInformation{}, res)
+	err := c.c.Do(ctx, actionBase+"/GetDeviceInformation", &tds.GetDeviceInformation{}, res)
 	return res, err
 }
 
-func (c *Client) GetCapabilities() (*tds.GetCapabilitiesResponse, error) {
+func (c *Client) GetCapabilities(ctx context.Context) (*tds.GetCapabilitiesResponse, error) {
 	res := &tds.GetCapabilitiesResponse{}
-	err := c.c.Do(actionBase+"/GetCapabilities", &tds.GetCapabilities{}, res)
+	err := c.c.Do(ctx, actionBase+"/GetCapabilities", &tds.GetCapabilities{}, res)
 	return res, err
 }

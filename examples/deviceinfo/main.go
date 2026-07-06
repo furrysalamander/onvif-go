@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 
@@ -17,8 +18,9 @@ func main() {
 	password := os.Args[3]
 
 	c := devicemgmt.NewClient(endpoint, username, password)
+	ctx := context.Background()
 
-	info, err := c.GetDeviceInformation()
+	info, err := c.GetDeviceInformation(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "GetDeviceInformation: %v\n", err)
 		os.Exit(1)
@@ -30,7 +32,7 @@ func main() {
 	fmt.Printf("  SerialNumber:    %s\n", info.SerialNumber)
 	fmt.Printf("  HardwareId:      %s\n", info.HardwareId)
 
-	svcs, err := c.GetServices()
+	svcs, err := c.GetServices(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "GetServices: %v\n", err)
 		os.Exit(1)

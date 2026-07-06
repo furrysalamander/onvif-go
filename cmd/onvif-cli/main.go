@@ -64,7 +64,8 @@ func cmdInfo() int {
 	password := os.Args[4]
 
 	c := devicemgmt.NewClient(endpoint, username, password)
-	info, err := c.GetDeviceInformation()
+	ctx := context.Background()
+	info, err := c.GetDeviceInformation(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "GetDeviceInformation: %v\n", err)
 		return 1

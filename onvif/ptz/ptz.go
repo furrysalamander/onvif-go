@@ -4,6 +4,8 @@
 package ptz
 
 import (
+	"context"
+
 	"github.com/furrysalamander/onvif-go/onvif/schema/tptz"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
@@ -19,14 +21,14 @@ func New(endpoint, username, password string) *Client {
 	return &Client{c: soaphdr.New(endpoint, username, password)}
 }
 
-func (c *Client) GetNodes() (*tptz.GetNodesResponse, error) {
+func (c *Client) GetNodes(ctx context.Context) (*tptz.GetNodesResponse, error) {
 	res := &tptz.GetNodesResponse{}
-	err := c.c.Do(actionBase+"/GetNodes", &tptz.GetNodes{}, res)
+	err := c.c.Do(ctx, actionBase+"/GetNodes", &tptz.GetNodes{}, res)
 	return res, err
 }
 
-func (c *Client) GetStatus(profileToken string) (*tptz.GetStatusResponse, error) {
+func (c *Client) GetStatus(ctx context.Context, profileToken string) (*tptz.GetStatusResponse, error) {
 	res := &tptz.GetStatusResponse{}
-	err := c.c.Do(actionBase+"/GetStatus", &tptz.GetStatus{ProfileToken: tt.ReferenceToken(profileToken)}, res)
+	err := c.c.Do(ctx, actionBase+"/GetStatus", &tptz.GetStatus{ProfileToken: tt.ReferenceToken(profileToken)}, res)
 	return res, err
 }

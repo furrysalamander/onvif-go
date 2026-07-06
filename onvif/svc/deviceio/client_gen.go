@@ -30,175 +30,175 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) GetAudioOutputConfiguration(ctx context.Context) (*tmd.GetAudioOutputConfigurationResponse, error) {
 	out := &tmd.GetAudioOutputConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetAudioOutputConfiguration", &tmd.GetAudioOutputConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetAudioOutputConfiguration", &tmd.GetAudioOutputConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetAudioOutputConfigurationOptions(ctx context.Context) (*tmd.GetAudioOutputConfigurationOptionsResponse, error) {
 	out := &tmd.GetAudioOutputConfigurationOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetAudioOutputConfigurationOptions", &tmd.GetAudioOutputConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetAudioOutputConfigurationOptions", &tmd.GetAudioOutputConfigurationOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetAudioOutputs(ctx context.Context) (*tmd.GetAudioOutputsResponse, error) {
 	out := &tmd.GetAudioOutputsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetAudioOutputs", &tmd.GetAudioOutputs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetAudioOutputs", &tmd.GetAudioOutputs{}, out)
 	return out, err
 }
 
 func (c *Client) GetAudioSourceConfiguration(ctx context.Context) (*tmd.GetAudioSourceConfigurationResponse, error) {
 	out := &tmd.GetAudioSourceConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetAudioSourceConfiguration", &tmd.GetAudioSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetAudioSourceConfiguration", &tmd.GetAudioSourceConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetAudioSourceConfigurationOptions(ctx context.Context) (*tmd.GetAudioSourceConfigurationOptionsResponse, error) {
 	out := &tmd.GetAudioSourceConfigurationOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetAudioSourceConfigurationOptions", &tmd.GetAudioSourceConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetAudioSourceConfigurationOptions", &tmd.GetAudioSourceConfigurationOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetAudioSources(ctx context.Context) (*tmd.GetAudioSourcesResponse, error) {
 	out := &tmd.GetAudioSourcesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetAudioSources", &tmd.GetAudioSources{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetAudioSources", &tmd.GetAudioSources{}, out)
 	return out, err
 }
 
 func (c *Client) GetDigitalInputConfigurationOptions(ctx context.Context) (*tmd.GetDigitalInputConfigurationOptionsResponse, error) {
 	out := &tmd.GetDigitalInputConfigurationOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetDigitalInputConfigurationOptions", &tmd.GetDigitalInputConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetDigitalInputConfigurationOptions", &tmd.GetDigitalInputConfigurationOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetDigitalInputs(ctx context.Context) (*tmd.GetDigitalInputsResponse, error) {
 	out := &tmd.GetDigitalInputsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetDigitalInputs", &tmd.GetDigitalInputs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetDigitalInputs", &tmd.GetDigitalInputs{}, out)
 	return out, err
 }
 
 func (c *Client) GetRelayOutputOptions(ctx context.Context) (*tmd.GetRelayOutputOptionsResponse, error) {
 	out := &tmd.GetRelayOutputOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetRelayOutputOptions", &tmd.GetRelayOutputOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetRelayOutputOptions", &tmd.GetRelayOutputOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetRelayOutputs(ctx context.Context) (*tds.GetRelayOutputsResponse, error) {
 	out := &tds.GetRelayOutputsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetRelayOutputs", &tds.GetRelayOutputs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetRelayOutputs", &tds.GetRelayOutputs{}, out)
 	return out, err
 }
 
 func (c *Client) GetSerialPortConfiguration(ctx context.Context) (*tmd.GetSerialPortConfigurationResponse, error) {
 	out := &tmd.GetSerialPortConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetSerialPortConfigurations", &tmd.GetSerialPortConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetSerialPortConfigurations", &tmd.GetSerialPortConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetSerialPortConfigurationOptions(ctx context.Context) (*tmd.GetSerialPortConfigurationOptionsResponse, error) {
 	out := &tmd.GetSerialPortConfigurationOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetSerialPortConfigurationOptions", &tmd.GetSerialPortConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetSerialPortConfigurationOptions", &tmd.GetSerialPortConfigurationOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetSerialPorts(ctx context.Context) (*tmd.GetSerialPortsResponse, error) {
 	out := &tmd.GetSerialPortsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetSerialPorts", &tmd.GetSerialPorts{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetSerialPorts", &tmd.GetSerialPorts{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tmd.GetServiceCapabilitiesResponse, error) {
 	out := &tmd.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetServiceCapabilities", &tmd.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetServiceCapabilities", &tmd.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetVideoOutputConfiguration(ctx context.Context) (*tmd.GetVideoOutputConfigurationResponse, error) {
 	out := &tmd.GetVideoOutputConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetVideoOutputConfiguration", &tmd.GetVideoOutputConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetVideoOutputConfiguration", &tmd.GetVideoOutputConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetVideoOutputConfigurationOptions(ctx context.Context) (*tmd.GetVideoOutputConfigurationOptionsResponse, error) {
 	out := &tmd.GetVideoOutputConfigurationOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetVideoOutputConfigurationOptions", &tmd.GetVideoOutputConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetVideoOutputConfigurationOptions", &tmd.GetVideoOutputConfigurationOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetVideoOutputs(ctx context.Context) (*tmd.GetVideoOutputsResponse, error) {
 	out := &tmd.GetVideoOutputsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetVideoOutputs", &tmd.GetVideoOutputs{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetVideoOutputs", &tmd.GetVideoOutputs{}, out)
 	return out, err
 }
 
 func (c *Client) GetVideoSourceConfiguration(ctx context.Context) (*tmd.GetVideoSourceConfigurationResponse, error) {
 	out := &tmd.GetVideoSourceConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetVideoSourceConfiguration", &tmd.GetVideoSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetVideoSourceConfiguration", &tmd.GetVideoSourceConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetVideoSourceConfigurationOptions(ctx context.Context) (*tmd.GetVideoSourceConfigurationOptionsResponse, error) {
 	out := &tmd.GetVideoSourceConfigurationOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetVideoSourceConfigurationOptions", &tmd.GetVideoSourceConfigurationOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetVideoSourceConfigurationOptions", &tmd.GetVideoSourceConfigurationOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetVideoSources(ctx context.Context) (*tmd.GetVideoSourcesResponse, error) {
 	out := &tmd.GetVideoSourcesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/GetVideoSources", &tmd.GetVideoSources{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/GetVideoSources", &tmd.GetVideoSources{}, out)
 	return out, err
 }
 
 func (c *Client) SendReceiveSerialCommand(ctx context.Context) (*tmd.SendReceiveSerialCommandResponse, error) {
 	out := &tmd.SendReceiveSerialCommandResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SendReceiveSerialCommand", &tmd.SendReceiveSerialCommand{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SendReceiveSerialCommand", &tmd.SendReceiveSerialCommand{}, out)
 	return out, err
 }
 
 func (c *Client) SetAudioOutputConfiguration(ctx context.Context) (*tmd.SetAudioOutputConfigurationResponse, error) {
 	out := &tmd.SetAudioOutputConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SetAudioOutputConfiguration", &tmd.SetAudioOutputConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SetAudioOutputConfiguration", &tmd.SetAudioOutputConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetAudioSourceConfiguration(ctx context.Context) (*tmd.SetAudioSourceConfigurationResponse, error) {
 	out := &tmd.SetAudioSourceConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SetAudioSourceConfiguration", &tmd.SetAudioSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SetAudioSourceConfiguration", &tmd.SetAudioSourceConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetDigitalInputConfigurations(ctx context.Context) (*tmd.SetDigitalInputConfigurationsResponse, error) {
 	out := &tmd.SetDigitalInputConfigurationsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SetDigitalInputConfigurations", &tmd.SetDigitalInputConfigurations{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SetDigitalInputConfigurations", &tmd.SetDigitalInputConfigurations{}, out)
 	return out, err
 }
 
 func (c *Client) SetRelayOutputSettings(ctx context.Context) (*tmd.SetRelayOutputSettingsResponse, error) {
 	out := &tmd.SetRelayOutputSettingsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SetRelayOutputSettings", &tmd.SetRelayOutputSettings{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SetRelayOutputSettings", &tmd.SetRelayOutputSettings{}, out)
 	return out, err
 }
 
 func (c *Client) SetRelayOutputState(ctx context.Context) (*tds.SetRelayOutputStateResponse, error) {
 	out := &tds.SetRelayOutputStateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SetRelayOutputState", &tds.SetRelayOutputState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SetRelayOutputState", &tds.SetRelayOutputState{}, out)
 	return out, err
 }
 
 func (c *Client) SetSerialPortConfiguration(ctx context.Context) (*tmd.SetSerialPortConfigurationResponse, error) {
 	out := &tmd.SetSerialPortConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SetSerialPortConfiguration", &tmd.SetSerialPortConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SetSerialPortConfiguration", &tmd.SetSerialPortConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetVideoOutputConfiguration(ctx context.Context) (*tmd.SetVideoOutputConfigurationResponse, error) {
 	out := &tmd.SetVideoOutputConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SetVideoOutputConfiguration", &tmd.SetVideoOutputConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SetVideoOutputConfiguration", &tmd.SetVideoOutputConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) SetVideoSourceConfiguration(ctx context.Context) (*tmd.SetVideoSourceConfigurationResponse, error) {
 	out := &tmd.SetVideoSourceConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/deviceio/wsdl/SetVideoSourceConfiguration", &tmd.SetVideoSourceConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/deviceio/wsdl/SetVideoSourceConfiguration", &tmd.SetVideoSourceConfiguration{}, out)
 	return out, err
 }
 

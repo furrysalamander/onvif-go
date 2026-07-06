@@ -29,25 +29,25 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) DeleteUplink(ctx context.Context) (*tup.DeleteUplinkResponse, error) {
 	out := &tup.DeleteUplinkResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/uplink/wsdl/DeleteUplink", &tup.DeleteUplink{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/DeleteUplink", &tup.DeleteUplink{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tup.GetServiceCapabilitiesResponse, error) {
 	out := &tup.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/uplink/wsdl/GetServiceCapabilities", &tup.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/GetServiceCapabilities", &tup.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetUplinks(ctx context.Context) (*tup.GetUplinksResponse, error) {
 	out := &tup.GetUplinksResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/uplink/wsdl/GetUplinks", &tup.GetUplinks{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/GetUplinks", &tup.GetUplinks{}, out)
 	return out, err
 }
 
 func (c *Client) SetUplink(ctx context.Context) (*tup.SetUplinkResponse, error) {
 	out := &tup.SetUplinkResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/uplink/wsdl/SetUplink", &tup.SetUplink{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/uplink/wsdl/SetUplink", &tup.SetUplink{}, out)
 	return out, err
 }
 

@@ -29,55 +29,55 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) AddEventBroker(ctx context.Context) (*tev.AddEventBrokerResponse, error) {
 	out := &tev.AddEventBrokerResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/EventPortType/AddEventBrokerRequest", &tev.AddEventBroker{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/EventPortType/AddEventBrokerRequest", &tev.AddEventBroker{}, out)
 	return out, err
 }
 
 func (c *Client) CreatePullPointSubscription(ctx context.Context) (*tev.CreatePullPointSubscriptionResponse, error) {
 	out := &tev.CreatePullPointSubscriptionResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/EventPortType/CreatePullPointSubscriptionRequest", &tev.CreatePullPointSubscription{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/EventPortType/CreatePullPointSubscriptionRequest", &tev.CreatePullPointSubscription{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteEventBroker(ctx context.Context) (*tev.DeleteEventBrokerResponse, error) {
 	out := &tev.DeleteEventBrokerResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/EventPortType/DeleteEventBrokerRequest", &tev.DeleteEventBroker{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/EventPortType/DeleteEventBrokerRequest", &tev.DeleteEventBroker{}, out)
 	return out, err
 }
 
 func (c *Client) GetEventBrokers(ctx context.Context) (*tev.GetEventBrokersResponse, error) {
 	out := &tev.GetEventBrokersResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/EventPortType/GetEventBrokersRequest", &tev.GetEventBrokers{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/EventPortType/GetEventBrokersRequest", &tev.GetEventBrokers{}, out)
 	return out, err
 }
 
 func (c *Client) GetEventProperties(ctx context.Context) (*tev.GetEventPropertiesResponse, error) {
 	out := &tev.GetEventPropertiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/EventPortType/GetEventPropertiesRequest", &tev.GetEventProperties{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/EventPortType/GetEventPropertiesRequest", &tev.GetEventProperties{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tev.GetServiceCapabilitiesResponse, error) {
 	out := &tev.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/EventPortType/GetServiceCapabilitiesRequest", &tev.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/EventPortType/GetServiceCapabilitiesRequest", &tev.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) PullMessages(ctx context.Context) (*tev.PullMessagesResponse, error) {
 	out := &tev.PullMessagesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/PullMessagesRequest", &tev.PullMessages{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/PullMessagesRequest", &tev.PullMessages{}, out)
 	return out, err
 }
 
 func (c *Client) Seek(ctx context.Context) (*tev.SeekResponse, error) {
 	out := &tev.SeekResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/SeekRequest", &tev.Seek{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/SeekRequest", &tev.Seek{}, out)
 	return out, err
 }
 
 func (c *Client) SetSynchronizationPoint(ctx context.Context) (*tev.SetSynchronizationPointResponse, error) {
 	out := &tev.SetSynchronizationPointResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/SetSynchronizationPointRequest", &tev.SetSynchronizationPoint{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/events/wsdl/PullPointSubscription/SetSynchronizationPointRequest", &tev.SetSynchronizationPoint{}, out)
 	return out, err
 }
 

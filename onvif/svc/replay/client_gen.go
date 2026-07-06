@@ -29,25 +29,25 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) GetReplayConfiguration(ctx context.Context) (*trp.GetReplayConfigurationResponse, error) {
 	out := &trp.GetReplayConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/replay/wsdl/GetReplayConfiguration", &trp.GetReplayConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetReplayConfiguration", &trp.GetReplayConfiguration{}, out)
 	return out, err
 }
 
 func (c *Client) GetReplayUri(ctx context.Context) (*trp.GetReplayUriResponse, error) {
 	out := &trp.GetReplayUriResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/replay/wsdl/GetReplayUri", &trp.GetReplayUri{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetReplayUri", &trp.GetReplayUri{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*trp.GetServiceCapabilitiesResponse, error) {
 	out := &trp.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/replay/wsdl/GetServiceCapabilities", &trp.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/GetServiceCapabilities", &trp.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) SetReplayConfiguration(ctx context.Context) (*trp.SetReplayConfigurationResponse, error) {
 	out := &trp.SetReplayConfigurationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/replay/wsdl/SetReplayConfiguration", &trp.SetReplayConfiguration{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/replay/wsdl/SetReplayConfiguration", &trp.SetReplayConfiguration{}, out)
 	return out, err
 }
 

@@ -29,67 +29,67 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) GetCurrentPreset(ctx context.Context) (*timg.GetCurrentPresetResponse, error) {
 	out := &timg.GetCurrentPresetResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/GetCurrentPreset", &timg.GetCurrentPreset{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/GetCurrentPreset", &timg.GetCurrentPreset{}, out)
 	return out, err
 }
 
 func (c *Client) GetImagingSettings(ctx context.Context) (*timg.GetImagingSettingsResponse, error) {
 	out := &timg.GetImagingSettingsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/GetImagingSettings", &timg.GetImagingSettings{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/GetImagingSettings", &timg.GetImagingSettings{}, out)
 	return out, err
 }
 
 func (c *Client) GetMoveOptions(ctx context.Context) (*timg.GetMoveOptionsResponse, error) {
 	out := &timg.GetMoveOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/GetMoveOptions", &timg.GetMoveOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/GetMoveOptions", &timg.GetMoveOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetOptions(ctx context.Context) (*timg.GetOptionsResponse, error) {
 	out := &timg.GetOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/GetOptions", &timg.GetOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/GetOptions", &timg.GetOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetPresets(ctx context.Context) (*timg.GetPresetsResponse, error) {
 	out := &timg.GetPresetsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/GetPresets", &timg.GetPresets{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/GetPresets", &timg.GetPresets{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*timg.GetServiceCapabilitiesResponse, error) {
 	out := &timg.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/GetServiceCapabilities", &timg.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/GetServiceCapabilities", &timg.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetStatus(ctx context.Context) (*timg.GetStatusResponse, error) {
 	out := &timg.GetStatusResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/GetStatus", &timg.GetStatus{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/GetStatus", &timg.GetStatus{}, out)
 	return out, err
 }
 
 func (c *Client) Move(ctx context.Context) (*timg.MoveResponse, error) {
 	out := &timg.MoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/Move", &timg.Move{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/Move", &timg.Move{}, out)
 	return out, err
 }
 
 func (c *Client) SetCurrentPreset(ctx context.Context) (*timg.SetCurrentPresetResponse, error) {
 	out := &timg.SetCurrentPresetResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/SetCurrentPreset", &timg.SetCurrentPreset{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/SetCurrentPreset", &timg.SetCurrentPreset{}, out)
 	return out, err
 }
 
 func (c *Client) SetImagingSettings(ctx context.Context) (*timg.SetImagingSettingsResponse, error) {
 	out := &timg.SetImagingSettingsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/SetImagingSettings", &timg.SetImagingSettings{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/SetImagingSettings", &timg.SetImagingSettings{}, out)
 	return out, err
 }
 
 func (c *Client) Stop(ctx context.Context) (*timg.StopResponse, error) {
 	out := &timg.StopResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/imaging/wsdl/FocusStop", &timg.Stop{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/imaging/wsdl/FocusStop", &timg.Stop{}, out)
 	return out, err
 }
 

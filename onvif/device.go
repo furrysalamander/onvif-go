@@ -52,7 +52,7 @@ func (d *Device) Imaging() *imaging.Client       { return d.img }
 func (d *Device) GetServices(ctx context.Context, includeCapability bool) ([]tds.Service, error) {
 	req := &tds.GetServices{IncludeCapability: includeCapability}
 	res := &tds.GetServicesResponse{}
-	if err := d.soap.Do("http://www.onvif.org/ver10/device/wsdl/GetServices", req, res); err != nil {
+	if err := d.soap.Do(ctx, "http://www.onvif.org/ver10/device/wsdl/GetServices", req, res); err != nil {
 		return nil, err
 	}
 	return res.Service, nil

@@ -29,145 +29,145 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) CreateAccessPoint(ctx context.Context) (*tac.CreateAccessPointResponse, error) {
 	out := &tac.CreateAccessPointResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/CreateAccessPoint", &tac.CreateAccessPoint{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/CreateAccessPoint", &tac.CreateAccessPoint{}, out)
 	return out, err
 }
 
 func (c *Client) CreateArea(ctx context.Context) (*tac.CreateAreaResponse, error) {
 	out := &tac.CreateAreaResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/CreateArea", &tac.CreateArea{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/CreateArea", &tac.CreateArea{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteAccessPoint(ctx context.Context) (*tac.DeleteAccessPointResponse, error) {
 	out := &tac.DeleteAccessPointResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/DeleteAccessPoint", &tac.DeleteAccessPoint{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/DeleteAccessPoint", &tac.DeleteAccessPoint{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteAccessPointAuthenticationProfile(ctx context.Context) (*tac.DeleteAccessPointAuthenticationProfileResponse, error) {
 	out := &tac.DeleteAccessPointAuthenticationProfileResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/DeleteAccessPointAuthenticationProfile", &tac.DeleteAccessPointAuthenticationProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/DeleteAccessPointAuthenticationProfile", &tac.DeleteAccessPointAuthenticationProfile{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteArea(ctx context.Context) (*tac.DeleteAreaResponse, error) {
 	out := &tac.DeleteAreaResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/DeleteArea", &tac.DeleteArea{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/DeleteArea", &tac.DeleteArea{}, out)
 	return out, err
 }
 
 func (c *Client) DisableAccessPoint(ctx context.Context) (*tac.DisableAccessPointResponse, error) {
 	out := &tac.DisableAccessPointResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/DisableAccessPoint", &tac.DisableAccessPoint{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/DisableAccessPoint", &tac.DisableAccessPoint{}, out)
 	return out, err
 }
 
 func (c *Client) EnableAccessPoint(ctx context.Context) (*tac.EnableAccessPointResponse, error) {
 	out := &tac.EnableAccessPointResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/EnableAccessPoint", &tac.EnableAccessPoint{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/EnableAccessPoint", &tac.EnableAccessPoint{}, out)
 	return out, err
 }
 
 func (c *Client) ExternalAuthorization(ctx context.Context) (*tac.ExternalAuthorizationResponse, error) {
 	out := &tac.ExternalAuthorizationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/ExternalAuthorization", &tac.ExternalAuthorization{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/ExternalAuthorization", &tac.ExternalAuthorization{}, out)
 	return out, err
 }
 
 func (c *Client) Feedback(ctx context.Context) (*tac.FeedbackResponse, error) {
 	out := &tac.FeedbackResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/Feedback", &tac.Feedback{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/Feedback", &tac.Feedback{}, out)
 	return out, err
 }
 
 func (c *Client) GetAccessPointInfo(ctx context.Context) (*tac.GetAccessPointInfoResponse, error) {
 	out := &tac.GetAccessPointInfoResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPointInfo", &tac.GetAccessPointInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPointInfo", &tac.GetAccessPointInfo{}, out)
 	return out, err
 }
 
 func (c *Client) GetAccessPointInfoList(ctx context.Context) (*tac.GetAccessPointInfoListResponse, error) {
 	out := &tac.GetAccessPointInfoListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPointInfoList", &tac.GetAccessPointInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPointInfoList", &tac.GetAccessPointInfoList{}, out)
 	return out, err
 }
 
 func (c *Client) GetAccessPointList(ctx context.Context) (*tac.GetAccessPointListResponse, error) {
 	out := &tac.GetAccessPointListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPointList", &tac.GetAccessPointList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPointList", &tac.GetAccessPointList{}, out)
 	return out, err
 }
 
 func (c *Client) GetAccessPointState(ctx context.Context) (*tac.GetAccessPointStateResponse, error) {
 	out := &tac.GetAccessPointStateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPointState", &tac.GetAccessPointState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPointState", &tac.GetAccessPointState{}, out)
 	return out, err
 }
 
 func (c *Client) GetAccessPoints(ctx context.Context) (*tac.GetAccessPointsResponse, error) {
 	out := &tac.GetAccessPointsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPoints", &tac.GetAccessPoints{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAccessPoints", &tac.GetAccessPoints{}, out)
 	return out, err
 }
 
 func (c *Client) GetAreaInfo(ctx context.Context) (*tac.GetAreaInfoResponse, error) {
 	out := &tac.GetAreaInfoResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAreaInfo", &tac.GetAreaInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAreaInfo", &tac.GetAreaInfo{}, out)
 	return out, err
 }
 
 func (c *Client) GetAreaInfoList(ctx context.Context) (*tac.GetAreaInfoListResponse, error) {
 	out := &tac.GetAreaInfoListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAreaInfoList", &tac.GetAreaInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAreaInfoList", &tac.GetAreaInfoList{}, out)
 	return out, err
 }
 
 func (c *Client) GetAreaList(ctx context.Context) (*tac.GetAreaListResponse, error) {
 	out := &tac.GetAreaListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAreaList", &tac.GetAreaList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAreaList", &tac.GetAreaList{}, out)
 	return out, err
 }
 
 func (c *Client) GetAreas(ctx context.Context) (*tac.GetAreasResponse, error) {
 	out := &tac.GetAreasResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetAreas", &tac.GetAreas{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetAreas", &tac.GetAreas{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tac.GetServiceCapabilitiesResponse, error) {
 	out := &tac.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/GetServiceCapabilities", &tac.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/GetServiceCapabilities", &tac.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) ModifyAccessPoint(ctx context.Context) (*tac.ModifyAccessPointResponse, error) {
 	out := &tac.ModifyAccessPointResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/ModifyAccessPoint", &tac.ModifyAccessPoint{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/ModifyAccessPoint", &tac.ModifyAccessPoint{}, out)
 	return out, err
 }
 
 func (c *Client) ModifyArea(ctx context.Context) (*tac.ModifyAreaResponse, error) {
 	out := &tac.ModifyAreaResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/ModifyArea", &tac.ModifyArea{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/ModifyArea", &tac.ModifyArea{}, out)
 	return out, err
 }
 
 func (c *Client) SetAccessPoint(ctx context.Context) (*tac.SetAccessPointResponse, error) {
 	out := &tac.SetAccessPointResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/SetAccessPoint", &tac.SetAccessPoint{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/SetAccessPoint", &tac.SetAccessPoint{}, out)
 	return out, err
 }
 
 func (c *Client) SetAccessPointAuthenticationProfile(ctx context.Context) (*tac.SetAccessPointAuthenticationProfileResponse, error) {
 	out := &tac.SetAccessPointAuthenticationProfileResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/SetAccessPointAuthenticationProfile", &tac.SetAccessPointAuthenticationProfile{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/SetAccessPointAuthenticationProfile", &tac.SetAccessPointAuthenticationProfile{}, out)
 	return out, err
 }
 
 func (c *Client) SetArea(ctx context.Context) (*tac.SetAreaResponse, error) {
 	out := &tac.SetAreaResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/accesscontrol/wsdl/SetArea", &tac.SetArea{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/accesscontrol/wsdl/SetArea", &tac.SetArea{}, out)
 	return out, err
 }
 

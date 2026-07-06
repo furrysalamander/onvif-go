@@ -29,85 +29,85 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) EndSearch(ctx context.Context) (*tse.EndSearchResponse, error) {
 	out := &tse.EndSearchResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/EndSearch", &tse.EndSearch{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/EndSearch", &tse.EndSearch{}, out)
 	return out, err
 }
 
 func (c *Client) FindEvents(ctx context.Context) (*tse.FindEventsResponse, error) {
 	out := &tse.FindEventsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/FindEvents", &tse.FindEvents{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindEvents", &tse.FindEvents{}, out)
 	return out, err
 }
 
 func (c *Client) FindMetadata(ctx context.Context) (*tse.FindMetadataResponse, error) {
 	out := &tse.FindMetadataResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/FindMetadata", &tse.FindMetadata{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindMetadata", &tse.FindMetadata{}, out)
 	return out, err
 }
 
 func (c *Client) FindPTZPosition(ctx context.Context) (*tse.FindPTZPositionResponse, error) {
 	out := &tse.FindPTZPositionResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/FindPTZPosition", &tse.FindPTZPosition{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindPTZPosition", &tse.FindPTZPosition{}, out)
 	return out, err
 }
 
 func (c *Client) FindRecordings(ctx context.Context) (*tse.FindRecordingsResponse, error) {
 	out := &tse.FindRecordingsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/FindRecordings", &tse.FindRecordings{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/FindRecordings", &tse.FindRecordings{}, out)
 	return out, err
 }
 
 func (c *Client) GetEventSearchResults(ctx context.Context) (*tse.GetEventSearchResultsResponse, error) {
 	out := &tse.GetEventSearchResultsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetEventSearchResults", &tse.GetEventSearchResults{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetEventSearchResults", &tse.GetEventSearchResults{}, out)
 	return out, err
 }
 
 func (c *Client) GetMediaAttributes(ctx context.Context) (*tse.GetMediaAttributesResponse, error) {
 	out := &tse.GetMediaAttributesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetMediaAttributes", &tse.GetMediaAttributes{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetMediaAttributes", &tse.GetMediaAttributes{}, out)
 	return out, err
 }
 
 func (c *Client) GetMetadataSearchResults(ctx context.Context) (*tse.GetMetadataSearchResultsResponse, error) {
 	out := &tse.GetMetadataSearchResultsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetMetadataSearchResults", &tse.GetMetadataSearchResults{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetMetadataSearchResults", &tse.GetMetadataSearchResults{}, out)
 	return out, err
 }
 
 func (c *Client) GetPTZPositionSearchResults(ctx context.Context) (*tse.GetPTZPositionSearchResultsResponse, error) {
 	out := &tse.GetPTZPositionSearchResultsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetPTZPositionSearchResults", &tse.GetPTZPositionSearchResults{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetPTZPositionSearchResults", &tse.GetPTZPositionSearchResults{}, out)
 	return out, err
 }
 
 func (c *Client) GetRecordingInformation(ctx context.Context) (*tse.GetRecordingInformationResponse, error) {
 	out := &tse.GetRecordingInformationResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetRecordingInformation", &tse.GetRecordingInformation{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingInformation", &tse.GetRecordingInformation{}, out)
 	return out, err
 }
 
 func (c *Client) GetRecordingSearchResults(ctx context.Context) (*tse.GetRecordingSearchResultsResponse, error) {
 	out := &tse.GetRecordingSearchResultsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetRecordingSearchResults", &tse.GetRecordingSearchResults{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingSearchResults", &tse.GetRecordingSearchResults{}, out)
 	return out, err
 }
 
 func (c *Client) GetRecordingSummary(ctx context.Context) (*tse.GetRecordingSummaryResponse, error) {
 	out := &tse.GetRecordingSummaryResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetRecordingSummary", &tse.GetRecordingSummary{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetRecordingSummary", &tse.GetRecordingSummary{}, out)
 	return out, err
 }
 
 func (c *Client) GetSearchState(ctx context.Context) (*tse.GetSearchStateResponse, error) {
 	out := &tse.GetSearchStateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetSearchState", &tse.GetSearchState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetSearchState", &tse.GetSearchState{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tse.GetServiceCapabilitiesResponse, error) {
 	out := &tse.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/search/wsdl/GetServiceCapabilities", &tse.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/search/wsdl/GetServiceCapabilities", &tse.GetServiceCapabilities{}, out)
 	return out, err
 }
 

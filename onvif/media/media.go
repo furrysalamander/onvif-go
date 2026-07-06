@@ -5,6 +5,8 @@
 package media
 
 import (
+	"context"
+
 	"github.com/furrysalamander/onvif-go/onvif/schema/trt"
 	"github.com/furrysalamander/onvif-go/onvif/soaphdr"
 )
@@ -19,14 +21,14 @@ func New(endpoint, username, password string) *Client {
 	return &Client{c: soaphdr.New(endpoint, username, password)}
 }
 
-func (c *Client) GetVideoSources() (*trt.GetVideoSourcesResponse, error) {
+func (c *Client) GetVideoSources(ctx context.Context) (*trt.GetVideoSourcesResponse, error) {
 	res := &trt.GetVideoSourcesResponse{}
-	err := c.c.Do(actionBase+"/GetVideoSources", &trt.GetVideoSources{}, res)
+	err := c.c.Do(ctx, actionBase+"/GetVideoSources", &trt.GetVideoSources{}, res)
 	return res, err
 }
 
-func (c *Client) GetProfiles() (*trt.GetProfilesResponse, error) {
+func (c *Client) GetProfiles(ctx context.Context) (*trt.GetProfilesResponse, error) {
 	res := &trt.GetProfilesResponse{}
-	err := c.c.Do(actionBase+"/GetProfiles", &trt.GetProfiles{}, res)
+	err := c.c.Do(ctx, actionBase+"/GetProfiles", &trt.GetProfiles{}, res)
 	return res, err
 }

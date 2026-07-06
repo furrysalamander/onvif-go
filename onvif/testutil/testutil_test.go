@@ -1,6 +1,7 @@
 package testutil
 
 import (
+	"context"
 	"testing"
 
 	"github.com/furrysalamander/onvif-go/onvif/devicemgmt"
@@ -9,7 +10,8 @@ import (
 func TestRoundTrip_GetDeviceInformation(t *testing.T) {
 	WithMockServer(t, func(addr string) {
 		c := devicemgmt.NewClient(addr, "admin", "password")
-		info, err := c.GetDeviceInformation()
+		ctx := context.Background()
+		info, err := c.GetDeviceInformation(ctx)
 		if err != nil {
 			t.Fatalf("GetDeviceInformation: %v", err)
 		}
@@ -29,7 +31,8 @@ func TestRoundTrip_GetDeviceInformation(t *testing.T) {
 func TestRoundTrip_GetServices(t *testing.T) {
 	WithMockServer(t, func(addr string) {
 		c := devicemgmt.NewClient(addr, "admin", "password")
-		svcs, err := c.GetServices()
+		ctx := context.Background()
+		svcs, err := c.GetServices(ctx)
 		if err != nil {
 			t.Fatalf("GetServices: %v", err)
 		}

@@ -219,7 +219,7 @@ func emitClientFile(svcName, schemaPkg, targetNS string, ops []facadeOp) string 
 		res := ensurePkg(op.ResType, schemaPkg)
 		fmt.Fprintf(&b, "func (c *Client) %s(ctx context.Context) (*%s, error) {\n", op.Name, res)
 		fmt.Fprintf(&b, "\tout := &%s{}\n", res)
-		fmt.Fprintf(&b, "\terr := c.c.Do(%q, &%s{}, out)\n", op.Action, req)
+		fmt.Fprintf(&b, "\terr := c.c.Do(ctx, %q, &%s{}, out)\n", op.Action, req)
 		b.WriteString("\treturn out, err\n")
 		b.WriteString("}\n\n")
 	}

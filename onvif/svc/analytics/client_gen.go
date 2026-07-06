@@ -29,85 +29,85 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) CreateAnalyticsModules(ctx context.Context) (*tan.CreateAnalyticsModulesResponse, error) {
 	out := &tan.CreateAnalyticsModulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/CreateAnalyticsModules", &tan.CreateAnalyticsModules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/CreateAnalyticsModules", &tan.CreateAnalyticsModules{}, out)
 	return out, err
 }
 
 func (c *Client) CreateRules(ctx context.Context) (*tan.CreateRulesResponse, error) {
 	out := &tan.CreateRulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/CreateRules", &tan.CreateRules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/CreateRules", &tan.CreateRules{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteAnalyticsModules(ctx context.Context) (*tan.DeleteAnalyticsModulesResponse, error) {
 	out := &tan.DeleteAnalyticsModulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/DeleteAnalyticsModules", &tan.DeleteAnalyticsModules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/DeleteAnalyticsModules", &tan.DeleteAnalyticsModules{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteRules(ctx context.Context) (*tan.DeleteRulesResponse, error) {
 	out := &tan.DeleteRulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/DeleteRules", &tan.DeleteRules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/DeleteRules", &tan.DeleteRules{}, out)
 	return out, err
 }
 
 func (c *Client) GetAnalyticsModuleOptions(ctx context.Context) (*tan.GetAnalyticsModuleOptionsResponse, error) {
 	out := &tan.GetAnalyticsModuleOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/GetAnalyticsModuleOptions", &tan.GetAnalyticsModuleOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/GetAnalyticsModuleOptions", &tan.GetAnalyticsModuleOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetAnalyticsModules(ctx context.Context) (*tan.GetAnalyticsModulesResponse, error) {
 	out := &tan.GetAnalyticsModulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/GetAnalyticsModules", &tan.GetAnalyticsModules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/GetAnalyticsModules", &tan.GetAnalyticsModules{}, out)
 	return out, err
 }
 
 func (c *Client) GetRuleOptions(ctx context.Context) (*tan.GetRuleOptionsResponse, error) {
 	out := &tan.GetRuleOptionsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/GetRuleOptions", &tan.GetRuleOptions{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/GetRuleOptions", &tan.GetRuleOptions{}, out)
 	return out, err
 }
 
 func (c *Client) GetRules(ctx context.Context) (*tan.GetRulesResponse, error) {
 	out := &tan.GetRulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/GetRules", &tan.GetRules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/GetRules", &tan.GetRules{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tan.GetServiceCapabilitiesResponse, error) {
 	out := &tan.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/GetServiceCapabilities", &tan.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/GetServiceCapabilities", &tan.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetSupportedAnalyticsModules(ctx context.Context) (*tan.GetSupportedAnalyticsModulesResponse, error) {
 	out := &tan.GetSupportedAnalyticsModulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/GetSupportedAnalyticsModules", &tan.GetSupportedAnalyticsModules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/GetSupportedAnalyticsModules", &tan.GetSupportedAnalyticsModules{}, out)
 	return out, err
 }
 
 func (c *Client) GetSupportedMetadata(ctx context.Context) (*tan.GetSupportedMetadataResponse, error) {
 	out := &tan.GetSupportedMetadataResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/GetSupportedMetadata", &tan.GetSupportedMetadata{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/GetSupportedMetadata", &tan.GetSupportedMetadata{}, out)
 	return out, err
 }
 
 func (c *Client) GetSupportedRules(ctx context.Context) (*tan.GetSupportedRulesResponse, error) {
 	out := &tan.GetSupportedRulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/GetSupportedRules", &tan.GetSupportedRules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/GetSupportedRules", &tan.GetSupportedRules{}, out)
 	return out, err
 }
 
 func (c *Client) ModifyAnalyticsModules(ctx context.Context) (*tan.ModifyAnalyticsModulesResponse, error) {
 	out := &tan.ModifyAnalyticsModulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/ModifyAnalyticsModules", &tan.ModifyAnalyticsModules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/ModifyAnalyticsModules", &tan.ModifyAnalyticsModules{}, out)
 	return out, err
 }
 
 func (c *Client) ModifyRules(ctx context.Context) (*tan.ModifyRulesResponse, error) {
 	out := &tan.ModifyRulesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver20/analytics/wsdl/ModifyRules", &tan.ModifyRules{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver20/analytics/wsdl/ModifyRules", &tan.ModifyRules{}, out)
 	return out, err
 }
 

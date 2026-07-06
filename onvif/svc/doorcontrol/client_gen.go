@@ -29,115 +29,115 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) AccessDoor(ctx context.Context) (*tdc.AccessDoorResponse, error) {
 	out := &tdc.AccessDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/AccessDoor", &tdc.AccessDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/AccessDoor", &tdc.AccessDoor{}, out)
 	return out, err
 }
 
 func (c *Client) BlockDoor(ctx context.Context) (*tdc.BlockDoorResponse, error) {
 	out := &tdc.BlockDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/BlockDoor", &tdc.BlockDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/BlockDoor", &tdc.BlockDoor{}, out)
 	return out, err
 }
 
 func (c *Client) CreateDoor(ctx context.Context) (*tdc.CreateDoorResponse, error) {
 	out := &tdc.CreateDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/CreateDoor", &tdc.CreateDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/CreateDoor", &tdc.CreateDoor{}, out)
 	return out, err
 }
 
 func (c *Client) DeleteDoor(ctx context.Context) (*tdc.DeleteDoorResponse, error) {
 	out := &tdc.DeleteDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/DeleteDoor", &tdc.DeleteDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/DeleteDoor", &tdc.DeleteDoor{}, out)
 	return out, err
 }
 
 func (c *Client) DoubleLockDoor(ctx context.Context) (*tdc.DoubleLockDoorResponse, error) {
 	out := &tdc.DoubleLockDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/DoubleLockDoor", &tdc.DoubleLockDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/DoubleLockDoor", &tdc.DoubleLockDoor{}, out)
 	return out, err
 }
 
 func (c *Client) GetDoorInfo(ctx context.Context) (*tdc.GetDoorInfoResponse, error) {
 	out := &tdc.GetDoorInfoResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorInfo", &tdc.GetDoorInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorInfo", &tdc.GetDoorInfo{}, out)
 	return out, err
 }
 
 func (c *Client) GetDoorInfoList(ctx context.Context) (*tdc.GetDoorInfoListResponse, error) {
 	out := &tdc.GetDoorInfoListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorInfoList", &tdc.GetDoorInfoList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorInfoList", &tdc.GetDoorInfoList{}, out)
 	return out, err
 }
 
 func (c *Client) GetDoorList(ctx context.Context) (*tdc.GetDoorListResponse, error) {
 	out := &tdc.GetDoorListResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorList", &tdc.GetDoorList{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorList", &tdc.GetDoorList{}, out)
 	return out, err
 }
 
 func (c *Client) GetDoorState(ctx context.Context) (*tdc.GetDoorStateResponse, error) {
 	out := &tdc.GetDoorStateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorState", &tdc.GetDoorState{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoorState", &tdc.GetDoorState{}, out)
 	return out, err
 }
 
 func (c *Client) GetDoors(ctx context.Context) (*tdc.GetDoorsResponse, error) {
 	out := &tdc.GetDoorsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoors", &tdc.GetDoors{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetDoors", &tdc.GetDoors{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tdc.GetServiceCapabilitiesResponse, error) {
 	out := &tdc.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/GetServiceCapabilities", &tdc.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/GetServiceCapabilities", &tdc.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) LockDoor(ctx context.Context) (*tdc.LockDoorResponse, error) {
 	out := &tdc.LockDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/LockDoor", &tdc.LockDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDoor", &tdc.LockDoor{}, out)
 	return out, err
 }
 
 func (c *Client) LockDownDoor(ctx context.Context) (*tdc.LockDownDoorResponse, error) {
 	out := &tdc.LockDownDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/LockDownDoor", &tdc.LockDownDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDownDoor", &tdc.LockDownDoor{}, out)
 	return out, err
 }
 
 func (c *Client) LockDownReleaseDoor(ctx context.Context) (*tdc.LockDownReleaseDoorResponse, error) {
 	out := &tdc.LockDownReleaseDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/LockDownReleaseDoor", &tdc.LockDownReleaseDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockDownReleaseDoor", &tdc.LockDownReleaseDoor{}, out)
 	return out, err
 }
 
 func (c *Client) LockOpenDoor(ctx context.Context) (*tdc.LockOpenDoorResponse, error) {
 	out := &tdc.LockOpenDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/LockOpenDoor", &tdc.LockOpenDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockOpenDoor", &tdc.LockOpenDoor{}, out)
 	return out, err
 }
 
 func (c *Client) LockOpenReleaseDoor(ctx context.Context) (*tdc.LockOpenReleaseDoorResponse, error) {
 	out := &tdc.LockOpenReleaseDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/LockOpenReleaseDoor", &tdc.LockOpenReleaseDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/LockOpenReleaseDoor", &tdc.LockOpenReleaseDoor{}, out)
 	return out, err
 }
 
 func (c *Client) ModifyDoor(ctx context.Context) (*tdc.ModifyDoorResponse, error) {
 	out := &tdc.ModifyDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/ModifyDoor", &tdc.ModifyDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/ModifyDoor", &tdc.ModifyDoor{}, out)
 	return out, err
 }
 
 func (c *Client) SetDoor(ctx context.Context) (*tdc.SetDoorResponse, error) {
 	out := &tdc.SetDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/SetDoor", &tdc.SetDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/SetDoor", &tdc.SetDoor{}, out)
 	return out, err
 }
 
 func (c *Client) UnlockDoor(ctx context.Context) (*tdc.UnlockDoorResponse, error) {
 	out := &tdc.UnlockDoorResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/doorcontrol/wsdl/UnlockDoor", &tdc.UnlockDoor{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/doorcontrol/wsdl/UnlockDoor", &tdc.UnlockDoor{}, out)
 	return out, err
 }
 

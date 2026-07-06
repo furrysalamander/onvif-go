@@ -29,49 +29,49 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) Activate(ctx context.Context) (*ans.ActivateResponse, error) {
 	out := &ans.ActivateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/appmgmt/wsdl/Activate", &ans.Activate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Activate", &ans.Activate{}, out)
 	return out, err
 }
 
 func (c *Client) Deactivate(ctx context.Context) (*ans.DeactivateResponse, error) {
 	out := &ans.DeactivateResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/appmgmt/wsdl/Deactivate", &ans.Deactivate{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Deactivate", &ans.Deactivate{}, out)
 	return out, err
 }
 
 func (c *Client) GetAppsInfo(ctx context.Context) (*ans.GetAppsInfoResponse, error) {
 	out := &ans.GetAppsInfoResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/appmgmt/wsdl/GetAppsInfo", &ans.GetAppsInfo{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetAppsInfo", &ans.GetAppsInfo{}, out)
 	return out, err
 }
 
 func (c *Client) GetDeviceId(ctx context.Context) (*ans.GetDeviceIdResponse, error) {
 	out := &ans.GetDeviceIdResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/appmgmt/wsdl/GetDeviceId", &ans.GetDeviceId{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetDeviceId", &ans.GetDeviceId{}, out)
 	return out, err
 }
 
 func (c *Client) GetInstalledApps(ctx context.Context) (*ans.GetInstalledAppsResponse, error) {
 	out := &ans.GetInstalledAppsResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/appmgmt/wsdl/GetInstalledApps", &ans.GetInstalledApps{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetInstalledApps", &ans.GetInstalledApps{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*ans.GetServiceCapabilitiesResponse, error) {
 	out := &ans.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/appmgmt/wsdl/GetServiceCapabilities", &ans.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/GetServiceCapabilities", &ans.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) InstallLicense(ctx context.Context) (*ans.InstallLicenseResponse, error) {
 	out := &ans.InstallLicenseResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/appmgmt/wsdl/InstallLicense", &ans.InstallLicense{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/InstallLicense", &ans.InstallLicense{}, out)
 	return out, err
 }
 
 func (c *Client) Uninstall(ctx context.Context) (*ans.UninstallResponse, error) {
 	out := &ans.UninstallResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/appmgmt/wsdl/Uninstall", &ans.Uninstall{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/appmgmt/wsdl/Uninstall", &ans.Uninstall{}, out)
 	return out, err
 }
 

@@ -29,49 +29,49 @@ func (c *Client) SetHTTP(h *http.Client) { c.c.HTTP = h }
 
 func (c *Client) FocusMove(ctx context.Context) (*tpv.FocusMoveResponse, error) {
 	out := &tpv.FocusMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/provisioning/wsdl/FocusMove", &tpv.FocusMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/FocusMove", &tpv.FocusMove{}, out)
 	return out, err
 }
 
 func (c *Client) GetServiceCapabilities(ctx context.Context) (*tpv.GetServiceCapabilitiesResponse, error) {
 	out := &tpv.GetServiceCapabilitiesResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/provisioning/wsdl/GetServiceCapabilities", &tpv.GetServiceCapabilities{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/GetServiceCapabilities", &tpv.GetServiceCapabilities{}, out)
 	return out, err
 }
 
 func (c *Client) GetUsage(ctx context.Context) (*tpv.GetUsageResponse, error) {
 	out := &tpv.GetUsageResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/provisioning/wsdl/Usage", &tpv.GetUsage{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/Usage", &tpv.GetUsage{}, out)
 	return out, err
 }
 
 func (c *Client) PanMove(ctx context.Context) (*tpv.PanMoveResponse, error) {
 	out := &tpv.PanMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/provisioning/wsdl/PanMove", &tpv.PanMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/PanMove", &tpv.PanMove{}, out)
 	return out, err
 }
 
 func (c *Client) RollMove(ctx context.Context) (*tpv.RollMoveResponse, error) {
 	out := &tpv.RollMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/provisioning/wsdl/RollMove", &tpv.RollMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/RollMove", &tpv.RollMove{}, out)
 	return out, err
 }
 
 func (c *Client) Stop(ctx context.Context) (*tpv.StopResponse, error) {
 	out := &tpv.StopResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/provisioning/wsdl/Stop", &tpv.Stop{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/Stop", &tpv.Stop{}, out)
 	return out, err
 }
 
 func (c *Client) TiltMove(ctx context.Context) (*tpv.TiltMoveResponse, error) {
 	out := &tpv.TiltMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/provisioning/wsdl/TiltMove", &tpv.TiltMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/TiltMove", &tpv.TiltMove{}, out)
 	return out, err
 }
 
 func (c *Client) ZoomMove(ctx context.Context) (*tpv.ZoomMoveResponse, error) {
 	out := &tpv.ZoomMoveResponse{}
-	err := c.c.Do("http://www.onvif.org/ver10/provisioning/wsdl/ZoomMove", &tpv.ZoomMove{}, out)
+	err := c.c.Do(ctx, "http://www.onvif.org/ver10/provisioning/wsdl/ZoomMove", &tpv.ZoomMove{}, out)
 	return out, err
 }
 
