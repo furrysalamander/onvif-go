@@ -12,6 +12,10 @@ import (
 
 	"github.com/furrysalamander/onvif-go/onvif/schema/env"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tds"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tev"
+	"github.com/furrysalamander/onvif-go/onvif/schema/timg"
+	"github.com/furrysalamander/onvif-go/onvif/schema/tptz"
+	"github.com/furrysalamander/onvif-go/onvif/schema/trt"
 	"github.com/furrysalamander/onvif-go/onvif/schema/tt"
 )
 
@@ -42,6 +46,7 @@ func New() *Server {
 			Service: []tds.Service{
 				{Namespace: "http://www.onvif.org/ver10/device/wsdl", XAddr: ""},
 				{Namespace: "http://www.onvif.org/ver10/media/wsdl", XAddr: ""},
+				{Namespace: "http://www.onvif.org/ver20/media/wsdl", XAddr: ""},
 				{Namespace: "http://www.onvif.org/ver10/events/wsdl", XAddr: ""},
 				{Namespace: "http://www.onvif.org/ver20/ptz/wsdl", XAddr: ""},
 				{Namespace: "http://www.onvif.org/ver20/imaging/wsdl", XAddr: ""},
@@ -87,7 +92,7 @@ func (s *Server) handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp := s.dispatch(body, &e)
+	resp := s.dispatch(body)
 	respEnv := &env.Envelope{}
 	_ = respEnv.SetBody(resp)
 	out, _ := xml.Marshal(respEnv)
@@ -95,7 +100,7 @@ func (s *Server) handle(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write(out)
 }
 
-func (s *Server) dispatch(raw []byte, _ *env.Envelope) interface{} {
+func (s *Server) dispatch(raw []byte) interface{} {
 	bodyStr := string(raw)
 	switch {
 	case strings.Contains(bodyStr, "GetDeviceInformation"):
@@ -108,6 +113,60 @@ func (s *Server) dispatch(raw []byte, _ *env.Envelope) interface{} {
 		return s.getScopes()
 	case strings.Contains(bodyStr, "GetSystemDateAndTime"):
 		return &tds.GetSystemDateAndTimeResponse{}
+
+	case strings.Contains(bodyStr, "GetProfiles"):
+		return s.getProfiles()
+	case strings.Contains(bodyStr, "GetVideoSources"):
+		return &trt.GetVideoSourcesResponse{}
+	case strings.Contains(bodyStr, "GetStreamUri"):
+		return &trt.GetStreamUriResponse{
+			MediaUri: tt.MediaUri{Uri: "rtsp://127.0.0.1/stream"},
+		}
+	case strings.Contains(bodyStr, "GetSnapshotUri"):
+		return &trt.GetSnapshotUriResponse{
+			MediaUri: tt.MediaUri{Uri: "http://127.0.0.1/snapshot"},
+		}
+
+	case strings.Contains(bodyStr, "GetNodes"):
+		return &tptz.GetNodesResponse{}
+	case strings.Contains(bodyStr, "GetStatus"):
+		return &tptz.GetStatusResponse{}
+	case strings.Contains(bodyStr, "AbsoluteMove"):
+		return &tptz.AbsoluteMoveResponse{}
+	case strings.Contains(bodyStr, "ContinuousMove"):
+		return &tptz.ContinuousMoveResponse{}
+	case strings.Contains(bodyStr, "RelativeMove"):
+		return &tptz.RelativeMoveResponse{}
+	case strings.Contains(bodyStr, "Stop"):
+		return &tptz.StopResponse{}
+	case strings.Contains(bodyStr, "GeoMove"):
+		return &tptz.GeoMoveResponse{}
+	case strings.Contains(bodyStr, "GotoHomePosition"):
+		return &tptz.GotoHomePositionResponse{}
+	case strings.Contains(bodyStr, "SetPreset"):
+		return &tptz.SetPresetResponse{PresetToken: "preset-001"}
+	case strings.Contains(bodyStr, "GetPresets"):
+		return &tptz.GetPresetsResponse{}
+	case strings.Contains(bodyStr, "CreatePresetTour"):
+		return &tptz.CreatePresetTourResponse{}
+
+	case strings.Contains(bodyStr, "GetEventProperties"):
+		return &tev.GetEventPropertiesResponse{}
+	case strings.Contains(bodyStr, "CreatePullPointSubscription"):
+		return &tev.CreatePullPointSubscriptionResponse{}
+	case strings.Contains(bodyStr, "PullMessages"):
+		return &tev.PullMessagesResponse{}
+	case strings.Contains(bodyStr, "Seek"):
+		return &tev.SeekResponse{}
+	case strings.Contains(bodyStr, "SetSynchronizationPoint"):
+		return &tev.SetSynchronizationPointResponse{}
+
+	case strings.Contains(bodyStr, "GetImagingSettings"):
+		return &timg.GetImagingSettingsResponse{}
+	case strings.Contains(bodyStr, "GetMoveOptions"):
+		return &timg.GetMoveOptionsResponse{}
+	case strings.Contains(bodyStr, "GetOptions"):
+		return &timg.GetOptionsResponse{}
 	}
 	return &env.Fault{
 		Code:   &env.FaultCode{Value: "env:Sender"},
@@ -131,4 +190,15 @@ func (s *Server) getScopes() *tds.GetScopesResponse {
 		scopes = []tt.Scope{}
 	}
 	return &tds.GetScopesResponse{Scopes: scopes}
+}
+
+func (s *Server) getProfiles() *trt.GetProfilesResponse {
+	return &trt.GetProfilesResponse{
+		Profiles: []tt.Profile{
+			{
+				Xtoken: tt.ReferenceToken("profile-001"),
+				Name:   tt.Name("MainProfile"),
+			},
+		},
+	}
 }
